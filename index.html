@@ -25,6 +25,8 @@ img{display:block;max-width:100%;}
 .nav-links{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap;}
 .nav-links button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:.85rem;font-weight:500;color:var(--ink);opacity:.75;transition:opacity .2s,color .2s;padding:0;}
 .nav-links button:hover,.nav-links button.active{opacity:1;color:var(--teal);}
+.nav-links .nav-coaching{opacity:1;color:var(--teal);background:rgba(15,159,154,.08);border:1px solid rgba(15,159,154,.22);border-radius:999px;padding:.48rem .9rem;transition:background .2s,border-color .2s,transform .2s;}
+.nav-links .nav-coaching:hover,.nav-links .nav-coaching.active{background:rgba(15,159,154,.14);border-color:rgba(15,159,154,.45);transform:translateY(-1px);}
 .nav-cta{font-size:.85rem;font-weight:600;color:#fff;background:var(--ink);padding:.5rem 1.1rem;border-radius:980px;text-decoration:none;transition:transform .2s;white-space:nowrap;}
 .nav-cta:hover{transform:scale(1.04);}
 
@@ -204,6 +206,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .nav-links li{width:100%;border-bottom:1px solid var(--line);}
   .nav-links li:first-child{margin-top:3.5rem;}
   .nav-links button{padding:1.1rem .2rem;font-size:1.05rem;font-weight:600;width:100%;text-align:left;opacity:1;}
+  .nav-links .nav-coaching{padding:1rem .8rem;border-radius:12px;}
   .hamburger{display:flex;}
   .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55;opacity:0;pointer-events:none;transition:opacity .3s;}
   .menu-overlay.open{opacity:1;pointer-events:auto;}
@@ -235,7 +238,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <li><button class="nav-btn" data-p="frameworks" onclick="showPage('frameworks')">How I Build</button></li>
     <li><button class="nav-btn" data-p="work" onclick="showPage('work')">Work</button></li>
     <li><button class="nav-btn" data-p="books" onclick="showPage('books')">Books</button></li>
-    <li><button class="nav-btn" data-p="coaching" onclick="showPage('coaching')">Coaching</button></li>
+    <li><button class="nav-btn nav-coaching" data-p="coaching" onclick="showPage('coaching')">Coaching</button></li>
     <li><button class="nav-btn" data-p="resources" onclick="showPage('resources')">Tools</button></li>
     <li><button class="nav-btn" data-p="contact" onclick="showPage('contact')">Contact</button></li>
   </ul>
@@ -456,7 +459,6 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Maria Morukian</div><h3>Diversity, Equity, and Inclusion for Trainers</h3><p>An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Julie Dirksen</div><h3>Design for How People Learn</h3><p>Clear, evidence-based insights on memory, attention, and motivation. Changed the way I think about what "learning" actually means.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Cathy Moore</div><h3>Map It</h3><p>Action mapping keeps every project anchored to a real business goal and what people need to do, not just know. I return to this constantly.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Robin Williams</div><h3>The Non-Designer's Design Book</h3><p>The CRAP principles, Contrast, Repetition, Alignment, Proximity, apply to every learning asset I build. A permanent desk reference.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Brown, Roediger & McDaniel</div><h3>Make It Stick</h3><p>The science of durable learning: retrieval practice, spacing, interleaving. It changed how I design every single course.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Brené Brown</div><h3>Dare to Lead</h3><p>Courage, vulnerability, and trust reframed as leadership skills you can actually teach. A cornerstone of my leadership development programs.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Boyatzis, Smith & Van Oosten</div><h3>Helping People Change</h3><p>Coaching with compassion over compliance. The research on what actually helps people change long-term changed how I approach every coaching conversation.</p></div>
@@ -628,9 +630,6 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <button type="submit" class="btn-fill" style="width:100%;margin-top:.5rem;">Send Message</button>
         <div class="form-note" id="formNote"></div>
       </form>
-      <div style="text-align:center;margin-top:2rem;">
-        <a href="#contact" onclick="showPage('contact')" class="btn-text">Or book a call directly &rarr;</a>
-      </div>
     </div>
   </div>
 </section>
