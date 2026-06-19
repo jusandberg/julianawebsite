@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Inner Critic vs Coach · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{ font-family:'Inter',sans-serif; background:#FFFFFF; color:var(--ink);
+  min-height:100%; line-height:1.65; overflow-x:hidden; }
+h1,h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem;
+}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.topbar-title{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:var(--ink); margin-right:auto; }
+.phase-badge{ font-size:.68rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; background:rgba(167,199,183,.25);
+  color:var(--sage-d); padding:.3rem .75rem; border-radius:999px; white-space:nowrap; }
+
+/* ── MAIN CONTENT ── */
+.wrap{ max-width:680px; margin:0 auto; padding:1rem 1.2rem 5rem; }
+
+/* ── EXPLAINER CARDS ── */
+.explainer{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-bottom:1.8rem; }
+@media(max-width:500px){ .explainer{ grid-template-columns:1fr; } }
+.explain-card{ border-radius:var(--radius); padding:1.2rem 1.3rem; }
+.explain-critic{ background:rgba(194,24,91,.06); border:1.5px solid rgba(194,24,91,.18); }
+.explain-coach{ background:rgba(2,119,168,.06); border:1.5px solid rgba(2,119,168,.18); }
+.explain-label{ font-family:'Inter'; font-weight:800; font-size:.8rem;
+  letter-spacing:.04em; margin-bottom:.4rem; display:flex; align-items:center; gap:.4rem; }
+.explain-critic .explain-label{ color:var(--red); }
+.explain-coach .explain-label{ color:var(--cyan-d); }
+.explain-card p{ font-size:.87rem; color:var(--muted); line-height:1.6; }
+
+/* ── INPUT SECTION ── */
+.input-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.6rem; margin-bottom:1.2rem; }
+.input-card h2{ font-size:1.1rem; margin-bottom:.3rem; }
+.input-card p{ font-size:.88rem; color:var(--muted); margin-bottom:1rem; line-height:1.6; }
+textarea{
+  width:100%; font-family:'Inter',sans-serif; font-size:1rem; color:var(--ink);
+  background:rgba(7,16,20,.03); border:1.5px solid rgba(7,16,20,.14);
+  border-radius:14px; padding:.9rem 1rem; resize:none; outline:none;
+  transition:border-color .2s; line-height:1.65; min-height:90px;
+}
+textarea:focus{ border-color:var(--teal); }
+textarea::placeholder{ color:var(--muted); font-size:.93rem; }
+.input-meta{ display:flex; justify-content:space-between; align-items:center;
+  margin-top:.6rem; gap:.6rem; flex-wrap:wrap; }
+.char-count{ font-size:.75rem; color:var(--muted); }
+
+/* ── EXAMPLE CHIPS ── */
+.ex-label{ font-size:.72rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.55rem; }
+.ex-chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.6rem; }
+.ex-chip{ font-size:.8rem; font-weight:500; padding:.38rem .9rem; border-radius:999px;
+  border:1.5px solid rgba(7,16,20,.12); background:var(--card); color:var(--muted);
+  cursor:pointer; transition:all .18s; }
+.ex-chip:active{ border-color:var(--teal); color:var(--teal-d); }
+
+/* ── BOTTOM BUTTON (fixed) ── */
+.btn-bar{ position:fixed; bottom:0; left:0; right:0;
+  padding:1rem 1.2rem 1.4rem;
+  background:linear-gradient(to top, var(--bg) 70%, transparent); }
+.btn-primary{
+  width:100%; font-family:'Inter',sans-serif; font-weight:700; font-size:1rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:999px; padding:1rem 1.6rem;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); cursor:pointer;
+  transition:transform .18s; touch-action:manipulation;
+}
+.btn-primary:active{ transform:scale(.97); }
+.btn-primary:disabled{ opacity:.4; cursor:not-allowed; transform:none; box-shadow:none; }
+
+/* ── LOADING ── */
+.loading{ display:none; text-align:center; padding:2.4rem 1.2rem; }
+.loading.show{ display:block; }
+.dots{ display:flex; gap:.35rem; justify-content:center; margin-bottom:.8rem; }
+.dot{ width:10px; height:10px; border-radius:50%;
+  animation:dp 1.3s ease-in-out infinite; }
+.dot:nth-child(1){ background:var(--teal); animation-delay:0s; }
+.dot:nth-child(2){ background:var(--sage); animation-delay:.2s; }
+.dot:nth-child(3){ background:var(--cyan); animation-delay:.4s; }
+@keyframes dp{ 0%,80%,100%{transform:scale(.6);opacity:.4;} 40%{transform:scale(1);opacity:1;} }
+#loading-text{ font-size:.9rem; color:var(--muted); }
+
+/* ── RESULT ── */
+.result{ display:none; }
+.result.show{ display:block; animation:fadeUp .4s ease; }
+@keyframes fadeUp{ from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+
+.voice-pair{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-bottom:1.1rem; }
+@media(max-width:500px){ .voice-pair{ grid-template-columns:1fr; } }
+.voice-card{ border-radius:var(--radius); padding:1.4rem; }
+.voice-critic{ background:rgba(194,24,91,.06); border:1.5px solid rgba(194,24,91,.18); }
+.voice-coach{ background:rgba(2,119,168,.06); border:1.5px solid rgba(2,119,168,.18); }
+.voice-header{ display:flex; align-items:center; gap:.5rem; margin-bottom:.7rem; }
+.voice-avatar{ width:32px; height:32px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; }
+.critic-av{ background:rgba(194,24,91,.14); }
+.coach-av{ background:rgba(2,119,168,.14); }
+.voice-name{ font-family:'Inter'; font-weight:800; font-size:.76rem; letter-spacing:.05em; }
+.voice-critic .voice-name{ color:var(--red); }
+.voice-coach .voice-name{ color:var(--cyan-d); }
+.voice-bubble{ font-size:.93rem; line-height:1.72; }
+.voice-critic .voice-bubble{ color:rgba(7,16,20,.7); font-style:italic; }
+.voice-coach .voice-bubble{ color:var(--ink); }
+
+.pattern-row{ display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; flex-wrap:wrap; }
+.pattern-label{ font-size:.78rem; color:var(--muted); font-weight:600; }
+.pattern-tag{ font-size:.76rem; font-weight:700; padding:.28rem .85rem; border-radius:999px;
+  background:rgba(167,199,183,.22); color:var(--sage-d); border:1.5px solid rgba(167,199,183,.35); }
+
+.practice-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.5rem; margin-bottom:1.1rem; }
+.practice-card h3{ font-size:.95rem; font-weight:700; margin-bottom:.9rem;
+  display:flex; align-items:center; gap:.4rem; }
+.practice-steps{ display:flex; flex-direction:column; gap:.75rem; }
+.practice-step{ display:flex; gap:.8rem; align-items:flex-start; }
+.step-num{ width:24px; height:24px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Inter'; font-weight:800; font-size:.72rem; margin-top:.15rem; }
+.s1{ background:rgba(194,24,91,.15); color:var(--red); }
+.s2{ background:rgba(167,199,183,.3); color:var(--sage-d); }
+.s3{ background:rgba(2,119,168,.14); color:var(--cyan-d); }
+.step-text{ font-size:.9rem; color:var(--muted); line-height:1.65; }
+.step-text strong{ color:var(--ink); }
+
+.try-again-btn{
+  display:block; width:100%; font-family:'Inter'; font-weight:600; font-size:.92rem;
+  color:var(--muted); background:transparent; border:1.5px solid rgba(7,16,20,.12);
+  border-radius:999px; padding:.85rem; cursor:pointer; margin-bottom:1.1rem;
+  touch-action:manipulation;
+}
+.try-again-btn:active{ background:rgba(7,16,20,.04); }
+
+/* ── HISTORY ── */
+.history{ display:none; margin-bottom:1.4rem; }
+.history h3{ font-size:.95rem; font-weight:700; margin-bottom:.7rem; }
+.history-item{ background:var(--card); border-radius:14px; box-shadow:var(--shadow); border:1px solid var(--line);
+  padding:.9rem 1.1rem; margin-bottom:.55rem; cursor:pointer;
+  border-left:3px solid rgba(6,182,212,.4); }
+.hi-critic{ font-size:.8rem; color:var(--muted); font-style:italic; margin-bottom:.25rem;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hi-coach{ font-size:.86rem; color:var(--ink); font-weight:500;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* ── CTA ── */
+.cta-card{ background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(167,199,183,.08) 50%,rgba(6,182,212,.1));
+  border-radius:var(--radius); padding:1.8rem; text-align:center; margin-bottom:1.4rem; }
+.cta-card h3{ font-size:1.05rem; margin-bottom:.4rem; }
+.cta-card p{ font-size:.88rem; color:var(--muted); max-width:30rem; margin:.4rem auto 1.2rem; line-height:1.6; }
+.cta-btn{ display:inline-block; font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:#fff; background:var(--teal);
+  border-radius:999px; padding:.95rem 2rem; text-decoration:none;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); touch-action:manipulation; }
+
+/* ── ERROR ── */
+.err-box{ background:#fff0f0; border:1.5px solid #fca5a5; border-radius:14px;
+  padding:.9rem 1.1rem; margin-top:.8rem; font-size:.86rem; color:#b91c1c; line-height:1.6; }
+
+@media(prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Unravel</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Mindset</div>
+    <h1>The Inner Critic <span class="grad">Reframe.</span></h1>
+    <p class="lead">Notice the voice of your inner critic, name the pattern it uses, then practice turning it into something more useful.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- EXPLAINER -->
+  <div class="explainer">
+    <div class="explain-card explain-critic">
+      <div class="explain-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C2185B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        Your inner critic
+      </div>
+      <p>Judges, catastrophises, generalises. Speaks in absolutes. Keeps you safe — but often keeps you small.</p>
+    </div>
+    <div class="explain-card explain-coach">
+      <div class="explain-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0277A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        Your inner coach
+      </div>
+      <p>Honest but kind. Asks questions instead of issuing verdicts. Sees you as capable of growth.</p>
+    </div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="input-card" id="input-card">
+    <h2>What is your inner critic saying?</h2>
+    <p>Type a thought that's been looping — something harsh, doubtful, or unkind you've been telling yourself.</p>
+    <textarea id="thought" placeholder="e.g. I always mess things up when it matters most..." maxlength="300"></textarea>
+    <div class="input-meta">
+      <span class="char-count" id="char-count">0 / 300</span>
+    </div>
+    <div id="err-box"></div>
+  </div>
+
+  <!-- EXAMPLE CHIPS -->
+  <div class="ex-label">Or try one of these</div>
+  <div class="ex-chips" id="ex-chips"></div>
+
+  <!-- LOADING -->
+  <div class="loading" id="loading">
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <p id="loading-text">Your inner coach is finding the words…</p>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="result">
+
+    <div class="voice-pair">
+      <div class="voice-card voice-critic">
+        <div class="voice-header">
+          <div class="voice-avatar critic-av">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C2185B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="voice-name">INNER CRITIC</div>
+        </div>
+        <div class="voice-bubble" id="critic-text"></div>
+      </div>
+      <div class="voice-card voice-coach">
+        <div class="voice-header">
+          <div class="voice-avatar coach-av">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0277A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="voice-name">INNER COACH</div>
+        </div>
+        <div class="voice-bubble" id="coach-text"></div>
+      </div>
+    </div>
+
+    <div class="pattern-row">
+      <span class="pattern-label">Pattern detected:</span>
+      <span class="pattern-tag" id="pattern-tag"></span>
+    </div>
+
+    <div class="practice-card">
+      <h3>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M5 21l3-7 4 2 4-2 3 7"/><path d="M7 14h10"/></svg>
+        What to do with this
+      </h3>
+      <div class="practice-steps">
+        <div class="practice-step"><div class="step-num s1">1</div><div class="step-text" id="p1"></div></div>
+        <div class="practice-step"><div class="step-num s2">2</div><div class="step-text" id="p2"></div></div>
+        <div class="practice-step"><div class="step-num s3">3</div><div class="step-text" id="p3"></div></div>
+      </div>
+    </div>
+
+    <button class="try-again-btn" onclick="tryAnother()">← Try another thought</button>
+
+  </div>
+
+  <!-- HISTORY -->
+  <div class="history" id="history">
+    <h3>Previous reframes</h3>
+    <div id="history-list"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <h3>The critic never fully disappears.</h3>
+    <p>But with practice, you stop believing everything it says. Coaching helps you understand where your inner critic came from — and build a more reliable inner coach.</p>
+    <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
+  </div>
+
+</div>
+
+<!-- FIXED BUTTON -->
+<div class="btn-bar" id="btn-bar">
+  <button class="btn-primary" id="reframe-btn" onclick="getReframe()" disabled>Get my reframe →</button>
+</div>
+
+<script>
+// ── Gemini key — get free at aistudio.google.com ──────────────
+const GEMINI_KEY = "PASTE_YOUR_GEMINI_KEY_HERE";
+
+// ── Static data ───────────────────────────────────────────────
+const EXAMPLES = [
+  "I always mess things up when it matters most.",
+  "I\u2019m not smart enough to do this.",
+  "Everyone else has it together except me.",
+  "I should be further along by now.",
+  "I\u2019m too sensitive \u2014 I need to toughen up.",
+  "I\u2019ll probably fail anyway, so why try?",
+  "I\u2019m a burden to the people around me.",
+  "I don\u2019t deserve good things."
+];
+
+const REFRAMES = [
+  { match:/always|never|every time/i, pattern:"All-or-nothing thinking",
+    coach:"The critic is speaking in absolutes \u2014 \u201Calways\u201D and \u201Cnever\u201D are rarely true. What actually happened this time? One specific instance is not a life sentence. What would you say to a friend who told you they \u201Calways\u201D mess things up?",
+    p1:"<strong>Name the distortion.</strong> All-or-nothing thinking erases every time things went well. That\u2019s not accurate data \u2014 it\u2019s a feeling dressed up as a fact.",
+    p2:"<strong>Collect evidence.</strong> Write down 3 times you didn\u2019t mess things up \u2014 not to dismiss the feeling, but to give your brain a fuller picture.",
+    p3:"<strong>Rephrase to sometimes.</strong> Swap \u201CI always\u201D for \u201CSometimes I\u201D and notice how the weight shifts." },
+  { match:/not smart|not enough|not good enough|not capable/i, pattern:"Measuring against an impossible standard",
+    coach:"Your inner critic has decided the bar is somewhere up there \u2014 and that you don\u2019t reach it. But whose bar is it? What would it actually mean to be \u201Cenough\u201D? That standard is worth examining.",
+    p1:"<strong>Ask: enough for what, exactly?</strong> \u201CNot enough\u201D is always relative to a standard. Name the standard clearly \u2014 it often loses power when you see it out loud.",
+    p2:"<strong>Separate capacity from identity.</strong> \u201CI struggled with this\u201D is different from \u201CI am not smart.\u201D One describes an experience. The other makes a permanent claim.",
+    p3:"<strong>Find the evidence of capability.</strong> You have figured things out before. What did you do recently that required skill, even a small one?" },
+  { match:/everyone else|nobody else|they all|people like me/i, pattern:"Comparison and mind-reading",
+    coach:"You are comparing your inside to everyone else\u2019s outside. Most people are running their own version of this same thought. The people who \u201Chave it together\u201D are mostly just better at hiding the parts that don\u2019t.",
+    p1:"<strong>Challenge the assumption.</strong> You don\u2019t have full access to other people\u2019s inner lives. Comparison based on surfaces is always unfair to yourself.",
+    p2:"<strong>Ask what you actually need.</strong> Often \u201Ceveryone else has it together\u201D is really \u201CI want to feel more settled.\u201D That\u2019s a real and workable need.",
+    p3:"<strong>Shrink the comparison pool.</strong> Pick one person you genuinely admire. What challenges have they actually faced? Even one honest conversation would likely change the picture." },
+  { match:/should be|should have|supposed to|by now|behind/i, pattern:"Should statements",
+    coach:"\u201CShould\u201D is one of the critic\u2019s favourite words \u2014 and it almost always carries someone else\u2019s timeline inside it. Whose timeline are you measuring against? Life doesn\u2019t move on a fixed schedule.",
+    p1:"<strong>Trace the \u201Cshould.\u201D</strong> Where did this expectation come from? A parent, a peer, a cultural script? Naming the source often loosens its grip.",
+    p2:"<strong>Replace \u201Cshould\u201D with \u201Cwant to\u201D or \u201Cchoose to.\u201D</strong> Notice how that shifts your relationship to the goal from obligation to ownership.",
+    p3:"<strong>Look at where you actually are.</strong> Not against an imaginary version of yourself \u2014 but against where you were a year ago. That\u2019s a fairer lens." },
+  { match:/burden|in the way|too much for|holding.+back/i, pattern:"Personalisation",
+    coach:"The idea that you are a burden is almost never as true as it feels. It\u2019s a thought your brain generates \u2014 usually rooted in fear of rejection, not in reality. Have you actually asked the people you\u2019re worried about, rather than decided on their behalf?",
+    p1:"<strong>Check if you\u2019re mind-reading.</strong> Believing you\u2019re a burden means assuming you know what others think. That assumption needs testing, not accepting.",
+    p2:"<strong>Notice if this thought protects you from something.</strong> Sometimes \u201CI\u2019m a burden\u201D is a way of pulling back before someone else can.",
+    p3:"<strong>Ask the question instead of answering it for them.</strong> Could you actually ask the people you\u2019re worried about how they experience you?" },
+  { match:/fail|going to fail|won.t work|pointless|why try/i, pattern:"Fortune-telling",
+    coach:"Your inner critic is predicting the future with a confidence it hasn\u2019t earned. You don\u2019t actually know what will happen. What if the effort itself has value, regardless of the outcome?",
+    p1:"<strong>Call out the fortune-telling.</strong> Write it as a fear instead: \u201CI\u2019m afraid I might fail.\u201D That\u2019s honest. \u201CI will fail\u201D is not.",
+    p2:"<strong>Ask: what\u2019s the worst realistic outcome?</strong> Not the catastrophic one \u2014 the realistic one. And then: could you handle that? Most of the time, yes.",
+    p3:"<strong>Focus on input, not outcome.</strong> You control your effort and preparation. You don\u2019t control the result. The critic collapses that distinction." },
+  { match:/too sensitive|too emotional|too much|overreacting|dramatic/i, pattern:"Labelling and minimising",
+    coach:"Sensitivity is not a character flaw \u2014 it\u2019s information. The fact that you feel things deeply means you are paying attention. The critic has learned to weaponise that against you.",
+    p1:"<strong>Separate the feeling from the judgement of the feeling.</strong> \u201CI felt hurt\u201D is data. \u201CI\u2019m too sensitive for feeling hurt\u201D is the critic adding a penalty on top.",
+    p2:"<strong>Ask whose voice this is.</strong> \u201CToo sensitive\u201D is almost always something someone else said \u2014 or implied \u2014 at some point. That doesn\u2019t make it true.",
+    p3:"<strong>Find the strength in it.</strong> Your sensitivity is likely connected to your empathy and depth of connection. What would you lose if it disappeared?" },
+  { match:/don.t deserve|not worthy|not worth|bad person/i, pattern:"Emotional reasoning",
+    coach:"Deserving is not something you earn by being perfect. You are not less worthy of good things because you made a mistake or feel uncertain right now. \u201CI don\u2019t deserve\u201D is often the critic\u2019s way of keeping you small.",
+    p1:"<strong>Notice the circular logic.</strong> \u201CI feel unworthy, therefore I am unworthy\u201D reasons from emotion. Feelings are real \u2014 they\u2019re not always accurate.",
+    p2:"<strong>Ask: would I say this to someone I love?</strong> If not, it\u2019s worth questioning whether it\u2019s fair to say it to yourself.",
+    p3:"<strong>Start smaller.</strong> Not \u201CI fully deserve everything\u201D \u2014 but \u201CI am allowed to want good things.\u201D That\u2019s a step the critic can\u2019t argue with as easily." }
+];
+
+const DEFAULT_REFRAME = {
+  pattern:"Self-critical thinking",
+  coach:"Your inner critic is speaking, and it sounds convincing. But notice: it\u2019s speaking in generalisations, not specifics. It\u2019s making a claim about who you are \u2014 not just what happened. Your inner coach would ask: is this thought actually true, or does it just feel true right now?",
+  p1:"<strong>Don\u2019t argue with the critic \u2014 notice it.</strong> Say: \u201CMy inner critic is having this thought\u201D rather than \u201CI am this thought.\u201D Distance creates choice.",
+  p2:"<strong>Ask the coaching question:</strong> What would I say to a friend who came to me with this exact thought? That response is closer to what\u2019s actually true.",
+  p3:"<strong>Look for the need underneath.</strong> Self-critical thoughts usually protect something \u2014 a fear, a need for belonging, a wish to do better. What is this thought really about?"
+};
+
+let sessionHistory = [];
+
+// ── Build example chips ───────────────────────────────────────
+const chipContainer = document.getElementById("ex-chips");
+EXAMPLES.forEach(ex => {
+  const c = document.createElement("span");
+  c.className = "ex-chip";
+  c.textContent = "\u201C" + ex.substring(0,40) + (ex.length>40?"\u2026":"") + "\u201D";
+  c.onclick = () => {
+    document.getElementById("thought").value = ex;
+    onType();
+    document.getElementById("thought").focus();
+  };
+  chipContainer.appendChild(c);
+});
+
+// ── Typing handler ────────────────────────────────────────────
+document.getElementById("thought").addEventListener("input", onType);
+function onType(){
+  const val = document.getElementById("thought").value;
+  document.getElementById("char-count").textContent = val.length + " / 300";
+  document.getElementById("reframe-btn").disabled = val.trim().length < 8;
+  document.getElementById("err-box").innerHTML = "";
+}
+
+// ── Static fallback ───────────────────────────────────────────
+function findReframe(t){
+  for(const r of REFRAMES){ if(r.match.test(t)) return r; }
+  return DEFAULT_REFRAME;
+}
+
+// ── Main reframe function ─────────────────────────────────────
+async function getReframe(){
+  const thought = document.getElementById("thought").value.trim();
+  if(!thought || thought.length < 8) return;
+
+  // hide result, show loading
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("result").style.display = "none";
+  document.getElementById("loading").classList.add("show");
+  document.getElementById("btn-bar").style.display = "none";
+
+  const msgs = ["Your inner coach is finding the words\u2026","Listening carefully\u2026",
+    "Separating the feeling from the fact\u2026","Almost there\u2026"];
+  let mi = 0;
+  const lt = setInterval(() => {
+    document.getElementById("loading-text").textContent = msgs[++mi % msgs.length];
+  }, 1000);
+
+  const staticR = findReframe(thought);
+  let useStatic = false;
+
+  try {
+    const hasKey = GEMINI_KEY && GEMINI_KEY !== "PASTE_YOUR_GEMINI_KEY_HERE";
+
+    if(hasKey){
+      const prompt = `You are a warm, grounded integrative development coach trained in EQ and cognitive reframing for Coaching.\n\nSomeone shared this inner critic thought: "${thought}"\n\nRespond with ONLY a valid JSON object:\n{"coachResponse":"2-3 warm honest sentences from the inner coach, ending with one good question","pattern":"cognitive distortion in 3-5 words","step1":"<strong>Title.</strong> One practical sentence.","step2":"<strong>Title.</strong> One practical sentence.","step3":"<strong>Title.</strong> One practical sentence."}`;
+
+      const res = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + GEMINI_KEY,
+        { method:"POST", headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({
+            contents:[{parts:[{text:prompt}]}],
+            generationConfig:{responseMimeType:"application/json", maxOutputTokens:800, temperature:.7},
+            systemInstruction:{parts:[{text:"You are a coaching assistant. Respond with valid JSON only."}]}
+          })
+        }
+      );
+      const data = await res.json();
+      if(data.error) throw new Error(data.error.message);
+      const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      if(!raw) throw new Error("Empty response");
+      const clean = raw.replace(/^```(?:json)?\s*/,"").replace(/\s*```$/,"").trim();
+      const json = JSON.parse(clean);
+
+      populateResult(thought, json.coachResponse, json.pattern, json.step1, json.step2, json.step3);
+    } else {
+      useStatic = true;
+    }
+  } catch(e) {
+    console.warn("AI failed, using static fallback:", e.message);
+    useStatic = true;
+  }
+
+  if(useStatic){
+    populateResult(thought, staticR.coach, staticR.pattern, staticR.p1, staticR.p2, staticR.p3);
+  }
+
+  clearInterval(lt);
+  document.getElementById("loading").classList.remove("show");
+  addToHistory(thought, document.getElementById("coach-text").textContent);
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// ── Populate result ───────────────────────────────────────────
+function populateResult(thought, coach, pattern, p1, p2, p3){
+  document.getElementById("critic-text").textContent = "\u201C" + thought + "\u201D";
+  document.getElementById("coach-text").textContent = coach;
+  document.getElementById("pattern-tag").textContent = pattern;
+  document.getElementById("p1").innerHTML = p1;
+  document.getElementById("p2").innerHTML = p2;
+  document.getElementById("p3").innerHTML = p3;
+  const r = document.getElementById("result");
+  r.style.display = "block";
+  setTimeout(() => r.classList.add("show"), 10);
+}
+
+// ── History ───────────────────────────────────────────────────
+function addToHistory(critic, coach){
+  sessionHistory.unshift({critic, coach});
+  if(sessionHistory.length > 5) sessionHistory.pop();
+  renderHistory();
+}
+function renderHistory(){
+  if(sessionHistory.length < 2) return;
+  const el = document.getElementById("history");
+  const list = document.getElementById("history-list");
+  el.style.display = "block";
+  list.innerHTML = "";
+  sessionHistory.slice(1).forEach(item => {
+    const d = document.createElement("div");
+    d.className = "history-item";
+    d.innerHTML = "<div class='hi-critic'>\u201C"+item.critic+"\u201D</div>"+
+      "<div class='hi-coach'>"+item.coach.substring(0,80)+"\u2026</div>";
+    d.onclick = () => {
+      document.getElementById("thought").value = item.critic;
+      onType();
+      window.scrollTo({top:0, behavior:"smooth"});
+    };
+    list.appendChild(d);
+  });
+}
+
+// ── Try another ───────────────────────────────────────────────
+function tryAnother(){
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("result").style.display = "none";
+  document.getElementById("thought").value = "";
+  document.getElementById("char-count").textContent = "0 / 300";
+  document.getElementById("reframe-btn").disabled = true;
+  document.getElementById("btn-bar").style.display = "block";
+  window.scrollTo({top:0, behavior:"smooth"});
+  document.getElementById("thought").focus();
+}
+</script>
+</body>
+</html>

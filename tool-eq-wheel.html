@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>EQ Wheel · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Inter',sans-serif;background:#FFFFFF;color:var(--ink);line-height:1.65;overflow-x:hidden;}
+h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
+
+/* ── TOP BAR ── */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);padding:.9rem 1.2rem;display:flex;align-items:center;gap:.8rem;}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.topbar-title{font-family:'Inter';font-weight:700;font-size:.95rem;color:var(--ink);margin-right:auto;}
+.phase-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(15,159,154,.08);color:var(--teal-d);padding:.3rem .75rem;border-radius:999px;white-space:nowrap;}
+
+/* ── LAYOUT ── */
+.wrap{padding:1rem 1.2rem 5rem;max-width:680px;margin:0 auto;}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-d);margin-bottom:.7rem;display:block;}
+.page-title{font-size:1.5rem;font-weight:800;margin-bottom:.6rem;line-height:1.2;}
+.page-title em{font-family:'Inter',sans-serif;font-style:italic;font-weight:500;color:var(--teal-d);}
+.page-sub{font-size:.92rem;color:var(--muted);margin-bottom:1.6rem;line-height:1.7;}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{margin-bottom:1.4rem;}
+.prog-row{display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:.45rem;}
+.prog-row span:last-child{color:var(--teal-d);}
+.prog-track{height:6px;background:rgba(7,16,20,.08);border-radius:999px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan));border-radius:999px;transition:width .5s cubic-bezier(.22,1,.36,1);width:0%;}
+
+/* ── ACCORDION ── */
+.accordion{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.4rem;}
+.acc-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow); border:1px solid var(--line);overflow:hidden;border-left:4px solid transparent;transition:border-color .3s;}
+.acc-item.open{border-left-color:var(--item-color);}
+.acc-item.visited .acc-header::after{content:'\2713';font-size:.8rem;color:var(--item-color);font-weight:700;}
+
+.acc-header{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.2rem;cursor:pointer;touch-action:manipulation;user-select:none;}
+.acc-header:active{background:rgba(7,16,20,.02);}
+.acc-icon{width:40px;height:40px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.acc-titles{flex:1;min-width:0;}
+.acc-name{font-family:'Inter';font-weight:700;font-size:.95rem;transition:color .3s;}
+.acc-tag{font-size:.78rem;color:var(--muted);margin-top:.1rem;}
+.acc-chevron{flex-shrink:0;transition:transform .3s cubic-bezier(.22,1,.36,1);color:var(--muted);}
+.acc-item.open .acc-chevron{transform:rotate(180deg);}
+
+/* ── ACCORDION BODY ── */
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.22,1,.36,1);}
+.acc-body-inner{padding:0 1.2rem 1.4rem;}
+.divider{height:1px;background:rgba(7,16,20,.06);margin-bottom:1.2rem;}
+.what-text{font-size:.92rem;color:var(--muted);line-height:1.75;margin-bottom:1.2rem;}
+
+/* ── HIGH / LOW GRID ── */
+.hilo{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.2rem;}
+@media(max-width:400px){.hilo{grid-template-columns:1fr;}}
+.hilo-box{border-radius:14px;padding:1rem;}
+.hilo-box.hi{background:rgba(15,159,154,.07);border:1px solid rgba(15,159,154,.18);}
+.hilo-box.lo{background:rgba(7,16,20,.03);border:1px solid rgba(7,16,20,.09);}
+.hilo-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+.hilo-box.hi .hilo-label{color:var(--teal-d);}
+.hilo-box.lo .hilo-label{color:var(--muted);}
+.hilo-list{list-style:none;display:flex;flex-direction:column;gap:.3rem;}
+.hilo-list li{font-size:.83rem;color:var(--muted);line-height:1.5;padding-left:1rem;position:relative;}
+.hilo-list li::before{position:absolute;left:0;font-weight:700;}
+.hilo-box.hi .hilo-list li::before{content:'\00B7';color:var(--teal);}
+.hilo-box.lo .hilo-list li::before{content:'\00B7';color:rgba(7,16,20,.25);}
+
+/* ── REFLECTION ── */
+.reflection{border-radius:14px;padding:1rem 1.1rem;margin-bottom:.9rem;}
+.ref-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;}
+.ref-q{font-size:.9rem;color:var(--ink);font-style:italic;line-height:1.65;}
+
+/* ── NEXT BUTTON ── */
+.next-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:'Inter';font-weight:600;font-size:.82rem;color:var(--teal-d);background:rgba(15,159,154,.1);border:none;border-radius:999px;padding:.45rem 1rem;cursor:pointer;touch-action:manipulation;transition:background .15s;}
+.next-btn:active{background:rgba(15,159,154,.2);}
+
+/* ── CTA ── */
+.cta-wrap{display:none;}
+.cta-wrap.show{display:block;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.cta-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-d);margin-bottom:.5rem;display:block;}
+.cta-title{font-size:1.25rem;font-weight:800;margin-bottom:.5rem;}
+.cta-body{font-size:.9rem;color:var(--muted);margin-bottom:1.3rem;line-height:1.7;}
+.cta-cards{display:grid;gap:.8rem;margin-bottom:1rem;}
+.cta-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow); border:1px solid var(--line);padding:1.4rem;}
+.cta-card h4{font-size:.92rem;font-weight:700;margin-bottom:.35rem;display:flex;align-items:center;gap:.45rem;}
+.cta-card p{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:.9rem;}
+.cta-card .price{font-family:'Inter';font-weight:800;font-size:1.1rem;color:var(--teal-d);margin-bottom:.75rem;}
+.btn-book{display:block;font-family:'Inter';font-weight:700;font-size:.95rem;color:#fff;background:var(--teal);border-radius:999px;padding:.9rem;text-align:center;text-decoration:none;box-shadow:0 8px 22px rgba(15,159,154,.32);}
+.btn-discover{display:block;font-family:'Inter';font-weight:700;font-size:.95rem;color:var(--teal-d);background:transparent;border:1.5px solid rgba(15,159,154,.3);border-radius:999px;padding:.9rem;text-align:center;text-decoration:none;}
+.eq-note{font-size:.76rem;color:var(--muted);text-align:center;line-height:1.65;margin-top:.8rem;}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Coaching</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Emotional Intelligence</div>
+    <h1>The EQ <span class="grad">Wheel.</span></h1>
+    <p class="lead">EQ is not about being emotional. It is about using emotions as information, to understand yourself, connect with others, and make better decisions. Explore each of the five composites below.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- PROGRESS -->
+  <div class="prog-wrap">
+    <div class="prog-row">
+      <span id="prog-text">0 of 5 explored</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="accordion" id="accordion"></div>
+
+  <!-- CTA -->
+  <div class="cta-wrap" id="cta-wrap">
+    <span class="cta-eyebrow">Ready to know your actual scores?</span>
+    <h3 class="cta-title">You just explored what EQ is. Now find out where yours actually sits.</h3>
+    <p class="cta-body">This wheel shows you the landscape. A proper EQ-i 2.0&reg; assessment maps exactly where you are on each composite &mdash; compared to thousands of other people, not just your own perception. It reveals what is working, what is holding you back, and where to focus first.</p>
+    <div class="cta-cards">
+      <div class="cta-card">
+        <h4>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--teal-d)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          EQ-Lite Session
+        </h4>
+        <p>A full EQ-i 2.0&reg; assessment plus a 60-minute certified debrief. You get your complete profile across all 5 composites and 16 subscales, with a personalised development plan.</p>
+        <div class="price">$197 CAD</div>
+        <a class="btn-book" href="index.html#contact">Book your EQ-Lite session</a>
+      </div>
+      <div class="cta-card">
+        <h4>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--teal-d)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Free Discovery Call
+        </h4>
+        <p>A 30-minute conversation to talk through what is coming up for you and whether an EQ assessment or coaching is the right next step.</p>
+        <div class="price">Free</div>
+        <a class="btn-discover" href="index.html#contact">Book a discovery call</a>
+      </div>
+    </div>
+    <p class="eq-note">The EQ-i 2.0&reg; is the world&rsquo;s leading measure of emotional intelligence, published by Multi-Health Systems (MHS).<br>Juliana is a certified EQ-i 2.0&reg; and EQ 360&reg; practitioner.</p>
+  </div>
+
+</div>
+
+<script>
+var DATA = [
+  {
+    key: 'sp',
+    color: '#0F9F9A',
+    name: 'Self-Perception',
+    tag: 'How clearly you see yourself',
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>',
+    what: 'Self-Perception is the foundation of emotional intelligence. It includes your self-regard (how you feel about yourself), your emotional self-awareness (noticing what you feel and why), and your self-actualisation (your sense of purpose and growth). Without this working well, everything else becomes harder to access.',
+    hi: ['You know who you are even when others question it','You notice emotions as they arrive, not just after','You feel a sense of direction and personal growth','You receive feedback without it threatening your identity'],
+    lo: ['You feel defined by what others think of you','Emotions catch you off guard or feel confusing','You go through the motions without a sense of meaning','Criticism lands hard and lingers'],
+    reflection: 'When I look at myself honestly, without the influence of other people\'s opinions \u2014 who do I see?',
+    next: 'se'
+  },
+  {
+    key: 'se',
+    color: '#06B6D4',
+    name: 'Self-Expression',
+    tag: 'How authentically you show up',
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+    what: 'Self-Expression covers emotional expression (sharing what you feel), assertiveness (asking for what you need and standing by what you believe), and independence (making decisions without needing approval). It is the bridge between your inner world and the people around you.',
+    hi: ['You say how you feel without over- or under-explaining','You hold your position under social pressure','You ask for what you need without guilt','You do not need others to validate your decisions'],
+    lo: ['You say yes when you mean no','Your real feelings stay hidden to keep the peace','You struggle to disagree without backing down','Other people\'s opinions carry too much weight'],
+    reflection: 'Where in my life am I performing a version of myself instead of actually showing up?',
+    next: 'ip'
+  },
+  {
+    key: 'ip',
+    color: '#2D6B5A',
+    name: 'Interpersonal',
+    tag: 'How you connect with others',
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+    what: 'Interpersonal EQ covers empathy (sensing what others feel), interpersonal relationships (building genuine connections), and social responsibility (contributing to something beyond yourself). This is the composite most visible to the people around you \u2014 it shows up in every conversation and every room you enter.',
+    hi: ['People feel genuinely heard and understood by you','You sense the emotional temperature of a room','Your relationships tend to be deep and mutual','You feel pulled toward contributing to others'],
+    lo: ['You feel disconnected even around people','Others\u2019 emotions feel hard to read or relate to','Relationships feel draining or surface-level','You are often surprised by how others are feeling'],
+    reflection: 'When someone is struggling, am I truly present with them \u2014 or am I waiting for my turn to speak?',
+    next: 'dm'
+  },
+  {
+    key: 'dm',
+    color: '#1A5276',
+    name: 'Decision Making',
+    tag: 'How emotions shape your choices',
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>',
+    what: 'Decision Making EQ is about the relationship between your emotions and your choices. It includes problem solving (thinking clearly under pressure), reality testing (seeing situations accurately rather than through fear or wishful thinking), and impulse control (pausing before reacting). This determines whether emotions inform your decisions \u2014 or hijack them.',
+    hi: ['You stay clear-headed when emotions are running high','You check your assumptions before acting','You can pause between feeling and responding','You see situations close to how they actually are'],
+    lo: ['Emotions leak into decisions without you noticing','You react first and reflect later','Anxiety or hope distort how you read situations','You later wonder why you said or did something'],
+    reflection: 'In a recent decision that did not go well \u2014 what emotion was actually driving it?',
+    next: 'sm'
+  },
+  {
+    key: 'sm',
+    color: '#5D7A6A',
+    name: 'Stress Management',
+    tag: 'How you stay regulated under pressure',
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M12 12C12 8 15 5 19 5c0 4-3 7-7 7z"/><path d="M12 12C12 8 9 5 5 5c0 4 3 7 7 7z"/><path d="M9 20h6"/></svg>',
+    what: 'Stress Management covers flexibility (adapting when things shift), stress tolerance (handling pressure without falling apart), and optimism (maintaining perspective even when things are hard). This composite determines your resilience \u2014 how quickly you recover, how steadily you function, and whether you stay grounded when everything around you is uncertain.',
+    hi: ['Pressure sharpens your focus rather than scattering it','You recover from setbacks without losing momentum','Change feels like a challenge, not a threat','You find something to hold onto even in difficulty'],
+    lo: ['Stress accumulates and does not fully release','Uncertainty feels particularly hard to sit with','You default to the worst-case interpretation','Recovery after setbacks takes longer than you would like'],
+    reflection: 'When I am under real pressure, who do I become \u2014 and is that who I want to be?',
+    next: null
+  }
+];
+
+var opened = {};
+
+function buildAccordion() {
+  var acc = document.getElementById('accordion');
+  DATA.forEach(function(d, idx) {
+    var item = document.createElement('div');
+    item.className = 'acc-item';
+    item.id = 'acc-' + d.key;
+    item.style.setProperty('--item-color', d.color);
+
+    var iconBg = d.color + '20';
+    var nextBtn = d.next
+      ? '<button class="next-btn" onclick="openItem(\'' + d.next + '\')">Explore ' + DATA[idx+1].name + ' <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>'
+      : '<button class="next-btn" onclick="showCTA()" style="background:linear-gradient(135deg,rgba(15,159,154,.15),rgba(6,182,212,.1));">See what comes next <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>';
+
+    item.innerHTML =
+      '<div class="acc-header" onclick="toggleItem(\'' + d.key + '\')" style="--item-color:' + d.color + '">' +
+        '<div class="acc-icon" style="background:' + iconBg + '; color:' + d.color + '">' + d.icon + '</div>' +
+        '<div class="acc-titles">' +
+          '<div class="acc-name" style="color:' + d.color + '">' + d.name + '</div>' +
+          '<div class="acc-tag">' + d.tag + '</div>' +
+        '</div>' +
+        '<svg class="acc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
+      '</div>' +
+      '<div class="acc-body" id="body-' + d.key + '">' +
+        '<div class="acc-body-inner">' +
+          '<div class="divider"></div>' +
+          '<p class="what-text">' + d.what + '</p>' +
+          '<div class="hilo">' +
+            '<div class="hilo-box hi"><div class="hilo-label">When it is strong</div><ul class="hilo-list">' +
+              d.hi.map(function(t){ return '<li>' + t + '</li>'; }).join('') +
+            '</ul></div>' +
+            '<div class="hilo-box lo"><div class="hilo-label">When it needs attention</div><ul class="hilo-list">' +
+              d.lo.map(function(t){ return '<li>' + t + '</li>'; }).join('') +
+            '</ul></div>' +
+          '</div>' +
+          '<div class="reflection" style="background:' + d.color + '12;border-left:3px solid ' + d.color + '">' +
+            '<div class="ref-label">Reflection to sit with</div>' +
+            '<div class="ref-q">&ldquo;' + d.reflection + '&rdquo;</div>' +
+          '</div>' +
+          nextBtn +
+        '</div>' +
+      '</div>';
+
+    acc.appendChild(item);
+  });
+}
+
+function toggleItem(key) {
+  var isOpen = document.getElementById('acc-' + key).classList.contains('open');
+  if (isOpen) {
+    closeItem(key);
+  } else {
+    openItem(key);
+  }
+}
+
+function openItem(key) {
+  // Close all others
+  DATA.forEach(function(d) {
+    if (d.key !== key) closeItem(d.key);
+  });
+  var item = document.getElementById('acc-' + key);
+  var body = document.getElementById('body-' + key);
+  item.classList.add('open');
+  // Measure and set max-height
+  body.style.maxHeight = body.scrollHeight + 'px';
+  // Mark visited
+  if (!opened[key]) {
+    opened[key] = true;
+    item.classList.add('visited');
+    updateProgress();
+  }
+  // Scroll into view
+  setTimeout(function() {
+    item.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 60);
+}
+
+function closeItem(key) {
+  var item = document.getElementById('acc-' + key);
+  var body = document.getElementById('body-' + key);
+  item.classList.remove('open');
+  body.style.maxHeight = '0';
+}
+
+function updateProgress() {
+  var n = Object.keys(opened).length;
+  var pct = Math.round((n / DATA.length) * 100);
+  document.getElementById('prog-text').textContent = n + ' of 5 explored';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  if (n === DATA.length) {
+    setTimeout(showCTA, 600);
+  }
+}
+
+function showCTA() {
+  var cta = document.getElementById('cta-wrap');
+  cta.classList.add('show');
+  setTimeout(function() {
+    cta.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 60);
+}
+
+buildAccordion();
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Wheel of Life — Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+::selection{background:rgba(15,159,154,.18);}
+img{display:block;max-width:100%;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.back-btn:hover{color:var(--teal);}
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+
+/* ACCENTS */
+.ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+
+/* HERO HEADER */
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .ring2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .dot1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .dot2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before,.eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+
+/* LAYOUT */
+.wrap{max-width:640px;margin:0 auto;padding:1rem 1.5rem 5rem;position:relative;}
+.wrap .ring,.wrap .dot{z-index:0;}
+.wrap .card{z-index:1;}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem 1.5rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+.wheel-card{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+#wheel-canvas{display:block;width:100%;max-width:440px;height:auto;touch-action:none;}
+
+/* SCORE BAR */
+.score-bar{display:flex;align-items:center;gap:1rem;width:100%;max-width:440px;}
+.ring-wrap{position:relative;width:52px;height:52px;flex-shrink:0;}
+#ring-canvas{display:block;}
+.ring-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;}
+.score-text h4{font-size:.95rem;font-weight:700;}
+.score-text p{font-size:.85rem;color:var(--grey);}
+
+/* SLIDERS */
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.01em;}
+.slider-row{display:grid;grid-template-columns:120px 1fr 28px;gap:.9rem;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--line);}
+.slider-row:last-child{border-bottom:none;}
+.slider-label{font-size:.9rem;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:.5rem;}
+.slider-label svg{flex-shrink:0;}
+input[type="range"]{-webkit-appearance:none;width:100%;height:5px;border-radius:999px;background:var(--line);outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--teal);box-shadow:0 2px 8px rgba(15,159,154,.3);cursor:pointer;}
+input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;border:none;background:var(--teal);}
+.slider-val{font-weight:800;font-size:.95rem;color:var(--teal);text-align:right;}
+.reset-btn{display:block;width:100%;font-family:inherit;font-weight:600;font-size:.9rem;color:var(--grey);background:transparent;border:1px solid var(--line);border-radius:980px;padding:.8rem;cursor:pointer;margin-top:1rem;transition:background .2s,border-color .2s;}
+.reset-btn:hover{background:var(--soft);border-color:var(--teal);}
+
+/* RESULTS */
+.results-stats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.4rem;}
+@media(max-width:400px){.results-stats{grid-template-columns:1fr;}}
+.result-stat{border-radius:16px;padding:1.1rem;border:1px solid var(--line);}
+.result-stat.positive{background:rgba(52,168,83,.06);border-color:rgba(52,168,83,.2);}
+.result-stat.improve{background:rgba(251,188,5,.07);border-color:rgba(251,188,5,.25);}
+.result-stat .stat-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;}
+.result-stat.positive .stat-label{color:var(--green);}
+.result-stat.improve .stat-label{color:#C98F00;}
+.result-stat .stat-val{font-weight:700;font-size:.98rem;}
+.reflections h4{font-size:.9rem;font-weight:700;margin-bottom:.9rem;}
+.step-item{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.9rem;}
+.step-dot{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;color:#fff;margin-top:.1rem;}
+.step-text{font-size:1rem;color:var(--ink);line-height:1.65;}
+.step-text strong{color:var(--ink);font-weight:700;display:block;margin-bottom:.3rem;font-size:1rem;}
+
+/* CTA */
+.cta-card{background:var(--soft);border:1px solid var(--line);text-align:center;}
+.cta-card h3{font-size:1.2rem;margin-bottom:.5rem;}
+.cta-card p{font-size:.92rem;color:var(--grey);margin:.4rem 0 1.4rem;line-height:1.6;}
+.cta-btn{display:inline-block;font-family:inherit;font-weight:600;font-size:.95rem;color:#fff;background:var(--ink);border-radius:980px;padding:.9rem 2rem;text-decoration:none;transition:transform .2s;}
+.cta-btn:hover{transform:scale(1.04);}
+
+@media(max-width:600px){.nav{padding:.9rem 1.2rem;}.hero{padding:3rem 1.2rem 1.5rem;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  <span class="nav-pill"><span class="pdot"></span> Uncover</span>
+</nav>
+
+<div class="hero">
+  <div class="ring ring1"></div><div class="ring ring2"></div>
+  <div class="dot dot1"></div><div class="dot dot2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Life Balance</div>
+    <h1>The Wheel of <span class="grad">Life.</span></h1>
+    <p>Rate each life area from 1 (needs work) to 10 (thriving). Move the sliders and watch your wheel take shape. The shape tells a story.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="ring" style="width:240px;height:240px;border-color:rgba(15,159,154,.12);bottom:340px;right:-90px;"></div>
+  <div class="ring" style="width:160px;height:160px;border-color:rgba(66,133,244,.12);bottom:120px;left:-70px;"></div>
+  <div class="ring" style="width:90px;height:90px;border-color:rgba(52,168,83,.16);bottom:420px;left:-30px;"></div>
+  <div class="dot" style="width:11px;height:11px;background:var(--yellow);bottom:300px;left:8%;opacity:.6;"></div>
+  <div class="dot" style="width:9px;height:9px;background:var(--blue);bottom:200px;right:6%;opacity:.6;"></div>
+  <div class="dot" style="width:8px;height:8px;background:var(--teal);bottom:480px;right:14%;"></div>
+  <div class="card">
+    <h3>Rate each area</h3>
+    <div id="sliders"></div>
+    <button class="reset-btn" onclick="resetAll()">Reset all to 5</button>
+  </div>
+
+  <div class="card">
+    <h3>Your snapshot</h3>
+    <div class="results-stats">
+      <div class="result-stat positive">
+        <div class="stat-label">Strongest area</div>
+        <div class="stat-val" id="strongest-area">—</div>
+      </div>
+      <div class="result-stat improve">
+        <div class="stat-label">Most room to grow</div>
+        <div class="stat-val" id="weakest-area">—</div>
+      </div>
+    </div>
+    <div class="reflections">
+      <h4>Reflection prompts for your lowest areas</h4>
+      <div id="next-steps"></div>
+    </div>
+  </div>
+
+  <div class="card wheel-card">
+    <h3 style="align-self:flex-start;">Your wheel</h3>
+    <canvas id="wheel-canvas" aria-label="Wheel of life diagram"></canvas>
+    <div class="score-bar">
+      <div class="ring-wrap">
+        <canvas id="ring-canvas" width="52" height="52"></canvas>
+        <div class="ring-label" id="avg-score">5.0</div>
+      </div>
+      <div class="score-text">
+        <h4>Overall balance score</h4>
+        <p id="balance-note">Move the sliders to see your score</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card cta-card">
+    <h3>What do you notice?</h3>
+    <p>The wheel never lies. Bring this snapshot into a coaching session and we'll explore what the shape is telling you, and what you most want to change.</p>
+    <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
+  </div>
+</div>
+
+<script>
+const CATEGORIES = [
+  { key:'health',       label:'Health & Fitness',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 9l-4 12M14 9l4 12M8 15h8"/></svg>',
+    tips:['What would better health look like for you in 30 days?','What\'s one small change to your routine that would make a real difference?','What barriers are keeping you from prioritising your physical wellbeing?'] },
+  { key:'relationships',label:'Relationships',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+    tips:['Who in your life deserves more of your attention?','What kind of connection are you truly craving right now?','How authentic are you being in your closest relationships?'] },
+  { key:'career',       label:'Career',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 12 10 8 16 12 14 16 8"/></svg>',
+    tips:['What would fulfilling work look like to you?','What skill or knowledge would unlock your next opportunity?','Are you growing in the direction you want to go?'] },
+  { key:'finances',     label:'Finances',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    tips:['What does financial security mean to you personally?','Where is money draining away that you\'re not aware of?','What financial goal excites you most right now?'] },
+  { key:'personal',     label:'Personal Growth',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M12 12C12 8 15 5 19 5c0 4-3 7-7 7z"/><path d="M12 12C12 8 9 5 5 5c0 4 3 7 7 7z"/><path d="M9 20h6"/></svg>',
+    tips:['What version of yourself are you working to become?','What have you learned about yourself recently?','What area of personal development calls to you most?'] },
+  { key:'fun',          label:'Fun & Recreation',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7l-8 8-4-4-6 6"/><path d="M14 7h6v6"/></svg>',
+    tips:['When was the last time you truly enjoyed yourself?','What activities make you lose track of time?','What would bring more joy into your everyday life?'] },
+  { key:'environment',  label:'Environment',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    tips:['How does your physical space make you feel right now?','What one change to your environment would improve your mood?','What does your ideal living or working space look like?'] },
+  { key:'spirituality', label:'Spirituality',
+    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+    tips:['What gives your life meaning and purpose?','How connected do you feel to your deeper values?','What practices would help you feel more grounded?'] }
+];
+
+let values = CATEGORIES.map(() => 5);
+
+// ── Build sliders ─────────────────────────────────────────────
+function buildSliders(){
+  const container = document.getElementById('sliders');
+  CATEGORIES.forEach((cat, i) => {
+    const row = document.createElement('div');
+    row.className = 'slider-row';
+    row.innerHTML =
+      '<div class="slider-label">' + cat.label + '</div>' +
+      '<input type="range" min="1" max="10" value="5" aria-label="' + cat.label + ' score">' +
+      '<div class="slider-val" id="val-' + i + '">5</div>';
+    row.querySelector('input').addEventListener('input', function(){ updateValue(i, this.value); });
+    container.appendChild(row);
+  });
+}
+
+function updateValue(idx, val){
+  values[idx] = parseInt(val);
+  document.getElementById('val-' + idx).textContent = val;
+  drawWheel();
+  updateResults();
+}
+
+function resetAll(){
+  values = CATEGORIES.map(() => 5);
+  document.querySelectorAll('#sliders input[type="range"]').forEach(s => s.value = 5);
+  document.querySelectorAll('[id^="val-"]').forEach(el => el.textContent = '5');
+  drawWheel();
+  updateResults();
+}
+
+// ── Draw wheel — fully responsive ────────────────────────────
+function drawWheel(){
+  const canvas = document.getElementById('wheel-canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Size canvas to container width, square
+  const size = Math.min(canvas.parentElement.clientWidth - 24, 440);
+  const dprLocal = window.devicePixelRatio || 1;
+  canvas.width  = size * dprLocal;
+  canvas.height = size * dprLocal;
+  canvas.style.width  = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.setTransform(dprLocal, 0, 0, dprLocal, 0, 0);
+
+  const cx = size/2, cy = size/2;
+  const r  = size * 0.28;   // fits labels outside without clipping
+  const n  = CATEGORIES.length;
+  const step = (Math.PI * 2) / n;
+  const dpr = window.devicePixelRatio || 1;
+
+  ctx.clearRect(0, 0, size, size);
+
+  // Ring guides
+  for(let ring = 2; ring <= 10; ring += 2){
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * ring/10, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(234,234,239,1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Spoke guides
+  for(let i = 0; i < n; i++){
+    const angle = -Math.PI/2 + i*step;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + r*Math.cos(angle), cy + r*Math.sin(angle));
+    ctx.strokeStyle = 'rgba(234,234,239,1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Filled polygon
+  ctx.beginPath();
+  for(let i = 0; i < n; i++){
+    const angle = -Math.PI/2 + i*step;
+    const dist  = r * values[i]/10;
+    const x = cx + dist*Math.cos(angle);
+    const y = cy + dist*Math.sin(angle);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(cx-r, cy-r, cx+r, cy+r);
+  grad.addColorStop(0,   'rgba(15,159,154,.30)');
+  grad.addColorStop(.5,  'rgba(52,168,83,.28)');
+  grad.addColorStop(1,   'rgba(66,133,244,.30)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(15,159,154,.85)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Node dots
+  for(let i = 0; i < n; i++){
+    const angle = -Math.PI/2 + i*step;
+    const dist  = r * values[i]/10;
+    ctx.beginPath();
+    ctx.arc(cx + dist*Math.cos(angle), cy + dist*Math.sin(angle), 5, 0, Math.PI*2);
+    ctx.fillStyle = '#34A853';
+    ctx.fill();
+  }
+
+  // Labels — font size scales with canvas
+  const fontSize = Math.max(11, Math.floor(size * 0.032));
+  ctx.font = '600 ' + fontSize + 'px Inter, -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const pad = 4; // keep labels inside canvas
+  for(let i = 0; i < n; i++){
+    const angle = -Math.PI/2 + i*step;
+    let lx = cx + (r + size*0.055) * Math.cos(angle);
+    let ly = cy + (r + size*0.055) * Math.sin(angle);
+    ctx.fillStyle = '#1A1A1C';
+    const cosA = Math.cos(angle);
+    const label = CATEGORIES[i].label;
+    if(cosA > 0.3){
+      ctx.textAlign = 'right';            // right-side labels: anchor at right edge
+      lx = size - pad;
+    } else if(cosA < -0.3){
+      ctx.textAlign = 'left';             // left-side labels: anchor at left edge
+      lx = pad;
+    } else {
+      ctx.textAlign = 'center';
+    }
+    ctx.fillText(label, lx, ly);
+  }
+  ctx.textAlign = 'center';
+}
+
+// ── Ring chart ────────────────────────────────────────────────
+function drawRing(avg){
+  const canvas = document.getElementById('ring-canvas');
+  const ctx = canvas.getContext('2d');
+  const dprR = window.devicePixelRatio || 1;
+  if(canvas.width !== 52*dprR){ canvas.width = 52*dprR; canvas.height = 52*dprR; canvas.style.width='52px'; canvas.style.height='52px'; }
+  ctx.setTransform(dprR,0,0,dprR,0,0);
+  const cx = 26, cy = 26, rO = 22, rI = 14, pct = avg/10;
+  ctx.clearRect(0, 0, 52, 52);
+  ctx.beginPath();
+  ctx.arc(cx, cy, rO, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(234,234,239,1)';
+  ctx.lineWidth = rO - rI;
+  ctx.stroke();
+  const g = ctx.createLinearGradient(cx-rO, cy, cx+rO, cy);
+  g.addColorStop(0, '#0F9F9A'); g.addColorStop(1, '#4285F4');
+  ctx.beginPath();
+  ctx.arc(cx, cy, rO - (rO-rI)/2, -Math.PI/2, -Math.PI/2 + pct*Math.PI*2);
+  ctx.strokeStyle = g;
+  ctx.lineWidth = rO - rI;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+}
+
+// ── Update results ────────────────────────────────────────────
+function updateResults(){
+  const avg = values.reduce((a,b) => a+b, 0) / values.length;
+  document.getElementById('avg-score').textContent = avg.toFixed(1);
+  drawRing(avg);
+
+  const note = avg >= 7 ? 'Great overall balance!'
+             : avg >= 5 ? 'Some areas need attention'
+             : 'Several areas need focus';
+  document.getElementById('balance-note').textContent = note;
+
+  const maxIdx = values.indexOf(Math.max(...values));
+  const minIdx = values.indexOf(Math.min(...values));
+  document.getElementById('strongest-area').innerHTML =
+    CATEGORIES[maxIdx].label + ' (' + values[maxIdx] + '/10)';
+  document.getElementById('weakest-area').innerHTML =
+    CATEGORIES[minIdx].label + ' (' + values[minIdx] + '/10)';
+
+  // 3 lowest → reflection prompts
+  const sorted = values.map((v,i) => ({v,i})).sort((a,b) => a.v - b.v);
+  const el = document.getElementById('next-steps');
+  el.innerHTML = '';
+  for(let s = 0; s < Math.min(3, sorted.length); s++){
+    const cat = CATEGORIES[sorted[s].i];
+    const tip = cat.tips[Math.floor(Math.random() * cat.tips.length)];
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML =
+      '<div class="step-dot">' + (s+1) + '</div>' +
+      '<div class="step-text"><strong>' + cat.label + '</strong>' + tip + '</div>';
+    el.appendChild(item);
+  }
+}
+
+// ── Redraw on resize ──────────────────────────────────────────
+window.addEventListener('resize', () => { drawWheel(); }, { passive:true });
+
+// ── Init ──────────────────────────────────────────────────────
+buildSliders();
+// Small delay so layout is settled before measuring container width
+setTimeout(() => { drawWheel(); updateResults(); }, 60);
+</script>
+</body>
+</html>

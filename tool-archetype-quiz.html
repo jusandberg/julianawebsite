@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Archetype Quiz · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{ font-family:'Inter',sans-serif; background:#FFFFFF; color:var(--ink);
+  min-height:100%; line-height:1.65; overflow-x:hidden; }
+h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem;
+}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.topbar-title{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:var(--ink); margin-right:auto; }
+.phase-badge{ font-size:.68rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; background:rgba(15,159,154,.08);
+  color:var(--teal); padding:.3rem .75rem; border-radius:999px; white-space:nowrap; }
+
+/* ── SCREENS ── */
+.screen{ display:none; }
+.screen.active{ display:block; animation:fadeUp .35s ease; }
+@keyframes fadeUp{ from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+
+/* ── INTRO SCREEN ── */
+#screen-intro{ padding:1.4rem 1.2rem 5rem; }
+.intro-eyebrow{ font-size:.72rem; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--teal-d); margin-bottom:.8rem; display:block; }
+.intro-title{ font-size:1.6rem; font-weight:800; margin-bottom:.8rem; }
+.intro-title em{ font-family:'Inter',sans-serif; font-style:italic; font-weight:500; color:var(--teal-d); }
+.intro-sub{ font-size:.95rem; color:var(--muted); margin-bottom:1.6rem; line-height:1.7; }
+
+.archetype-cards{ display:grid; gap:.8rem; margin-bottom:1.8rem; }
+.arch-intro-card{ border-radius:18px; padding:1.2rem 1.4rem; border:1.5px solid transparent; }
+.arch-intro-card.witness{ background:var(--witness-bg); border-color:var(--witness-border); }
+.arch-intro-card.guide{ background:var(--guide-bg); border-color:var(--guide-border); }
+.arch-intro-card.explorer{ background:var(--explorer-bg); border-color:var(--explorer-border); }
+.arch-intro-card h4{ font-size:.95rem; font-weight:700; margin-bottom:.2rem;
+  display:flex; align-items:center; gap:.5rem; }
+.arch-intro-card.witness h4{ color:var(--witness); }
+.arch-intro-card.guide h4{ color:#2D6B5A; }
+.arch-intro-card.explorer h4{ color:var(--explorer); }
+.arch-intro-card p{ font-size:.85rem; color:var(--muted); }
+
+/* ── QUESTION SCREEN ── */
+#screen-quiz{ padding:0 1.2rem 6rem; }
+.prog-wrap{ padding:1rem 0 .4rem; }
+.prog-dots{ display:flex; gap:.3rem; margin-bottom:.3rem; }
+.prog-dot{ flex:1; height:4px; border-radius:999px;
+  background:rgba(7,16,20,.1); transition:background .4s; }
+.prog-dot.done{ background:var(--teal); }
+.prog-dot.active{ background:linear-gradient(90deg,var(--teal),var(--cyan)); }
+.prog-label{ font-size:.75rem; color:var(--muted); font-weight:600; }
+
+.q-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.6rem 1.4rem; margin:1rem 0 .8rem; }
+.q-num{ font-size:.72rem; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--teal-d); margin-bottom:.6rem; }
+.q-text{ font-size:1.1rem; font-weight:700; line-height:1.4; }
+
+.options{ display:grid; gap:.6rem; margin-bottom:.5rem; }
+.option{
+  background:var(--card); border:1.5px solid rgba(7,16,20,.12);
+  border-radius:16px; padding:1rem 1.2rem; cursor:pointer;
+  display:flex; align-items:flex-start; gap:.9rem;
+  transition:all .2s; touch-action:manipulation; text-align:left;
+}
+.option:active{ transform:scale(.98); }
+.option.selected{
+  border-color:var(--teal); background:rgba(15,159,154,.06);
+}
+.opt-dot{ width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  border:2px solid rgba(7,16,20,.18); margin-top:.1rem;
+  transition:all .2s; display:flex; align-items:center; justify-content:center; }
+.option.selected .opt-dot{
+  background:var(--teal);
+  border-color:transparent;
+}
+.opt-check{ display:none; }
+.option.selected .opt-check{ display:block; }
+.opt-text{ font-size:.92rem; color:var(--ink); line-height:1.55; }
+
+/* ── FIXED BTN ── */
+.btn-bar{ position:fixed; bottom:0; left:0; right:0;
+  padding:1rem 1.2rem 1.4rem;
+  background:linear-gradient(to top, var(--bg) 70%, transparent); }
+.btn-primary{ width:100%; font-family:'Inter'; font-weight:700; font-size:1rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:999px; padding:1rem;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); cursor:pointer;
+  touch-action:manipulation; transition:transform .15s; }
+.btn-primary:active{ transform:scale(.97); }
+.btn-primary:disabled{ opacity:.35; cursor:not-allowed; transform:none; box-shadow:none; }
+
+/* ── LOADING ── */
+#screen-loading{ padding:4rem 1.2rem; text-align:center; }
+.dots{ display:flex; gap:.4rem; justify-content:center; margin-bottom:1rem; }
+.dot{ width:11px; height:11px; border-radius:50%;
+  animation:dp 1.3s ease-in-out infinite; }
+.dot:nth-child(1){ background:#0F9F9A; animation-delay:0s; }
+.dot:nth-child(2){ background:#A7C7B7; animation-delay:.2s; }
+.dot:nth-child(3){ background:#06B6D4; animation-delay:.4s; }
+@keyframes dp{ 0%,80%,100%{transform:scale(.6);opacity:.4;} 40%{transform:scale(1);opacity:1;} }
+.loading-text{ font-size:.95rem; color:var(--muted); }
+
+/* ── RESULT SCREEN ── */
+#screen-result{ padding:1.2rem 1.2rem 3rem; }
+.result-hero{
+  border-radius:var(--radius); padding:2.2rem 1.6rem; text-align:center;
+  margin-bottom:1.2rem; position:relative; overflow:hidden;
+}
+.result-hero.witness{ background:linear-gradient(135deg,var(--witness-bg),rgba(157,122,207,.2)); border:1.5px solid var(--witness-border); }
+.result-hero.guide{ background:linear-gradient(135deg,var(--guide-bg),rgba(15,159,154,.2)); border:1.5px solid var(--guide-border); }
+.result-hero.explorer{ background:linear-gradient(135deg,var(--explorer-bg),rgba(232,135,58,.2)); border:1.5px solid var(--explorer-border); }
+.result-eyebrow{ font-size:.72rem; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; margin-bottom:.6rem; }
+.result-hero.witness .result-eyebrow{ color:var(--witness); }
+.result-hero.guide .result-eyebrow{ color:#2D6B5A; }
+.result-hero.explorer .result-eyebrow{ color:var(--explorer); }
+.result-icon{ width:64px; height:64px; border-radius:50%; margin:0 auto .9rem;
+  display:flex; align-items:center; justify-content:center; }
+.result-hero.witness .result-icon{ background:rgba(157,122,207,.2); }
+.result-hero.guide .result-icon{ background:rgba(15,159,154,.2); }
+.result-hero.explorer .result-icon{ background:rgba(232,135,58,.2); }
+.result-name{ font-family:'Inter'; font-weight:800; font-size:2rem; margin-bottom:.3rem; }
+.result-hero.witness .result-name{ color:var(--witness); }
+.result-hero.guide .result-name{ color:#2D6B5A; }
+.result-hero.explorer .result-name{ color:var(--explorer); }
+.result-tagline{ font-family:'Inter',sans-serif; font-style:italic; font-size:1.05rem; color:var(--muted); }
+
+.result-section{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.5rem; margin-bottom:1rem; }
+.result-section h3{ font-size:.95rem; font-weight:700; margin-bottom:.7rem;
+  display:flex; align-items:center; gap:.5rem; }
+.result-section p{ font-size:.92rem; color:var(--muted); line-height:1.75; }
+.result-section ul{ list-style:none; display:grid; gap:.55rem; margin-top:.5rem; }
+.result-section li{ font-size:.9rem; color:var(--muted); padding-left:1.4rem; position:relative; }
+.result-section li::before{ content:'✦'; position:absolute; left:0; font-size:.7rem; top:.25rem; }
+.witness-color li::before{ color:var(--witness); }
+.guide-color li::before{ color:#2D6B5A; }
+.explorer-color li::before{ color:var(--explorer); }
+
+.score-bar-wrap{ margin-bottom:1.2rem; }
+.score-row{ display:flex; align-items:center; gap:.7rem; margin-bottom:.6rem; }
+.score-label{ font-size:.82rem; font-weight:600; width:90px; flex-shrink:0; }
+.score-track{ flex:1; height:8px; background:rgba(7,16,20,.08); border-radius:999px; overflow:hidden; }
+.score-fill{ height:100%; border-radius:999px; transition:width 1s cubic-bezier(.22,1,.36,1); }
+.fill-witness{ background:linear-gradient(90deg,#0F9F9A,#3BBDB8); }
+.fill-guide{ background:linear-gradient(90deg,#A7C7B7,#C8DDD4); }
+.fill-explorer{ background:linear-gradient(90deg,#06B6D4,#7ADCF9); }
+.score-pct{ font-family:'Inter'; font-weight:700; font-size:.82rem; width:36px; text-align:right; }
+
+.secondary-card{ border-radius:var(--radius); padding:1.3rem; margin-bottom:1rem; }
+.secondary-card.witness{ background:var(--witness-bg); border:1.5px solid var(--witness-border); }
+.secondary-card.guide{ background:var(--guide-bg); border:1.5px solid var(--guide-border); }
+.secondary-card.explorer{ background:var(--explorer-bg); border:1.5px solid var(--explorer-border); }
+.secondary-card h4{ font-size:.88rem; font-weight:700; margin-bottom:.4rem; }
+.secondary-card p{ font-size:.86rem; color:var(--muted); line-height:1.65; }
+
+.cta-card{ background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(167,199,183,.08) 50%,rgba(6,182,212,.1));
+  border-radius:var(--radius); padding:1.8rem; text-align:center; margin-top:1.2rem; }
+.cta-card h3{ font-size:1.05rem; margin-bottom:.4rem; }
+.cta-card p{ font-size:.88rem; color:var(--muted); margin:.4rem 0 1.2rem; line-height:1.6; }
+.cta-btn{ display:inline-block; font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:#fff; background:var(--teal);
+  border-radius:999px; padding:.95rem 2rem; text-decoration:none;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); }
+.between-card{
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem;
+  background:linear-gradient(135deg,rgba(15,159,154,.07),rgba(167,199,183,.1) 50%,rgba(6,182,212,.08));
+  border:1.5px solid rgba(15,159,154,.2);
+}
+.between-card h3{
+  font-size:.95rem; font-weight:700; margin-bottom:.6rem;
+  display:flex; align-items:center; gap:.5rem; color:var(--teal-d);
+}
+.between-card p{ font-size:.9rem; color:var(--muted); line-height:1.75; }
+.between-card p + p{ margin-top:.6rem; }
+.between-card .arch-pills{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0 .4rem; }
+.between-card .arch-pill{
+  font-family:'Inter'; font-weight:700; font-size:.78rem;
+  padding:.32rem .85rem; border-radius:999px;
+}
+.pill-witness{ background:rgba(15,159,154,.14); color:var(--teal-d); }
+.pill-guide{   background:rgba(167,199,183,.3);  color:#2D6B5A; }
+.pill-explorer{ background:rgba(6,182,212,.14);  color:var(--cyan-d); }
+
+.restart-btn{ display:block; width:100%; font-family:'Inter'; font-weight:600;
+  font-size:.88rem; color:var(--muted); background:transparent;
+  border:1.5px solid rgba(7,16,20,.12); border-radius:999px;
+  padding:.8rem; cursor:pointer; margin-top:.8rem; touch-action:manipulation; }
+
+@media(prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Coaching</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Self-Discovery</div>
+    <h1>The Inner <span class="grad">Archetype.</span></h1>
+    <p class="lead">Answer a few honest questions to discover which inner force is guiding you right now: The Witness, The Inner Guide, or The Explorer.</p>
+  </div>
+</div>
+
+<!-- ═══════════ INTRO ═══════════ -->
+<div class="screen active" id="screen-intro">
+  <span class="intro-eyebrow">Discover your archetype</span>
+  <h2 class="intro-title">Which inner force is <em>guiding you</em> right now?</h2>
+  <p class="intro-sub">Coaching works with three archetypes — universal inner forces that shape how you see yourself and move through growth. This quiz reveals which one is most active in you right now, and what that means for your journey.</p>
+
+  <div class="archetype-cards">
+    <div class="arch-intro-card witness">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
+        The Witness
+      </h4>
+      <p>Presence · awareness · compassion</p>
+    </div>
+    <div class="arch-intro-card guide">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 12 10 8 16 12 14 16 8"/></svg>
+        The Inner Guide
+      </h4>
+      <p>Intuition · stillness · inner wisdom</p>
+    </div>
+    <div class="arch-intro-card explorer">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3l9 9-9 9"/></svg>
+        The Explorer
+      </h4>
+      <p>Courage · wonder · trusting the unknown</p>
+    </div>
+  </div>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.6rem;">9 questions · about 3 minutes · no right or wrong answers. Go with your gut.</p>
+
+  <div class="btn-bar">
+    <button class="btn-primary" onclick="startQuiz()">Begin the quiz →</button>
+  </div>
+</div>
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="prog-wrap">
+    <div class="prog-dots" id="prog-dots"></div>
+    <div class="prog-label" id="prog-label">Question 1 of 9</div>
+  </div>
+  <div class="q-card">
+    <div class="q-num" id="q-num">Question 1 of 9</div>
+    <div class="q-text" id="q-text"></div>
+  </div>
+  <div class="options" id="options"></div>
+  <div class="btn-bar">
+    <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════ LOADING ═══════════ -->
+<div class="screen" id="screen-loading">
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <p class="loading-text" id="loading-text">Reading your answers…</p>
+</div>
+
+<!-- ═══════════ RESULT ═══════════ -->
+<div class="screen" id="screen-result">
+
+  <div class="result-hero" id="result-hero">
+    <div class="result-eyebrow" id="result-eyebrow">Your archetype</div>
+    <div class="result-icon" id="result-icon"></div>
+    <div class="result-name" id="result-name"></div>
+    <div class="result-tagline" id="result-tagline"></div>
+  </div>
+
+  <div class="result-section" id="result-about">
+    <h3 id="about-title"></h3>
+    <p id="about-text"></p>
+  </div>
+
+  <div class="result-section">
+    <h3>Your score breakdown</h3>
+    <div class="score-bar-wrap" id="score-bars"></div>
+  </div>
+
+  <div class="result-section" id="result-strengths">
+    <h3 id="strengths-title"></h3>
+    <ul id="strengths-list" class="witness-color"></ul>
+  </div>
+
+  <div class="result-section" id="result-invitation">
+    <h3>Your invitation</h3>
+    <p id="invitation-text"></p>
+  </div>
+
+  <div id="between-section"></div>
+  <div id="secondary-section"></div>
+
+  <div class="cta-card">
+    <h3>Want to go deeper with this?</h3>
+    <p>Your archetype is a doorway — coaching helps you walk through it. Bring your result into a session and we'll explore what it's revealing about where you are right now.</p>
+    <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
+    <button class="restart-btn" onclick="restart()">Retake the quiz</button>
+  </div>
+</div>
+
+<script>
+// ── Quiz data ─────────────────────────────────────────────────
+// Each answer: [W=Witness, G=Guide, E=Explorer]
+const QUESTIONS = [
+  {
+    text: "When something difficult happens, your first instinct is to…",
+    options: [
+      { text: "Pause and observe what's arising inside you before reacting", scores: [3,1,0] },
+      { text: "Go quiet and wait for an inner knowing to emerge", scores: [1,3,0] },
+      { text: "Move — do something, explore what's possible", scores: [0,1,3] },
+    ]
+  },
+  {
+    text: "Which of these feels most true about how you learn and grow?",
+    options: [
+      { text: "I grow through noticing patterns in myself without judgment", scores: [3,0,1] },
+      { text: "I grow when I trust what I feel before I can explain it", scores: [0,3,1] },
+      { text: "I grow by stepping into the unknown and figuring it out as I go", scores: [0,1,3] },
+    ]
+  },
+  {
+    text: "In a moment of self-doubt, the voice that helps you most says…",
+    options: [
+      { text: "\"Just notice the doubt — you don't have to believe everything you think\"", scores: [3,1,0] },
+      { text: "\"Be still. The answer is already within you\"", scores: [1,3,0] },
+      { text: "\"Keep moving — the clarity will come through action\"", scores: [0,0,3] },
+    ]
+  },
+  {
+    text: "When you're at your best, people around you tend to experience you as…",
+    options: [
+      { text: "Deeply present — someone who makes them feel truly seen", scores: [3,1,0] },
+      { text: "Quietly wise — someone who always seems to know the right thing to say", scores: [0,3,1] },
+      { text: "Energising — someone who makes them feel like anything is possible", scores: [0,0,3] },
+    ]
+  },
+  {
+    text: "The idea that resonates most deeply with you right now is…",
+    options: [
+      { text: "Healing begins with compassionate self-awareness", scores: [3,0,1] },
+      { text: "The answers I seek are already within me", scores: [1,3,0] },
+      { text: "Growth lives at the edge of my comfort zone", scores: [0,1,3] },
+    ]
+  },
+  {
+    text: "When you imagine your inner life as a landscape, it most resembles…",
+    options: [
+      { text: "A still lake — reflecting everything clearly, undisturbed", scores: [3,1,0] },
+      { text: "A forest path — quiet, layered, full of hidden meaning", scores: [1,3,0] },
+      { text: "An open horizon — vast, uncharted, full of possibility", scores: [0,0,3] },
+    ]
+  },
+  {
+    text: "Which of these challenges do you recognise most in yourself?",
+    options: [
+      { text: "Sometimes I observe so much that I forget to act", scores: [3,0,0] },
+      { text: "Sometimes I wait for certainty that never quite arrives", scores: [0,3,0] },
+      { text: "Sometimes I move so fast I don't stop to integrate what I've learned", scores: [0,0,3] },
+    ]
+  },
+  {
+    text: "When making an important decision, you most trust…",
+    options: [
+      { text: "What you notice in your body and emotional responses", scores: [3,1,0] },
+      { text: "A quiet inner knowing that doesn't always have words", scores: [0,3,1] },
+      { text: "What you discover by taking a step and seeing what happens", scores: [0,0,3] },
+    ]
+  },
+  {
+    text: "If your growth journey had a quality right now, it would be…",
+    options: [
+      { text: "Gentle and spacious — meeting myself with more kindness", scores: [3,1,0] },
+      { text: "Deep and still — listening inward more than outward", scores: [1,3,0] },
+      { text: "Bold and forward — I'm ready to leap", scores: [0,0,3] },
+    ]
+  }
+];
+
+const ARCHETYPES = {
+  witness: {
+    name: "The Witness",
+    tagline: "You see without judgment. That is a rare gift.",
+    color: "witness",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="0.5" fill="#0F9F9A"/></svg>`,
+    about: "The Witness holds presence and gentle awareness. It sees without judgment, creating the quiet safety where transformation begins. With curiosity and compassion, it allows us to meet ourselves fully — including the parts we've been avoiding.",
+    strengths: [
+      "Deep capacity for self-awareness and honest observation",
+      "You create safety for yourself and others to be real",
+      "You can hold complexity without needing to resolve it immediately",
+      "You notice what others miss — in yourself and in a room"
+    ],
+    invitation: "Your invitation right now is to move from observing to acting. You have the clarity — the next step is trusting what you see enough to let it change you. What would you do if you believed everything you've already noticed?",
+    secondaryType: "guide",
+    secondaryNote: "Your secondary energy draws from The Inner Guide — you pair your sharp awareness with an intuitive knowing that goes beyond logic."
+  },
+  guide: {
+    name: "The Inner Guide",
+    tagline: "The answers you seek are already within you.",
+    color: "guide",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2D6B5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 12 10 8 16 12 14 16 8"/></svg>`,
+    about: "The Inner Guide speaks through intuition and stillness. It leads us through the descent and rise of the U, reminding us that the answers we seek are already within. Wisdom unfolds when we learn to listen inward rather than reaching outward for approval or certainty.",
+    strengths: [
+      "Powerful intuition that often knows before the mind catches up",
+      "You access depth and meaning that others skim past",
+      "Natural wisdom that people sense and are drawn to",
+      "You can hold space and stay grounded when things get uncertain"
+    ],
+    invitation: "Your invitation right now is to trust what you already know. You\'ve been sensing something — perhaps for a while. What would change if you stopped waiting for external permission and let your inner knowing lead?",
+    secondaryType: "witness",
+    secondaryNote: "Your secondary energy draws from The Witness — you pair deep intuition with a capacity for compassionate, honest self-observation."
+  },
+  explorer: {
+    name: "The Explorer",
+    tagline: "You find freedom in the unfolding.",
+    color: "explorer",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3l9 9-9 9"/></svg>`,
+    about: "The Explorer moves with courage and wonder. It trusts the unknown and finds freedom in the unfolding. Through curiosity, it carries us along the U-shaped journey of becoming — not despite the uncertainty, but because of it.",
+    strengths: [
+      "Courageous — you move even when you can\'t see the whole path",
+      "You bring energy and possibility into every space you enter",
+      "Natural capacity to begin again and again without losing heart",
+      "You inspire others to take their own leaps just by taking yours"
+    ],
+    invitation: "Your invitation right now is to slow down enough to integrate what you\'ve already discovered. You've gathered a lot — what wisdom from the journey so far are you still carrying without unpacking? The richest growth sometimes happens in the pause between adventures.",
+    secondaryType: "guide",
+    secondaryNote: "Your secondary energy draws from The Inner Guide — beneath your forward momentum is a quiet wisdom that helps you trust the direction you\'re moving in."
+  }
+};
+
+const SECONDARY_NAMES = { witness:"The Witness", guide:"The Inner Guide", explorer:"The Explorer" };
+
+// ── State ─────────────────────────────────────────────────────
+let current = 0;
+let answers = []; // array of [W,G,E] score arrays
+let scores = { witness:0, guide:0, explorer:0 };
+
+// ── Navigation ────────────────────────────────────────────────
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function startQuiz(){
+  current = 0; answers = []; scores = {witness:0, guide:0, explorer:0};
+  buildProgressDots();
+  renderQuestion();
+  showScreen('screen-quiz');
+}
+
+// ── Progress dots ─────────────────────────────────────────────
+function buildProgressDots(){
+  const wrap = document.getElementById('prog-dots');
+  wrap.innerHTML = '';
+  QUESTIONS.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'prog-dot' + (i===0?' active':'');
+    d.id = 'pd-'+i;
+    wrap.appendChild(d);
+  });
+}
+
+function updateDots(){
+  QUESTIONS.forEach((_,i) => {
+    const d = document.getElementById('pd-'+i);
+    d.className = 'prog-dot' + (i<current?' done': i===current?' active':'');
+  });
+  document.getElementById('prog-label').textContent = 'Question '+(current+1)+' of '+QUESTIONS.length;
+}
+
+// ── Render question ───────────────────────────────────────────
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById('q-num').textContent = 'Question '+(current+1)+' of '+QUESTIONS.length;
+  document.getElementById('q-text').textContent = q.text;
+  const container = document.getElementById('options');
+  container.innerHTML = '';
+  document.getElementById('btn-next').disabled = true;
+  document.getElementById('btn-next').textContent = current===QUESTIONS.length-1 ? 'See my archetype →' : 'Next →';
+
+  // Shuffle options so answer patterns aren't predictable
+  const shuffled = [...q.options].sort(() => Math.random()-.5);
+
+  shuffled.forEach((opt,i) => {
+    const el = document.createElement('div');
+    el.className = 'option';
+    el.innerHTML =
+      '<div class="opt-dot"><svg class="opt-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>'+
+      '<div class="opt-text">'+opt.text+'</div>';
+    el.onclick = () => selectOption(el, opt.scores, shuffled);
+    container.appendChild(el);
+  });
+  updateDots();
+}
+
+let selectedScores = null;
+function selectOption(el, sc, pool){
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedScores = sc;
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ(){
+  if(!selectedScores) return;
+  answers.push(selectedScores);
+  scores.witness  += selectedScores[0];
+  scores.guide    += selectedScores[1];
+  scores.explorer += selectedScores[2];
+  selectedScores = null;
+
+  if(current < QUESTIONS.length-1){
+    current++;
+    renderQuestion();
+    window.scrollTo({top:0, behavior:'smooth'});
+  } else {
+    revealResult();
+  }
+}
+
+// ── Calculate + reveal ────────────────────────────────────────
+function revealResult(){
+  showScreen('screen-loading');
+  const msgs = ['Reading your answers…','Listening for the pattern…','Finding your archetype…'];
+  let mi=0;
+  const lt = setInterval(()=>{ document.getElementById('loading-text').textContent=msgs[++mi%msgs.length]; },1000);
+  setTimeout(()=>{ clearInterval(lt); buildResult(); showScreen('screen-result'); }, 2600);
+}
+
+function buildResult(){
+  const total = scores.witness + scores.guide + scores.explorer || 1;
+  const wPct = Math.round(scores.witness/total*100);
+  const gPct = Math.round(scores.guide/total*100);
+  const ePct = Math.round(scores.explorer*100/total);
+
+  // Dominant archetype
+  const dominant = scores.witness >= scores.guide && scores.witness >= scores.explorer ? 'witness'
+    : scores.guide >= scores.explorer ? 'guide' : 'explorer';
+  const arch = ARCHETYPES[dominant];
+
+  // Hero
+  const hero = document.getElementById('result-hero');
+  hero.className = 'result-hero '+arch.color;
+  document.getElementById('result-eyebrow').textContent = 'Your archetype';
+  document.getElementById('result-icon').innerHTML = arch.icon;
+  document.getElementById('result-name').textContent = arch.name;
+  document.getElementById('result-tagline').textContent = arch.tagline;
+
+  // About
+  document.getElementById('about-title').innerHTML =
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Who is '+arch.name+'?';
+  document.getElementById('about-text').textContent = arch.about;
+
+  // Score bars
+  const bars = document.getElementById('score-bars');
+  bars.innerHTML = [
+    {label:'The Witness', pct:wPct, cls:'fill-witness'},
+    {label:'Inner Guide', pct:gPct, cls:'fill-guide'},
+    {label:'The Explorer', pct:ePct, cls:'fill-explorer'},
+  ].map(b =>
+    '<div class="score-row">'+
+    '<div class="score-label">'+b.label+'</div>'+
+    '<div class="score-track"><div class="score-fill '+b.cls+'" style="width:0%" data-w="'+b.pct+'%"></div></div>'+
+    '<div class="score-pct">'+b.pct+'%</div></div>'
+  ).join('');
+  // Animate bars after paint
+  setTimeout(()=>{
+    bars.querySelectorAll('.score-fill').forEach(el => {
+      el.style.width = el.dataset.w;
+    });
+  }, 80);
+
+  // Strengths
+  document.getElementById('strengths-title').innerHTML =
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.96A1 1 0 0 0 5 14.5h5.5L10 22l9.91-10.96A1 1 0 0 0 19 9.5h-5.5L13 2z"/></svg> Your strengths';
+  const ul = document.getElementById('strengths-list');
+  ul.className = arch.color+'-color';
+  ul.innerHTML = arch.strengths.map(s=>'<li>'+s+'</li>').join('');
+
+  // Invitation
+  document.getElementById('invitation-text').textContent = arch.invitation;
+
+  // ── Between-archetypes nuance ──────────────────────────────
+  const sorted = [
+    {key:'witness', pct:wPct},
+    {key:'guide',   pct:gPct},
+    {key:'explorer', pct:ePct}
+  ].sort((a,b)=>b.pct-a.pct);
+
+  const gap12 = sorted[0].pct - sorted[1].pct;
+  const gap13 = sorted[0].pct - sorted[2].pct;
+
+  const ARCH_NAMES = {witness:'The Witness', guide:'The Inner Guide', explorer:'The Explorer'};
+  const PILL_CLASS = {witness:'pill-witness', guide:'pill-guide', explorer:'pill-explorer'};
+
+  const BETWEEN_MSGS = {
+    'witness-guide': {
+      headline: 'You walk between presence and wisdom',
+      body: 'Your Witness and Inner Guide energies are nearly equal — this often signals someone who moves fluidly between compassionate observation and deep inner knowing. You can see yourself clearly <em>and</em> trust what you sense beneath the surface. In coaching, this combination creates a powerful capacity for both honest self-reflection and intuitive clarity.',
+      invitation: 'The question worth sitting with: in this moment, are you being called to <em>observe</em> something more carefully — or to <em>trust</em> what you already know?'
+    },
+    'witness-explorer': {
+      headline: 'You walk between stillness and movement',
+      body: 'Your Witness and Explorer energies are nearly equal — a rare and interesting combination. You have a gift for both deep self-awareness and bold forward motion. Sometimes these two feel like they pull against each other: part of you wants to pause and integrate, while another part wants to leap.',
+      invitation: 'The question worth sitting with: right now, does your growth need more <em>observation</em> — or more <em>action</em>? Both are available to you.'
+    },
+    'guide-explorer': {
+      headline: 'You walk between inner wisdom and outer exploration',
+      body: 'Your Inner Guide and Explorer energies are nearly equal — you have both a strong intuitive compass and the courage to follow it into unknown territory. You don\'t just sense the direction; you\'re willing to move toward it even without a map.',
+      invitation: 'The question worth sitting with: are you currently trusting your inner knowing enough to let it guide where the Explorer in you goes next?'
+    }
+  };
+
+  const ALL_THREE_MSG = {
+    headline: 'All three archetypes are active in you right now',
+    body: 'Your scores are remarkably balanced across The Witness, The Inner Guide, and The Explorer. This is uncommon — and it often appears at a significant crossroads or transition point. You have access to deep presence, intuitive wisdom, and courageous movement all at once.',
+    invitation: 'This can feel like richness — or like being pulled in three directions at the same time. A coaching conversation could help you understand which archetype most wants to lead you through this particular moment.'
+  };
+
+  const betweenEl = document.getElementById('between-section');
+
+  if(gap13 <= 15){
+    // All three within 15% — nearly equal
+    betweenEl.innerHTML =
+      '<div class="between-card">'+
+      '<h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg> '+ALL_THREE_MSG.headline+'</h3>'+
+      '<div class="arch-pills">'+
+        '<span class="arch-pill pill-witness">The Witness '+wPct+'%</span>'+
+        '<span class="arch-pill pill-guide">Inner Guide '+gPct+'%</span>'+
+        '<span class="arch-pill pill-explorer">The Explorer '+ePct+'%</span>'+
+      '</div>'+
+      '<p>'+ALL_THREE_MSG.body+'</p>'+
+      '<p><em>'+ALL_THREE_MSG.invitation+'</em></p>'+
+      '</div>';
+  } else if(gap12 <= 10){
+    // Top two within 10% — between two archetypes
+    const pairKey = [sorted[0].key, sorted[1].key].sort().join('-');
+    const msg = BETWEEN_MSGS[pairKey] || BETWEEN_MSGS['witness-guide'];
+    betweenEl.innerHTML =
+      '<div class="between-card">'+
+      '<h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg> '+msg.headline+'</h3>'+
+      '<div class="arch-pills">'+
+        '<span class="arch-pill '+PILL_CLASS[sorted[0].key]+'">'+ARCH_NAMES[sorted[0].key]+' '+sorted[0].pct+'%</span>'+
+        '<span class="arch-pill '+PILL_CLASS[sorted[1].key]+'">'+ARCH_NAMES[sorted[1].key]+' '+sorted[1].pct+'%</span>'+
+      '</div>'+
+      '<p>'+msg.body+'</p>'+
+      '<p><em>'+msg.invitation+'</em></p>'+
+      '</div>';
+  } else {
+    betweenEl.innerHTML = '';
+  }
+
+  // Secondary
+  const secEl = document.getElementById('secondary-section');
+  const secArch = ARCHETYPES[arch.secondaryType || sorted[1].key];
+  const secKey = arch.secondaryType || sorted[1].key;
+  secEl.innerHTML =
+    '<div class="secondary-card '+secArch.color+'">'+
+    '<h4>Your secondary energy: '+SECONDARY_NAMES[secKey]+'</h4>'+
+    '<p>'+(arch.secondaryNote||secArch.about.split('.')[0]+'.')+'</p>'+
+    '</div>';
+}
+
+function restart(){
+  current=0; answers=[]; scores={witness:0,guide:0,explorer:0};
+  showScreen('screen-intro');
+}
+</script>
+</body>
+</html>

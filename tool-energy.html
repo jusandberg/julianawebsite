@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Energy Audit · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{ font-family:'Inter',sans-serif; background:#FFFFFF; color:var(--ink);
+  min-height:100%; line-height:1.65; overflow-x:hidden; }
+h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem;
+}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.topbar-title{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:var(--ink); margin-right:auto; }
+.phase-badge{ font-size:.68rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; background:rgba(15,159,154,.08);
+  color:var(--teal); padding:.3rem .75rem; border-radius:999px; white-space:nowrap; }
+
+/* ── STEP INDICATORS ── */
+.steps-bar{ display:flex; align-items:center; justify-content:center;
+  gap:.4rem; padding:1rem 1.2rem .3rem; }
+.step-dot{ width:28px; height:28px; border-radius:50%; border:2px solid rgba(7,16,20,.15);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Inter'; font-weight:800; font-size:.78rem; color:var(--muted); }
+.step-dot.active{ background:var(--teal); border-color:var(--teal); color:#fff; }
+.step-dot.done{ background:rgba(15,159,154,.15); border-color:var(--teal); color:var(--teal-d); }
+.step-connector{ flex:1; height:2px; background:rgba(7,16,20,.1); max-width:80px; }
+.step-connector.done{ background:var(--teal); }
+.steps-labels{ display:flex; justify-content:space-between; padding:0 1.2rem .8rem;
+  font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+.steps-labels span.active{ color:var(--teal-d); }
+
+/* ── STAGES ── */
+.stage{ display:none; padding:0 1.2rem 6rem; }
+.stage.active{ display:block; }
+
+/* ── PROGRESS ── */
+.prog-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.2rem; margin-bottom:1.2rem; }
+.prog-row{ display:flex; justify-content:space-between; font-size:.82rem;
+  font-weight:600; margin-bottom:.5rem; }
+.prog-row span:last-child{ color:var(--teal-d); }
+.prog-track{ height:6px; background:rgba(7,16,20,.08); border-radius:999px; overflow:hidden; }
+.prog-fill{ height:100%; background:linear-gradient(90deg,var(--teal),var(--cyan));
+  border-radius:999px; transition:width .3s ease; }
+
+/* ── ACTIVITY CARDS ── */
+.category-label{ font-size:.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.1em; color:var(--muted); margin:1.2rem 0 .5rem; padding-left:.2rem; }
+.activity-card{
+  background:var(--card); border-radius:16px; box-shadow:var(--shadow); border:1px solid var(--line);
+  display:flex; align-items:center; gap:.9rem; padding:1rem 1.1rem;
+  margin-bottom:.6rem; cursor:pointer; transition:all .18s; border:2px solid transparent;
+  touch-action:manipulation;
+}
+.activity-card:active{ transform:scale(.98); }
+.activity-card.tagged-gives{ border-color:rgba(15,159,154,.4); background:rgba(15,159,154,.05); }
+.activity-card.tagged-drains{ border-color:rgba(194,24,91,.3); background:rgba(194,24,91,.04); }
+.activity-card.tagged-neutral{ border-color:rgba(74,98,112,.2); background:rgba(74,98,112,.03); }
+.activity-icon{ width:36px; height:36px; flex-shrink:0; display:flex;
+  align-items:center; justify-content:center; }
+.activity-text{ flex:1; min-width:0; }
+.activity-name{ font-weight:600; font-size:.92rem; }
+.activity-cat{ font-size:.75rem; color:var(--muted); }
+.activity-tag{
+  font-family:'Inter'; font-weight:800; font-size:.7rem;
+  padding:.25rem .7rem; border-radius:999px; white-space:nowrap; flex-shrink:0;
+}
+.tag-gives{ background:rgba(15,159,154,.15); color:var(--teal-d); }
+.tag-drains{ background:rgba(194,24,91,.12); color:#B0145B; }
+.tag-neutral{ background:rgba(74,98,112,.1); color:var(--muted); }
+.tag-empty{ background:rgba(7,16,20,.06); color:var(--muted); font-weight:500; }
+
+/* ── ADD CUSTOM ── */
+.add-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.4rem; margin:1.4rem 0; }
+.add-card h4{ font-size:.92rem; font-weight:700; margin-bottom:.8rem; }
+.add-row{ display:flex; gap:.6rem; }
+.add-input{ flex:1; font-family:'Inter',sans-serif; font-size:.92rem;
+  background:rgba(7,16,20,.03); border:1.5px solid rgba(7,16,20,.12);
+  border-radius:12px; padding:.7rem .9rem; outline:none; min-width:0; }
+.add-input:focus{ border-color:var(--teal); }
+.add-select{ font-family:'Inter',sans-serif; font-size:.88rem;
+  background:rgba(7,16,20,.03); border:1.5px solid rgba(7,16,20,.12);
+  border-radius:12px; padding:.7rem .8rem; outline:none; cursor:pointer; }
+.add-btn{ font-family:'Inter'; font-weight:700; font-size:.85rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:12px; padding:.7rem 1.1rem; cursor:pointer;
+  white-space:nowrap; touch-action:manipulation; }
+
+/* ── FIXED BTN ── */
+.btn-bar{ position:fixed; bottom:0; left:0; right:0;
+  padding:1rem 1.2rem 1.4rem;
+  background:linear-gradient(to top, var(--bg) 70%, transparent); }
+.btn-primary{ width:100%; font-family:'Inter'; font-weight:700; font-size:1rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:999px; padding:1rem;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); cursor:pointer;
+  touch-action:manipulation; transition:transform .15s; }
+.btn-primary:active{ transform:scale(.97); }
+.btn-back-inline{ width:100%; font-family:'Inter'; font-weight:600; font-size:.92rem;
+  color:var(--muted); background:rgba(7,16,20,.05); border:none;
+  border-radius:999px; padding:.85rem; cursor:pointer; margin-top:.5rem;
+  touch-action:manipulation; }
+
+/* ── ACTION SHEET ── */
+.sheet-overlay{ display:none; position:fixed; inset:0;
+  background:rgba(7,16,20,.35); z-index:50; backdrop-filter:blur(2px); }
+.sheet-overlay.show{ display:block; }
+.action-sheet{ position:fixed; bottom:0; left:0; right:0; z-index:51;
+  background:var(--card); border-radius:28px 28px 0 0;
+  padding:1.2rem 1.2rem 2.4rem;
+  transform:translateY(100%); transition:transform .28s cubic-bezier(.22,1,.36,1); }
+.action-sheet.show{ transform:translateY(0); }
+.sheet-handle{ width:36px; height:4px; border-radius:99px;
+  background:rgba(7,16,20,.12); margin:0 auto .9rem; }
+.sheet-title{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  margin-bottom:1rem; text-align:center; }
+.sheet-title span{ color:var(--teal-d); }
+.sheet-btns{ display:grid; gap:.5rem; }
+.sheet-btn{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  padding:.9rem 1.4rem; border-radius:16px; border:none; cursor:pointer;
+  touch-action:manipulation; text-align:left; display:flex; align-items:center; gap:.8rem; }
+.sheet-btn:active{ transform:scale(.97); }
+.sbtn-gives{ background:rgba(15,159,154,.12); color:var(--teal-d); }
+.sbtn-drains{ background:rgba(194,24,91,.1); color:#B0145B; }
+.sbtn-neutral{ background:rgba(7,16,20,.05); color:var(--muted); }
+.sbtn-cancel{ background:rgba(7,16,20,.04); color:var(--muted); margin-top:.3rem; }
+.sbtn-icon{ width:28px; height:28px; border-radius:8px; display:flex;
+  align-items:center; justify-content:center; font-size:1rem; }
+.sbtn-gives .sbtn-icon{ background:rgba(15,159,154,.2); }
+.sbtn-drains .sbtn-icon{ background:rgba(194,24,91,.15); }
+.sbtn-neutral .sbtn-icon{ background:rgba(7,16,20,.08); }
+.sbtn-cancel .sbtn-icon{ background:rgba(7,16,20,.06); }
+.sheet-desc{ font-size:.78rem; opacity:.7; font-weight:500; }
+
+/* ── INSIGHTS ── */
+.balance-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.4rem; margin-bottom:1.1rem; }
+.balance-card h3{ font-size:.95rem; font-weight:700; margin-bottom:1rem; }
+.bar-row{ margin-bottom:.6rem; }
+.bar-label{ display:flex; justify-content:space-between; font-size:.8rem;
+  font-weight:600; margin-bottom:.3rem; }
+.bar-track{ height:10px; background:rgba(7,16,20,.07); border-radius:999px; overflow:hidden; }
+.bar-fill-gives{ height:100%; background:linear-gradient(90deg,var(--teal),#3BBDB8);
+  border-radius:999px; transition:width .8s cubic-bezier(.22,1,.36,1); }
+.bar-fill-drains{ height:100%; background:linear-gradient(90deg,#C2185B,#E91E63);
+  border-radius:999px; transition:width .8s cubic-bezier(.22,1,.36,1); }
+.balance-msg{ font-size:.88rem; color:var(--muted); margin-top:.9rem; line-height:1.65; }
+.balance-msg strong{ color:var(--ink); }
+
+.bucket-section{ margin-bottom:1.1rem; }
+.bucket-section h4{ font-size:.88rem; font-weight:700; margin-bottom:.6rem;
+  display:flex; align-items:center; gap:.5rem; }
+.bucket-chips{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.bucket-chip{ font-size:.8rem; font-weight:500; padding:.35rem .85rem; border-radius:999px; }
+.gives-chip{ background:rgba(15,159,154,.12); color:var(--teal-d); }
+.drains-chip{ background:rgba(194,24,91,.1); color:#B0145B; }
+
+.insight-card{ border-radius:16px; padding:1.2rem; margin-bottom:.8rem; }
+.insight-card.gives{ background:rgba(15,159,154,.07); border:1.5px solid rgba(15,159,154,.2); }
+.insight-card.drains{ background:rgba(194,24,91,.05); border:1.5px solid rgba(194,24,91,.15); }
+.insight-card.neutral{ background:rgba(7,16,20,.04); border:1.5px solid rgba(7,16,20,.1); }
+.insight-icon{ font-size:1rem; margin-bottom:.4rem; }
+.insight-text{ font-size:.88rem; color:var(--muted); line-height:1.65; }
+.insight-text strong{ color:var(--ink); }
+
+.cta-card{ background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(167,199,183,.08) 50%,rgba(6,182,212,.1));
+  border-radius:var(--radius); padding:1.8rem; text-align:center; margin-top:1.2rem; }
+.cta-card h3{ font-size:1.05rem; margin-bottom:.4rem; }
+.cta-card p{ font-size:.88rem; color:var(--muted); margin:.4rem 0 1.2rem; line-height:1.6; }
+.cta-btn{ display:inline-block; font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:#fff; background:var(--teal);
+  border-radius:999px; padding:.95rem 2rem; text-decoration:none;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); }
+
+@media(prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Uncover</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Energy Audit</div>
+    <h1>The Energy <span class="grad">Map.</span></h1>
+    <p class="lead">Map what fuels you and what drains you across a typical week, so you can design more of your time around what works.</p>
+  </div>
+</div>
+
+<div class="steps-bar">
+  <div class="step-dot active" id="dot-1">1</div>
+  <div class="step-connector" id="con-1"></div>
+  <div class="step-dot" id="dot-2">2</div>
+</div>
+<div class="steps-labels">
+  <span class="active" id="lbl-1">Tag activities</span>
+  <span id="lbl-2">See insights</span>
+</div>
+
+<!-- ACTION SHEET -->
+<div class="sheet-overlay" id="sheet-overlay" onclick="closeSheet()"></div>
+<div class="action-sheet" id="action-sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title" id="sheet-title">Rate this activity:</div>
+  <div class="sheet-btns">
+    <button class="sheet-btn sbtn-gives" onclick="setTag(currentId,'gives')">
+      <span class="sbtn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.96A1 1 0 0 0 5 14.5h5.5L10 22l9.91-10.96A1 1 0 0 0 19 9.5h-5.5L13 2z"/></svg></span>
+      <div><div>Gives energy</div><div class="sheet-desc">I feel better or energised after</div></div>
+    </button>
+    <button class="sheet-btn sbtn-drains" onclick="setTag(currentId,'drains')">
+      <span class="sbtn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0 4 4 4 9a4 4 0 0 1-8 0c0-2 1-4 1-4S7 9 7 12a5 5 0 0 0 10 0c0-6-5-10-5-10z"/></svg></span>
+      <div><div>Drains energy</div><div class="sheet-desc">I feel depleted or heavier after</div></div>
+    </button>
+    <button class="sheet-btn sbtn-neutral" onclick="setTag(currentId,'neutral')">
+      <span class="sbtn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      <div><div>Neutral</div><div class="sheet-desc">Doesn't noticeably affect my energy</div></div>
+    </button>
+    <button class="sheet-btn sbtn-cancel" onclick="closeSheet()">
+      <span class="sbtn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+      <div>Cancel</div>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 1: TAG ═══════════ -->
+<div class="stage active" id="stage-tag">
+  <div class="prog-card">
+    <div class="prog-row">
+      <span id="progress-text">0 tagged</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progress-fill" style="width:0%"></div></div>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:.6rem;"><strong>Tap any activity</strong> to rate it as Gives energy, Drains energy, or Neutral. Go with your gut — how do you actually feel, not how you think you should feel.</p>
+  </div>
+
+  <div id="activity-list"></div>
+
+  <div class="add-card">
+    <h4>+ Add your own activity</h4>
+    <div class="add-row">
+      <input class="add-input" id="custom-name" type="text" placeholder="Activity name..." maxlength="40">
+      <select class="add-select" id="custom-cat">
+        <option>Work</option><option>Social</option><option>Body</option>
+        <option>Mind</option><option>Home</option><option>Other</option>
+      </select>
+      <button class="add-btn" onclick="addCustom()">Add</button>
+    </div>
+  </div>
+
+  <div class="btn-bar">
+    <button class="btn-primary" id="btn-insights" onclick="goToInsights()">See my insights →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 2: INSIGHTS ═══════════ -->
+<div class="stage" id="stage-insights">
+
+  <div class="balance-card">
+    <h3>Your energy balance</h3>
+    <div class="bar-row">
+      <div class="bar-label">
+        <span id="gives-pct-lbl" style="color:var(--teal-d);display:flex;align-items:center;gap:.3rem;"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.96A1 1 0 0 0 5 14.5h5.5L10 22l9.91-10.96A1 1 0 0 0 19 9.5h-5.5L13 2z"/></svg> Gives energy</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill-gives" id="balance-gives-bar" style="width:0%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">
+        <span id="drains-pct-lbl" style="color:#B0145B;display:flex;align-items:center;gap:.3rem;"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0 4 4 4 9a4 4 0 0 1-8 0c0-2 1-4 1-4S7 9 7 12a5 5 0 0 0 10 0c0-6-5-10-5-10z"/></svg> Drains energy</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill-drains" id="balance-drains-bar" style="width:0%"></div></div>
+    </div>
+    <div class="balance-msg" id="balance-message"></div>
+  </div>
+
+  <div class="balance-card">
+    <div class="bucket-section">
+      <h4 style="color:var(--teal-d);display:flex;align-items:center;gap:.4rem;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.96A1 1 0 0 0 5 14.5h5.5L10 22l9.91-10.96A1 1 0 0 0 19 9.5h-5.5L13 2z"/></svg> What gives you energy</h4>
+      <div class="bucket-chips" id="gives-list"></div>
+    </div>
+    <div class="bucket-section">
+      <h4 style="color:#B0145B;display:flex;align-items:center;gap:.4rem;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0 4 4 4 9a4 4 0 0 1-8 0c0-2 1-4 1-4S7 9 7 12a5 5 0 0 0 10 0c0-6-5-10-5-10z"/></svg> What drains you</h4>
+      <div class="bucket-chips" id="drains-list"></div>
+    </div>
+  </div>
+
+  <div class="balance-card">
+    <h3>What this tells you</h3>
+    <div id="insights-list"></div>
+  </div>
+
+  <div class="cta-card">
+    <h3>Energy is the foundation</h3>
+    <p>Once you know what depletes and what replenishes you, you can start making deliberate choices. Coaching helps you take this data and turn it into a life design that actually sustains you.</p>
+    <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
+  </div>
+
+  <div class="btn-bar" style="display:flex;gap:.6rem;">
+    <button class="btn-primary" style="background:rgba(7,16,20,.07);color:var(--muted);box-shadow:none;" onclick="goTo('tag')">← Back</button>
+    <button class="btn-primary" onclick="resetAll()">Start over</button>
+  </div>
+</div>
+
+<script>
+const ACTIVITIES = [
+  { id:'a1',  name:'Deep focus work',             cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>' },
+  { id:'a2',  name:'Back-to-back meetings',        cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' },
+  { id:'a3',  name:'Creative projects',            cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>' },
+  { id:'a4',  name:'Admin and email',              cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>' },
+  { id:'a5',  name:'Presenting or teaching',       cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 10a7 7 0 0 1-14 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>' },
+  { id:'a6',  name:'Problem-solving alone',        cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V4a2 2 0 0 1 4 0v2a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a2 2 0 0 0 0 4h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-2a2 2 0 0 0-4 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h2a2 2 0 0 0 0-4H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg>' },
+  { id:'a7',  name:'Helping a colleague',          cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.4 5.4 0 0 0-.42-7.81z"/></svg>' },
+  { id:'a8',  name:'Repetitive tasks',             cat:'Work',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>' },
+  { id:'a9',  name:'Large social events',          cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>' },
+  { id:'a10', name:'1-on-1 conversations',         cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+  { id:'a11', name:'Family time',                  cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="7" r="3"/><path d="M21 21v-1.5a3 3 0 0 0-3-3h-1"/></svg>' },
+  { id:'a12', name:'Conflict or tension',          cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' },
+  { id:'a13', name:'Time with close friends',      cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
+  { id:'a14', name:'Networking events',            cat:'Social', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 12 10 8 16 12 14 16 8"/></svg>' },
+  { id:'a15', name:'Exercise or movement',         cat:'Body',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 9l-4 12M14 9l4 12M8 15h8"/></svg>' },
+  { id:'a16', name:'Poor sleep nights',            cat:'Body',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/></svg>' },
+  { id:'a17', name:'Cooking a real meal',          cat:'Body',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2h18"/><path d="M3 2v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V2"/><path d="M3 22h18"/><path d="M12 14v8"/></svg>' },
+  { id:'a18', name:'Scrolling social media',       cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>' },
+  { id:'a19', name:'Reading for pleasure',         cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' },
+  { id:'a20', name:'Learning something new',       cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M12 12C12 8 15 5 19 5c0 4-3 7-7 7z"/><path d="M12 12C12 8 9 5 5 5c0 4 3 7 7 7z"/><path d="M9 20h6"/></svg>' },
+  { id:'a21', name:'Watching TV or films',         cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 2l-4 5-4-5"/></svg>' },
+  { id:'a22', name:'Meditation or stillness',      cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M5 21l3-7 4 2 4-2 3 7"/><path d="M7 14h10"/></svg>' },
+  { id:'a23', name:'Time in nature',               cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M9.5 9.5C9.5 14 6 15.5 3 16c4-6 10-7.5 14-7.5z"/></svg>' },
+  { id:'a24', name:'Journaling',                   cat:'Mind',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B7B76" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>' },
+  { id:'a25', name:'Tidying or organising',        cat:'Home',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A7C7B7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>' },
+  { id:'a26', name:'Household chores',             cat:'Home',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A7C7B7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>' },
+  { id:'a27', name:'Being creative at home',       cat:'Home',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A7C7B7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>' },
+  { id:'a28', name:'Commuting',                    cat:'Other',  icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>' },
+  { id:'a29', name:'Saying yes when you mean no',  cat:'Other',  icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' },
+  { id:'a30', name:'Working on a passion project', cat:'Other',  icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' }
+];
+
+let tags = {};
+let customActivities = [];
+let allActivities = [...ACTIVITIES];
+let currentId = null;
+
+function init(){
+  allActivities = [...ACTIVITIES];
+  allActivities.forEach(a => { if(!tags[a.id]) tags[a.id] = null; });
+  buildList();
+}
+
+function buildList(){
+  const list = document.getElementById('activity-list');
+  list.innerHTML = '';
+  const cats = [...new Set(allActivities.map(a => a.cat))];
+  cats.forEach(cat => {
+    const label = document.createElement('div');
+    label.className = 'category-label';
+    label.textContent = cat;
+    list.appendChild(label);
+    allActivities.filter(a => a.cat === cat).forEach(a => {
+      const tag = tags[a.id];
+      const card = document.createElement('div');
+      card.className = 'activity-card' + (tag ? ' tagged-'+tag : '');
+      card.onclick = () => openSheet(a.id, a.name);
+      card.innerHTML =
+        '<div class="activity-icon">' + a.icon + '</div>' +
+        '<div class="activity-text"><div class="activity-name">' + a.name + '</div>' +
+        '<div class="activity-cat">' + a.cat + '</div></div>' +
+        '<div class="activity-tag ' + (tag ? 'tag-'+tag : 'tag-empty') + '">' +
+        (tag === 'gives' ? 'Gives' : tag === 'drains' ? 'Drains' : tag === 'neutral' ? 'Neutral' : 'Tap to rate') +
+        '</div>';
+      list.appendChild(card);
+    });
+  });
+  updateProgress();
+}
+
+function openSheet(id, name){
+  currentId = id;
+  document.getElementById('sheet-title').innerHTML = 'How does <span>' + name + '</span> affect you?';
+  document.getElementById('sheet-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('action-sheet').classList.add('show'), 10);
+}
+
+function closeSheet(){
+  document.getElementById('action-sheet').classList.remove('show');
+  document.getElementById('sheet-overlay').classList.remove('show');
+  currentId = null;
+}
+
+function setTag(id, tag){
+  if(!id) return;
+  tags[id] = tags[id] === tag ? null : tag;
+  closeSheet();
+  buildList();
+}
+
+function updateProgress(){
+  const tagged = allActivities.filter(a => tags[a.id] !== null).length;
+  const total = allActivities.length;
+  const pct = Math.round((tagged/total)*100);
+  document.getElementById('progress-text').textContent = tagged + ' of ' + total + ' tagged';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('btn-insights').textContent =
+    tagged < 5 ? 'Tag at least 5 to continue (' + tagged + '/5)' : 'See my insights →';
+  document.getElementById('btn-insights').disabled = tagged < 5;
+  if(tagged < 5) document.getElementById('btn-insights').style.opacity = '.5';
+  else document.getElementById('btn-insights').style.opacity = '1';
+}
+
+function addCustom(){
+  const input = document.getElementById('custom-name');
+  const cat = document.getElementById('custom-cat').value;
+  const name = input.value.trim();
+  if(!name) return;
+  const catIcons = {Work:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',Social:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>',Body:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 9l-4 12M14 9l4 12M8 15h8"/></svg>',Mind:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>',Home:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',Other:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'};
+  const id = 'custom-' + Date.now();
+  const activity = {id, name, cat, icon: catIcons[cat] || '⭐'};
+  customActivities.push(activity);
+  allActivities = [...ACTIVITIES, ...customActivities];
+  tags[id] = null;
+  buildList();
+  input.value = '';
+}
+
+function goTo(stage){
+  document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+  document.getElementById('stage-' + stage).classList.add('active');
+  const cur = stage === 'tag' ? 1 : 2;
+  [1,2].forEach(n => {
+    const dot = document.getElementById('dot-'+n);
+    dot.classList.remove('active','done');
+    if(n < cur) dot.classList.add('done');
+    else if(n === cur) dot.classList.add('active');
+    const lbl = document.getElementById('lbl-'+n);
+    lbl.classList.remove('active');
+    if(n === cur) lbl.classList.add('active');
+    const con = document.getElementById('con-'+n);
+    if(con) con.classList.toggle('done', n < cur);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function goToInsights(){
+  const tagged = allActivities.filter(a => tags[a.id] !== null).length;
+  if(tagged < 5){ return; }
+  buildInsights();
+  goTo('insights');
+}
+
+function buildInsights(){
+  const gives  = allActivities.filter(a => tags[a.id] === 'gives');
+  const drains = allActivities.filter(a => tags[a.id] === 'drains');
+  const total  = gives.length + drains.length;
+  const givesPct  = total ? Math.round((gives.length/total)*100) : 50;
+  const drainsPct = total ? Math.round((drains.length/total)*100) : 50;
+
+  document.getElementById('gives-pct-lbl').textContent  = '' + gives.length;
+  document.getElementById('drains-pct-lbl').textContent = '' + drains.length;
+  document.getElementById('balance-gives-bar').style.width  = givesPct + '%';
+  document.getElementById('balance-drains-bar').style.width = drainsPct + '%';
+
+  const msgEl = document.getElementById('balance-message');
+  if(givesPct >= 60)
+    msgEl.innerHTML = '<strong>Your energy balance looks healthy.</strong> Most of what fills your days is genuinely feeding you. The drains below are still worth looking at — even in a positive life, persistent drains compound.';
+  else if(givesPct >= 40)
+    msgEl.innerHTML = '<strong>Your energy is fairly balanced</strong> — but that can still mean feeling depleted if the drains are concentrated in areas you can\'t avoid. Look at where they cluster.';
+  else
+    msgEl.innerHTML = '<strong>More draining than energising.</strong> This doesn\'t mean anything is wrong with you — it often signals a mismatch between how you\'re spending time and what actually matters to you. That\'s exactly what coaching works with.';
+
+  document.getElementById('gives-list').innerHTML  = gives.map(a => '<span class="bucket-chip gives-chip">' + a.name + '</span>').join('');
+  document.getElementById('drains-list').innerHTML = drains.map(a => '<span class="bucket-chip drains-chip">' + a.name + '</span>').join('');
+
+  buildInsightMessages(gives, drains);
+}
+
+function getInsightIcon(key){
+  const icons = {
+    work:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+    social:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="7" r="3"/><path d="M21 21v-1.5a3 3 0 0 0-3-3h-1"/></svg>',
+    mind:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>',
+    body:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 9l-4 12M14 9l4 12M8 15h8"/></svg>',
+    warning:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+    chart:'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  };
+  return icons[key] || icons.chart;
+}
+
+function buildInsightMessages(gives, drains){
+  const el = document.getElementById('insights-list');
+  el.innerHTML = '';
+  const messages = [];
+
+  const wG = gives.filter(a=>a.cat==='Work').length;
+  const wD = drains.filter(a=>a.cat==='Work').length;
+  const sG = gives.filter(a=>a.cat==='Social').length;
+  const sD = drains.filter(a=>a.cat==='Social').length;
+  const mG = gives.filter(a=>a.cat==='Mind').length;
+  const mD = drains.filter(a=>a.cat==='Mind').length;
+  const bG = gives.filter(a=>a.cat==='Body').length;
+  const bD = drains.filter(a=>a.cat==='Body').length;
+
+  if(wD > wG+1) messages.push({type:'drains',icon:'work',text:'<strong>Work is one of your bigger energy drains.</strong> This could point to a role misalignment, a values conflict, or simply too many low-meaning tasks crowding out the work that actually lights you up.'});
+  else if(wG > wD+1) messages.push({type:'gives',icon:'work',text:'<strong>Work is a genuine energy source for you</strong> — that\'s a real asset. Notice which specific types of work give the most, and see if you can protect or expand those.'});
+
+  if(sD > sG+1) messages.push({type:'drains',icon:'social',text:'<strong>Social interactions tend to drain you more than they refuel you.</strong> Are there specific people or settings that account for most of the drain? Or is it more general?'});
+  else if(sG > sD+1) messages.push({type:'gives',icon:'social',text:'<strong>Connection is a clear energy source for you.</strong> You likely recharge through people rather than away from them. Think about how much space your current life gives to that.'});
+
+  if(mD >= 2) messages.push({type:'drains',icon:'mind',text:'<strong>Several mental habits are draining you.</strong> What we consume and how we spend mental downtime shapes our baseline energy more than most people realise.'});
+  if(mG >= 2) messages.push({type:'gives',icon:'mind',text:'<strong>Your mind comes alive with certain practices.</strong> That\'s a strong signal about how you recharge — and what kinds of environments will sustain you long-term.'});
+
+  if(bD >= 1) messages.push({type:'drains',icon:'body',text:'<strong>Some physical patterns are costing you energy.</strong> The body keeps score on all of this — physical depletion compounds everything else.'});
+  if(bG >= 1) messages.push({type:'gives',icon:'body',text:'<strong>Physical activity or care gives you energy.</strong> This is data worth protecting — schedule it like the necessity it is.'});
+
+  const hasDrainsYesNo = drains.find(a=>a.id==='a29');
+  if(hasDrainsYesNo) messages.push({type:'drains',icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',text:'<strong>Saying yes when you mean no is depleting you.</strong> This is one of the most common hidden energy leaks — and one of the most significant to address. What would change if you reclaimed even one of those yeses?'});
+
+  if(messages.length === 0) messages.push({type:'neutral',icon:'chart',text:'<strong>Every energy pattern is unique.</strong> Bring this audit into a coaching session and we\'ll explore what the data is really telling you about your life design.'});
+
+  messages.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'insight-card ' + (m.type==='gives'?'gives':m.type==='drains'?'drains':'neutral');
+    card.innerHTML = '<div class="insight-icon">'+getInsightIcon(m.icon)+'</div><div class="insight-text">'+m.text+'</div>';
+    el.appendChild(card);
+  });
+}
+
+function resetAll(){
+  tags = {};
+  customActivities = [];
+  allActivities = [...ACTIVITIES];
+  allActivities.forEach(a => tags[a.id] = null);
+  buildList();
+  goTo('tag');
+}
+
+init();
+</script>
+</body>
+</html>

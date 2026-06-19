@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Juliana Dos Santos - Resume</title>
+<style>
+@page{size:Letter;margin:0}
+*{box-sizing:border-box}
+:root{--ink:#101114;--grey:#62656d;--line:#e7e9ed;--blue:#4285f4;--teal:#0f9f9a;--green:#34a853;--yellow:#fbbc05;--grad:linear-gradient(90deg,var(--blue),var(--teal),var(--green),#a8b51c)}
+html,body{margin:0;padding:0;background:#eef1f4;color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sheet{width:8.5in;height:11in;margin:18px auto;background:#fff;padding:.48in .58in .42in;position:relative;overflow:hidden;page-break-after:always}
+.sheet:last-child{page-break-after:auto}
+.ring{position:absolute;border:1.5px solid;border-radius:50%;pointer-events:none}.ring-a{width:190px;height:190px;left:-105px;top:-85px;border-color:rgba(66,133,244,.22)}.ring-b{width:125px;height:125px;right:-52px;top:80px;border-color:rgba(15,159,154,.24)}
+.dot{position:absolute;border-radius:50%;pointer-events:none}.dot-a{width:9px;height:9px;background:var(--yellow);left:7%;top:115px}.dot-b{width:7px;height:7px;background:var(--teal);right:9%;top:205px}
+.content{position:relative;z-index:1}
+.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.eyebrow{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:var(--teal);margin-bottom:7px;display:flex;align-items:center;gap:7px}.eyebrow:before{content:"";width:18px;height:1px;background:var(--teal)}
+h1{font-size:31px;line-height:1;margin:0 0 7px;letter-spacing:-.035em}.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.headline{font-size:12px;color:var(--grey);font-weight:600}
+.contact{text-align:right;font-size:10px;line-height:1.65;color:var(--grey);white-space:nowrap}.contact strong{color:var(--ink)}
+.summary{font-size:11px;line-height:1.55;color:var(--grey);margin:15px 0 13px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 13px}.metric{border:1px solid var(--line);border-radius:13px;padding:9px 11px;position:relative;overflow:hidden}.metric:after{content:"";position:absolute;width:45px;height:45px;border:1px solid rgba(15,159,154,.2);border-radius:50%;right:-20px;top:-18px}.metric strong{display:block;font-size:18px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.metric span{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--grey);margin-top:4px;font-weight:700}
+.section{margin-top:15px}.section-title{display:flex;align-items:center;gap:9px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin:0 0 10px;color:var(--teal)}.section-title:after{content:"";height:1px;background:linear-gradient(90deg,var(--teal),transparent);flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:8.7px;font-weight:650;padding:5px 8px;border-radius:999px;border:1px solid rgba(15,159,154,.18);background:rgba(15,159,154,.055);color:#276f6b}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.skill{padding:9px 10px;border-left:3px solid rgba(66,133,244,.5);background:#fafbfc;border-radius:0 8px 8px 0;font-size:9.3px;line-height:1.45;color:var(--grey)}.skill:nth-child(2n){border-left-color:rgba(52,168,83,.5)}.skill strong{color:var(--ink)}
+.role{border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:9px;position:relative;overflow:hidden}.role:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;border:1px solid rgba(66,133,244,.15);right:-32px;top:-35px}.role:nth-child(odd):after{border-color:rgba(52,168,83,.18)}
+.role-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:3px}.role h3{font-size:11.7px;margin:0;line-height:1.2}.role-date{font-size:8.7px;color:var(--teal);font-weight:750;white-space:nowrap}.company{font-size:9.1px;color:var(--grey);font-weight:650;margin-bottom:5px}.impact{font-size:9.2px;line-height:1.42;color:#246d69;background:rgba(15,159,154,.06);padding:6px 8px;border-radius:7px;margin-bottom:6px}.role ul{margin:0;padding-left:14px;color:var(--grey);font-size:9.1px;line-height:1.43}.role li{margin:3px 0}.role li::marker{color:var(--teal)}
+.two-col{display:grid;grid-template-columns:1.12fr .88fr;gap:14px}.compact .role{padding:10px 11px;margin-bottom:9px}.compact .role h3{font-size:10.9px}.compact .role ul{font-size:8.9px;line-height:1.48}
+.list-card{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:10px}.list-card ul{margin:0;padding-left:14px;font-size:9.2px;line-height:1.55;color:var(--grey)}.list-card li{margin:4px 0}.list-card li::marker{color:var(--teal)}
+.footer{position:absolute;left:.58in;right:.58in;bottom:.25in;border-top:1px solid var(--line);padding-top:6px;display:flex;justify-content:space-between;font-size:7.5px;color:#8a8d94}.footer strong{color:var(--teal)}
+@media print{html,body{background:#fff}.sheet{margin:0}}
+</style>
+</head>
+<body>
+<article class="sheet">
+  <div class="ring ring-a"></div><div class="ring ring-b"></div><div class="dot dot-a"></div><div class="dot dot-b"></div>
+  <main class="content">
+    <header class="topline">
+      <div><div class="eyebrow">Talent development leader</div><h1>Juliana <span class="grad">Dos Santos.</span></h1><div class="headline">Talent Development Program Manager · Instructional Designer · CPTD®</div></div>
+      <div class="contact"><strong>Ottawa, ON, Canada</strong><br>ju.sandberg@gmail.com<br>(613) 558-0683<br>instructionaldesignbyjuliana.com</div>
+    </header>
+    <p class="summary">Certified Professional in Talent Development with 5+ years of experience designing and leading learning programs aligned with organizational goals. I build leadership development, onboarding, and digital learning experiences that connect human growth to measurable business outcomes.</p>
+    <div class="metrics"><div class="metric"><strong>9→4</strong><span>months to productivity</span></div><div class="metric"><strong>+20%</strong><span>learner performance</span></div><div class="metric"><strong>500+</strong><span>employees impacted</span></div></div>
+    <section class="section"><h2 class="section-title">Core strengths</h2><div class="chips">
+      <span class="chip">L&D Strategy</span><span class="chip">Instructional Design</span><span class="chip">Curriculum Development</span><span class="chip">Leadership Development</span><span class="chip">Employee Onboarding</span><span class="chip">Learning Experience Design</span><span class="chip">Program Management</span><span class="chip">Stakeholder Management</span><span class="chip">Learning Analytics</span><span class="chip">Change Management</span><span class="chip">Performance Improvement</span><span class="chip">Facilitation</span>
+    </div></section>
+    <section class="section"><h2 class="section-title">Tools & methodologies</h2><div class="skills-grid">
+      <div class="skill"><strong>Learning design:</strong> ADDIE, SAM, Bloom's Taxonomy, Kirkpatrick, Action Mapping, 70-20-10, andragogy</div>
+      <div class="skill"><strong>Authoring:</strong> Articulate Rise 360, Storyline 360, LMS platforms</div>
+      <div class="skill"><strong>Design:</strong> Adobe Creative Suite, Photoshop, Illustrator, InDesign, Canva</div>
+      <div class="skill"><strong>Data & AI:</strong> Learning analytics, survey design, reporting, visualization, AI-assisted design and AI literacy programs</div>
+    </div></section>
+    <section class="section"><h2 class="section-title">Experience</h2>
+      <div class="role"><div class="role-head"><h3>Senior Program Manager (L&D), Leadership Development</h3><span class="role-date">Jul 2024 – Present</span></div><div class="company">StackAdapt</div><div class="impact"><strong>Impact:</strong> Leading company-wide leadership programs that strengthen leader capability at every level.</div><ul><li>Design leadership pathways for Individual Contributors, People Managers, VPs, and onboarding.</li><li>Plan and execute L&D strategy across onboarding, leadership, and skill development formats.</li><li>Facilitate engaging learning experiences and use feedback and program data to improve measurable impact.</li><li>Partner cross-functionally to align programs with organizational needs and business priorities.</li></ul></div>
+      <div class="role"><div class="role-head"><h3>Revenue Onboarding Program Manager (L&D)</h3><span class="role-date">Feb 2024 – Jul 2024</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Streamlined onboarding and strengthened program structure, content, and new-hire integration.</div><ul><li>Led the strategic redesign and expansion of L&D programs during rapid organizational growth.</li><li>Managed simultaneous project streams and adapted delivery to evolving business needs.</li><li>Designed metrics and feedback systems that enabled ongoing data-driven improvements.</li></ul></div>
+      <div class="role"><div class="role-head"><h3>L&D Program Manager</h3><span class="role-date">Mar 2023 – Feb 2024</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Aligned learning objectives with business goals and improved program effectiveness.</div><ul><li>Reduced onboarding ramp time from 9 months to 4 months.</li><li>Improved learner performance metrics by 20% across programs impacting 500+ employees.</li><li>Conducted needs assessments, refined curricula, and implemented digital learning solutions.</li><li>Secured stakeholder buy-in and alignment across departments.</li></ul></div>
+    </section>
+  </main><footer class="footer"><span>Juliana Dos Santos · Resume</span><strong>01 / 02</strong></footer>
+</article>
+
+<article class="sheet">
+  <div class="ring ring-a"></div><div class="ring ring-b"></div><div class="dot dot-a"></div><div class="dot dot-b"></div>
+  <main class="content">
+    <header class="topline"><div><div class="eyebrow">Experience continued</div><h1>Work that <span class="grad">moves people.</span></h1></div><div class="contact"><strong>Juliana Dos Santos</strong><br>Talent Development · Coaching · Design</div></header>
+    <div class="two-col" style="margin-top:13px">
+      <div class="compact">
+        <section class="section" style="margin-top:0"><h2 class="section-title">Professional experience</h2>
+          <div class="role"><div class="role-head"><h3>Quality Assurance Specialist, Education & Resources</h3><span class="role-date">Oct 2021 – Mar 2023</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Improved learning outcomes and operations through evaluation and continuous improvement.</div><ul><li>Evaluated program effectiveness and implemented improvements to knowledge and skill development.</li><li>Published monthly, quarterly, and annual performance reports.</li><li>Built stakeholder frameworks and partnered with SMEs on leadership learning resources.</li><li>Conducted QA audits to strengthen customer experience consistency.</li></ul></div>
+          <div class="role"><div class="role-head"><h3>Support Specialist (Shop; Multilingual)</h3><span class="role-date">Mar 2021 – Sep 2021</span></div><div class="company">Shopify</div><ul><li>Provided multilingual customer support and resolved merchant inquiries to a high quality standard.</li></ul></div>
+          <div class="role"><div class="role-head"><h3>Social Services Worker</h3><span class="role-date">2013 – 2021</span></div><div class="company">Pinecrest Queensway Community Health Centre</div><ul><li>Supported diverse community members through program delivery, advocacy, and individualized planning, building deep skills in communication, empathy, and facilitation.</li></ul></div>
+        </section>
+      </div>
+      <aside>
+        <section class="section" style="margin-top:0"><h2 class="section-title">Certifications</h2><div class="list-card"><ul>
+          <li>Integrative Development Coach · Mind Rebel Academy</li><li>CPTD® · Association for Talent Development</li><li>ATD® Master Instructional Designer</li><li>ATD® Instructional Design Certificate</li><li>CAPM® · Project Management Institute</li><li>Workforce Management Certification</li><li>Data Analytics Certificate · Juno College</li><li>UX Design Certificate · Juno College</li>
+        </ul></div></section>
+        <section class="section"><h2 class="section-title">Education</h2><div class="list-card"><ul><li><strong>Social Services Worker Diploma</strong><br>Algonquin College · 2013</li><li><strong>Bachelor's Degree, Linguistics & Literature</strong><br>Unioeste, Brazil · 2006</li></ul></div></section>
+        <section class="section"><h2 class="section-title">How I work</h2><div class="list-card"><ul><li>Listen before designing</li><li>Build for real scenarios</li><li>Measure behaviour change, not clicks</li><li>Connect learner needs to business outcomes</li><li>Iterate with evidence and empathy</li></ul></div></section>
+        <section class="section"><h2 class="section-title">Languages</h2><div class="chips"><span class="chip">English</span><span class="chip">Portuguese</span></div></section>
+      </aside>
+    </div>
+  </main><footer class="footer"><span>References available upon request</span><strong>02 / 02</strong></footer>
+</article>
+</body>
+</html>

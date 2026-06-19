@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Goal Setting Canvas · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{
+  font-family:'Inter',sans-serif; background:#FFFFFF; color:var(--ink);
+  min-height:100%; line-height:1.65; overflow-x:hidden;
+}
+h1,h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem;
+}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.back-btn svg{ flex-shrink:0; }
+.topbar-title{
+  font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:var(--ink); margin-right:auto;
+}
+.phase-badge{
+  font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  background:linear-gradient(90deg,rgba(6,182,212,.18),rgba(15,159,154,.14));
+  color:var(--teal); padding:.3rem .75rem; border-radius:999px; white-space:nowrap;
+}
+
+/* ── PROGRESS ── */
+.prog-wrap{ padding:1rem 1.2rem .4rem; }
+.prog-dots{ display:flex; gap:.35rem; margin-bottom:.4rem; }
+.prog-dot{
+  flex:1; height:5px; border-radius:999px; background:rgba(7,16,20,.1);
+  transition:background .4s ease;
+}
+.prog-dot.done{ background:var(--teal); }
+.prog-dot.active{ background:linear-gradient(90deg,var(--teal),var(--cyan)); }
+.prog-label{ font-size:.75rem; color:var(--muted); font-weight:600; }
+
+/* ── SCREENS ── */
+.screen{ display:none; padding:1.2rem 1.2rem 6rem; animation:fadeUp .35s ease; }
+.screen.active{ display:block; }
+@keyframes fadeUp{ from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+
+.screen-num{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--teal-d); margin-bottom:.6rem;
+}
+.screen h2{ font-size:1.3rem; font-weight:800; margin-bottom:.4rem; }
+.screen .hint{ font-size:.9rem; color:var(--muted); margin-bottom:1.2rem; line-height:1.6; }
+
+/* ── TEXTAREA ── */
+textarea{
+  width:100%; font-family:'Inter',sans-serif; font-size:1rem; color:var(--ink);
+  background:#fff; border:1.5px solid rgba(7,16,20,.14);
+  border-radius:14px; padding:1rem 1.1rem; resize:none;
+  outline:none; transition:border-color .2s; line-height:1.65;
+  min-height:110px;
+}
+textarea:focus{ border-color:var(--teal); }
+textarea::placeholder{ color:var(--muted); font-size:.95rem; }
+
+/* ── VALUE CHIPS ── */
+.chips-label{ font-size:.78rem; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.08em; margin-bottom:.6rem; }
+.chips{ display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:.9rem; }
+.chip{
+  font-size:.85rem; font-weight:600; padding:.42rem 1rem; border-radius:999px;
+  border:1.5px solid rgba(7,16,20,.12); background:#fff; color:var(--muted);
+  cursor:pointer; transition:all .18s; user-select:none;
+}
+.chip.sel{
+  background:linear-gradient(135deg,rgba(15,159,154,.15),rgba(6,182,212,.15));
+  border-color:var(--teal); color:var(--teal-d);
+}
+.chips-note{ font-size:.8rem; color:var(--teal-d); font-weight:600;
+  min-height:1.2rem; margin-bottom:.9rem; }
+
+/* ── OBSTACLE CHIPS ── */
+.obs-chip{
+  font-size:.85rem; font-weight:500; padding:.42rem 1rem; border-radius:999px;
+  border:1.5px solid rgba(7,16,20,.1); background:#fff; color:var(--muted);
+  cursor:pointer; transition:all .18s; user-select:none;
+}
+.obs-chip.sel{
+  background:rgba(167,199,183,.22); border-color:var(--sage); color:var(--sage-d);
+}
+
+/* ── BUTTONS ── */
+.btn-row{ position:fixed; bottom:0; left:0; right:0;
+  padding:1rem 1.2rem 1.4rem;
+  background:linear-gradient(to top, var(--bg) 70%, transparent);
+  display:flex; gap:.6rem; }
+.btn-primary{
+  flex:1; font-family:'Inter',sans-serif; font-weight:700; font-size:1rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:999px; padding:1rem 1.6rem;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); cursor:pointer;
+  transition:transform .18s, box-shadow .18s; touch-action:manipulation;
+}
+.btn-primary:active{ transform:scale(.97); }
+.btn-primary:disabled{ opacity:.4; cursor:not-allowed; transform:none; box-shadow:none; }
+.btn-back{
+  font-family:'Inter',sans-serif; font-weight:600; font-size:.95rem;
+  color:var(--muted); background:#fff; border:1.5px solid rgba(7,16,20,.12);
+  border-radius:999px; padding:1rem 1.3rem; cursor:pointer;
+  touch-action:manipulation; white-space:nowrap;
+}
+.btn-back:active{ background:rgba(7,16,20,.04); }
+
+/* ── LOADING ── */
+#screen-loading{ text-align:center; padding:4rem 1.2rem 6rem; }
+.dots{ display:flex; gap:.4rem; justify-content:center; margin-bottom:1.2rem; }
+.dot{
+  width:12px; height:12px; border-radius:50%;
+  animation:pulse 1.3s ease-in-out infinite;
+}
+.dot:nth-child(1){ background:var(--teal); animation-delay:0s; }
+.dot:nth-child(2){ background:var(--sage); animation-delay:.2s; }
+.dot:nth-child(3){ background:var(--cyan); animation-delay:.4s; }
+@keyframes pulse{ 0%,80%,100%{transform:scale(.6);opacity:.4;} 40%{transform:scale(1);opacity:1;} }
+#loading-text{ font-size:1rem; color:var(--muted); }
+
+/* ── RESULTS ── */
+#screen-result{ padding:1.2rem 1.2rem 3rem; }
+.result-eyebrow{
+  display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--teal-d);
+  background:rgba(15,159,154,.1); padding:.3rem .85rem; border-radius:999px;
+  margin-bottom:1rem;
+}
+#screen-result h2{ font-size:1.3rem; font-weight:800; margin-bottom:1.6rem; }
+.result-card{
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:1.1rem;
+}
+.result-card.commitment{
+  background:linear-gradient(135deg,rgba(15,159,154,.09),rgba(6,182,212,.06));
+  border:1.5px solid rgba(15,159,154,.22);
+}
+.result-card.reflection{
+  background:rgba(167,199,183,.15); border:1.5px solid rgba(167,199,183,.35);
+}
+.result-card.firststep{
+  background:#fff; border:1.5px solid rgba(6,182,212,.2);
+  box-shadow:var(--shadow); border:1px solid var(--line);
+}
+.result-card h4{
+  font-family:'Inter'; font-weight:700; font-size:.88rem;
+  margin-bottom:.65rem; display:flex; align-items:center; gap:.4rem;
+}
+.result-card.commitment h4{ color:var(--teal-d); }
+.result-card.reflection h4{ color:var(--sage-d); }
+.result-card.firststep h4{ color:var(--cyan-d); }
+.result-card p{ font-size:.97rem; line-height:1.8; color:var(--ink); }
+.result-card.reflection p{ font-style:italic; }
+
+.copy-row{ display:flex; justify-content:flex-end; margin-top:.7rem; }
+.copy-btn{
+  font-size:.75rem; font-weight:600; color:var(--muted);
+  background:rgba(7,16,20,.05); border:1px solid rgba(7,16,20,.1);
+  border-radius:999px; padding:.3rem .85rem; cursor:pointer;
+  transition:all .18s;
+}
+.copy-btn:active{ background:rgba(15,159,154,.12); color:var(--teal-d); }
+
+.cta-card{
+  background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(6,182,212,.08));
+  border-radius:var(--radius); padding:1.6rem; text-align:center; margin-top:1.4rem;
+}
+.cta-card h3{ font-size:1.1rem; margin-bottom:.4rem; }
+.cta-card p{ font-size:.88rem; color:var(--muted); margin-bottom:1.2rem; line-height:1.6; }
+.cta-book{
+  display:block; font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:#fff; background:var(--teal);
+  border-radius:999px; padding:1rem 1.8rem; text-decoration:none;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); margin-bottom:.8rem;
+  touch-action:manipulation;
+}
+.btn-restart{
+  font-family:'Inter'; font-weight:600; font-size:.88rem;
+  color:var(--muted); background:transparent;
+  border:1.5px solid rgba(7,16,20,.12); border-radius:999px;
+  padding:.75rem 1.4rem; cursor:pointer; width:100%;
+  touch-action:manipulation;
+}
+
+/* ── ERROR ── */
+.err-box{
+  background:#fff0f0; border:1.5px solid #fca5a5; border-radius:14px;
+  padding:1rem 1.2rem; margin-top:1rem; font-size:.88rem; color:#b91c1c;
+  line-height:1.6;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .screen{ animation:none; }
+  .dot{ animation:none; }
+}
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Unleash</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Goal Setting</div>
+    <h1>The Goal <span class="grad">Canvas.</span></h1>
+    <p class="lead">Turn a fuzzy intention into a clear commitment, with your why, the obstacles you expect, and the first real step.</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="prog-wrap" id="prog-wrap">
+  <div class="prog-dots">
+    <div class="prog-dot active" id="pd0"></div>
+    <div class="prog-dot" id="pd1"></div>
+    <div class="prog-dot" id="pd2"></div>
+    <div class="prog-dot" id="pd3"></div>
+  </div>
+  <div class="prog-label" id="prog-label">Step 1 of 4 — Your goal</div>
+</div>
+
+<!-- SCREEN 1: Goal -->
+<div class="screen active" id="screen-1">
+  <div class="screen-num">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+    Step 1 of 4
+  </div>
+  <h2>What is the goal or intention on your mind?</h2>
+  <p class="hint">Write it as it comes — even a fuzzy intention is a great starting point.</p>
+  <textarea id="a-goal" placeholder="e.g. I want to change careers but I don't know where to start&#10;&#10;e.g. I want to launch my coaching practice this year&#10;&#10;e.g. I want to feel less anxious in leadership situations" rows="5"></textarea>
+  <div class="btn-row">
+    <button class="btn-primary" id="btn-1" onclick="goTo(2)" disabled>Next →</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: Why + Values -->
+<div class="screen" id="screen-2">
+  <div class="screen-num">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Step 2 of 4
+  </div>
+  <h2>Why does this goal matter to you?</h2>
+  <p class="hint">Pick up to 3 values it connects to, then say more in your own words.</p>
+  <div class="chips-label">Your values</div>
+  <div class="chips" id="value-chips"></div>
+  <div class="chips-note" id="chips-note"></div>
+  <textarea id="a-why" placeholder="What would change in your life if this actually happened?" rows="3"></textarea>
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(1)">← Back</button>
+    <button class="btn-primary" id="btn-2" onclick="goTo(3)" disabled>Next →</button>
+  </div>
+</div>
+
+<!-- SCREEN 3: Obstacles -->
+<div class="screen" id="screen-3">
+  <div class="screen-num">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Step 3 of 4
+  </div>
+  <h2>What might get in your way?</h2>
+  <p class="hint">Naming obstacles isn't pessimism — it's preparation. Tap anything that feels true.</p>
+  <div class="chips" id="obs-chips"></div>
+  <textarea id="a-obs" placeholder="Anything else? Add your own here..." rows="2" style="margin-top:.4rem;min-height:70px;"></textarea>
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(2)">← Back</button>
+    <button class="btn-primary" onclick="goTo(4)">Next →</button>
+  </div>
+</div>
+
+<!-- SCREEN 4: First Step -->
+<div class="screen" id="screen-4">
+  <div class="screen-num">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    Step 4 of 4
+  </div>
+  <h2>What is your smallest possible first step?</h2>
+  <p class="hint">Not the whole plan — just the very next thing. It should feel almost too small. That's how you know it's right.</p>
+  <textarea id="a-step" placeholder="e.g. Block 30 minutes this week to write down what I actually want&#10;&#10;e.g. Send one message to someone already doing what I want to do&#10;&#10;e.g. Have one honest conversation with my manager" rows="5"></textarea>
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(3)">← Back</button>
+    <button class="btn-primary" id="btn-4" onclick="submit()" disabled>Build my canvas →</button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="screen" id="screen-loading">
+  <div class="dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <p id="loading-text">Building your goal canvas…</p>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" style="display:none;">
+  <div class="result-eyebrow">Your Goal Canvas</div>
+  <h2>Here's what you've built 🎯</h2>
+
+  <div class="result-card commitment">
+    <h4>🎯 Your commitment</h4>
+    <p id="r-commitment"></p>
+    <div class="copy-row">
+      <button class="copy-btn" onclick="copy('r-commitment', this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="result-card reflection">
+    <h4>💭 Reflection to sit with</h4>
+    <p id="r-reflection"></p>
+  </div>
+
+  <div class="result-card firststep">
+    <h4>🚀 Your first step</h4>
+    <p id="r-firststep"></p>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:.6rem;">Put it in your calendar before you close this tab.</p>
+  </div>
+
+  <div class="cta-card">
+    <h3>Ready to go deeper?</h3>
+    <p>Bring this canvas into a coaching session — we'll build the full path together, anticipate the obstacles, and design accountability that actually works for you.</p>
+    <a class="cta-book" href="index.html#contact">Book a free discovery call</a>
+    <button class="btn-restart" onclick="restart()">Start over</button>
+  </div>
+</div>
+
+<script>
+const VALUES = [
+  "Freedom","Growth","Connection","Purpose","Courage","Authenticity",
+  "Stability","Creativity","Impact","Family","Health","Adventure",
+  "Learning","Service","Leadership","Balance","Integrity","Joy"
+];
+const OBSTACLES = [
+  "Fear of failure","Not enough time","Unclear where to start",
+  "Self-doubt","Fear of what others think","Perfectionism",
+  "Financial uncertainty","Lack of support","Overwhelm","Imposter syndrome"
+];
+const STEP_LABELS = ["Your goal","Your why","Obstacles","First step"];
+
+let selVals = [], selObs = [];
+
+// ── Build value chips ──────────────────────────────────────────
+const vc = document.getElementById("value-chips");
+VALUES.forEach(v => {
+  const c = document.createElement("span");
+  c.className = "chip"; c.textContent = v;
+  c.onclick = () => {
+    if(c.classList.contains("sel")){
+      c.classList.remove("sel"); selVals = selVals.filter(x=>x!==v);
+    } else if(selVals.length < 3){
+      c.classList.add("sel"); selVals.push(v);
+    }
+    const n = selVals.length;
+    document.getElementById("chips-note").textContent =
+      n===3 ? "Great — three values chosen ✓" :
+      n>0   ? n+" chosen — pick up to 3" : "";
+    checkStep2();
+  };
+  vc.appendChild(c);
+});
+
+// ── Build obstacle chips ───────────────────────────────────────
+const oc = document.getElementById("obs-chips");
+OBSTACLES.forEach(o => {
+  const c = document.createElement("span");
+  c.className = "obs-chip"; c.textContent = o;
+  c.onclick = () => {
+    c.classList.toggle("sel");
+    selObs = selObs.includes(o) ? selObs.filter(x=>x!==o) : [...selObs, o];
+  };
+  oc.appendChild(c);
+});
+
+// ── Validation ────────────────────────────────────────────────
+document.getElementById("a-goal").addEventListener("input", function(){
+  document.getElementById("btn-1").disabled = this.value.trim().length < 8;
+});
+document.getElementById("a-why").addEventListener("input", checkStep2);
+function checkStep2(){
+  const why = document.getElementById("a-why").value.trim();
+  document.getElementById("btn-2").disabled = !(selVals.length > 0 && why.length > 5);
+}
+document.getElementById("a-step").addEventListener("input", function(){
+  document.getElementById("btn-4").disabled = this.value.trim().length < 8;
+});
+
+// ── Navigation ────────────────────────────────────────────────
+function goTo(n){
+  // hide all
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  const el = document.getElementById("screen-"+n);
+  if(el){ el.classList.add("active"); }
+
+  // update progress dots
+  for(let i=0;i<4;i++){
+    const d = document.getElementById("pd"+i);
+    d.classList.remove("active","done");
+    if(i < n-1) d.classList.add("done");
+    else if(i === n-1) d.classList.add("active");
+  }
+  document.getElementById("prog-label").textContent =
+    "Step "+n+" of 4 — "+STEP_LABELS[n-1];
+
+  // scroll to top
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// ── Submit ────────────────────────────────────────────────────
+async function submit(){
+  const goal  = document.getElementById("a-goal").value.trim();
+  const why   = document.getElementById("a-why").value.trim();
+  const vals  = selVals.join(", ") || "not specified";
+  const obs   = [...selObs, document.getElementById("a-obs").value.trim()]
+                  .filter(Boolean).join("; ") || "none listed";
+  const step  = document.getElementById("a-step").value.trim();
+
+  // show loading
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById("prog-wrap").style.display = "none";
+  document.getElementById("screen-loading").classList.add("active");
+
+  const loadMsgs = [
+    "Building your goal canvas…",
+    "Weaving in your values…",
+    "Crafting your commitment…",
+    "Finding your reflection question…"
+  ];
+  let li = 0;
+  const lt = setInterval(() => {
+    document.getElementById("loading-text").textContent = loadMsgs[++li % loadMsgs.length];
+  }, 1900);
+
+  const prompt = `You are a warm, grounded integrative development coach for Coaching — a coaching methodology with three phases: Uncover, Unravel, Unleash.
+
+A client just completed their Goal Setting Canvas. Here is what they shared:
+
+GOAL: ${goal}
+VALUES: ${vals}
+WHY IT MATTERS: ${why}
+OBSTACLES: ${obs}
+FIRST STEP: ${step}
+
+Respond with ONLY valid JSON, no markdown, no backticks:
+{"commitment":"A warm 2-3 sentence first-person commitment statement weaving their goal, values, and why. Write it AS them. Start with I commit to / I choose / I am.","reflection":"One open curious coaching question to sit with — not advice, just a question.","firststep":"Their first step echoed back as one clean concrete sentence."}`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1024,
+        system: "You are a coaching assistant. Respond ONLY with a raw JSON object — no markdown, no backticks, no explanation. Start with { and end with }.",
+        messages: [
+          { role: "user", content: prompt },
+          { role: "assistant", content: "{" }
+        ]
+      })
+    });
+
+    clearInterval(lt);
+
+    const data = await res.json();
+    console.log("Gemini response:", JSON.stringify(data).slice(0,500));
+
+    // Handle Gemini errors
+    if(data.error) throw new Error("Gemini error: " + data.error.message);
+    if(!res.ok) throw new Error("HTTP " + res.status + ": " + JSON.stringify(data).slice(0,150));
+
+    // Parse Gemini response format
+    const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    if(!raw) throw new Error("Empty response. Got: " + JSON.stringify(data).slice(0,300));
+    console.log("Raw:", raw.slice(0,300));
+
+    // Strip any markdown fences
+    const clean = raw.replace(/^```(?:json)?\s*/,"").replace(/\s*```$/,"").trim();
+
+    let json;
+    try {
+      json = JSON.parse(clean);
+    } catch(e) {
+      const match = clean.match(/\{[\s\S]+\}/);
+      if(match){
+        try{ json = JSON.parse(match[0]); }
+        catch(e2){ throw new Error("Parse failed: " + clean.slice(0,200)); }
+      } else {
+        throw new Error("No JSON found: " + clean.slice(0,200));
+      }
+    }
+    if(!json.commitment) throw new Error("Missing fields. Got: " + JSON.stringify(json).slice(0,200));
+
+    // populate result
+    document.getElementById("r-commitment").textContent  = json.commitment  || "";
+    document.getElementById("r-reflection").textContent  = json.reflection  || "";
+    document.getElementById("r-firststep").textContent   = json.firststep   || "";
+
+    // show result
+    document.getElementById("screen-loading").classList.remove("active");
+    document.getElementById("screen-result").style.display = "block";
+    window.scrollTo({top:0, behavior:"smooth"});
+
+  } catch(err) {
+    clearInterval(lt);
+    document.getElementById("screen-loading").classList.remove("active");
+    document.getElementById("prog-wrap").style.display = "block";
+    goTo(4);
+
+    // show visible error
+    const existing = document.querySelector(".err-box");
+    if(existing) existing.remove();
+    const box = document.createElement("div");
+    box.className = "err-box";
+    box.innerHTML = "<strong>Something went wrong</strong><br>" + err.message +
+      "<br><br>Please try again — if this keeps happening the API may be busy.";
+    document.getElementById("screen-4").appendChild(box);
+    setTimeout(() => box.remove(), 10000);
+  }
+}
+
+// ── Copy helper ───────────────────────────────────────────────
+function copy(id, btn){
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = "Copied ✓";
+    setTimeout(() => btn.textContent = "Copy", 2200);
+  }).catch(() => {
+    // fallback for older iOS
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand("copy");
+    document.body.removeChild(ta);
+    btn.textContent = "Copied ✓";
+    setTimeout(() => btn.textContent = "Copy", 2200);
+  });
+}
+
+// ── Restart ───────────────────────────────────────────────────
+function restart(){
+  selVals = []; selObs = [];
+  document.querySelectorAll(".chip").forEach(c => c.classList.remove("sel"));
+  document.querySelectorAll(".obs-chip").forEach(c => c.classList.remove("sel"));
+  ["a-goal","a-why","a-obs","a-step"].forEach(id => document.getElementById(id).value = "");
+  document.getElementById("chips-note").textContent = "";
+  document.getElementById("btn-1").disabled = true;
+  document.getElementById("btn-2").disabled = true;
+  document.getElementById("btn-4").disabled = true;
+  document.getElementById("screen-result").style.display = "none";
+  document.getElementById("prog-wrap").style.display = "block";
+  goTo(1);
+}
+</script>
+</body>
+</html>

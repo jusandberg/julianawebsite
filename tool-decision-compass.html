@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Decision Compass · Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --muted:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --teal-d:#0B7B76; --sage:#34A853; --sage-d:#2D6B5A; --cyan:#4285F4; --cyan-d:#0277A8;
+  --card:#FFFFFF; --radius:24px; --shadow:0 4px 16px rgba(7,16,20,.05);
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{ font-family:'Inter',sans-serif; background:#FFFFFF; color:var(--ink);
+  min-height:100%; line-height:1.65; overflow-x:hidden; }
+h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem;
+}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.topbar-title{ font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:var(--ink); margin-right:auto; }
+.phase-badge{ font-size:.68rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; background:rgba(15,159,154,.08);
+  color:var(--teal); padding:.3rem .75rem; border-radius:999px; white-space:nowrap; }
+
+/* ── STEP INDICATORS ── */
+.steps-bar{ display:flex; align-items:center; justify-content:center;
+  gap:.4rem; padding:1rem 1.2rem .3rem; }
+.step-dot{ width:28px; height:28px; border-radius:50%;
+  border:2px solid rgba(7,16,20,.15); display:flex; align-items:center;
+  justify-content:center; font-family:'Inter'; font-weight:800;
+  font-size:.78rem; color:var(--muted); }
+.step-dot.active{ background:var(--teal); border-color:var(--teal); color:#fff; }
+.step-dot.done{ background:rgba(15,159,154,.15); border-color:var(--teal); color:var(--teal-d); }
+.step-connector{ flex:1; height:2px; background:rgba(7,16,20,.1); max-width:60px; }
+.step-connector.done{ background:var(--teal); }
+.steps-labels{ display:flex; justify-content:space-between; padding:0 1.2rem .8rem;
+  font-size:.72rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:.08em; color:var(--muted); }
+.steps-labels span.active{ color:var(--teal-d); }
+
+/* ── STAGES ── */
+.stage{ display:none; padding:0 1.2rem 6rem; }
+.stage.active{ display:block; animation:fadeUp .35s ease; }
+@keyframes fadeUp{ from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+
+/* ── CARDS ── */
+.card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.5rem; margin-bottom:1.1rem; }
+.card h3{ font-size:1rem; font-weight:700; margin-bottom:.5rem; }
+.card p{ font-size:.9rem; color:var(--muted); line-height:1.65; }
+
+/* ── INPUTS ── */
+textarea, input[type="text"]{
+  width:100%; font-family:'Inter',sans-serif; font-size:1rem; color:var(--ink);
+  background:rgba(7,16,20,.03); border:1.5px solid rgba(7,16,20,.14);
+  border-radius:14px; padding:.9rem 1rem; outline:none;
+  transition:border-color .2s; line-height:1.65;
+}
+textarea{ resize:none; min-height:80px; }
+input[type="text"]{ min-height:48px; }
+textarea:focus, input[type="text"]:focus{ border-color:var(--teal); }
+textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem; }
+
+/* ── STAGE 1: THE DECISION ── */
+.decision-card{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.5rem; margin-bottom:1.1rem; }
+.field-label{ font-family:'Inter'; font-weight:700; font-size:.88rem;
+  margin-bottom:.5rem; display:block; }
+.field-hint{ font-size:.8rem; color:var(--muted); margin-bottom:.7rem; display:block; }
+
+.options-grid{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-top:1rem; }
+.option-input-wrap{ }
+.option-input-wrap .field-label{ font-size:.82rem; }
+
+/* ── STAGE 2: YOUR VALUES ── */
+.values-intro{ font-size:.9rem; color:var(--muted); margin-bottom:1rem; line-height:1.65; }
+.value-rows{ display:grid; gap:.7rem; }
+.value-row{ background:var(--card); border-radius:16px; box-shadow:var(--shadow); border:1px solid var(--line);
+  padding:1rem 1.1rem; display:grid;
+  grid-template-columns:1fr 80px; gap:.8rem; align-items:center; }
+.value-name{ font-size:.9rem; font-weight:600; }
+.weight-btns{ display:flex; gap:.3rem; }
+.wbtn{ width:24px; height:24px; border-radius:50%; border:1.5px solid rgba(7,16,20,.15);
+  background:var(--bg); font-family:'Inter'; font-weight:700; font-size:.7rem;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:all .15s; touch-action:manipulation; }
+.wbtn.selected{ background:var(--teal);
+  border-color:transparent; color:#fff; }
+.add-value-row{ display:flex; gap:.6rem; margin-top:.7rem; }
+.add-value-input{ flex:1; font-family:'Inter'; font-size:.92rem;
+  background:rgba(7,16,20,.03); border:1.5px solid rgba(7,16,20,.12);
+  border-radius:12px; padding:.7rem .9rem; outline:none; }
+.add-value-input:focus{ border-color:var(--teal); }
+.add-btn{ font-family:'Inter'; font-weight:700; font-size:.85rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:12px; padding:.7rem 1.1rem; cursor:pointer;
+  white-space:nowrap; touch-action:manipulation; }
+
+/* ── STAGE 3: SCORE ── */
+.score-intro{ font-size:.88rem; color:var(--muted); margin-bottom:1rem; line-height:1.65; }
+.score-section{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.4rem; margin-bottom:1rem; }
+.score-section-title{ font-family:'Inter'; font-weight:800; font-size:1rem;
+  margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
+.option-a-title{ color:var(--teal-d); }
+.option-b-title{ color:var(--cyan-d); }
+.score-row{ display:grid; grid-template-columns:1fr 100px;
+  gap:.7rem; align-items:center; padding:.6rem 0;
+  border-bottom:1px solid rgba(7,16,20,.05); }
+.score-row:last-child{ border-bottom:none; }
+.score-val-name{ font-size:.9rem; font-weight:500; }
+.score-val-weight{ font-size:.72rem; color:var(--muted); }
+.score-btns{ display:flex; gap:.25rem; }
+.sbtn{ width:28px; height:28px; border-radius:8px;
+  border:1.5px solid rgba(7,16,20,.12); background:var(--bg);
+  font-family:'Inter'; font-weight:700; font-size:.72rem;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:all .15s; touch-action:manipulation; }
+.sbtn.active-low{ background:rgba(194,24,91,.12); border-color:rgba(194,24,91,.3); color:#B0145B; }
+.sbtn.active-mid{ background:rgba(167,199,183,.25); border-color:rgba(167,199,183,.4); color:var(--sage-d); }
+.sbtn.active-high{ background:rgba(15,159,154,.14); border-color:rgba(15,159,154,.3); color:var(--teal-d); }
+
+/* ── RESULTS ── */
+.result-hero{ border-radius:var(--radius); padding:2rem 1.6rem;
+  text-align:center; margin-bottom:1.1rem; }
+.result-hero.clear{ background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(6,182,212,.08));
+  border:1.5px solid rgba(15,159,154,.25); }
+.result-hero.close{ background:linear-gradient(135deg,rgba(167,199,183,.15),rgba(6,182,212,.1));
+  border:1.5px solid rgba(167,199,183,.3); }
+.result-hero.tied{ background:rgba(7,16,20,.04); border:1.5px solid rgba(7,16,20,.12); }
+.result-label{ font-size:.72rem; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--teal-d); margin-bottom:.5rem; }
+.result-title{ font-family:'Inter'; font-weight:800; font-size:1.5rem;
+  margin-bottom:.3rem; }
+.result-sub{ font-family:'Inter',sans-serif; font-style:italic;
+  font-size:1rem; color:var(--muted); }
+
+.score-compare{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.4rem; margin-bottom:1rem; }
+.score-compare h3{ font-size:.95rem; font-weight:700; margin-bottom:1rem; }
+.compare-row{ margin-bottom:.9rem; }
+.compare-label{ display:flex; justify-content:space-between;
+  font-size:.84rem; font-weight:600; margin-bottom:.35rem; }
+.compare-track{ height:10px; background:rgba(7,16,20,.07);
+  border-radius:999px; overflow:hidden; }
+.compare-fill{ height:100%; border-radius:999px;
+  transition:width 1s cubic-bezier(.22,1,.36,1); }
+.fill-a{ background:linear-gradient(90deg,var(--teal),#3BBDB8); }
+.fill-b{ background:linear-gradient(90deg,var(--cyan),#7ADCF9); }
+
+.val-breakdown{ background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); border:1px solid var(--line); padding:1.4rem; margin-bottom:1rem; }
+.val-breakdown h3{ font-size:.95rem; font-weight:700; margin-bottom:1rem; }
+.vb-row{ display:grid; grid-template-columns:1fr 50px 50px;
+  gap:.5rem; align-items:center; padding:.5rem 0;
+  border-bottom:1px solid rgba(7,16,20,.05); font-size:.88rem; }
+.vb-row:last-child{ border-bottom:none; }
+.vb-row.header{ font-family:'Inter'; font-weight:700; font-size:.78rem;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+  padding-bottom:.4rem; }
+.vb-val{ font-weight:500; }
+.vb-score{ text-align:center; font-family:'Inter'; font-weight:700; font-size:.9rem; }
+.vb-score.winner{ color:var(--teal-d); }
+.vb-score.loser{ color:var(--muted); }
+.vb-score.tied-score{ color:var(--muted); }
+
+.reflection-card{ background:linear-gradient(135deg,rgba(15,159,154,.07),rgba(167,199,183,.1));
+  border:1.5px solid rgba(15,159,154,.2); border-radius:var(--radius);
+  padding:1.4rem; margin-bottom:1rem; }
+.reflection-card h3{ font-size:.95rem; font-weight:700; margin-bottom:.8rem; }
+.reflection-card p{ font-size:.9rem; color:var(--muted); line-height:1.75; }
+.reflection-card p em{ font-style:italic; color:var(--ink); }
+
+.cta-card{ background:linear-gradient(135deg,rgba(15,159,154,.1),rgba(167,199,183,.08) 50%,rgba(6,182,212,.1));
+  border-radius:var(--radius); padding:1.8rem; text-align:center; margin-bottom:1.2rem; }
+.cta-card h3{ font-size:1.05rem; margin-bottom:.4rem; }
+.cta-card p{ font-size:.88rem; color:var(--muted); margin:.4rem 0 1.2rem; line-height:1.6; }
+.cta-btn{ display:inline-block; font-family:'Inter'; font-weight:700; font-size:.95rem;
+  color:#fff; background:var(--teal);
+  border-radius:999px; padding:.95rem 2rem; text-decoration:none;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); }
+
+/* ── FIXED BTN ── */
+.btn-bar{ position:fixed; bottom:0; left:0; right:0;
+  padding:1rem 1.2rem 1.4rem;
+  background:linear-gradient(to top, var(--bg) 70%, transparent);
+  display:flex; gap:.6rem; }
+.btn-primary{ flex:1; font-family:'Inter'; font-weight:700; font-size:1rem;
+  color:#fff; background:var(--teal);
+  border:none; border-radius:999px; padding:1rem;
+  box-shadow:0 8px 22px rgba(15,159,154,.35); cursor:pointer;
+  touch-action:manipulation; transition:transform .15s; }
+.btn-primary:active{ transform:scale(.97); }
+.btn-primary:disabled{ opacity:.35; cursor:not-allowed; transform:none; box-shadow:none; }
+.btn-back{ font-family:'Inter'; font-weight:600; font-size:.92rem;
+  color:var(--muted); background:rgba(7,16,20,.06); border:none;
+  border-radius:999px; padding:1rem 1.3rem; cursor:pointer;
+  touch-action:manipulation; white-space:nowrap; }
+.btn-restart{ width:100%; font-family:'Inter'; font-weight:600; font-size:.88rem;
+  color:var(--muted); background:transparent; border:1.5px solid rgba(7,16,20,.12);
+  border-radius:999px; padding:.85rem; cursor:pointer; margin-top:.7rem;
+  touch-action:manipulation; }
+
+@media(prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.back-btn:hover{color:var(--teal);}
+
+/* CLEAN HERO (standardized) */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.hero .dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:30px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;color:var(--ink);}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto;line-height:1.6;}
+@media(max-width:600px){.hero{padding:3rem 1.2rem 1.5rem;}.nav{padding:.9rem 1.2rem;}}
+
+/* Gentle motion for decorative hero shapes */
+@keyframes toolDecorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px,-15px,0)}}
+@keyframes toolDecorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-17px,18px,0)}}
+.hero .ring{animation:toolDecorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .r2{animation-name:toolDecorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot{animation:toolDecorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .d2{animation-name:toolDecorFloatA;animation-delay:-2.5s;}
+@media(prefers-reduced-motion:reduce){.hero .ring,.hero .dot{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="index.html#home" aria-label="Back to home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
+  
+  <span class="nav-pill"><span class="pdot"></span> Unleash</span>
+</nav>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Decisions</div>
+    <h1>The Decision <span class="grad">Compass.</span></h1>
+    <p class="lead">Work through a tough decision by weighing it against your values, not just the pros and cons.</p>
+  </div>
+</div>
+
+<div class="steps-bar">
+  <div class="step-dot active" id="dot-1">1</div>
+  <div class="step-connector" id="con-1"></div>
+  <div class="step-dot" id="dot-2">2</div>
+  <div class="step-connector" id="con-2"></div>
+  <div class="step-dot" id="dot-3">3</div>
+</div>
+<div class="steps-labels">
+  <span class="active" id="lbl-1">The decision</span>
+  <span id="lbl-2">Your values</span>
+  <span id="lbl-3">Score it</span>
+</div>
+
+<!-- ═══════════ STAGE 1: THE DECISION ═══════════ -->
+<div class="stage active" id="stage-decision">
+  <div class="card">
+    <h3>What decision are you weighing?</h3>
+    <p style="margin-bottom:1rem;">Describe it briefly — the clearer you are, the more useful the compass will be.</p>
+    <span class="field-label">The decision</span>
+    <span class="field-hint">e.g. "Should I accept the new job offer or stay in my current role?"</span>
+    <textarea id="decision-text" rows="3" placeholder="I'm trying to decide whether to..."></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Name your two options</h3>
+    <p style="margin-bottom:1rem;">Keep them short — you'll be scoring each one against your values.</p>
+    <div class="options-grid">
+      <div class="option-input-wrap">
+        <span class="field-label">Option A</span>
+        <input type="text" id="option-a" placeholder="e.g. Take the job">
+      </div>
+      <div class="option-input-wrap">
+        <span class="field-label">Option B</span>
+        <input type="text" id="option-b" placeholder="e.g. Stay put">
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-bar">
+    <button class="btn-primary" id="btn-d" onclick="goToValues()" disabled>Next — Set your values →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 2: VALUES ═══════════ -->
+<div class="stage" id="stage-values">
+  <p class="values-intro">These are the values this decision will be scored against. Each one has a weight — how much does it matter to you right now? Set 1 (nice to have) to 3 (essential).</p>
+
+  <div class="value-rows" id="value-rows"></div>
+
+  <div class="add-value-row">
+    <input class="add-value-input" id="custom-value" type="text" placeholder="Add your own value..." maxlength="30">
+    <button class="add-btn" onclick="addValue()">Add</button>
+  </div>
+
+  <div class="btn-bar">
+    <button class="btn-back" onclick="goTo('decision')">← Back</button>
+    <button class="btn-primary" onclick="goToScore()">Next — Score each option →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 3: SCORE ═══════════ -->
+<div class="stage" id="stage-score">
+  <p class="score-intro">For each value, rate how well each option honours it. 1 = barely, 2 = somewhat, 3 = fully. Go with your gut — your first instinct is usually right.</p>
+
+  <div class="score-section" id="score-section-a">
+    <div class="score-section-title option-a-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+      <span id="score-a-title">Option A</span>
+    </div>
+    <div id="score-rows-a"></div>
+  </div>
+
+  <div class="score-section" id="score-section-b">
+    <div class="score-section-title option-b-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+      <span id="score-b-title">Option B</span>
+    </div>
+    <div id="score-rows-b"></div>
+  </div>
+
+  <div class="btn-bar">
+    <button class="btn-back" onclick="goTo('values')">← Back</button>
+    <button class="btn-primary" id="btn-score" onclick="showResult()" disabled>See my compass result →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 4: RESULT ═══════════ -->
+<div class="stage" id="stage-result">
+
+  <div class="result-hero" id="result-hero">
+    <div class="result-label">Your compass points to</div>
+    <div class="result-title" id="result-title"></div>
+    <div class="result-sub" id="result-sub"></div>
+  </div>
+
+  <div class="score-compare">
+    <h3>Values alignment score</h3>
+    <div class="compare-row">
+      <div class="compare-label">
+        <span id="label-a" style="color:var(--teal-d);">Option A</span>
+        <span id="score-a-display" style="color:var(--teal-d); font-family:'Inter';">0</span>
+      </div>
+      <div class="compare-track">
+        <div class="compare-fill fill-a" id="bar-a" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="compare-row" style="margin-bottom:0;">
+      <div class="compare-label">
+        <span id="label-b" style="color:var(--cyan-d);">Option B</span>
+        <span id="score-b-display" style="color:var(--cyan-d); font-family:'Inter';">0</span>
+      </div>
+      <div class="compare-track">
+        <div class="compare-fill fill-b" id="bar-b" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="val-breakdown">
+    <h3>Value by value</h3>
+    <div class="vb-row header">
+      <div>Value</div>
+      <div style="text-align:center;" id="vb-header-a">A</div>
+      <div style="text-align:center;" id="vb-header-b">B</div>
+    </div>
+    <div id="val-breakdown-rows"></div>
+  </div>
+
+  <div class="reflection-card" id="reflection-card">
+    <h3>Before you decide</h3>
+    <p id="reflection-text"></p>
+  </div>
+
+  <div class="cta-card">
+    <h3>The numbers are only half the picture</h3>
+    <p>The compass shows you what your values are saying. Coaching helps you understand what your gut, your fear, and your hope are saying too — and how to bring all of it into alignment.</p>
+    <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
+    <button class="btn-restart" onclick="restart()">Start a new decision</button>
+  </div>
+
+</div>
+
+<script>
+// ── Default values ────────────────────────────────────────────
+const DEFAULT_VALUES = [
+  'Freedom', 'Growth', 'Security', 'Authenticity',
+  'Family', 'Impact', 'Creativity', 'Balance'
+];
+
+let values = DEFAULT_VALUES.map(v => ({ name: v, weight: 2 }));
+let scoresA = {}; // valueIndex → 1|2|3
+let scoresB = {};
+let optA = '', optB = '';
+
+// ── Stage 1 validation ────────────────────────────────────────
+['decision-text','option-a','option-b'].forEach(id => {
+  document.getElementById(id).addEventListener('input', checkStage1);
+});
+function checkStage1(){
+  const d = document.getElementById('decision-text').value.trim();
+  const a = document.getElementById('option-a').value.trim();
+  const b = document.getElementById('option-b').value.trim();
+  document.getElementById('btn-d').disabled = !(d.length > 5 && a.length > 1 && b.length > 1);
+}
+
+// ── Step navigation ───────────────────────────────────────────
+function goTo(stage){
+  document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+  document.getElementById('stage-'+stage).classList.add('active');
+  const map = {decision:1, values:2, score:3, result:4};
+  const cur = map[stage];
+  [1,2,3].forEach(n => {
+    document.getElementById('dot-'+n).className =
+      'step-dot'+(n<cur?' done':n===cur?' active':'');
+    const lbl = document.getElementById('lbl-'+n);
+    lbl.className = n===cur?'active':'';
+    const con = document.getElementById('con-'+n);
+    if(con) con.classList.toggle('done', n<cur);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── Stage 2: Values ───────────────────────────────────────────
+function goToValues(){
+  optA = document.getElementById('option-a').value.trim();
+  optB = document.getElementById('option-b').value.trim();
+  renderValueRows();
+  goTo('values');
+}
+
+function renderValueRows(){
+  const el = document.getElementById('value-rows');
+  el.innerHTML = '';
+  values.forEach((v,i) => {
+    const row = document.createElement('div');
+    row.className = 'value-row';
+    row.innerHTML =
+      '<div><div class="value-name">'+v.name+'</div>'+
+      '<div style="font-size:.72rem;color:var(--muted);">Weight: '+['','low','medium','high'][v.weight]+'</div></div>'+
+      '<div class="weight-btns">'+
+        [1,2,3].map(w =>
+          '<button class="wbtn'+(v.weight===w?' selected':'')+
+          '" onclick="setWeight('+i+','+w+')">'+w+'</button>'
+        ).join('')+
+      '</div>';
+    el.appendChild(row);
+  });
+}
+
+function setWeight(idx, w){
+  values[idx].weight = w;
+  renderValueRows();
+}
+
+function addValue(){
+  const input = document.getElementById('custom-value');
+  const name = input.value.trim();
+  if(!name || values.find(v=>v.name.toLowerCase()===name.toLowerCase())) return;
+  values.push({name, weight:2});
+  input.value = '';
+  renderValueRows();
+}
+
+// ── Stage 3: Score ────────────────────────────────────────────
+function goToScore(){
+  // Reset scores
+  scoresA = {}; scoresB = {};
+  values.forEach((_,i)=>{ scoresA[i]=null; scoresB[i]=null; });
+
+  document.getElementById('score-a-title').textContent = optA;
+  document.getElementById('score-b-title').textContent = optB;
+
+  renderScoreRows('a');
+  renderScoreRows('b');
+  checkScoreComplete();
+  goTo('score');
+}
+
+function renderScoreRows(opt){
+  const el = document.getElementById('score-rows-'+opt);
+  const scores = opt==='a' ? scoresA : scoresB;
+  el.innerHTML = '';
+  values.forEach((v,i) => {
+    const row = document.createElement('div');
+    row.className = 'score-row';
+    row.innerHTML =
+      '<div><div class="score-val-name">'+v.name+'</div>'+
+      '<div class="score-val-weight">Weight: '+v.weight+'</div></div>'+
+      '<div class="score-btns">'+
+        [1,2,3].map(s =>
+          '<button class="sbtn'+(scores[i]===s?' active-'+(s===1?'low':s===2?'mid':'high'):'')+
+          '" onclick="setScore(\''+opt+'\','+i+','+s+')">'+s+'</button>'
+        ).join('')+
+      '</div>';
+    el.appendChild(row);
+  });
+}
+
+function setScore(opt, idx, score){
+  if(opt==='a') scoresA[idx] = score;
+  else scoresB[idx] = score;
+  renderScoreRows(opt);
+  checkScoreComplete();
+}
+
+function checkScoreComplete(){
+  const allA = values.every((_,i) => scoresA[i] !== null);
+  const allB = values.every((_,i) => scoresB[i] !== null);
+  document.getElementById('btn-score').disabled = !(allA && allB);
+}
+
+// ── Stage 4: Result ───────────────────────────────────────────
+function showResult(){
+  // Calculate weighted scores
+  let totalA = 0, totalB = 0, maxPossible = 0;
+  values.forEach((v,i) => {
+    totalA += (scoresA[i]||0) * v.weight;
+    totalB += (scoresB[i]||0) * v.weight;
+    maxPossible += 3 * v.weight;
+  });
+
+  const pctA = Math.round((totalA/maxPossible)*100);
+  const pctB = Math.round((totalB/maxPossible)*100);
+  const diff = Math.abs(pctA - pctB);
+  const winner = totalA > totalB ? 'a' : totalB > totalA ? 'b' : 'tied';
+
+  // Hero
+  const hero = document.getElementById('result-hero');
+  const title = document.getElementById('result-title');
+  const sub = document.getElementById('result-sub');
+
+  if(winner === 'tied'){
+    hero.className = 'result-hero tied';
+    title.textContent = 'It\'s a tie';
+    sub.textContent = 'Your values align equally with both options';
+  } else if(diff <= 8){
+    hero.className = 'result-hero close';
+    title.textContent = winner==='a' ? optA : optB;
+    sub.textContent = 'A slight edge — but this is close enough to trust your gut';
+  } else {
+    hero.className = 'result-hero clear';
+    title.textContent = winner==='a' ? optA : optB;
+    sub.textContent = 'Your values speak clearly here';
+  }
+
+  // Score bars
+  document.getElementById('label-a').textContent = optA;
+  document.getElementById('label-b').textContent = optB;
+  document.getElementById('score-a-display').textContent = totalA + ' pts';
+  document.getElementById('score-b-display').textContent = totalB + ' pts';
+  document.getElementById('vb-header-a').textContent = optA.split(' ')[0];
+  document.getElementById('vb-header-b').textContent = optB.split(' ')[0];
+
+  setTimeout(()=>{
+    document.getElementById('bar-a').style.width = pctA+'%';
+    document.getElementById('bar-b').style.width = pctB+'%';
+  }, 80);
+
+  // Value breakdown
+  const breakdown = document.getElementById('val-breakdown-rows');
+  breakdown.innerHTML = '';
+  values.forEach((v,i) => {
+    const sa = (scoresA[i]||0)*v.weight;
+    const sb = (scoresB[i]||0)*v.weight;
+    const aWins = sa > sb, bWins = sb > sa;
+    const row = document.createElement('div');
+    row.className = 'vb-row';
+    row.innerHTML =
+      '<div class="vb-val">'+v.name+' <span style="font-size:.7rem;color:var(--muted);">×'+v.weight+'</span></div>'+
+      '<div class="vb-score '+(aWins?'winner':bWins?'loser':'tied-score')+'">'+sa+(aWins?' ✦':'')+'</div>'+
+      '<div class="vb-score '+(bWins?'winner':aWins?'loser':'tied-score')+'">'+sb+(bWins?' ✦':'')+'</div>';
+    breakdown.appendChild(row);
+  });
+
+  // Reflection
+  const ref = document.getElementById('reflection-text');
+  const winnerName = winner==='a'?optA:winner==='b'?optB:null;
+
+  // Find the value where the gap is largest
+  let biggestGapVal = '', biggestGap = 0;
+  values.forEach((v,i) => {
+    const gap = Math.abs((scoresA[i]||0)-(scoresB[i]||0)) * v.weight;
+    if(gap > biggestGap){ biggestGap = gap; biggestGapVal = v.name; }
+  });
+
+  // Find where they scored lowest
+  const lowestA = values.reduce((low, v, i) => (scoresA[i]||0) < (scoresA[low]||0) ? i : low, 0);
+  const lowestB = values.reduce((low, v, i) => (scoresB[i]||0) < (scoresB[low]||0) ? i : low, 0);
+
+  if(winner==='tied'){
+    ref.innerHTML = 'When the numbers tie, the decision usually lives in something the compass can\'t measure — fear, excitement, grief about what you\'d be giving up. <em>What does the tie feel like in your body?</em> One option usually carries a different quality of emotion. That\'s data too.';
+  } else if(diff <= 8){
+    ref.innerHTML = '<em>'+winnerName+'</em> has a slight edge according to your values — but a gap this small suggests the decision isn\'t really about values alignment. It may be about something underneath: risk tolerance, timing, what you\'re afraid to want. <em>What would you choose if you knew you couldn\'t get it wrong?</em>';
+  } else {
+    ref.innerHTML = 'Your values point clearly to <em>'+winnerName+'</em>, with <em>'+biggestGapVal+'</em> as the most decisive factor. If this result surprises you — or if you feel resistance to it — that\'s worth paying attention to. <em>What would have to be true for you to trust what your values are telling you?</em>';
+  }
+
+  goTo('result');
+}
+
+// ── Restart ───────────────────────────────────────────────────
+function restart(){
+  values = DEFAULT_VALUES.map(v => ({name:v, weight:2}));
+  scoresA = {}; scoresB = {};
+  optA = ''; optB = '';
+  document.getElementById('decision-text').value = '';
+  document.getElementById('option-a').value = '';
+  document.getElementById('option-b').value = '';
+  document.getElementById('btn-d').disabled = true;
+  goTo('decision');
+}
+
+// ── Init ──────────────────────────────────────────────────────
+renderValueRows();
+</script>
+</body>
+</html>
