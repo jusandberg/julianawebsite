@@ -40,6 +40,25 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan));border-radius:999px;transition:width .5s cubic-bezier(.22,1,.36,1);width:0%;}
 
 /* ── ACCORDION ── */
+/* INTERACTIVE COMPOSITE WHEEL */
+.eq-wheel-area{margin:0 0 1.6rem;padding:1.4rem;background:linear-gradient(145deg,#fff,rgba(15,159,154,.035));border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);text-align:center;overflow:hidden;position:relative;}
+.eq-wheel-area::before{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(66,133,244,.13);border-radius:50%;left:-75px;top:-75px;pointer-events:none;}
+.wheel-title{font-size:1.05rem;font-weight:800;margin-bottom:.35rem;position:relative;}
+.wheel-copy{font-size:.84rem;color:var(--muted);line-height:1.55;margin:0 auto .8rem;max-width:30rem;position:relative;}
+.wheel-shell{width:min(100%,430px);margin:0 auto;position:relative;}
+.eq-wheel-svg{display:block;width:100%;height:auto;overflow:visible;}
+.wheel-segment{cursor:pointer;outline:none;}
+.wheel-segment path{stroke:#fff;stroke-width:3;transition:filter .25s,opacity .25s,stroke-width .25s;}
+.wheel-segment:hover path,.wheel-segment:focus path{filter:drop-shadow(0 7px 9px rgba(7,16,20,.2));opacity:.94;stroke-width:5;}
+.wheel-segment.active path{filter:drop-shadow(0 9px 12px rgba(7,16,20,.24));stroke-width:7;}
+.wheel-segment text{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.08);stroke-width:2px;}
+.wheel-center{fill:#fff;stroke:rgba(15,159,154,.16);stroke-width:2;filter:drop-shadow(0 7px 12px rgba(7,16,20,.1));}
+.wheel-center-main{font-family:Inter,Arial,sans-serif;font-weight:800;font-size:30px;fill:var(--teal-d);text-anchor:middle;}
+.wheel-center-sub{font-family:Inter,Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;fill:var(--muted);text-anchor:middle;}
+.wheel-status{display:inline-flex;align-items:center;gap:.45rem;margin-top:.55rem;padding:.45rem .85rem;border-radius:999px;background:rgba(15,159,154,.07);color:var(--teal-d);font-size:.78rem;font-weight:650;}
+.wheel-status-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);transition:background .25s;}
+@media(max-width:480px){.eq-wheel-area{padding:1rem .6rem}.wheel-segment text{font-size:10px}.wheel-center-main{font-size:25px}.wheel-center-sub{font-size:8px}}
+
 .accordion{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.4rem;}
 .acc-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow); border:1px solid var(--line);overflow:hidden;border-left:4px solid transparent;transition:border-color .3s;}
 .acc-item.open{border-left-color:var(--item-color);}
@@ -155,6 +174,15 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
 
 <div class="wrap">
 
+  <section class="eq-wheel-area" aria-labelledby="wheel-title">
+    <h2 class="wheel-title" id="wheel-title">Explore the five EQ composites</h2>
+    <p class="wheel-copy">Choose a section of the wheel to open its full explanation, strengths, watch-outs, and reflection prompt.</p>
+    <div class="wheel-shell">
+      <svg class="eq-wheel-svg" id="eq-wheel" viewBox="0 0 420 420" role="group" aria-label="Five emotional intelligence composites"></svg>
+    </div>
+    <div class="wheel-status" aria-live="polite"><span class="wheel-status-dot" id="wheel-status-dot"></span><span id="wheel-status-text">Select a composite</span></div>
+  </section>
+
   <!-- PROGRESS -->
   <div class="prog-wrap">
     <div class="prog-row">
@@ -263,6 +291,102 @@ var DATA = [
 
 var opened = {};
 
+function polarPoint(cx, cy, radius, degrees) {
+  var radians = degrees * Math.PI / 180;
+  return {x: cx + radius * Math.cos(radians), y: cy + radius * Math.sin(radians)};
+}
+
+function segmentPath(start, end, innerRadius, outerRadius) {
+  var outerStart = polarPoint(210, 210, outerRadius, start);
+  var outerEnd = polarPoint(210, 210, outerRadius, end);
+  var innerEnd = polarPoint(210, 210, innerRadius, end);
+  var innerStart = polarPoint(210, 210, innerRadius, start);
+  return 'M ' + outerStart.x + ' ' + outerStart.y +
+    ' A ' + outerRadius + ' ' + outerRadius + ' 0 0 1 ' + outerEnd.x + ' ' + outerEnd.y +
+    ' L ' + innerEnd.x + ' ' + innerEnd.y +
+    ' A ' + innerRadius + ' ' + innerRadius + ' 0 0 0 ' + innerStart.x + ' ' + innerStart.y + ' Z';
+}
+
+function buildWheel() {
+  var svg = document.getElementById('eq-wheel');
+  var ns = 'http://www.w3.org/2000/svg';
+  DATA.forEach(function(d, idx) {
+    var start = -90 + idx * 72 + 1.5;
+    var end = -90 + (idx + 1) * 72 - 1.5;
+    var mid = (start + end) / 2;
+    var labelPoint = polarPoint(210, 210, 132, mid);
+    var group = document.createElementNS(ns, 'g');
+    group.setAttribute('class', 'wheel-segment');
+    group.setAttribute('id', 'wheel-' + d.key);
+    group.setAttribute('role', 'button');
+    group.setAttribute('tabindex', '0');
+    group.setAttribute('aria-label', d.name + ': ' + d.tag);
+
+    var path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', segmentPath(start, end, 78, 188));
+    path.setAttribute('fill', d.color);
+    group.appendChild(path);
+
+    var text = document.createElementNS(ns, 'text');
+    text.setAttribute('x', labelPoint.x);
+    text.setAttribute('y', labelPoint.y - (d.name.indexOf(' ') > -1 ? 6 : 0));
+    var words = d.name.split(' ');
+    if (words.length > 1) {
+      words.forEach(function(word, wordIndex) {
+        var line = document.createElementNS(ns, 'tspan');
+        line.setAttribute('x', labelPoint.x);
+        line.setAttribute('dy', wordIndex === 0 ? '0' : '14');
+        line.textContent = word;
+        text.appendChild(line);
+      });
+    } else {
+      text.textContent = d.name;
+    }
+    group.appendChild(text);
+    group.addEventListener('click', function(){ openItem(d.key); });
+    group.addEventListener('keydown', function(event){
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openItem(d.key);
+      }
+    });
+    svg.appendChild(group);
+  });
+
+  var center = document.createElementNS(ns, 'circle');
+  center.setAttribute('class', 'wheel-center');
+  center.setAttribute('cx', '210');
+  center.setAttribute('cy', '210');
+  center.setAttribute('r', '70');
+  svg.appendChild(center);
+
+  var main = document.createElementNS(ns, 'text');
+  main.setAttribute('class', 'wheel-center-main');
+  main.setAttribute('x', '210');
+  main.setAttribute('y', '207');
+  main.textContent = 'EQ';
+  svg.appendChild(main);
+
+  var sub = document.createElementNS(ns, 'text');
+  sub.setAttribute('class', 'wheel-center-sub');
+  sub.setAttribute('x', '210');
+  sub.setAttribute('y', '227');
+  sub.textContent = 'EXPLORE';
+  svg.appendChild(sub);
+}
+
+function setWheelActive(key) {
+  DATA.forEach(function(d) {
+    var segment = document.getElementById('wheel-' + d.key);
+    if (segment) segment.classList.toggle('active', d.key === key);
+  });
+  var selected = DATA.find(function(d){ return d.key === key; });
+  if (selected) {
+    document.getElementById('wheel-status-text').textContent = selected.name + ' - ' + selected.tag;
+    document.getElementById('wheel-status-dot').style.background = selected.color;
+  }
+}
+
 function buildAccordion() {
   var acc = document.getElementById('accordion');
   DATA.forEach(function(d, idx) {
@@ -325,6 +449,7 @@ function openItem(key) {
   });
   var item = document.getElementById('acc-' + key);
   var body = document.getElementById('body-' + key);
+  setWheelActive(key);
   item.classList.add('open');
   // Measure and set max-height
   body.style.maxHeight = body.scrollHeight + 'px';
@@ -366,6 +491,7 @@ function showCTA() {
   }, 60);
 }
 
+buildWheel();
 buildAccordion();
 </script>
 </body>
