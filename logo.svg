@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="88" viewBox="0 0 430 88" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Juliana Dos Santos</title>
+  <desc id="logoDesc">Juliana Dos Santos logo with a circular gradient monogram.</desc>
+  <defs>
+    <linearGradient id="brandGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4285F4"/>
+      <stop offset="0.46" stop-color="#0F9F9A"/>
+      <stop offset="0.78" stop-color="#34A853"/>
+      <stop offset="1" stop-color="#FBBC05"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(5 5)">
+    <circle cx="39" cy="39" r="31" fill="#FFFFFF" stroke="#EAEAEF" stroke-width="1.5"/>
+    <circle cx="39" cy="39" r="29" fill="none" stroke="url(#brandGradient)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/>
+    <text x="39" y="49" fill="#1A1A1C" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text>
+    <circle cx="65" cy="12" r="4.5" fill="#FBBC05"/>
+  </g>
+  <text x="92" y="39" fill="#1A1A1C" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="750" letter-spacing="-0.6">Juliana Dos Santos</text>
+  <text x="93" y="61" fill="#0F9F9A" font-family="Inter, Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.45">TALENT DEVELOPMENT  ·  COACHING  ·  DESIGN</text>
+</svg>
