@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EQ for Emerging Leaders — Microlearning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --red:#EA4335; --teal:#0F9F9A;
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+::selection{background:rgba(15,159,154,.18);}
+
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.back-btn:hover{color:var(--teal);}
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+
+.prog-bar{position:sticky;top:61px;z-index:40;height:3px;background:var(--line);}
+.prog-bar .fill{height:100%;width:0;background:var(--grad);transition:width .4s cubic-bezier(.22,1,.36,1);}
+
+.ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:20px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before,.eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto 1.4rem;line-height:1.6;}
+.meta-row{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;font-size:.82rem;color:var(--grey);font-weight:500;}
+.meta-row span{display:inline-flex;align-items:center;gap:.4rem;}
+.meta-row svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:1.8;}
+
+.wrap{max-width:680px;margin:0 auto;padding:1rem 1.5rem 5rem;position:relative;}
+
+.obj{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.8rem;margin-bottom:1.6rem;}
+.obj h4{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;}
+.obj p{font-size:1rem;color:var(--ink);line-height:1.6;}
+
+.section-tag{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:.5rem;}
+.section-h{font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.6rem;}
+.section-p{font-size:.98rem;color:var(--grey);line-height:1.65;margin-bottom:1.6rem;}
+
+/* COMPETENCY CHIPS */
+.comp-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0;}
+.comp{font-size:.78rem;font-weight:600;padding:.4rem .9rem;border-radius:980px;border:1px solid var(--line);background:#fff;color:var(--grey);}
+.comp .cdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.4rem;vertical-align:middle;}
+
+.stage{display:none;animation:fade .45s ease;}
+.stage.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* SCENARIO */
+.scene{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.4rem;box-shadow:0 4px 16px rgba(7,16,20,.04);position:relative;overflow:hidden;}
+.scene .card-ring{position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid rgba(15,159,154,.25);top:-44px;right:-44px;}
+.s-count{font-size:.78rem;font-weight:600;color:var(--teal);margin-bottom:.7rem;position:relative;}
+.s-setup{font-size:1.08rem;line-height:1.55;font-weight:500;margin-bottom:.5rem;position:relative;letter-spacing:-.01em;}
+.s-tension{font-size:.92rem;color:var(--grey);line-height:1.6;margin-bottom:1.4rem;position:relative;}
+.s-q{font-size:.9rem;font-weight:700;margin-bottom:.9rem;position:relative;}
+
+.choices{display:flex;flex-direction:column;gap:.7rem;position:relative;}
+.choice{font-family:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:1rem 1.1rem;cursor:pointer;font-size:.95rem;line-height:1.5;color:var(--ink);transition:border-color .2s,background .2s,transform .15s;}
+.choice:hover{border-color:var(--teal);transform:translateY(-2px);}
+.choice:disabled{cursor:default;transform:none;}
+.choice.picked-best{border-color:var(--green);background:rgba(52,168,83,.08);}
+.choice.picked-ok{border-color:var(--yellow);background:rgba(251,188,5,.09);}
+.choice.picked-poor{border-color:var(--red);background:rgba(234,67,53,.06);}
+.choice.reveal-best{border-color:var(--green);}
+.choice.dim{opacity:.45;}
+
+.fb{margin-top:1.3rem;padding:1.2rem 1.3rem;border-radius:16px;display:none;position:relative;}
+.fb.show{display:block;animation:fade .35s ease;}
+.fb.best{background:rgba(52,168,83,.07);border:1px solid rgba(52,168,83,.25);}
+.fb.ok{background:rgba(251,188,5,.08);border:1px solid rgba(251,188,5,.3);}
+.fb.poor{background:rgba(234,67,53,.05);border:1px solid rgba(234,67,53,.25);}
+.fb-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem;}
+.fb.best .fb-tag{color:var(--green);}
+.fb.ok .fb-tag{color:#C98F00;}
+.fb.poor .fb-tag{color:var(--red);}
+.fb-text{font-size:.93rem;line-height:1.65;color:var(--ink);margin-bottom:.9rem;}
+.fb-comp{font-size:.85rem;line-height:1.6;color:var(--grey);padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06);}
+.fb-comp strong{color:var(--teal);}
+
+.btn{font-family:inherit;font-size:1rem;font-weight:600;color:#fff;background:var(--ink);border:none;border-radius:980px;padding:.9rem 2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,opacity .2s;}
+.btn:hover{transform:scale(1.03);}
+.btn:disabled{opacity:.35;cursor:default;transform:none;}
+.btn-row{display:flex;gap:.8rem;justify-content:flex-end;align-items:center;margin-top:1.6rem;flex-wrap:wrap;}
+
+.result-card{text-align:center;background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:2.4rem 1.8rem;}
+.score-ring{width:96px;height:96px;margin:0 auto 1.2rem;position:relative;}
+.score-ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;}
+.takeaways{text-align:left;max-width:500px;margin:1.6rem auto 0;}
+.takeaways h4{font-size:.95rem;font-weight:700;margin-bottom:.8rem;}
+.takeaways li{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;color:var(--grey);line-height:1.6;padding:.4rem 0;list-style:none;}
+.takeaways li svg{width:18px;height:18px;flex-shrink:0;stroke:var(--teal);fill:none;stroke-width:2;margin-top:.15rem;}
+.cta-card{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:2rem;text-align:center;margin-top:1.6rem;}
+.cta-card h3{font-size:1.2rem;margin-bottom:.4rem;}
+.cta-card p{font-size:.92rem;color:var(--grey);margin-bottom:1.3rem;line-height:1.6;}
+
+@media(max-width:560px){
+  .nav{padding:.9rem 1.2rem;}
+  .hero{padding:3rem 1.2rem 1.5rem;}
+  .btn-row{justify-content:stretch;}
+  .btn-row .btn{flex:1;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="javascript:history.back()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+  <span class="nav-pill"><span class="pdot"></span> Microlearning</span>
+</nav>
+<div class="prog-bar"><div class="fill" id="progFill"></div></div>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Emerging Leaders · EQ-i 2.0®</div>
+    <h1>Leading with <span class="grad">emotional intelligence.</span></h1>
+    <p class="lead">New managers don't get tripped up by strategy. They get tripped up by the emotionally charged moment, the one that calls for a response before logic catches up. Step into three of them and choose how you'd lead.</p>
+    <div class="meta-row">
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 min</span>
+      <span><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg> Branching scenarios</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tied to EQ-i 2.0®</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STAGE 0 -->
+  <div class="stage active" id="stage-0">
+    <div class="obj">
+      <h4>By the end, you'll be able to</h4>
+      <p>Pause before reacting in a charged moment, choose a response that balances honesty with empathy, and recognize which emotional intelligence skill each situation is really testing.</p>
+    </div>
+
+    <div class="section-tag">What you'll practice</div>
+    <h2 class="section-h">Five skills, real pressure</h2>
+    <p class="section-p">Each scenario quietly tests one or two of the EQ-i 2.0 composites. There's rarely a perfect answer, just choices that are more or less emotionally intelligent. You'll see which skill was in play after each one.</p>
+
+    <div class="comp-row">
+      <span class="comp"><span class="cdot" style="background:var(--blue);"></span>Self-Perception</span>
+      <span class="comp"><span class="cdot" style="background:var(--teal);"></span>Self-Expression</span>
+      <span class="comp"><span class="cdot" style="background:var(--green);"></span>Interpersonal</span>
+      <span class="comp"><span class="cdot" style="background:var(--yellow);"></span>Decision Making</span>
+      <span class="comp"><span class="cdot" style="background:var(--red);"></span>Stress Management</span>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="go(1)">Enter the first scenario</button>
+    </div>
+  </div>
+
+  <!-- STAGE 1: scenarios render here -->
+  <div class="stage" id="stage-1">
+    <div class="scene" id="scene"></div>
+    <div class="btn-row">
+      <button class="btn" id="nextBtn" onclick="nextScene()" disabled>Next</button>
+    </div>
+  </div>
+
+  <!-- STAGE 2: results -->
+  <div class="stage" id="stage-2">
+    <div class="result-card">
+      <div class="score-ring">
+        <svg width="96" height="96" viewBox="0 0 96 96">
+          <circle cx="48" cy="48" r="42" fill="none" stroke="#EAEAEF" stroke-width="8"/>
+          <circle id="scoreArc" cx="48" cy="48" r="42" fill="none" stroke="#0F9F9A" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 48 48)"/>
+        </svg>
+        <div class="num" id="scoreNum">0</div>
+      </div>
+      <h2 class="section-h" id="resultTitle"></h2>
+      <p class="section-p" id="resultMsg" style="margin-bottom:0;"></p>
+
+      <div class="takeaways">
+        <h4>The throughline</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> The pause between feeling and acting is where leadership lives. Name what you feel before you decide what to do.</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Empathy isn't agreement. You can understand someone's experience and still hold a line.</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Under stress, the emotionally intelligent move is almost always to slow down, not speed up.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h3>This is a teaching sample</h3>
+      <p>Designed and built by Juliana Dos Santos as an example of scenario-based microlearning grounded in the EQ-i 2.0® model.</p>
+      <a class="btn" href="javascript:restart()">Try it again</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const COMP_COLORS = {
+  'Self-Perception':'var(--blue)','Self-Expression':'var(--teal)',
+  'Interpersonal':'var(--green)','Decision Making':'var(--yellow)',
+  'Stress Management':'var(--red)'
+};
+
+const SCENES = [
+  {
+    setup: "Your most experienced engineer, Dana, pushes back hard in a team meeting: \u201CThis deadline is a joke. Whoever promised it clearly doesn't understand the work.\u201D",
+    tension: "You're the one who agreed to the deadline. The room goes quiet and everyone's watching how you respond.",
+    q: "What do you do in the moment?",
+    competency: "Self-Expression · Stress Management",
+    choices: [
+      { t:"Defend the decision immediately: explain the business reasons the deadline exists.", tier:"ok",
+        fb:"Understandable, you want to restore confidence. But jumping to defense skips Dana's emotion and can read as dismissive in front of the team.",
+        comp:"This leans on <strong>Self-Expression</strong> but skips <strong>Impulse Control</strong>. Addressing the feeling first would have opened more room." },
+      { t:"Acknowledge the frustration, then redirect: \u201CYou're right that it's tight. Let's name what's at risk and what we'd need to make it work.\u201D", tier:"best",
+        fb:"Strong. You regulated your own reaction, validated a real concern without taking the bait, and moved the team toward problem-solving. That's leadership under pressure.",
+        comp:"This is <strong>Impulse Control</strong> plus <strong>Assertiveness</strong>: you stayed composed and still held the line, turning a challenge into a working conversation." },
+      { t:"Shut it down: \u201CLet's not do this here, come find me after.\u201D", tier:"poor",
+        fb:"It protects the meeting, but it dodges the moment publicly and can make Dana feel silenced, costing trust with a key person.",
+        comp:"Low <strong>Interpersonal</strong> awareness. Avoiding the emotion in the room often amplifies it. The team reads avoidance as weakness, not control." }
+    ]
+  },
+  {
+    setup: "A quieter report, Sam, has been off for two weeks, missed deadlines, short in messages. Today they snapped at a teammate on a call.",
+    tension: "You don't know what's going on. Performance is genuinely slipping and the team has noticed.",
+    q: "How do you open the conversation with Sam?",
+    competency: "Interpersonal · Self-Perception",
+    choices: [
+      { t:"Lead with the impact: \u201CYour performance has dropped and it's affecting the team. What's happening?\u201D", tier:"ok",
+        fb:"It's honest and you'll need to name the impact eventually. But opening here can trigger defensiveness before Sam feels safe enough to be honest.",
+        comp:"Clear on <strong>Reality Testing</strong>, lighter on <strong>Empathy</strong>. Sequence matters: connection usually has to come before correction." },
+      { t:"Open with curiosity and care: \u201CI've noticed you don't seem like yourself lately. I'm checking in, how are you doing?\u201D", tier:"best",
+        fb:"Well chosen. You named what you observed without accusation and led with empathy. People tell you the truth when they feel safe, and you can address performance once you understand the cause.",
+        comp:"<strong>Empathy</strong> plus <strong>Emotional Self-Awareness</strong>, noticing your own urge to fix and choosing to understand first. This is the EQ move." },
+      { t:"Give it time: avoid singling Sam out and hope the rough patch passes on its own.", tier:"poor",
+        fb:"Avoidance feels kind but isn't. The behaviour is already affecting others, and silence tells the team this is acceptable.",
+        comp:"This is low <strong>Assertiveness</strong> dressed up as empathy. Caring about someone includes being willing to have the hard conversation." }
+    ]
+  },
+  {
+    setup: "Leadership just announced a reorg in a company-wide email. Your team is anxious and looking to you, but you found out the same moment they did and you don't have answers.",
+    tension: "Within minutes, three people DM you: \u201CAre our jobs safe? What does this mean?\u201D",
+    q: "What's your move?",
+    competency: "Decision Making · Stress Management",
+    choices: [
+      { t:"Reassure them quickly: \u201CDon't worry, I'm sure nothing will change for our team.\u201D", tier:"poor",
+        fb:"It soothes the moment but you're promising something you can't know. If it turns out wrong, you lose the trust you'll need most during the change.",
+        comp:"Poor <strong>Reality Testing</strong>, false comfort under stress. Emotionally intelligent leaders sit in uncertainty rather than paper over it." },
+      { t:"Be honest about what you don't know, and give them a next step: \u201CI found out when you did. I don't have answers yet, but I'm getting us a team conversation this week.\u201D", tier:"best",
+        fb:"Exactly right. You managed your own anxiety, told the truth, and gave the team something concrete to hold onto. Calm honesty is contagious, and so is panic.",
+        comp:"<strong>Stress Tolerance</strong> plus <strong>Problem Solving</strong>: you stayed grounded in ambiguity and converted anxiety into a plan, modelling steadiness." },
+      { t:"Stay quiet until you have real information, no point reacting before you know more.", tier:"ok",
+        fb:"Wanting facts first is reasonable. But silence during high anxiety reads as absence; the team needs to feel you're with them even before you have answers.",
+        comp:"Decent <strong>Impulse Control</strong>, but underweights <strong>Empathy</strong>. Acknowledging the feeling costs nothing and steadies people while you wait." }
+    ]
+  }
+];
+
+const PRAISE = {
+  high:{t:"You lead from the pause.",m:"You consistently chose the response that regulated your own reaction first, then met the other person where they were. That instinct, feel it, name it, then act, is the core of emotional intelligence in leadership."},
+  mid:{t:"Solid emotional instincts.",m:"You found the emotionally intelligent path in most moments. Where it slipped, it was usually the classic new-manager reflex, fixing or defending before connecting. Notice that pull next time; the pause is everything."},
+  low:{t:"The reflexes are learnable.",m:"Most of these traps are the ones every new manager falls into, defending, reassuring, or avoiding under pressure. Now you've felt the difference. Run it again and watch for the moment before you react."}
+};
+
+let idx=0, score=0, answered=false;
+const TIER_PTS = {best:2, ok:1, poor:0};
+
+function go(n){
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+  document.getElementById('stage-'+n).classList.add('active');
+  document.getElementById('progFill').style.width = (n/2*100) + '%';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1 && idx===0) renderScene();
+  if(n===2) showResults();
+}
+
+function renderScene(){
+  answered=false;
+  const sc = SCENES[idx];
+  const el = document.getElementById('scene');
+  let html = '<div class="card-ring"></div>' +
+    '<div class="s-count">Scenario ' + (idx+1) + ' of ' + SCENES.length + '</div>' +
+    '<div class="s-setup">' + sc.setup + '</div>' +
+    '<div class="s-tension">' + sc.tension + '</div>' +
+    '<div class="s-q">' + sc.q + '</div>' +
+    '<div class="choices" id="choices"></div>' +
+    '<div class="fb" id="fb"></div>';
+  el.innerHTML = html;
+  const cont = document.getElementById('choices');
+  sc.choices.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='choice';
+    b.textContent=c.t;
+    b.onclick=()=>pick(i,b);
+    cont.appendChild(b);
+  });
+  const nb=document.getElementById('nextBtn');
+  nb.disabled=true;
+  nb.textContent = (idx===SCENES.length-1)?'See your results':'Next scenario';
+}
+
+function pick(i,btn){
+  if(answered) return;
+  answered=true;
+  const sc=SCENES[idx];
+  const c=sc.choices[i];
+  score += TIER_PTS[c.tier];
+  const btns=document.querySelectorAll('.choice');
+  btns.forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===i){
+      b.classList.add(c.tier==='best'?'picked-best':c.tier==='ok'?'picked-ok':'picked-poor');
+    } else if(sc.choices[bi].tier==='best'){
+      b.classList.add('reveal-best');
+    } else {
+      b.classList.add('dim');
+    }
+  });
+  const fb=document.getElementById('fb');
+  const tier = c.tier;
+  const tag = tier==='best'?'Emotionally intelligent':tier==='ok'?'Workable, but':'Worth rethinking';
+  fb.className='fb show '+tier;
+  fb.innerHTML =
+    '<div class="fb-tag">'+tag+'</div>' +
+    '<div class="fb-text">'+c.fb+'</div>' +
+    '<div class="fb-comp">Skill in play: '+c.comp+'</div>';
+  document.getElementById('nextBtn').disabled=false;
+}
+
+function nextScene(){
+  if(idx<SCENES.length-1){ idx++; renderScene(); window.scrollTo({top:0,behavior:'smooth'}); }
+  else go(2);
+}
+
+function showResults(){
+  const max = SCENES.length*2;
+  document.getElementById('scoreNum').textContent = score+'/'+max;
+  const band = score>=max-1 ? 'high' : score>=Math.ceil(max/2) ? 'mid' : 'low';
+  document.getElementById('resultTitle').textContent = PRAISE[band].t;
+  document.getElementById('resultMsg').textContent = PRAISE[band].m;
+  const arc=document.getElementById('scoreArc');
+  const offset = 264 - (264*(score/max));
+  setTimeout(()=>{arc.style.transition='stroke-dashoffset 1s ease';arc.style.strokeDashoffset=offset;},200);
+}
+
+function restart(){ idx=0;score=0;answered=false;go(0); }
+</script>
+</body>
+</html>

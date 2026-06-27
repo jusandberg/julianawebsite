@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Radical Candor: Feedback That Helps — Microlearning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --red:#EA4335; --teal:#0F9F9A;
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+::selection{background:rgba(15,159,154,.18);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.back-btn:hover{color:var(--teal);}
+.nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
+.nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+
+/* PROGRESS BAR (sticky, under nav) */
+.prog-bar{position:sticky;top:61px;z-index:40;height:3px;background:var(--line);}
+.prog-bar .fill{height:100%;width:0;background:var(--grad);transition:width .4s cubic-bezier(.22,1,.36,1);}
+
+/* ACCENTS */
+.ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+
+/* HERO */
+.hero{position:relative;text-align:center;padding:4rem 1.5rem 2rem;overflow:hidden;}
+.hero .r1{width:200px;height:200px;border-color:rgba(66,133,244,.16);top:-60px;left:-50px;}
+.hero .r2{width:120px;height:120px;border-color:rgba(15,159,154,.2);top:40px;right:-20px;}
+.hero .d1{width:10px;height:10px;background:var(--yellow);top:70px;left:15%;opacity:.7;}
+.hero .d2{width:8px;height:8px;background:var(--teal);bottom:20px;right:18%;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before,.eyebrow::after{content:"";width:24px;height:1px;background:var(--teal);}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:1rem;}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p.lead{font-size:1.05rem;color:var(--grey);max-width:36rem;margin:0 auto 1.4rem;line-height:1.6;}
+.meta-row{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;font-size:.82rem;color:var(--grey);font-weight:500;}
+.meta-row span{display:inline-flex;align-items:center;gap:.4rem;}
+.meta-row svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:1.8;}
+
+/* WRAP */
+.wrap{max-width:680px;margin:0 auto;padding:1rem 1.5rem 5rem;position:relative;}
+
+/* OBJECTIVE CARD */
+.obj{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.8rem;margin-bottom:1.6rem;}
+.obj h4{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;}
+.obj p{font-size:1rem;color:var(--ink);line-height:1.6;}
+
+/* STAGE SYSTEM */
+.stage{display:none;animation:fade .45s ease;}
+.stage.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+.section-tag{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:.5rem;}
+.section-h{font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.6rem;}
+.section-p{font-size:.98rem;color:var(--grey);line-height:1.65;margin-bottom:1.6rem;}
+
+/* QUADRANT VISUAL */
+.quad-map{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.6rem 0;}
+.quad{border-radius:16px;padding:1.1rem;border:1px solid var(--line);position:relative;min-height:104px;}
+.quad .qh{font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
+.quad .qd{font-size:.8rem;color:var(--grey);line-height:1.45;}
+.quad.rc{background:rgba(52,168,83,.07);border-color:rgba(52,168,83,.3);}
+.quad.rc .qh{color:var(--green);}
+.quad.re{background:rgba(251,188,5,.09);border-color:rgba(251,188,5,.35);}
+.quad.re .qh{color:#C98F00;}
+.quad.oa{background:rgba(234,67,53,.06);border-color:rgba(234,67,53,.28);}
+.quad.oa .qh{color:var(--red);}
+.quad.mi{background:rgba(66,133,244,.06);border-color:rgba(66,133,244,.28);}
+.quad.mi .qh{color:var(--blue);}
+.axis{font-size:.7rem;color:var(--grey);text-align:center;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:.3rem 0;}
+
+/* SCENARIO CARD (sort exercise) */
+.exercise{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.4rem;box-shadow:0 4px 16px rgba(7,16,20,.04);}
+.q-count{font-size:.78rem;font-weight:600;color:var(--teal);margin-bottom:.8rem;}
+.quote{font-size:1.15rem;font-weight:500;line-height:1.5;letter-spacing:-.01em;margin-bottom:.5rem;}
+.quote .qm{color:var(--grey);}
+.scene-note{font-size:.85rem;color:var(--grey);margin-bottom:1.4rem;}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.opt{font-family:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:.9rem 1rem;cursor:pointer;transition:border-color .2s,background .2s,transform .15s;}
+.opt:hover{border-color:var(--teal);transform:translateY(-2px);}
+.opt:disabled{cursor:default;transform:none;}
+.opt .ot{font-weight:700;font-size:.92rem;margin-bottom:.15rem;}
+.opt .os{font-size:.76rem;color:var(--grey);line-height:1.4;}
+.opt.correct{border-color:var(--green);background:rgba(52,168,83,.08);}
+.opt.wrong{border-color:var(--red);background:rgba(234,67,53,.06);}
+.opt.dim{opacity:.5;}
+
+/* FEEDBACK */
+.fb{margin-top:1.2rem;padding:1.1rem 1.2rem;border-radius:14px;font-size:.92rem;line-height:1.6;display:none;}
+.fb.show{display:block;animation:fade .35s ease;}
+.fb.good{background:rgba(52,168,83,.08);border:1px solid rgba(52,168,83,.25);}
+.fb.bad{background:rgba(251,188,5,.09);border:1px solid rgba(251,188,5,.3);}
+.fb strong{display:block;margin-bottom:.3rem;}
+.fb.good strong{color:var(--green);}
+.fb.bad strong{color:#C98F00;}
+
+/* BUTTONS */
+.btn{font-family:inherit;font-size:1rem;font-weight:600;color:#fff;background:var(--ink);border:none;border-radius:980px;padding:.9rem 2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,opacity .2s;}
+.btn:hover{transform:scale(1.03);}
+.btn:disabled{opacity:.35;cursor:default;transform:none;}
+.btn-ghost{background:none;color:var(--teal);border:1.5px solid var(--line);}
+.btn-ghost:hover{border-color:var(--teal);}
+.btn-row{display:flex;gap:.8rem;justify-content:flex-end;align-items:center;margin-top:1.6rem;flex-wrap:wrap;}
+.btn-row .spacer{flex:1;}
+
+/* REWRITE */
+.rw-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.4rem;box-shadow:0 4px 16px rgba(7,16,20,.04);}
+.weak{background:rgba(234,67,53,.05);border-left:3px solid var(--red);padding:.9rem 1.1rem;border-radius:8px;font-size:.95rem;font-style:italic;color:var(--ink);margin:.6rem 0 1.2rem;}
+.checklist{list-style:none;margin:1rem 0;}
+.checklist li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--grey);padding:.35rem 0;}
+.checklist li svg{width:18px;height:18px;flex-shrink:0;stroke:var(--green);fill:none;stroke-width:2;margin-top:.1rem;}
+textarea{width:100%;font-family:inherit;font-size:1rem;line-height:1.6;color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:1rem;resize:vertical;min-height:120px;transition:border-color .2s;}
+textarea:focus{outline:none;border-color:var(--teal);}
+.model{margin-top:1.2rem;padding:1.1rem 1.2rem;border-radius:14px;background:rgba(15,159,154,.06);border:1px solid rgba(15,159,154,.22);font-size:.92rem;line-height:1.6;display:none;}
+.model.show{display:block;animation:fade .35s ease;}
+.model strong{color:var(--teal);display:block;margin-bottom:.3rem;}
+
+/* RESULTS */
+.result-card{text-align:center;background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:2.4rem 1.8rem;}
+.score-ring{width:96px;height:96px;margin:0 auto 1.2rem;position:relative;}
+.score-ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;}
+.takeaways{text-align:left;max-width:480px;margin:1.6rem auto 0;}
+.takeaways h4{font-size:.95rem;font-weight:700;margin-bottom:.8rem;}
+.takeaways li{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;color:var(--grey);line-height:1.6;padding:.4rem 0;}
+.takeaways li svg{width:18px;height:18px;flex-shrink:0;stroke:var(--teal);fill:none;stroke-width:2;margin-top:.15rem;}
+
+.cta-card{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:2rem;text-align:center;margin-top:1.6rem;}
+.cta-card h3{font-size:1.2rem;margin-bottom:.4rem;}
+.cta-card p{font-size:.92rem;color:var(--grey);margin-bottom:1.3rem;line-height:1.6;}
+
+@media(max-width:560px){
+  .nav{padding:.9rem 1.2rem;}
+  .hero{padding:3rem 1.2rem 1.5rem;}
+  .quad-map{grid-template-columns:1fr;}
+  .options{grid-template-columns:1fr;}
+  .btn-row{justify-content:stretch;}
+  .btn-row .btn{flex:1;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="back-btn" href="javascript:history.back()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+  <span class="nav-pill"><span class="pdot"></span> Microlearning</span>
+</nav>
+<div class="prog-bar"><div class="fill" id="progFill"></div></div>
+
+<div class="hero">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="dot d1"></div><div class="dot d2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Manager Feedback Skills</div>
+    <h1>Feedback that actually <span class="grad">helps.</span></h1>
+    <p class="lead">Most feedback fails for one of two reasons: it's too soft to be useful, or too harsh to be heard. Radical Candor is the space in between. Five minutes, three quick rounds of practice.</p>
+    <div class="meta-row">
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+      <span><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Practice-based</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Apply on the job</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STAGE 0: FRAME -->
+  <div class="stage active" id="stage-0">
+    <div class="obj">
+      <h4>By the end, you'll be able to</h4>
+      <p>Recognize the four feedback styles, tell radically candid feedback apart from the look-alikes that feel safer, and rewrite weak feedback so it lands.</p>
+    </div>
+
+    <div class="section-tag">The idea</div>
+    <h2 class="section-h">Two questions decide everything</h2>
+    <p class="section-p">Kim Scott found that good feedback sits at the meeting point of two things: how much you <strong>care personally</strong> about the person, and how willing you are to <strong>challenge them directly</strong>. Drop one, and feedback slides into a failure mode.</p>
+
+    <div class="quad-map">
+      <div class="quad mi">
+        <div class="qh">Manipulative Insincerity</div>
+        <div class="qd">Low care, low challenge. Empty praise, political silence.</div>
+      </div>
+      <div class="quad rc">
+        <div class="qh">Radical Candor</div>
+        <div class="qd">High care, high challenge. Honest and kind. The target.</div>
+      </div>
+      <div class="quad oa">
+        <div class="qh">Obnoxious Aggression</div>
+        <div class="qd">Low care, high challenge. Blunt, belittling, all edge.</div>
+      </div>
+      <div class="quad re">
+        <div class="qh">Ruinous Empathy</div>
+        <div class="qd">High care, low challenge. So nice it's useless.</div>
+      </div>
+    </div>
+    <p class="section-p" style="margin-bottom:0;">Most well-meaning managers fail on the <strong style="color:#C98F00;">Ruinous Empathy</strong> side: they care, so they soften the message until there's nothing left to act on. Let's train your eye.</p>
+
+    <div class="btn-row">
+      <button class="btn" onclick="go(1)">Start practice</button>
+    </div>
+  </div>
+
+  <!-- STAGE 1: SORT EXERCISE -->
+  <div class="stage" id="stage-1">
+    <div class="section-tag">Round 1 · Spot the style</div>
+    <h2 class="section-h">Which quadrant is this?</h2>
+    <p class="section-p">Read each line a manager actually said, then choose the style it falls into. You'll get the why after each one.</p>
+
+    <div class="exercise" id="ex"></div>
+
+    <div class="btn-row">
+      <button class="btn-ghost btn" id="nextBtn" onclick="nextScenario()" disabled>Next</button>
+    </div>
+  </div>
+
+  <!-- STAGE 2: REWRITE -->
+  <div class="stage" id="stage-2">
+    <div class="section-tag">Round 2 · Make it land</div>
+    <h2 class="section-h">Rewrite it with radical candor</h2>
+    <p class="section-p">Here's a piece of ruinously empathetic feedback: kind, but useless. Rewrite it so it keeps the care and adds the challenge.</p>
+
+    <div class="rw-card">
+      <div class="section-tag" style="color:var(--red);">The weak version</div>
+      <div class="weak">"Hey, the client deck was great, really good effort! Maybe just tiny tweaks here and there next time, but honestly don't worry about it, it was fine!"</div>
+
+      <p style="font-size:.9rem;color:var(--grey);margin-bottom:.4rem;font-weight:600;">A strong rewrite usually does three things:</p>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Names the specific behaviour, not a vague "tweaks"</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Says why it matters (the impact)</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Stays warm and offers a clear next step</li>
+      </ul>
+
+      <textarea id="rewrite" placeholder="Write your radically candid version here..."></textarea>
+
+      <div class="model" id="model">
+        <strong>One model answer</strong>
+        "I want this deck to land because the client meeting matters for you. Two things would make it stronger: the recommendation is buried on slide 9, move it up front, and the data slides have no takeaway line, so the client has to interpret them. Want to rework those two together before Thursday?"
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost btn" id="modelBtn" onclick="showModel()">Compare with a model answer</button>
+        <div class="spacer"></div>
+        <button class="btn" onclick="go(3)">Finish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 3: RESULTS -->
+  <div class="stage" id="stage-3">
+    <div class="result-card">
+      <div class="score-ring">
+        <svg width="96" height="96" viewBox="0 0 96 96">
+          <circle cx="48" cy="48" r="42" fill="none" stroke="#EAEAEF" stroke-width="8"/>
+          <circle id="scoreArc" cx="48" cy="48" r="42" fill="none" stroke="#0F9F9A" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 48 48)"/>
+        </svg>
+        <div class="num" id="scoreNum">0/3</div>
+      </div>
+      <h2 class="section-h" id="resultTitle">Nice work.</h2>
+      <p class="section-p" id="resultMsg" style="margin-bottom:0;"></p>
+
+      <div class="takeaways">
+        <h4>Carry this into your next 1:1</h4>
+        <ul style="list-style:none;">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Care personally <em>and</em> challenge directly. Dropping either is the failure.</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> "Being nice" is often Ruinous Empathy in disguise. Specifics are kinder than vagueness.</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Name the behaviour, state the impact, offer a next step.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h3>This is a teaching sample</h3>
+      <p>Designed and built by Juliana Dos Santos as an example of interactive, practice-based microlearning for emerging managers.</p>
+      <a class="btn" href="javascript:restart()">Try it again</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── Content ──────────────────────────────────────────────
+const SCENARIOS = [
+  {
+    quote: '"Honestly? This is sloppy. Did you even read it before sending?"',
+    note: "A manager reacting to a report with a few typos, in front of the team.",
+    correct: 'oa',
+    options: [
+      {k:'rc', t:'Radical Candor', s:'Caring + direct'},
+      {k:'oa', t:'Obnoxious Aggression', s:'Harsh, no care'},
+      {k:'re', t:'Ruinous Empathy', s:'Too soft'},
+      {k:'mi', t:'Manipulative Insincerity', s:'Fake, political'}
+    ],
+    why: {
+      good: "Right. The challenge is there, but there's zero care, and doing it publicly adds humiliation. The message is true but no one can hear it through the sting.",
+      bad: "Look again. The feedback is harsh and delivered publicly with no warmth or path forward. That's Obnoxious Aggression, challenge without care."
+    }
+  },
+  {
+    quote: '"It was good! Really good. I mean it. Great job, seriously."',
+    note: "A manager whose direct report just gave a presentation that genuinely fell flat.",
+    correct: 're',
+    options: [
+      {k:'re', t:'Ruinous Empathy', s:'Too soft'},
+      {k:'rc', t:'Radical Candor', s:'Caring + direct'},
+      {k:'mi', t:'Manipulative Insincerity', s:'Fake, political'},
+      {k:'oa', t:'Obnoxious Aggression', s:'Harsh, no care'}
+    ],
+    why: {
+      good: "Exactly. The warmth is real, but there's no challenge at all. The person walks away thinking they nailed it and never improves. Kindness without honesty.",
+      bad: "Not quite. The manager clearly cares and is being warm, but there's no honest challenge, the person learns nothing. That's Ruinous Empathy."
+    }
+  },
+  {
+    quote: '"I know the reorg is stressful. Your analysis missed the regional split, though, and that\'s what leadership will ask about. Want to pair on it this afternoon?"',
+    note: "A manager addressing a gap in a stressed report's work.",
+    correct: 'rc',
+    options: [
+      {k:'mi', t:'Manipulative Insincerity', s:'Fake, political'},
+      {k:'oa', t:'Obnoxious Aggression', s:'Harsh, no care'},
+      {k:'rc', t:'Radical Candor', s:'Caring + direct'},
+      {k:'re', t:'Ruinous Empathy', s:'Too soft'}
+    ],
+    why: {
+      good: "That's it. Acknowledges the human, names the specific gap, explains why it matters, and offers help. Care and challenge together, this is the target.",
+      bad: "Look closer. It acknowledges the stress (care), names a specific gap and its impact (challenge), and offers a next step. That's textbook Radical Candor."
+    }
+  }
+];
+
+const PRAISE = {
+  3: {t:"You've got the eye for it.", m:"Three for three. You can tell radically candid feedback from the look-alikes that feel safer in the moment. That instinct is exactly what separates managers people trust."},
+  2: {t:"Strong instincts.", m:"Two of three. You're spotting the pattern. The one that tripped you is the most common trap, the 'nice' feedback that quietly withholds the truth people need."},
+  1: {t:"Good start.", m:"One of three, and now you've seen why the others miss. The big idea: caring and challenging aren't opposites. The best feedback does both at once."},
+  0: {t:"Now you've seen the traps.", m:"This stuff is genuinely counterintuitive, our instinct to be 'nice' is often what makes feedback useless. Run it again with the quadrant in mind; it clicks fast."}
+};
+
+// ─── State ────────────────────────────────────────────────
+let idx = 0, score = 0, answered = false;
+
+function go(n){
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+  document.getElementById('stage-'+n).classList.add('active');
+  const pct = (n/3)*100;
+  document.getElementById('progFill').style.width = pct + '%';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1 && idx===0) renderScenario();
+  if(n===3) showResults();
+}
+
+function renderScenario(){
+  answered = false;
+  const sc = SCENARIOS[idx];
+  const ex = document.getElementById('ex');
+  ex.innerHTML =
+    '<div class="q-count">Scenario ' + (idx+1) + ' of ' + SCENARIOS.length + '</div>' +
+    '<div class="quote">' + sc.quote + '</div>' +
+    '<div class="scene-note">' + sc.note + '</div>' +
+    '<div class="options" id="opts"></div>' +
+    '<div class="fb" id="fb"></div>';
+  const opts = document.getElementById('opts');
+  sc.options.forEach(o=>{
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = '<div class="ot">' + o.t + '</div><div class="os">' + o.s + '</div>';
+    b.onclick = ()=> choose(o.k, b);
+    opts.appendChild(b);
+  });
+  document.getElementById('nextBtn').disabled = true;
+  document.getElementById('nextBtn').textContent =
+    (idx === SCENARIOS.length-1) ? 'Continue to rewrite' : 'Next scenario';
+}
+
+function choose(k, btn){
+  if(answered) return;
+  answered = true;
+  const sc = SCENARIOS[idx];
+  const correct = (k === sc.correct);
+  if(correct) score++;
+  document.querySelectorAll('.opt').forEach(b=>{
+    b.disabled = true;
+    const isThis = b === btn;
+    const ot = b.querySelector('.ot').textContent;
+    const thisKey = sc.options.find(o=>o.t===ot).k;
+    if(thisKey === sc.correct) b.classList.add('correct');
+    else if(isThis) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  const fb = document.getElementById('fb');
+  fb.className = 'fb show ' + (correct ? 'good' : 'bad');
+  fb.innerHTML = '<strong>' + (correct ? 'Yes' : 'Almost') + '</strong>' +
+    (correct ? sc.why.good : sc.why.bad);
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextScenario(){
+  if(idx < SCENARIOS.length-1){
+    idx++;
+    renderScenario();
+    window.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    go(2);
+  }
+}
+
+function showModel(){
+  document.getElementById('model').classList.add('show');
+  document.getElementById('modelBtn').style.display = 'none';
+}
+
+function showResults(){
+  document.getElementById('scoreNum').textContent = score + '/3';
+  const p = PRAISE[score];
+  document.getElementById('resultTitle').textContent = p.t;
+  document.getElementById('resultMsg').textContent = p.m;
+  const arc = document.getElementById('scoreArc');
+  const offset = 264 - (264 * (score/3));
+  setTimeout(()=>{ arc.style.transition='stroke-dashoffset 1s ease'; arc.style.strokeDashoffset = offset; }, 200);
+}
+
+function restart(){
+  idx = 0; score = 0; answered = false;
+  document.getElementById('rewrite').value = '';
+  document.getElementById('model').classList.remove('show');
+  document.getElementById('modelBtn').style.display = '';
+  go(0);
+}
+</script>
+</body>
+</html>
