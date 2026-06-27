@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>EQ Wheel · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,16 +46,21 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
 .eq-wheel-area::before{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(66,133,244,.13);border-radius:50%;left:-75px;top:-75px;pointer-events:none;}
 .wheel-title{font-size:1.05rem;font-weight:800;margin-bottom:.35rem;position:relative;}
 .wheel-copy{font-size:.84rem;color:var(--muted);line-height:1.55;margin:0 auto .8rem;max-width:30rem;position:relative;}
-.wheel-shell{width:min(100%,430px);margin:0 auto;position:relative;}
+.wheel-shell{width:min(100%,460px);margin:0 auto;position:relative;}
 .eq-wheel-svg{display:block;width:100%;height:auto;overflow:visible;}
 .wheel-segment{cursor:pointer;outline:none;}
-.wheel-segment path{stroke:#fff;stroke-width:3;transition:filter .25s,opacity .25s,stroke-width .25s;}
-.wheel-segment:hover path,.wheel-segment:focus path{filter:drop-shadow(0 7px 9px rgba(7,16,20,.2));opacity:.94;stroke-width:5;}
-.wheel-segment.active path{filter:drop-shadow(0 9px 12px rgba(7,16,20,.24));stroke-width:7;}
+.wheel-segment path{stroke:#fff;stroke-width:2;transition:filter .25s,opacity .25s,stroke-width .25s,transform .25s;transform-origin:210px 210px;}
+.wheel-segment:hover path,.wheel-segment:focus path{filter:drop-shadow(0 10px 12px rgba(7,16,20,.2));opacity:.96;stroke-width:3;transform:scale(1.025);}
+.wheel-segment.active path{filter:drop-shadow(0 13px 16px rgba(7,16,20,.25));stroke-width:4;transform:scale(1.035);}
 .wheel-segment text{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.08);stroke-width:2px;}
-.wheel-center{fill:#fff;stroke:rgba(15,159,154,.16);stroke-width:2;filter:drop-shadow(0 7px 12px rgba(7,16,20,.1));}
+.wheel-center{fill:#fff;stroke:rgba(15,159,154,.2);stroke-width:2;filter:drop-shadow(0 9px 16px rgba(7,16,20,.12));}
 .wheel-center-main{font-family:Inter,Arial,sans-serif;font-weight:800;font-size:30px;fill:var(--teal-d);text-anchor:middle;}
 .wheel-center-sub{font-family:Inter,Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;fill:var(--muted);text-anchor:middle;}
+.wheel-overlay{position:absolute;left:50%;top:50%;width:50%;min-height:50%;transform:translate(-50%,-50%) scale(.9);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem .8rem;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid rgba(15,159,154,.2);box-shadow:0 16px 36px rgba(7,16,20,.16);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:3;}
+.wheel-overlay.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.wheel-overlay-kicker{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;}
+.wheel-overlay h3{font-size:1rem;line-height:1.15;margin:0 0 .35rem;}
+.wheel-overlay p{font-size:.68rem;line-height:1.4;color:var(--muted);margin:0;max-width:10.5rem;}
 .wheel-status{display:inline-flex;align-items:center;gap:.45rem;margin-top:.55rem;padding:.45rem .85rem;border-radius:999px;background:rgba(15,159,154,.07);color:var(--teal-d);font-size:.78rem;font-weight:650;}
 .wheel-status-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);transition:background .25s;}
 @media(max-width:480px){.eq-wheel-area{padding:1rem .6rem}.wheel-segment text{font-size:10px}.wheel-center-main{font-size:25px}.wheel-center-sub{font-size:8px}}
@@ -179,6 +185,11 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
     <p class="wheel-copy">Choose a section of the wheel to open its full explanation, strengths, watch-outs, and reflection prompt.</p>
     <div class="wheel-shell">
       <svg class="eq-wheel-svg" id="eq-wheel" viewBox="0 0 420 420" role="group" aria-label="Five emotional intelligence composites"></svg>
+      <div class="wheel-overlay" id="wheel-overlay" aria-live="polite">
+        <div class="wheel-overlay-kicker" id="wheel-overlay-kicker">Select a composite</div>
+        <h3 id="wheel-overlay-title">Explore your EQ</h3>
+        <p id="wheel-overlay-copy">Click any outer section to learn what it measures. The wheel stays active as you explore.</p>
+      </div>
     </div>
     <div class="wheel-status" aria-live="polite"><span class="wheel-status-dot" id="wheel-status-dot"></span><span id="wheel-status-text">Select a composite</span></div>
   </section>
@@ -384,6 +395,12 @@ function setWheelActive(key) {
   if (selected) {
     document.getElementById('wheel-status-text').textContent = selected.name + ' - ' + selected.tag;
     document.getElementById('wheel-status-dot').style.background = selected.color;
+    var overlay = document.getElementById('wheel-overlay');
+    document.getElementById('wheel-overlay-kicker').textContent = selected.tag;
+    document.getElementById('wheel-overlay-kicker').style.color = selected.color;
+    document.getElementById('wheel-overlay-title').textContent = selected.name;
+    document.getElementById('wheel-overlay-copy').textContent = selected.what.split('. ')[0] + '.';
+    overlay.classList.add('show');
   }
 }
 
@@ -459,10 +476,6 @@ function openItem(key) {
     item.classList.add('visited');
     updateProgress();
   }
-  // Scroll into view
-  setTimeout(function() {
-    item.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }, 60);
 }
 
 function closeItem(key) {

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Wheel of Life — Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,6 +186,10 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;b
 </div>
 
 <script>
+const snapshotCard = document.getElementById('strongest-area').closest('.card');
+const wheelCard = document.getElementById('wheel-canvas').closest('.card');
+snapshotCard.parentNode.insertBefore(wheelCard, snapshotCard);
+
 const CATEGORIES = [
   { key:'health',       label:'Health & Fitness',
     icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F9F9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 9l-4 12M14 9l4 12M8 15h8"/></svg>',

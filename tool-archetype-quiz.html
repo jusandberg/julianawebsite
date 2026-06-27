@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Archetype Quiz · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +48,8 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
 .intro-title{ font-size:1.6rem; font-weight:800; margin-bottom:.8rem; }
 .intro-title em{ font-family:'Inter',sans-serif; font-style:italic; font-weight:500; color:var(--teal-d); }
 .intro-sub{ font-size:.95rem; color:var(--muted); margin-bottom:1.6rem; line-height:1.7; }
+.theory-note{font-size:.82rem;line-height:1.65;color:var(--muted);background:#f7f8f9;border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;margin:-.6rem 0 1.4rem;}
+.theory-note strong{color:var(--ink);}
 
 .archetype-cards{ display:grid; gap:.8rem; margin-bottom:1.8rem; }
 .arch-intro-card{ border-radius:18px; padding:1.2rem 1.4rem; border:1.5px solid transparent; }
@@ -265,7 +268,8 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
 <div class="screen active" id="screen-intro">
   <span class="intro-eyebrow">Discover your archetype</span>
   <h2 class="intro-title">Which inner force is <em>guiding you</em> right now?</h2>
-  <p class="intro-sub">Coaching works with three archetypes — universal inner forces that shape how you see yourself and move through growth. This quiz reveals which one is most active in you right now, and what that means for your journey.</p>
+  <p class="intro-sub">This reflective coaching quiz explores three inner modes that may become more active at different moments: The Witness, The Inner Guide, and The Explorer. It is a prompt for self-inquiry, not a psychological diagnosis or fixed personality type.</p>
+  <div class="theory-note"><strong>Where the idea comes from:</strong> The language of archetypes is inspired by Carl Jung's view of recurring symbolic patterns, while these three names are a coaching synthesis informed by mindfulness, intuition-based reflection, and experiential learning. They are not three archetypes defined by Jung, and the quiz is not a validated psychometric assessment.</div>
 
   <div class="archetype-cards">
     <div class="arch-intro-card witness">
@@ -273,21 +277,21 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
         The Witness
       </h4>
-      <p>Presence · awareness · compassion</p>
+      <p>Presence · awareness · compassion. Notices thoughts and feelings without immediately becoming them.</p>
     </div>
     <div class="arch-intro-card guide">
       <h4>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 12 10 8 16 12 14 16 8"/></svg>
         The Inner Guide
       </h4>
-      <p>Intuition · stillness · inner wisdom</p>
+      <p>Intuition · stillness · inner wisdom. Listens for values, bodily signals, and quiet knowing.</p>
     </div>
     <div class="arch-intro-card explorer">
       <h4>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3l9 9-9 9"/></svg>
         The Explorer
       </h4>
-      <p>Courage · wonder · trusting the unknown</p>
+      <p>Courage · wonder · trusting the unknown. Learns through movement, experimentation, and discovery.</p>
     </div>
   </div>
 
