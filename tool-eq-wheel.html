@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>EQ Wheel · Coaching</title>
+<title>EQ Compass · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
@@ -41,29 +41,34 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan));border-radius:999px;transition:width .5s cubic-bezier(.22,1,.36,1);width:0%;}
 
 /* ── ACCORDION ── */
-/* INTERACTIVE COMPOSITE WHEEL */
-.eq-wheel-area{margin:0 0 1.6rem;padding:1.4rem;background:linear-gradient(145deg,#fff,rgba(15,159,154,.035));border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);text-align:center;overflow:hidden;position:relative;}
-.eq-wheel-area::before{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(66,133,244,.13);border-radius:50%;left:-75px;top:-75px;pointer-events:none;}
-.wheel-title{font-size:1.05rem;font-weight:800;margin-bottom:.35rem;position:relative;}
-.wheel-copy{font-size:.84rem;color:var(--muted);line-height:1.55;margin:0 auto .8rem;max-width:30rem;position:relative;}
-.wheel-shell{width:min(100%,460px);margin:0 auto;position:relative;}
-.eq-wheel-svg{display:block;width:100%;height:auto;overflow:visible;}
-.wheel-segment{cursor:pointer;outline:none;}
-.wheel-segment path{stroke:#fff;stroke-width:2;transition:filter .25s,opacity .25s,stroke-width .25s,transform .25s;transform-origin:210px 210px;}
-.wheel-segment:hover path,.wheel-segment:focus path{filter:drop-shadow(0 10px 12px rgba(7,16,20,.2));opacity:.96;stroke-width:3;transform:scale(1.025);}
-.wheel-segment.active path{filter:drop-shadow(0 13px 16px rgba(7,16,20,.25));stroke-width:4;transform:scale(1.035);}
-.wheel-segment text{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.08);stroke-width:2px;}
-.wheel-center{fill:#fff;stroke:rgba(15,159,154,.2);stroke-width:2;filter:drop-shadow(0 9px 16px rgba(7,16,20,.12));}
-.wheel-center-main{font-family:Inter,Arial,sans-serif;font-weight:800;font-size:30px;fill:var(--teal-d);text-anchor:middle;}
-.wheel-center-sub{font-family:Inter,Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;fill:var(--muted);text-anchor:middle;}
-.wheel-overlay{position:absolute;left:50%;top:50%;width:50%;min-height:50%;transform:translate(-50%,-50%) scale(.9);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem .8rem;border-radius:50%;background:rgba(255,255,255,.94);border:1px solid rgba(15,159,154,.2);box-shadow:0 16px 36px rgba(7,16,20,.16);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:3;}
-.wheel-overlay.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
-.wheel-overlay-kicker{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;}
-.wheel-overlay h3{font-size:1rem;line-height:1.15;margin:0 0 .35rem;}
-.wheel-overlay p{font-size:.68rem;line-height:1.4;color:var(--muted);margin:0;max-width:10.5rem;}
-.wheel-status{display:inline-flex;align-items:center;gap:.45rem;margin-top:.55rem;padding:.45rem .85rem;border-radius:999px;background:rgba(15,159,154,.07);color:var(--teal-d);font-size:.78rem;font-weight:650;}
-.wheel-status-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);transition:background .25s;}
-@media(max-width:480px){.eq-wheel-area{padding:1rem .6rem}.wheel-segment text{font-size:10px}.wheel-center-main{font-size:25px}.wheel-center-sub{font-size:8px}}
+/* INTERACTIVE EQ COMPASS */
+.eq-compass{margin:0 0 1.6rem;padding:1.35rem;background:linear-gradient(145deg,#fff,#f5faf9);border:1px solid var(--line);border-radius:26px;box-shadow:0 16px 45px rgba(7,16,20,.09);overflow:hidden;position:relative;}
+.eq-compass::before{content:"";position:absolute;width:250px;height:250px;border:1px solid rgba(15,159,154,.1);border-radius:50%;left:-145px;top:-155px;pointer-events:none;}
+.compass-title{text-align:center;font-size:1.25rem;font-weight:800;margin:0 0 .25rem;position:relative;letter-spacing:-.015em;}
+.compass-copy{text-align:center;font-size:.9rem;color:var(--muted);line-height:1.5;margin:0 auto 1.1rem;max-width:35rem;position:relative;}
+.compass-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-bottom:.8rem;position:relative;}
+.compass-tab{min-width:0;min-height:78px;padding:.75rem .4rem;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--muted);font:700 .72rem Inter,Arial,sans-serif;line-height:1.25;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,color .2s,border-color .2s;}
+.compass-tab:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(7,16,20,.08);}
+.compass-tab.active{background:var(--item-color);color:#fff;border-color:transparent;box-shadow:0 9px 22px rgba(7,16,20,.13);}
+.compass-tab-dot{display:block;width:9px;height:9px;border-radius:50%;background:var(--item-color);margin:0 auto .5rem;}
+.compass-tab.active .compass-tab-dot{background:#fff;}
+.compass-detail{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(200px,.8fr);overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#fff;min-height:245px;position:relative;}
+.compass-main{padding:1.8rem;display:flex;flex-direction:column;justify-content:center;}
+.compass-kicker{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem;}
+.compass-main h3{font-size:clamp(1.55rem,4vw,2.25rem);margin:0 0 .7rem;letter-spacing:-.025em;}
+.compass-main p{font-size:.9rem;color:var(--muted);line-height:1.7;margin:0;}
+.compass-reflection{padding:1.55rem;display:flex;flex-direction:column;justify-content:center;background:var(--item-soft);}
+.compass-reflection span{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--item-color);}
+.compass-reflection p{font-size:.92rem;font-weight:700;line-height:1.55;margin:.65rem 0 0;}
+@media(max-width:640px){
+  .eq-compass{padding:1rem .8rem;border-radius:22px}
+  .compass-tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:.1rem .05rem .6rem;margin-right:-.75rem;scrollbar-width:none}
+  .compass-tabs::-webkit-scrollbar{display:none}
+  .compass-tab{min-width:128px;scroll-snap-align:start}
+  .compass-detail{grid-template-columns:1fr}
+  .compass-main,.compass-reflection{padding:1.25rem}
+  .compass-main h3{font-size:1.65rem}
+}
 
 .accordion{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.4rem;}
 .acc-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow); border:1px solid var(--line);overflow:hidden;border-left:4px solid transparent;transition:border-color .3s;}
@@ -173,25 +178,18 @@ h2,h3,h4{font-family:'Inter',sans-serif;line-height:1.2;}
   <div class="dot d1"></div><div class="dot d2"></div>
   <div class="hero-inner">
     <div class="eyebrow">Emotional Intelligence</div>
-    <h1>The EQ <span class="grad">Wheel.</span></h1>
+    <h1>The EQ <span class="grad">Compass.</span></h1>
     <p class="lead">EQ is not about being emotional. It is about using emotions as information, to understand yourself, connect with others, and make better decisions. Explore each of the five composites below.</p>
   </div>
 </div>
 
 <div class="wrap">
 
-  <section class="eq-wheel-area" aria-labelledby="wheel-title">
-    <h2 class="wheel-title" id="wheel-title">Explore the five EQ composites</h2>
-    <p class="wheel-copy">Choose a section of the wheel to open its full explanation, strengths, watch-outs, and reflection prompt.</p>
-    <div class="wheel-shell">
-      <svg class="eq-wheel-svg" id="eq-wheel" viewBox="0 0 420 420" role="group" aria-label="Five emotional intelligence composites"></svg>
-      <div class="wheel-overlay" id="wheel-overlay" aria-live="polite">
-        <div class="wheel-overlay-kicker" id="wheel-overlay-kicker">Select a composite</div>
-        <h3 id="wheel-overlay-title">Explore your EQ</h3>
-        <p id="wheel-overlay-copy">Click any outer section to learn what it measures. The wheel stays active as you explore.</p>
-      </div>
-    </div>
-    <div class="wheel-status" aria-live="polite"><span class="wheel-status-dot" id="wheel-status-dot"></span><span id="wheel-status-text">Select a composite</span></div>
+  <section class="eq-compass" aria-labelledby="compass-title">
+    <h2 class="compass-title" id="compass-title">Explore the five EQ composites</h2>
+    <p class="compass-copy">Choose a composite to see what it measures and consider a reflection prompt.</p>
+    <div class="compass-tabs" id="compass-tabs" role="tablist" aria-label="EQ composites"></div>
+    <div class="compass-detail" id="compass-detail" aria-live="polite"></div>
   </section>
 
   <!-- PROGRESS -->
@@ -302,106 +300,51 @@ var DATA = [
 
 var opened = {};
 
-function polarPoint(cx, cy, radius, degrees) {
-  var radians = degrees * Math.PI / 180;
-  return {x: cx + radius * Math.cos(radians), y: cy + radius * Math.sin(radians)};
-}
-
-function segmentPath(start, end, innerRadius, outerRadius) {
-  var outerStart = polarPoint(210, 210, outerRadius, start);
-  var outerEnd = polarPoint(210, 210, outerRadius, end);
-  var innerEnd = polarPoint(210, 210, innerRadius, end);
-  var innerStart = polarPoint(210, 210, innerRadius, start);
-  return 'M ' + outerStart.x + ' ' + outerStart.y +
-    ' A ' + outerRadius + ' ' + outerRadius + ' 0 0 1 ' + outerEnd.x + ' ' + outerEnd.y +
-    ' L ' + innerEnd.x + ' ' + innerEnd.y +
-    ' A ' + innerRadius + ' ' + innerRadius + ' 0 0 0 ' + innerStart.x + ' ' + innerStart.y + ' Z';
-}
-
-function buildWheel() {
-  var svg = document.getElementById('eq-wheel');
-  var ns = 'http://www.w3.org/2000/svg';
-  DATA.forEach(function(d, idx) {
-    var start = -90 + idx * 72 + 1.5;
-    var end = -90 + (idx + 1) * 72 - 1.5;
-    var mid = (start + end) / 2;
-    var labelPoint = polarPoint(210, 210, 132, mid);
-    var group = document.createElementNS(ns, 'g');
-    group.setAttribute('class', 'wheel-segment');
-    group.setAttribute('id', 'wheel-' + d.key);
-    group.setAttribute('role', 'button');
-    group.setAttribute('tabindex', '0');
-    group.setAttribute('aria-label', d.name + ': ' + d.tag);
-
-    var path = document.createElementNS(ns, 'path');
-    path.setAttribute('d', segmentPath(start, end, 78, 188));
-    path.setAttribute('fill', d.color);
-    group.appendChild(path);
-
-    var text = document.createElementNS(ns, 'text');
-    text.setAttribute('x', labelPoint.x);
-    text.setAttribute('y', labelPoint.y - (d.name.indexOf(' ') > -1 ? 6 : 0));
-    var words = d.name.split(' ');
-    if (words.length > 1) {
-      words.forEach(function(word, wordIndex) {
-        var line = document.createElementNS(ns, 'tspan');
-        line.setAttribute('x', labelPoint.x);
-        line.setAttribute('dy', wordIndex === 0 ? '0' : '14');
-        line.textContent = word;
-        text.appendChild(line);
-      });
-    } else {
-      text.textContent = d.name;
-    }
-    group.appendChild(text);
-    group.addEventListener('click', function(){ openItem(d.key); });
-    group.addEventListener('keydown', function(event){
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openItem(d.key);
-      }
-    });
-    svg.appendChild(group);
-  });
-
-  var center = document.createElementNS(ns, 'circle');
-  center.setAttribute('class', 'wheel-center');
-  center.setAttribute('cx', '210');
-  center.setAttribute('cy', '210');
-  center.setAttribute('r', '70');
-  svg.appendChild(center);
-
-  var main = document.createElementNS(ns, 'text');
-  main.setAttribute('class', 'wheel-center-main');
-  main.setAttribute('x', '210');
-  main.setAttribute('y', '207');
-  main.textContent = 'EQ';
-  svg.appendChild(main);
-
-  var sub = document.createElementNS(ns, 'text');
-  sub.setAttribute('class', 'wheel-center-sub');
-  sub.setAttribute('x', '210');
-  sub.setAttribute('y', '227');
-  sub.textContent = 'EXPLORE';
-  svg.appendChild(sub);
-}
-
-function setWheelActive(key) {
+function buildCompass() {
+  var tabs = document.getElementById('compass-tabs');
   DATA.forEach(function(d) {
-    var segment = document.getElementById('wheel-' + d.key);
-    if (segment) segment.classList.toggle('active', d.key === key);
+    var button = document.createElement('button');
+    button.className = 'compass-tab';
+    button.id = 'compass-' + d.key;
+    button.type = 'button';
+    button.setAttribute('role', 'tab');
+    button.setAttribute('aria-selected', 'false');
+    button.style.setProperty('--item-color', d.color);
+    button.innerHTML = '<span class="compass-tab-dot"></span>' + d.name;
+    button.addEventListener('click', function(){ openItem(d.key); });
+    tabs.appendChild(button);
+  });
+  renderCompassDetail(DATA[0]);
+}
+
+function renderCompassDetail(selected) {
+  var detail = document.getElementById('compass-detail');
+  var softColor = selected.color + '14';
+  detail.style.setProperty('--item-color', selected.color);
+  detail.style.setProperty('--item-soft', softColor);
+  detail.innerHTML =
+    '<div class="compass-main">' +
+      '<div class="compass-kicker" style="color:' + selected.color + '">' + selected.tag + '</div>' +
+      '<h3>' + selected.name + '</h3>' +
+      '<p>' + selected.what + '</p>' +
+    '</div>' +
+    '<div class="compass-reflection">' +
+      '<span>Reflection prompt</span>' +
+      '<p>' + selected.reflection + '</p>' +
+    '</div>';
+}
+
+function setCompassActive(key) {
+  DATA.forEach(function(d) {
+    var tab = document.getElementById('compass-' + d.key);
+    if (tab) {
+      var active = d.key === key;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+    }
   });
   var selected = DATA.find(function(d){ return d.key === key; });
-  if (selected) {
-    document.getElementById('wheel-status-text').textContent = selected.name + ' - ' + selected.tag;
-    document.getElementById('wheel-status-dot').style.background = selected.color;
-    var overlay = document.getElementById('wheel-overlay');
-    document.getElementById('wheel-overlay-kicker').textContent = selected.tag;
-    document.getElementById('wheel-overlay-kicker').style.color = selected.color;
-    document.getElementById('wheel-overlay-title').textContent = selected.name;
-    document.getElementById('wheel-overlay-copy').textContent = selected.what.split('. ')[0] + '.';
-    overlay.classList.add('show');
-  }
+  if (selected) renderCompassDetail(selected);
 }
 
 function buildAccordion() {
@@ -466,7 +409,7 @@ function openItem(key) {
   });
   var item = document.getElementById('acc-' + key);
   var body = document.getElementById('body-' + key);
-  setWheelActive(key);
+  setCompassActive(key);
   item.classList.add('open');
   // Measure and set max-height
   body.style.maxHeight = body.scrollHeight + 'px';
@@ -504,8 +447,10 @@ function showCTA() {
   }, 60);
 }
 
-buildWheel();
+buildCompass();
+setCompassActive(DATA[0].key);
 buildAccordion();
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>
