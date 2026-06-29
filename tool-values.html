@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Values Clarifier · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -288,7 +289,7 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
         <div><div style="font-size:.95rem;">Important</div><div style="font-size:.78rem;opacity:.7;font-weight:500;">Really matters to me</div></div>
       </button>
       <button class="sheet-btn sbtn-c" onclick="moveSelected('c')">
-        <span class="sheet-icon">—</span>
+        <span class="sheet-icon">&middot;</span>
         <div><div style="font-size:.95rem;">Nice to have</div><div style="font-size:.78rem;opacity:.7;font-weight:500;">Good, but not core</div></div>
       </button>
       <button class="sheet-btn sbtn-cancel" onclick="closeSheet()">
@@ -352,7 +353,7 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
   </div>
 
   <div class="btn-bar">
-    <button class="btn-primary" id="btn-sort" onclick="goToNarrow()" disabled>Next — Narrow down →</button>
+    <button class="btn-primary" id="btn-sort" onclick="goToNarrow()" disabled>Next, Narrow down →</button>
   </div>
 </div>
 
@@ -374,7 +375,7 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
 <div class="stage" id="stage-results">
   <div style="margin-bottom:1.2rem;">
     <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:.3rem;">Your core values</h2>
-    <p style="font-size:.88rem;color:var(--muted);">These aren't who you should be — they're who you already are.</p>
+    <p style="font-size:.88rem;color:var(--muted);">These aren't who you should be, they're who you already are.</p>
   </div>
   <div id="top5-results"></div>
   <div class="reflections-card">
@@ -383,7 +384,7 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
   </div>
   <div class="cta-card">
     <h3>What do these values tell you?</h3>
-    <p>Bring your top values into a coaching session and we'll explore where they're being honoured — and where they're not.</p>
+    <p>Bring your top values into a coaching session and we'll explore where they're being honoured, and where they're not.</p>
     <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
   </div>
   <button class="reset-btn" onclick="resetAll()">Start over</button>
@@ -650,5 +651,6 @@ function resetAll(){
 
 init();
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

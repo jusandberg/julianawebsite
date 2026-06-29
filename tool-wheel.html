@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Wheel of Life — Coaching</title>
+<title>Wheel of Life, Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
@@ -150,11 +150,11 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;b
     <div class="results-stats">
       <div class="result-stat positive">
         <div class="stat-label">Strongest area</div>
-        <div class="stat-val" id="strongest-area">—</div>
+        <div class="stat-val" id="strongest-area">Move the sliders</div>
       </div>
       <div class="result-stat improve">
         <div class="stat-label">Most room to grow</div>
-        <div class="stat-val" id="weakest-area">—</div>
+        <div class="stat-val" id="weakest-area">Move the sliders</div>
       </div>
     </div>
     <div class="reflections">
@@ -249,7 +249,7 @@ function resetAll(){
   updateResults();
 }
 
-// ── Draw wheel — fully responsive ────────────────────────────
+// ── Draw wheel, fully responsive ────────────────────────────
 function drawWheel(){
   const canvas = document.getElementById('wheel-canvas');
   const ctx = canvas.getContext('2d');
@@ -321,7 +321,7 @@ function drawWheel(){
     ctx.fill();
   }
 
-  // Labels — font size scales with canvas
+  // Labels, font size scales with canvas
   const fontSize = Math.max(11, Math.floor(size * 0.032));
   ctx.font = '600 ' + fontSize + 'px Inter, -apple-system, sans-serif';
   ctx.textAlign = 'center';
@@ -414,5 +414,6 @@ buildSliders();
 // Small delay so layout is settled before measuring container width
 setTimeout(() => { drawWheel(); updateResults(); }, 60);
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

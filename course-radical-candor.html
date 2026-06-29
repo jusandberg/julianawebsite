@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Feedback Using Radical Candor: Feedback That Helps — Microlearning</title>
+<title>Feedback Using Radical Candor: Feedback That Helps, Microlearning</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
@@ -69,17 +69,36 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 
 /* QUADRANT VISUAL */
 .quad-map{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.6rem 0;}
-.quad{border-radius:16px;padding:1.1rem;border:1px solid var(--line);position:relative;min-height:104px;}
+.quad{border:0;position:relative;min-height:132px;background:none;perspective:900px;cursor:pointer;font-family:inherit;text-align:left;padding:0;}
+.quad-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.22,1,.36,1);}
+.quad.flipped .quad-inner{transform:rotateY(180deg);}
+.quad-face{position:absolute;inset:0;display:block;border-radius:16px;padding:1.1rem;border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 5px 18px rgba(7,16,20,.04);}
+.quad-back{transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;}
+.quad-face .qh,.quad-face .qd{display:block;}
+.quad-hint{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:.6rem;}
 .quad .qh{font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
 .quad .qd{font-size:.8rem;color:var(--grey);line-height:1.45;}
-.quad.rc{background:rgba(52,168,83,.07);border-color:rgba(52,168,83,.3);}
+.quad.rc .quad-face{background:rgba(52,168,83,.07);border-color:rgba(52,168,83,.3);}
 .quad.rc .qh{color:var(--green);}
-.quad.re{background:rgba(251,188,5,.09);border-color:rgba(251,188,5,.35);}
+.quad.re .quad-face{background:rgba(251,188,5,.09);border-color:rgba(251,188,5,.35);}
 .quad.re .qh{color:#C98F00;}
-.quad.oa{background:rgba(234,67,53,.06);border-color:rgba(234,67,53,.28);}
+.quad.oa .quad-face{background:rgba(234,67,53,.06);border-color:rgba(234,67,53,.28);}
 .quad.oa .qh{color:var(--red);}
-.quad.mi{background:rgba(66,133,244,.06);border-color:rgba(66,133,244,.28);}
+.quad.mi .quad-face{background:rgba(66,133,244,.06);border-color:rgba(66,133,244,.28);}
 .quad.mi .qh{color:var(--blue);}
+.quad:focus-visible{outline:3px solid rgba(66,133,244,.35);outline-offset:3px;border-radius:16px;}
+
+/* SHORT MOTION LESSON */
+.motion-lesson{position:relative;overflow:hidden;border-radius:22px;background:#101216;color:#fff;min-height:290px;margin:0 0 1.6rem;box-shadow:0 18px 45px rgba(7,16,20,.18);}
+.motion-frame{position:absolute;inset:0;padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;opacity:0;transform:translateY(12px) scale(.98);transition:opacity .5s,transform .5s;pointer-events:none;}
+.motion-frame.active{opacity:1;transform:none;}
+.motion-kicker{color:#75ddd8;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;font-weight:800;margin-bottom:.8rem;}
+.motion-frame h3{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.1;max-width:30rem;margin:0;}
+.motion-frame p{color:#c8cbd1;max-width:32rem;line-height:1.6;margin:.9rem 0 0;}
+.motion-controls{position:absolute;left:1rem;right:1rem;bottom:1rem;display:flex;align-items:center;gap:.8rem;z-index:2;}
+.motion-play{border:0;border-radius:999px;background:#fff;color:#101216;font:700 .82rem Inter,Arial,sans-serif;padding:.65rem 1rem;cursor:pointer;}
+.motion-track{height:4px;flex:1;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;}
+.motion-fill{height:100%;width:0;background:linear-gradient(90deg,#4285F4,#0F9F9A,#34A853,#FBBC05);transition:width .25s linear;}
 .axis{font-size:.7rem;color:var(--grey);text-align:center;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:.3rem 0;}
 
 /* SCENARIO CARD (sort exercise) */
@@ -187,27 +206,45 @@ textarea:focus{outline:none;border-color:var(--teal);}
       <p>Recognize the four feedback styles, tell radically candid feedback apart from the look-alikes that feel safer, and rewrite weak feedback so it lands.</p>
     </div>
 
+    <div class="motion-lesson" id="motionLesson" aria-label="Animated Radical Candor concept lesson">
+      <div class="motion-frame active">
+        <div class="motion-kicker">The feedback tension</div>
+        <h3>Care personally.</h3>
+        <p>Show the person that the relationship and their growth matter.</p>
+      </div>
+      <div class="motion-frame">
+        <div class="motion-kicker">The feedback tension</div>
+        <h3>Challenge directly.</h3>
+        <p>Name the behaviour, its impact, and the next step without hiding the message.</p>
+      </div>
+      <div class="motion-frame">
+        <div class="motion-kicker">The useful middle</div>
+        <h3>Honest <span class="grad">and</span> human.</h3>
+        <p>Strong feedback holds both at once. Drop either one and the message moves into a failure mode.</p>
+      </div>
+      <div class="motion-controls">
+        <button class="motion-play" id="motionPlay" onclick="toggleMotion()">Play short lesson</button>
+        <div class="motion-track"><div class="motion-fill" id="motionFill"></div></div>
+      </div>
+    </div>
+
     <div class="section-tag">The idea</div>
     <h2 class="section-h">Two questions decide everything</h2>
     <p class="section-p">Kim Scott found that good feedback sits at the meeting point of two things: how much you <strong>care personally</strong> about the person, and how willing you are to <strong>challenge them directly</strong>. Drop one, and feedback slides into a failure mode.</p>
 
     <div class="quad-map">
-      <div class="quad mi">
-        <div class="qh">Manipulative Insincerity</div>
-        <div class="qd">Low care, low challenge. Empty praise, political silence.</div>
-      </div>
-      <div class="quad rc">
-        <div class="qh">Feedback Using Radical Candor</div>
-        <div class="qd">High care, high challenge. Honest and kind. The target.</div>
-      </div>
-      <div class="quad oa">
-        <div class="qh">Obnoxious Aggression</div>
-        <div class="qd">Low care, high challenge. Blunt, belittling, all edge.</div>
-      </div>
-      <div class="quad re">
-        <div class="qh">Ruinous Empathy</div>
-        <div class="qd">High care, low challenge. So nice it's useless.</div>
-      </div>
+      <button class="quad mi" type="button" onclick="flipQuad(this)" aria-pressed="false">
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Manipulative Insincerity</span><span class="qd">Low care, low challenge. Empty praise, political silence.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Everything is fine." You avoid the truth because saying it feels inconvenient or risky.</span></span></span>
+      </button>
+      <button class="quad rc" type="button" onclick="flipQuad(this)" aria-pressed="false">
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Feedback Using Radical Candor</span><span class="qd">High care, high challenge. Honest and kind. The target.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"I want you to succeed, so I need to be clear about what is getting in the way."</span></span></span>
+      </button>
+      <button class="quad oa" type="button" onclick="flipQuad(this)" aria-pressed="false">
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Obnoxious Aggression</span><span class="qd">Low care, high challenge. Blunt, belittling, all edge.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"That was terrible." The criticism is direct, but offers neither dignity nor a useful path forward.</span></span></span>
+      </button>
+      <button class="quad re" type="button" onclick="flipQuad(this)" aria-pressed="false">
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Ruinous Empathy</span><span class="qd">High care, low challenge. So nice it's useless.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Great job, just a few tiny tweaks." Warmth softens the message until nothing actionable remains.</span></span></span>
+      </button>
     </div>
     <p class="section-p" style="margin-bottom:0;">Most well-meaning managers fail on the <strong style="color:#C98F00;">Ruinous Empathy</strong> side: they care, so they soften the message until there's nothing left to act on. Let's train your eye.</p>
 
@@ -352,6 +389,40 @@ const PRAISE = {
 
 // ─── State ────────────────────────────────────────────────
 let idx = 0, score = 0, answered = false;
+let motionTimer = null, motionFrame = 0, motionStartedAt = 0;
+
+function flipQuad(card){
+  const flipped = card.classList.toggle('flipped');
+  card.setAttribute('aria-pressed', String(flipped));
+}
+
+function showMotionFrame(index){
+  const frames = document.querySelectorAll('.motion-frame');
+  motionFrame = index % frames.length;
+  frames.forEach((frame, i)=>frame.classList.toggle('active', i === motionFrame));
+  document.getElementById('motionFill').style.width = (((motionFrame + 1) / frames.length) * 100) + '%';
+}
+
+function stopMotion(){
+  if(motionTimer) clearInterval(motionTimer);
+  motionTimer = null;
+  document.getElementById('motionPlay').textContent = 'Play again';
+}
+
+function toggleMotion(){
+  if(motionTimer){
+    stopMotion();
+    document.getElementById('motionPlay').textContent = 'Resume lesson';
+    return;
+  }
+  if(motionFrame >= 2) showMotionFrame(0);
+  document.getElementById('motionPlay').textContent = 'Pause';
+  motionStartedAt = Date.now();
+  motionTimer = setInterval(()=>{
+    if(motionFrame >= 2){ stopMotion(); return; }
+    showMotionFrame(motionFrame + 1);
+  }, 5000);
+}
 
 function go(n){
   document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
@@ -441,5 +512,6 @@ function restart(){
   go(0);
 }
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

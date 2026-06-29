@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Inner Critic vs Coach · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,7 +241,7 @@ textarea::placeholder{ color:var(--muted); font-size:.93rem; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C2185B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
         Your inner critic
       </div>
-      <p>Judges, catastrophises, generalises. Speaks in absolutes. Keeps you safe — but often keeps you small.</p>
+      <p>Judges, catastrophises, generalises. Speaks in absolutes. Keeps you safe, but often keeps you small.</p>
     </div>
     <div class="explain-card explain-coach">
       <div class="explain-label">
@@ -254,7 +255,7 @@ textarea::placeholder{ color:var(--muted); font-size:.93rem; }
   <!-- INPUT -->
   <div class="input-card" id="input-card">
     <h2>What is your inner critic saying?</h2>
-    <p>Type a thought that's been looping — something harsh, doubtful, or unkind you've been telling yourself.</p>
+    <p>Type a thought that's been looping, something harsh, doubtful, or unkind you've been telling yourself.</p>
     <textarea id="thought" placeholder="e.g. I always mess things up when it matters most..." maxlength="300"></textarea>
     <div class="input-meta">
       <span class="char-count" id="char-count">0 / 300</span>
@@ -326,7 +327,7 @@ textarea::placeholder{ color:var(--muted); font-size:.93rem; }
   <!-- CTA -->
   <div class="cta-card">
     <h3>The critic never fully disappears.</h3>
-    <p>But with practice, you stop believing everything it says. Coaching helps you understand where your inner critic came from — and build a more reliable inner coach.</p>
+    <p>But with practice, you stop believing everything it says. Coaching helps you understand where your inner critic came from, and build a more reliable inner coach.</p>
     <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
   </div>
 
@@ -338,7 +339,7 @@ textarea::placeholder{ color:var(--muted); font-size:.93rem; }
 </div>
 
 <script>
-// ── Gemini key — get free at aistudio.google.com ──────────────
+// ── Gemini key, get free at aistudio.google.com ──────────────
 const GEMINI_KEY = "PASTE_YOUR_GEMINI_KEY_HERE";
 
 // ── Static data ───────────────────────────────────────────────
@@ -549,5 +550,6 @@ function tryAnother(){
   document.getElementById("thought").focus();
 }
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

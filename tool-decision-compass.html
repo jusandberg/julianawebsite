@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Decision Compass · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,7 +285,7 @@ textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem;
 <div class="stage active" id="stage-decision">
   <div class="card">
     <h3>What decision are you weighing?</h3>
-    <p style="margin-bottom:1rem;">Describe it briefly — the clearer you are, the more useful the compass will be.</p>
+    <p style="margin-bottom:1rem;">Describe it briefly, the clearer you are, the more useful the compass will be.</p>
     <span class="field-label">The decision</span>
     <span class="field-hint">e.g. "Should I accept the new job offer or stay in my current role?"</span>
     <textarea id="decision-text" rows="3" placeholder="I'm trying to decide whether to..."></textarea>
@@ -292,7 +293,7 @@ textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem;
 
   <div class="card">
     <h3>Name your two options</h3>
-    <p style="margin-bottom:1rem;">Keep them short — you'll be scoring each one against your values.</p>
+    <p style="margin-bottom:1rem;">Keep them short, you'll be scoring each one against your values.</p>
     <div class="options-grid">
       <div class="option-input-wrap">
         <span class="field-label">Option A</span>
@@ -306,13 +307,13 @@ textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem;
   </div>
 
   <div class="btn-bar">
-    <button class="btn-primary" id="btn-d" onclick="goToValues()" disabled>Next — Set your values →</button>
+    <button class="btn-primary" id="btn-d" onclick="goToValues()" disabled>Next, Set your values →</button>
   </div>
 </div>
 
 <!-- ═══════════ STAGE 2: VALUES ═══════════ -->
 <div class="stage" id="stage-values">
-  <p class="values-intro">These are the values this decision will be scored against. Each one has a weight — how much does it matter to you right now? Set 1 (nice to have) to 3 (essential).</p>
+  <p class="values-intro">These are the values this decision will be scored against. Each one has a weight, how much does it matter to you right now? Set 1 (nice to have) to 3 (essential).</p>
 
   <div class="value-rows" id="value-rows"></div>
 
@@ -323,13 +324,13 @@ textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem;
 
   <div class="btn-bar">
     <button class="btn-back" onclick="goTo('decision')">← Back</button>
-    <button class="btn-primary" onclick="goToScore()">Next — Score each option →</button>
+    <button class="btn-primary" onclick="goToScore()">Next, Score each option →</button>
   </div>
 </div>
 
 <!-- ═══════════ STAGE 3: SCORE ═══════════ -->
 <div class="stage" id="stage-score">
-  <p class="score-intro">For each value, rate how well each option honours it. 1 = barely, 2 = somewhat, 3 = fully. Go with your gut — your first instinct is usually right.</p>
+  <p class="score-intro">For each value, rate how well each option honours it. 1 = barely, 2 = somewhat, 3 = fully. Go with your gut, your first instinct is usually right.</p>
 
   <div class="score-section" id="score-section-a">
     <div class="score-section-title option-a-title">
@@ -401,7 +402,7 @@ textarea::placeholder, input::placeholder{ color:var(--muted); font-size:.93rem;
 
   <div class="cta-card">
     <h3>The numbers are only half the picture</h3>
-    <p>The compass shows you what your values are saying. Coaching helps you understand what your gut, your fear, and your hope are saying too — and how to bring all of it into alignment.</p>
+    <p>The compass shows you what your values are saying. Coaching helps you understand what your gut, your fear, and your hope are saying too, and how to bring all of it into alignment.</p>
     <a class="cta-btn" href="index.html#contact">Book a free discovery call</a>
     <button class="btn-restart" onclick="restart()">Start a new decision</button>
   </div>
@@ -564,7 +565,7 @@ function showResult(){
   } else if(diff <= 8){
     hero.className = 'result-hero close';
     title.textContent = winner==='a' ? optA : optB;
-    sub.textContent = 'A slight edge — but this is close enough to trust your gut';
+    sub.textContent = 'A slight edge, but this is close enough to trust your gut';
   } else {
     hero.className = 'result-hero clear';
     title.textContent = winner==='a' ? optA : optB;
@@ -616,11 +617,11 @@ function showResult(){
   const lowestB = values.reduce((low, v, i) => (scoresB[i]||0) < (scoresB[low]||0) ? i : low, 0);
 
   if(winner==='tied'){
-    ref.innerHTML = 'When the numbers tie, the decision usually lives in something the compass can\'t measure — fear, excitement, grief about what you\'d be giving up. <em>What does the tie feel like in your body?</em> One option usually carries a different quality of emotion. That\'s data too.';
+    ref.innerHTML = 'When the numbers tie, the decision usually lives in something the compass can\'t measure, fear, excitement, grief about what you\'d be giving up. <em>What does the tie feel like in your body?</em> One option usually carries a different quality of emotion. That\'s data too.';
   } else if(diff <= 8){
-    ref.innerHTML = '<em>'+winnerName+'</em> has a slight edge according to your values — but a gap this small suggests the decision isn\'t really about values alignment. It may be about something underneath: risk tolerance, timing, what you\'re afraid to want. <em>What would you choose if you knew you couldn\'t get it wrong?</em>';
+    ref.innerHTML = '<em>'+winnerName+'</em> has a slight edge according to your values, but a gap this small suggests the decision isn\'t really about values alignment. It may be about something underneath: risk tolerance, timing, what you\'re afraid to want. <em>What would you choose if you knew you couldn\'t get it wrong?</em>';
   } else {
-    ref.innerHTML = 'Your values point clearly to <em>'+winnerName+'</em>, with <em>'+biggestGapVal+'</em> as the most decisive factor. If this result surprises you — or if you feel resistance to it — that\'s worth paying attention to. <em>What would have to be true for you to trust what your values are telling you?</em>';
+    ref.innerHTML = 'Your values point clearly to <em>'+winnerName+'</em>, with <em>'+biggestGapVal+'</em> as the most decisive factor. If this result surprises you, or if you feel resistance to it, that\'s worth paying attention to. <em>What would have to be true for you to trust what your values are telling you?</em>';
   }
 
   goTo('result');
@@ -641,5 +642,6 @@ function restart(){
 // ── Init ──────────────────────────────────────────────────────
 renderValueRows();
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

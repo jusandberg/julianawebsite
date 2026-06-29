@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Energy Audit · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -289,7 +290,7 @@ h2,h3,h4{ font-family:'Inter',sans-serif; line-height:1.15; }
       <span id="progress-pct">0%</span>
     </div>
     <div class="prog-track"><div class="prog-fill" id="progress-fill" style="width:0%"></div></div>
-    <p style="font-size:.82rem;color:var(--muted);margin-top:.6rem;"><strong>Tap any activity</strong> to rate it as Gives energy, Drains energy, or Neutral. Go with your gut — how do you actually feel, not how you think you should feel.</p>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:.6rem;"><strong>Tap any activity</strong> to rate it as Gives energy, Drains energy, or Neutral. Go with your gut, how do you actually feel, not how you think you should feel.</p>
   </div>
 
   <div id="activity-list"></div>
@@ -519,11 +520,11 @@ function buildInsights(){
 
   const msgEl = document.getElementById('balance-message');
   if(givesPct >= 60)
-    msgEl.innerHTML = '<strong>Your energy balance looks healthy.</strong> Most of what fills your days is genuinely feeding you. The drains below are still worth looking at — even in a positive life, persistent drains compound.';
+    msgEl.innerHTML = '<strong>Your energy balance looks healthy.</strong> Most of what fills your days is genuinely feeding you. The drains below are still worth looking at, even in a positive life, persistent drains compound.';
   else if(givesPct >= 40)
-    msgEl.innerHTML = '<strong>Your energy is fairly balanced</strong> — but that can still mean feeling depleted if the drains are concentrated in areas you can\'t avoid. Look at where they cluster.';
+    msgEl.innerHTML = '<strong>Your energy is fairly balanced</strong>, but that can still mean feeling depleted if the drains are concentrated in areas you can\'t avoid. Look at where they cluster.';
   else
-    msgEl.innerHTML = '<strong>More draining than energising.</strong> This doesn\'t mean anything is wrong with you — it often signals a mismatch between how you\'re spending time and what actually matters to you. That\'s exactly what coaching works with.';
+    msgEl.innerHTML = '<strong>More draining than energising.</strong> This doesn\'t mean anything is wrong with you, it often signals a mismatch between how you\'re spending time and what actually matters to you. That\'s exactly what coaching works with.';
 
   document.getElementById('gives-list').innerHTML  = gives.map(a => '<span class="bucket-chip gives-chip">' + a.name + '</span>').join('');
   document.getElementById('drains-list').innerHTML = drains.map(a => '<span class="bucket-chip drains-chip">' + a.name + '</span>').join('');
@@ -558,19 +559,19 @@ function buildInsightMessages(gives, drains){
   const bD = drains.filter(a=>a.cat==='Body').length;
 
   if(wD > wG+1) messages.push({type:'drains',icon:'work',text:'<strong>Work is one of your bigger energy drains.</strong> This could point to a role misalignment, a values conflict, or simply too many low-meaning tasks crowding out the work that actually lights you up.'});
-  else if(wG > wD+1) messages.push({type:'gives',icon:'work',text:'<strong>Work is a genuine energy source for you</strong> — that\'s a real asset. Notice which specific types of work give the most, and see if you can protect or expand those.'});
+  else if(wG > wD+1) messages.push({type:'gives',icon:'work',text:'<strong>Work is a genuine energy source for you</strong>, that\'s a real asset. Notice which specific types of work give the most, and see if you can protect or expand those.'});
 
   if(sD > sG+1) messages.push({type:'drains',icon:'social',text:'<strong>Social interactions tend to drain you more than they refuel you.</strong> Are there specific people or settings that account for most of the drain? Or is it more general?'});
   else if(sG > sD+1) messages.push({type:'gives',icon:'social',text:'<strong>Connection is a clear energy source for you.</strong> You likely recharge through people rather than away from them. Think about how much space your current life gives to that.'});
 
   if(mD >= 2) messages.push({type:'drains',icon:'mind',text:'<strong>Several mental habits are draining you.</strong> What we consume and how we spend mental downtime shapes our baseline energy more than most people realise.'});
-  if(mG >= 2) messages.push({type:'gives',icon:'mind',text:'<strong>Your mind comes alive with certain practices.</strong> That\'s a strong signal about how you recharge — and what kinds of environments will sustain you long-term.'});
+  if(mG >= 2) messages.push({type:'gives',icon:'mind',text:'<strong>Your mind comes alive with certain practices.</strong> That\'s a strong signal about how you recharge, and what kinds of environments will sustain you long-term.'});
 
-  if(bD >= 1) messages.push({type:'drains',icon:'body',text:'<strong>Some physical patterns are costing you energy.</strong> The body keeps score on all of this — physical depletion compounds everything else.'});
-  if(bG >= 1) messages.push({type:'gives',icon:'body',text:'<strong>Physical activity or care gives you energy.</strong> This is data worth protecting — schedule it like the necessity it is.'});
+  if(bD >= 1) messages.push({type:'drains',icon:'body',text:'<strong>Some physical patterns are costing you energy.</strong> The body keeps score on all of this, physical depletion compounds everything else.'});
+  if(bG >= 1) messages.push({type:'gives',icon:'body',text:'<strong>Physical activity or care gives you energy.</strong> This is data worth protecting, schedule it like the necessity it is.'});
 
   const hasDrainsYesNo = drains.find(a=>a.id==='a29');
-  if(hasDrainsYesNo) messages.push({type:'drains',icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',text:'<strong>Saying yes when you mean no is depleting you.</strong> This is one of the most common hidden energy leaks — and one of the most significant to address. What would change if you reclaimed even one of those yeses?'});
+  if(hasDrainsYesNo) messages.push({type:'drains',icon:'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A6270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',text:'<strong>Saying yes when you mean no is depleting you.</strong> This is one of the most common hidden energy leaks, and one of the most significant to address. What would change if you reclaimed even one of those yeses?'});
 
   if(messages.length === 0) messages.push({type:'neutral',icon:'chart',text:'<strong>Every energy pattern is unique.</strong> Bring this audit into a coaching session and we\'ll explore what the data is really telling you about your life design.'});
 
@@ -593,5 +594,6 @@ function resetAll(){
 
 init();
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>

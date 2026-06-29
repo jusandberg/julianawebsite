@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Goal Setting Canvas · Coaching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,7 +274,7 @@ textarea::placeholder{ color:var(--muted); font-size:.95rem; }
     <div class="prog-dot" id="pd2"></div>
     <div class="prog-dot" id="pd3"></div>
   </div>
-  <div class="prog-label" id="prog-label">Step 1 of 4 — Your goal</div>
+  <div class="prog-label" id="prog-label">Step 1 of 4, Your goal</div>
 </div>
 
 <!-- SCREEN 1: Goal -->
@@ -283,7 +284,7 @@ textarea::placeholder{ color:var(--muted); font-size:.95rem; }
     Step 1 of 4
   </div>
   <h2>What is the goal or intention on your mind?</h2>
-  <p class="hint">Write it as it comes — even a fuzzy intention is a great starting point.</p>
+  <p class="hint">Write it as it comes, even a fuzzy intention is a great starting point.</p>
   <textarea id="a-goal" placeholder="e.g. I want to change careers but I don't know where to start&#10;&#10;e.g. I want to launch my coaching practice this year&#10;&#10;e.g. I want to feel less anxious in leadership situations" rows="5"></textarea>
   <div class="btn-row">
     <button class="btn-primary" id="btn-1" onclick="goTo(2)" disabled>Next →</button>
@@ -315,7 +316,7 @@ textarea::placeholder{ color:var(--muted); font-size:.95rem; }
     Step 3 of 4
   </div>
   <h2>What might get in your way?</h2>
-  <p class="hint">Naming obstacles isn't pessimism — it's preparation. Tap anything that feels true.</p>
+  <p class="hint">Naming obstacles isn't pessimism, it's preparation. Tap anything that feels true.</p>
   <div class="chips" id="obs-chips"></div>
   <textarea id="a-obs" placeholder="Anything else? Add your own here..." rows="2" style="margin-top:.4rem;min-height:70px;"></textarea>
   <div class="btn-row">
@@ -331,7 +332,7 @@ textarea::placeholder{ color:var(--muted); font-size:.95rem; }
     Step 4 of 4
   </div>
   <h2>What is your smallest possible first step?</h2>
-  <p class="hint">Not the whole plan — just the very next thing. It should feel almost too small. That's how you know it's right.</p>
+  <p class="hint">Not the whole plan, just the very next thing. It should feel almost too small. That's how you know it's right.</p>
   <textarea id="a-step" placeholder="e.g. Block 30 minutes this week to write down what I actually want&#10;&#10;e.g. Send one message to someone already doing what I want to do&#10;&#10;e.g. Have one honest conversation with my manager" rows="5"></textarea>
   <div class="btn-row">
     <button class="btn-back" onclick="goTo(3)">← Back</button>
@@ -373,7 +374,7 @@ textarea::placeholder{ color:var(--muted); font-size:.95rem; }
 
   <div class="cta-card">
     <h3>Ready to go deeper?</h3>
-    <p>Bring this canvas into a coaching session — we'll build the full path together, anticipate the obstacles, and design accountability that actually works for you.</p>
+    <p>Bring this canvas into a coaching session, we'll build the full path together, anticipate the obstacles, and design accountability that actually works for you.</p>
     <a class="cta-book" href="index.html#contact">Book a free discovery call</a>
     <button class="btn-restart" onclick="restart()">Start over</button>
   </div>
@@ -407,8 +408,8 @@ VALUES.forEach(v => {
     }
     const n = selVals.length;
     document.getElementById("chips-note").textContent =
-      n===3 ? "Great — three values chosen ✓" :
-      n>0   ? n+" chosen — pick up to 3" : "";
+      n===3 ? "Great, three values chosen ✓" :
+      n>0   ? n+" chosen, pick up to 3" : "";
     checkStep2();
   };
   vc.appendChild(c);
@@ -454,7 +455,7 @@ function goTo(n){
     else if(i === n-1) d.classList.add("active");
   }
   document.getElementById("prog-label").textContent =
-    "Step "+n+" of 4 — "+STEP_LABELS[n-1];
+    "Step "+n+" of 4, "+STEP_LABELS[n-1];
 
   // scroll to top
   window.scrollTo({top:0, behavior:"smooth"});
@@ -485,7 +486,7 @@ async function submit(){
     document.getElementById("loading-text").textContent = loadMsgs[++li % loadMsgs.length];
   }, 1900);
 
-  const prompt = `You are a warm, grounded integrative development coach for Coaching — a coaching methodology with three phases: Uncover, Unravel, Unleash.
+  const prompt = `You are a warm, grounded integrative development coach for Coaching, a coaching methodology with three phases: Uncover, Unravel, Unleash.
 
 A client just completed their Goal Setting Canvas. Here is what they shared:
 
@@ -496,7 +497,7 @@ OBSTACLES: ${obs}
 FIRST STEP: ${step}
 
 Respond with ONLY valid JSON, no markdown, no backticks:
-{"commitment":"A warm 2-3 sentence first-person commitment statement weaving their goal, values, and why. Write it AS them. Start with I commit to / I choose / I am.","reflection":"One open curious coaching question to sit with — not advice, just a question.","firststep":"Their first step echoed back as one clean concrete sentence."}`;
+{"commitment":"A warm 2-3 sentence first-person commitment statement weaving their goal, values, and why. Write it AS them. Start with I commit to / I choose / I am.","reflection":"One open curious coaching question to sit with, not advice, just a question.","firststep":"Their first step echoed back as one clean concrete sentence."}`;
 
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -508,7 +509,7 @@ Respond with ONLY valid JSON, no markdown, no backticks:
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 1024,
-        system: "You are a coaching assistant. Respond ONLY with a raw JSON object — no markdown, no backticks, no explanation. Start with { and end with }.",
+        system: "You are a coaching assistant. Respond ONLY with a raw JSON object, no markdown, no backticks, no explanation. Start with { and end with }.",
         messages: [
           { role: "user", content: prompt },
           { role: "assistant", content: "{" }
@@ -569,7 +570,7 @@ Respond with ONLY valid JSON, no markdown, no backticks:
     const box = document.createElement("div");
     box.className = "err-box";
     box.innerHTML = "<strong>Something went wrong</strong><br>" + err.message +
-      "<br><br>Please try again — if this keeps happening the API may be busy.";
+      "<br><br>Please try again, if this keeps happening the API may be busy.";
     document.getElementById("screen-4").appendChild(box);
     setTimeout(() => box.remove(), 10000);
   }
@@ -607,5 +608,6 @@ function restart(){
   goTo(1);
 }
 </script>
+<script src="page-nav.js"></script>
 </body>
 </html>
