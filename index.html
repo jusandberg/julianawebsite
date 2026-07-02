@@ -330,6 +330,38 @@ img{display:block;max-width:100%;}
 .book-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
 .bookshelf-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
 
+/* FRAMEWORK TILES */
+.fw-unit{margin-top:3rem}
+.fw-row{display:flex;align-items:flex-start;gap:1.4rem;justify-content:center;flex-wrap:wrap;padding:0 .5rem 1rem}
+.fw-tile{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:140px;border:0;background:none;cursor:pointer;padding:.25rem;font-family:inherit;color:var(--ink)}
+.fw-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.fw-icon{position:relative;width:78px;height:78px;border-radius:18px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 20px rgba(20,20,30,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.fw-tile:hover .fw-icon{transform:translateY(-6px) rotate(-1.5deg)}
+.fw-tile.open .fw-icon{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
+.fw-icon svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.7}
+.fw-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}
+.fw-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}
+.fw-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
+.fw-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.fw-title-label{font-size:.86rem;font-weight:700;text-align:center;color:var(--ink)}
+.fw-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
+.fw-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.fw-detail-reveal>div{overflow:hidden}
+.fw-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.fw-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;position:relative;overflow:hidden}
+.fw-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.fw-detail-top{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.25rem}
+.fw-detail-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}
+.fw-detail-card h3{font-size:1.3rem;margin:0}
+.fw-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0 0 1.25rem;position:relative}
+.fw-steps-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.fw-step-chip{flex:1 1 auto;min-width:90px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;text-align:center;position:relative}
+.fw-step-chip .num{font-size:.68rem;font-weight:700;color:var(--teal);display:block;margin-bottom:.25rem}
+.fw-step-chip .label{font-size:.78rem;font-weight:600;color:var(--ink)}
+.fw-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s;z-index:1}
+.fw-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.fw-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+
 /* CARD ICONS */
 .card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;position:relative;}
 .card-icon svg{width:22px;height:22px;stroke-width:1.8;fill:none;stroke:currentColor;}
@@ -393,6 +425,15 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .book-rings span{width:7px;height:7px}
   .book-title-label{font-size:.7rem}
   .book-detail-card{flex-direction:column;padding:1.5rem}
+  .fw-row{gap:1rem}
+  .fw-tile{width:78px}
+  .fw-icon{width:60px;height:60px;border-radius:14px}
+  .fw-icon svg{width:26px;height:26px}
+  .fw-title-label{font-size:.72rem}
+  .fw-cat-label{display:none}
+  .fw-detail-card{padding:1.5rem}
+  .fw-steps-row{gap:.4rem}
+  .fw-step-chip{min-width:72px;padding:.55rem .5rem}
   .cards{grid-template-columns:1fr;}
   .about-profile{grid-template-columns:1fr;gap:2.5rem;text-align:center;}
   .about-story p{margin-left:auto;margin-right:auto;}
@@ -624,17 +665,12 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     </div>
 
     <div class="section-center" style="margin-top:4.5rem;">
-      <h2 style="font-size:1.8rem;">The frameworks behind it</h2>
-      <p class="section-intro">Evidence-based models keep my work rigorous. The ones I reach for, and why each earns its place.</p>
+      <div class="eyebrow c">The Frameworks</div>
+      <h2 style="font-size:1.9rem;">The frameworks behind it</h2>
+      <p class="section-intro">Evidence-based models keep my work rigorous. Tap one to see how I use it.</p>
     </div>
-    <div class="framework-carousel-controls" aria-label="Framework carousel controls"><button type="button" onclick="scrollFrameworks(-1)" aria-label="Previous frameworks">&larr;</button><button type="button" onclick="scrollFrameworks(1)" aria-label="Next frameworks">&rarr;</button></div>
-    <div class="cards framework-carousel" id="frameworkCarousel">
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div><div class="card-meta">Instructional Design</div><h3>ADDIE</h3><p>The classic five-phase model (Analyze, Design, Develop, Implement, Evaluate) that gives every project a rigorous, end-to-end structure. My backbone for large-scale programs like onboarding redesigns.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></div><div class="card-meta">Agile Design</div><h3>SAM</h3><p>The Successive Approximation Model replaces a linear waterfall with rapid cycles of prototyping, review, and iteration. My go-to in fast-moving environments where feedback early and often matters.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="card-meta">Cognitive Hierarchy</div><h3>Bloom's Taxonomy</h3><p>A hierarchy of cognitive skills, from remembering and understanding up through applying, analyzing, evaluating, and creating. It shapes how I write objectives and assessments.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="card-meta">Evaluation</div><h3>Kirkpatrick</h3><p>Four levels of training evaluation: Reaction, Learning, Behavior, and Results. It connects what happens in the room to what changes on the job, at Levels 3 and 4.</p></div>
-      <div class="card wide"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="card-meta">Development Mix</div><h3>70-20-10</h3><p>Designing leadership pathways as full ecosystems: stretch assignments and peer coaching alongside formal sessions. Most growth happens on the job, and the design should reflect that.</p></div>
-    </div>
+    <div class="fw-unit" id="frameworkUnit"></div>
+    <p class="fw-hint">Tap a framework to open it. Tap it again or use the close button to close it.</p>
   </div>
 </section>
 
@@ -1000,6 +1036,47 @@ function scrollFrameworks(direction){
  if(!carousel) return;
  carousel.scrollBy({left:direction*carousel.clientWidth*.82,behavior:'smooth'});
 }
+const FRAMEWORK_ITEMS=[
+ {name:'ADDIE',cat:'Instructional Design',color:'blue',icon:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',desc:'The classic five-phase model that gives every project a rigorous, end-to-end structure. My backbone for large-scale programs like onboarding redesigns.',steps:['Analyze','Design','Develop','Implement','Evaluate']},
+ {name:'SAM',cat:'Agile Design',color:'green',icon:'<path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/>',desc:'The Successive Approximation Model replaces a linear waterfall with rapid cycles of prototyping, review, and iteration. My go-to when feedback early and often matters.',steps:['Prepare','Prototype','Review','Refine','Repeat']},
+ {name:"Bloom's Taxonomy",cat:'Cognitive Hierarchy',color:'yellow',icon:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',desc:'A hierarchy of cognitive skills, from remembering and understanding through applying, analyzing, evaluating, and creating. It shapes how I write objectives and assessments.',steps:['Remember','Understand','Apply','Analyze','Evaluate','Create']},
+ {name:'Kirkpatrick',cat:'Evaluation',color:'teal',icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',desc:'Four levels of training evaluation. It connects what happens in the room to what changes on the job, especially at Levels 3 and 4.',steps:['Reaction','Learning','Behaviour','Results']},
+ {name:'70-20-10',cat:'Development Mix',color:'blue',icon:'<circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/>',desc:'I design leadership pathways as full ecosystems: stretch assignments and peer coaching alongside formal sessions. Most growth happens on the job, and the design should reflect that.',steps:['70% On the job','20% Peer and coaching','10% Formal training']}
+];
+let openFrameworkIndex=null;
+function frameworkIcon(item,small=false){
+ return `<span class="fw-icon c-${item.color}"${small?' style="width:56px;height:56px;border-radius:14px"':''}><svg viewBox="0 0 24 24"${small?' style="width:26px;height:26px"':''}>${item.icon}</svg></span>`;
+}
+function closeFrameworks(){
+ document.querySelectorAll('.fw-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.fw-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openFrameworkIndex=null;
+}
+function openFramework(index){
+ const unit=document.getElementById('frameworkUnit');
+ const tile=unit?.querySelector(`.fw-tile[data-framework-index="${index}"]`);
+ if(!unit||!tile) return;
+ if(openFrameworkIndex===index){closeFrameworks();return}
+ closeFrameworks();
+ const item=FRAMEWORK_ITEMS[index];
+ const reveal=unit.querySelector(`.fw-detail-reveal[data-detail-row="${tile.dataset.row}"]`);
+ const steps=item.steps.map((step,i)=>`<div class="fw-step-chip"><span class="num">${String(i+1).padStart(2,'0')}</span><span class="label">${step}</span></div>`).join('');
+ reveal.querySelector('.fw-detail-card').innerHTML=`<button class="fw-detail-close" type="button" aria-label="Close framework details" onclick="closeFrameworks()">&times;</button><div class="fw-detail-top">${frameworkIcon(item,true)}<div><div class="fw-detail-meta">${item.cat}</div><h3>${item.name}</h3></div></div><p>${item.desc}</p><div class="fw-steps-row">${steps}</div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openFrameworkIndex=index;
+}
+function buildFrameworks(){
+ const unit=document.getElementById('frameworkUnit');
+ if(!unit) return;
+ let html='<div class="fw-row" data-row="0">';
+ FRAMEWORK_ITEMS.forEach((item,index)=>{
+  html+=`<button class="fw-tile" type="button" data-framework-index="${index}" data-row="0" aria-expanded="false" aria-label="${item.name}" onclick="openFramework(${index})">${frameworkIcon(item)}<span class="fw-title-label">${item.name}</span><span class="fw-cat-label">${item.cat}</span></button>`;
+ });
+ html+='</div><div class="fw-detail-reveal" data-detail-row="0"><div><div class="fw-detail-card"></div></div></div>';
+ unit.innerHTML=html;
+}
 const BOOKSHELF_BOOKS=[
  {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},
  {author:'Maria Morukian',title:'Diversity, Equity, and Inclusion for Trainers',color:'green',desc:'An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.'},
@@ -1140,6 +1217,7 @@ function routeFromHash(){
 window.addEventListener('hashchange',routeFromHash);
 consolidatePages();
 buildToolGuide();
+buildFrameworks();
 buildBookshelf();
 syncCoachingStep(0);
 routeFromHash();
