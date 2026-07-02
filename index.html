@@ -213,9 +213,9 @@ img{display:block;max-width:100%;}
 .phase-panel p{color:var(--grey);font-size:.92rem;line-height:1.6;}
 .phase-number,.coaching-mobile-controls{display:none}
 @media(max-width:700px){
-  .hero-pill{display:inline-flex;width:auto;max-width:100%;flex-direction:row;align-items:center;gap:.35rem;padding:.48rem .65rem;border-radius:999px;font-size:clamp(.52rem,2.05vw,.68rem);white-space:nowrap}
-  .hero-role{gap:.35rem;white-space:nowrap}
-  .hero-pill .pdot{width:5px;height:5px;flex:none}
+  .hero-pill{display:inline-flex;width:auto;max-width:100%;flex-direction:row;align-items:center;gap:.22rem;padding:.45rem .5rem;border-radius:999px;font-size:clamp(.47rem,1.78vw,.61rem);letter-spacing:-.015em;white-space:nowrap}
+  .hero-role{gap:.22rem;white-space:nowrap}
+  .hero-pill .pdot{width:4px;height:4px;flex:none}
   .hero-position-mobile{display:none}
   .phase-arc{padding-top:1rem;}
   .phase-arc{min-height:0}
@@ -301,6 +301,35 @@ img{display:block;max-width:100%;}
 .menu-overlay{display:none;}
 .menu-close{display:none;}
 
+/* BOOKSHELF */
+.bookshelf-unit{margin-top:3.25rem}
+.bookshelf-row{display:flex;align-items:flex-start;justify-content:center;gap:1.6rem;flex-wrap:wrap;padding:0 .5rem 1rem}
+.book-tile{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:112px;border:0;background:none;cursor:pointer;padding:.25rem;font-family:inherit;color:var(--ink)}
+.book-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.book-notebook{position:relative;width:78px;height:92px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 20px rgba(20,20,30,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.book-tile:hover .book-notebook{transform:translateY(-6px) rotate(-1.5deg)}
+.book-tile.open .book-notebook{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
+.book-spine{position:absolute;left:15px;top:12px;bottom:12px;width:2px;border-radius:1px;background:rgba(255,255,255,.55)}
+.book-rings{position:absolute;right:-5px;top:14px;bottom:14px;display:flex;flex-direction:column;justify-content:space-between}
+.book-rings span{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px rgba(20,20,30,.16),0 1px 1px rgba(20,20,30,.12)}
+.book-notebook svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.7;position:relative;margin-left:6px}
+.book-notebook.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}
+.book-notebook.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}
+.book-notebook.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
+.book-notebook.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.book-title-label{font-size:.78rem;font-weight:600;line-height:1.3;text-align:center;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.book-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.book-detail-reveal>div{overflow:hidden}
+.book-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.book-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
+.book-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.35;top:-40px;right:-40px}
+.book-detail-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.book-detail-card h3{font-size:1.3rem;margin:0 0 .6rem}
+.book-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.6;margin:0}
+.book-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s}
+.book-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.bookshelf-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+
 /* CARD ICONS */
 .card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;position:relative;}
 .card-icon svg{width:22px;height:22px;stroke-width:1.8;fill:none;stroke:currentColor;}
@@ -356,6 +385,14 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55;opacity:0;pointer-events:none;transition:opacity .3s;}
   .menu-overlay.open{opacity:1;pointer-events:auto;}
   .menu-close{display:block;position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink);z-index:62;width:auto;padding:.3rem;}
+  .bookshelf-row{gap:1rem}
+  .book-tile{width:84px}
+  .book-notebook{width:64px;height:76px;border-radius:10px}
+  .book-notebook svg{width:24px;height:24px}
+  .book-spine{left:12px}
+  .book-rings span{width:7px;height:7px}
+  .book-title-label{font-size:.7rem}
+  .book-detail-card{flex-direction:column;padding:1.5rem}
   .cards{grid-template-columns:1fr;}
   .about-profile{grid-template-columns:1fr;gap:2.5rem;text-align:center;}
   .about-story p{margin-left:auto;margin-right:auto;}
@@ -676,18 +713,10 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="section-center">
       <div class="eyebrow c">Always learning</div>
       <h2>Books I <span class="grad">love.</span></h2>
-      <p class="section-intro">Some of my favourite instructional design and talent development books. The ones that shaped how I think, design, and lead.</p>
+      <p class="section-intro">Some of my favourite instructional design, talent development, leadership, and coaching books. Tap one to read more.</p>
     </div>
-    <div class="cards" style="margin-top:3.5rem;">
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Cammy Bean</div><h3>The Accidental Instructional Designer</h3><p>Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Maria Morukian</div><h3>Diversity, Equity, and Inclusion for Trainers</h3><p>An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Julie Dirksen</div><h3>Design for How People Learn</h3><p>Clear, evidence-based insights on memory, attention, and motivation. Changed the way I think about what "learning" actually means.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Cathy Moore</div><h3>Map It</h3><p>Action mapping keeps every project anchored to a real business goal and what people need to do, not just know. I return to this constantly.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Brown, Roediger & McDaniel</div><h3>Make It Stick</h3><p>The science of durable learning: retrieval practice, spacing, interleaving. It changed how I design every single course.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Brené Brown</div><h3>Dare to Lead</h3><p>Courage, vulnerability, and trust reframed as leadership skills you can actually teach. A cornerstone of my leadership development programs.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Boyatzis, Smith & Van Oosten</div><h3>Helping People Change</h3><p>Coaching with compassion over compliance. The research on what actually helps people change long-term changed how I approach every coaching conversation.</p></div>
-      <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="card-meta">Michael Bungay Stanier</div><h3>The Coaching Habit</h3><p>Seven questions that make you a better coach and a better leader. Short, practical, and immediately usable. I recommend it to every people manager I work with.</p></div>
-    </div>
+    <div class="bookshelf-unit" id="bookshelfUnit"></div>
+    <p class="bookshelf-hint">Tap any book to open it. Tap it again or use the close button to close it.</p>
   </div>
 </section>
 
@@ -971,6 +1000,56 @@ function scrollFrameworks(direction){
  if(!carousel) return;
  carousel.scrollBy({left:direction*carousel.clientWidth*.82,behavior:'smooth'});
 }
+const BOOKSHELF_BOOKS=[
+ {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},
+ {author:'Maria Morukian',title:'Diversity, Equity, and Inclusion for Trainers',color:'green',desc:'An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.'},
+ {author:'Julie Dirksen',title:'Design for How People Learn',color:'teal',desc:'Clear, evidence-based insights on memory, attention, and motivation. Changed the way I think about what learning actually means.'},
+ {author:'Cathy Moore',title:'Map It',color:'yellow',desc:'Action mapping keeps every project anchored to a real business goal and what people need to do, not just know. I return to this constantly.'},
+ {author:'Brown, Roediger & McDaniel',title:'Make It Stick',color:'blue',desc:'The science of durable learning: retrieval practice, spacing, and interleaving. It changed how I design every single course.'},
+ {author:'Brene Brown',title:'Dare to Lead',color:'green',desc:'Courage, vulnerability, and trust reframed as leadership skills you can actually teach. A cornerstone of my leadership development programs.'},
+ {author:'Boyatzis, Smith & Van Oosten',title:'Helping People Change',color:'teal',desc:'Coaching with compassion over compliance. The research on what actually helps people change long-term changed how I approach every coaching conversation.'},
+ {author:'Michael Bungay Stanier',title:'The Coaching Habit',color:'yellow',desc:'Seven questions that make you a better coach and a better leader. Short, practical, and immediately usable. I recommend it to every people manager I work with.'}
+];
+let openBookIndex=null;
+function bookNotebook(color){
+ return `<span class="book-notebook c-${color}"><span class="book-spine"></span><span class="book-rings"><span></span><span></span><span></span><span></span><span></span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>`;
+}
+function closeBookshelf(){
+ document.querySelectorAll('.book-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.book-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openBookIndex=null;
+}
+function openBook(index){
+ const shelf=document.getElementById('bookshelfUnit');
+ const tile=shelf?.querySelector(`.book-tile[data-book-index="${index}"]`);
+ if(!shelf||!tile) return;
+ if(openBookIndex===index){closeBookshelf();return}
+ closeBookshelf();
+ const row=tile.dataset.row;
+ const reveal=shelf.querySelector(`.book-detail-reveal[data-detail-row="${row}"]`);
+ const book=BOOKSHELF_BOOKS[index];
+ reveal.querySelector('.book-detail-card').innerHTML=`<button class="book-detail-close" type="button" aria-label="Close book details" onclick="closeBookshelf()">&times;</button>${bookNotebook(book.color)}<div><div class="book-detail-meta">${book.author}</div><h3>${book.title}</h3><p>${book.desc}</p></div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openBookIndex=index;
+}
+function buildBookshelf(){
+ const shelf=document.getElementById('bookshelfUnit');
+ if(!shelf) return;
+ const perRow=4;
+ let html='';
+ for(let start=0;start<BOOKSHELF_BOOKS.length;start+=perRow){
+  const row=start/perRow;
+  html+=`<div class="bookshelf-row" data-row="${row}">`;
+  BOOKSHELF_BOOKS.slice(start,start+perRow).forEach((book,offset)=>{
+   const index=start+offset;
+   html+=`<button class="book-tile" type="button" data-book-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${book.title} by ${book.author}" onclick="openBook(${index})">${bookNotebook(book.color)}<span class="book-title-label">${book.title}</span></button>`;
+  });
+  html+=`</div><div class="book-detail-reveal" data-detail-row="${row}"><div><div class="book-detail-card"></div></div></div>`;
+ }
+ shelf.innerHTML=html;
+}
 function consolidatePages(){
  const frameworks=document.querySelector('#frameworks > .section');
  const books=document.querySelector('#books > .section');
@@ -1061,6 +1140,7 @@ function routeFromHash(){
 window.addEventListener('hashchange',routeFromHash);
 consolidatePages();
 buildToolGuide();
+buildBookshelf();
 syncCoachingStep(0);
 routeFromHash();
 function toggleMenu(){
