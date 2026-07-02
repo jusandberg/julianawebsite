@@ -72,6 +72,7 @@ img{display:block;max-width:100%;}
 .hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
 .hero-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;color:var(--ink);background:#F3F4F6;border:1px solid #E1E5EA;padding:.4rem 1rem;border-radius:980px;margin-bottom:2rem;}
 .hero-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.hero-role{display:inline-flex;align-items:center;gap:.5rem}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin-bottom:1.6rem;}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .hero-sub{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--grey);max-width:38rem;margin:0 auto 2.4rem;line-height:1.55;}
@@ -192,25 +193,33 @@ img{display:block;max-width:100%;}
 #about .books-section .card{min-height:0;padding:1.75rem}
 #work .card p,#books .card p,.books-section .card p{flex:1;}
 #work .card-link{margin-top:auto;}
-.phase-arc{position:relative;max-width:860px;margin:3rem auto 0;padding:3.5rem 1rem 1rem;}
+#coaching>.section>.cards{align-items:stretch}
+#coaching>.section>.cards>.card{display:flex;flex-direction:column;height:100%}
+#coaching>.section>.cards>.card p{flex:1}
+.phase-arc{position:relative;max-width:1040px;min-height:410px;margin:1.75rem auto 0;padding:3.5rem 1rem 1rem;}
 .phase-arc svg{position:absolute;inset:0;width:100%;height:150px;overflow:visible;pointer-events:none;}
-.arc-path{fill:none;stroke:rgba(15,159,154,.24);stroke-width:2;stroke-linecap:round;}
-.phase-points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;position:relative;z-index:1;}
+.arc-path{fill:none;stroke:rgba(15,159,154,.3);stroke-width:2;stroke-linecap:round;}
+.phase-points{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.45rem;position:relative;z-index:1;}
 .phase-point{text-align:center;}
-.phase-toggle{width:52px;height:52px;border-radius:50%;border:1px solid rgba(15,159,154,.3);background:#fff;color:var(--teal);font-size:1.65rem;line-height:1;cursor:pointer;box-shadow:0 10px 24px rgba(15,159,154,.1);transition:transform .25s,box-shadow .25s,border-color .25s;}
-.phase-toggle:hover,.phase-toggle[aria-expanded="true"]{transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,159,154,.16);border-color:rgba(15,159,154,.65);}
-.phase-point .card-meta{margin-top:.9rem;}
-.phase-panel{display:none;margin-top:1rem;border:1px solid var(--line);border-radius:18px;padding:1.2rem;background:#fff;text-align:left;box-shadow:0 12px 30px rgba(7,16,20,.05);}
+.phase-point:nth-child(1),.phase-point:nth-child(7){margin-top:62px}.phase-point:nth-child(2),.phase-point:nth-child(6){margin-top:28px}.phase-point:nth-child(3),.phase-point:nth-child(5){margin-top:8px}
+.phase-toggle{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(15,159,154,.42);background:#fff;color:var(--teal);font-size:1.45rem;line-height:1;cursor:pointer;box-shadow:0 9px 22px rgba(15,159,154,.1);transition:transform .25s,box-shadow .25s,border-color .25s,background .25s,color .25s;}
+.phase-toggle:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(15,159,154,.17);border-color:var(--teal)}
+.phase-toggle[aria-expanded="true"]{transform:translateY(-3px);background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 14px 30px rgba(15,159,154,.24)}
+.phase-point .card-meta{margin-top:.75rem;font-size:.66rem;white-space:nowrap}
+.phase-panel{display:none;position:absolute;top:170px;left:50%;transform:translateX(-50%);width:min(650px,90vw);border:1px solid rgba(15,159,154,.2);border-radius:20px;padding:1.45rem 1.65rem;background:linear-gradient(145deg,#fff,#f7fbfa);text-align:left;box-shadow:0 16px 36px rgba(7,16,20,.07);}
 .phase-panel.open{display:block;animation:fade .25s ease;}
 .phase-panel h3{font-size:1.2rem;margin-bottom:.45rem;}
 .phase-panel p{color:var(--grey);font-size:.92rem;line-height:1.6;}
 @media(max-width:700px){
+  .hero-pill{width:min(100%,330px);flex-direction:column;align-items:stretch;gap:.55rem;padding:.8rem 1rem;border-radius:20px}
+  .hero-role{display:grid;grid-template-columns:8px 1fr;gap:.65rem;align-items:center;text-align:left;line-height:1.3}
   .phase-arc{padding-top:1rem;}
+  .phase-arc{min-height:0}
   .phase-arc svg{display:none;}
   .phase-points{grid-template-columns:1fr;}
-  .phase-point{text-align:left;display:grid;grid-template-columns:52px 1fr;column-gap:1rem;align-items:center;}
+  .phase-point{margin-top:0!important;text-align:left;display:grid;grid-template-columns:52px 1fr;column-gap:1rem;align-items:center;}
   .phase-point .card-meta{margin:0;}
-  .phase-panel{grid-column:1/-1;}
+  .phase-panel{position:static;transform:none;width:auto;margin-top:1rem;grid-column:1/-1;}
 }
 
 /* AI IN MY PRACTICE */
@@ -239,7 +248,7 @@ img{display:block;max-width:100%;}
 .tool-result{display:none;max-width:900px;margin:1rem auto 0}.tool-result.show{display:block;animation:toolEnter .35s ease}@keyframes toolEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .tool-result-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 46px rgba(7,16,20,.08)}.tool-result-main{padding:2rem}.tool-result-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--active)}.tool-result-title{display:flex;align-items:center;gap:.8rem;margin:.6rem 0 .8rem}.tool-result-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--active-soft);color:var(--active);font-size:1.25rem;font-weight:800}.tool-result-title h3{font-size:clamp(1.7rem,4vw,2.6rem);margin:0}.tool-result-main p{color:var(--grey);line-height:1.65;margin-bottom:1.2rem}.tool-result-actions{display:flex;gap:.65rem;flex-wrap:wrap}.tool-result-side{padding:1.6rem;background:var(--active-soft);display:flex;flex-direction:column;justify-content:center}.tool-result-side span{color:var(--active);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.tool-result-side p{font-weight:700;line-height:1.55}.tool-time{color:var(--grey);font-size:.78rem;font-weight:650}.tool-privacy{text-align:center;color:var(--grey);font-size:.74rem;margin-top:1rem}.browse-all{margin-top:4rem;text-align:center}.browse-all h3{font-size:1.5rem;margin-bottom:.4rem}.browse-all p{color:var(--grey)}
 #coaching .coaching-tools .browse-all,#coaching .coaching-tools .browse-all + .cards{display:none}
-.coaching-approach{margin-top:4.5rem}.coaching-approach .cards{margin-top:2rem}.coaching-approach .card p{margin-bottom:0}
+.coaching-approach{margin:3rem auto 0;max-width:900px;text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.coaching-approach h2{margin:0!important}
 
 /* CTA */
 .cta{position:relative;text-align:center;padding:7rem 1.5rem;overflow:hidden;background:var(--soft);}
@@ -367,7 +376,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
     <div class="dot dot1"></div><div class="dot dot2"></div><div class="dot dot3"></div>
     <div class="hero-inner">
-      <span class="hero-pill"><span class="pdot"></span> Talent Development Program Manager <span class="pdot"></span> AI-Enabled Learning Designer <span class="pdot"></span> Coach</span>
+      <span class="hero-pill"><span class="hero-role"><span class="pdot"></span><span>Talent Development Program Manager</span></span><span class="hero-role"><span class="pdot"></span><span>AI-Enabled Learning Designer</span></span><span class="hero-role"><span class="pdot"></span><span>Coach</span></span></span>
       <h1>I help people <span class="grad">grow.</span><br>At work, and as humans.</h1>
       <p class="hero-sub">I build talent programs, interactive learning, AI tools, apps, courses, videos, and digital experiences that connect human growth to measurable outcomes.</p>
       <div class="hero-btns">
@@ -667,49 +676,62 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="card-meta">For Organizations</div>
         <h3>IC Development Consulting</h3>
-        <p>My specialty: helping companies build individual contributor pathways so people can grow, lead, and advance without being forced into management.</p>
+        <p>I help companies build individual contributor pathways so people can grow, lead, and explore possibilities, including greater seniority in their craft and people management.</p>
       </div>
       <div class="card">
         <div class="card-ring"></div>
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div>
         <div class="card-meta">For Individuals</div>
         <h3>1:1 Integrative Coaching</h3>
-        <p>Quiet the mental noise, build emotional intelligence, and lead yourself with intention. Coaching blends EQ work, identity work, and behaviour change into one grounded process.</p>
+        <p>I help people quiet their mental noise, build emotional intelligence, and lead themselves with intention. My approach brings EQ, identity work, and behaviour change together in one grounded process.</p>
       </div>
     </div>
 
     <div class="coaching-approach">
-      <div class="section-center">
-        <div class="eyebrow c">My coaching approach</div>
-        <h2 style="font-size:1.8rem;">Human, reflective, and <span class="grad">grounded in EQ.</span></h2>
-        <p class="section-intro">Integrative development coaching in English and Portuguese. EQ-i 2.0® certified. For people ready to stop performing a version of themselves and start leading from who they actually are.</p>
-      </div>
-      <div class="cards">
-        <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/></svg></div><div class="card-meta">Integrative Development</div><h3>Work with the whole person</h3><p>We look at identity, beliefs, patterns, values, and the real context around you, not just the goal written at the top of the page.</p></div>
-        <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="card-meta">Emotional Intelligence</div><h3>Build awareness you can use</h3><p>EQ helps make emotions useful information: clearer self-perception, more intentional expression, stronger relationships, better decisions, and steadier responses under pressure.</p></div>
-      </div>
+      <h2 style="font-size:1.8rem;">I help people stop performing a version of themselves and <span class="grad">start leading from who they actually are.</span></h2>
     </div>
 
-    <div class="section-center" style="margin-top:5rem;">
-      <h2 style="font-size:1.8rem;">Three phases. One <span class="grad">through-line: you.</span></h2>
+    <div class="section-center" style="margin-top:2.25rem;">
+      <h2 style="font-size:1.8rem;">A coaching <span class="grad">conversation.</span></h2>
+      <p class="section-intro">Every conversation responds to the person and what they bring. This is a typical flow, not a rigid formula.</p>
     </div>
-    <div class="phase-arc" aria-label="Three coaching phases">
-      <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M80 125 C250 5 610 5 780 125"/></svg>
+    <div class="phase-arc" aria-label="Seven parts of an ICF-aligned coaching conversation">
+      <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M45 128 C235 -5 625 -5 815 128"/></svg>
       <div class="phase-points">
         <div class="phase-point">
           <button class="phase-toggle" type="button" aria-expanded="true" onclick="togglePhase(this)">+</button>
-          <div class="card-meta">Phase 01</div>
-          <div class="phase-panel open"><h3>Uncover</h3><p>Before anything changes, you have to see it clearly. We use reflective inquiry and EQ tools to surface the beliefs, patterns, and stories running the show.</p></div>
+          <div class="card-meta">01 · Connect</div>
+          <div class="phase-panel open"><h3>Build trust and presence</h3><p>I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.</p></div>
         </div>
         <div class="phase-point">
           <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <div class="card-meta">Phase 02</div>
-          <div class="phase-panel"><h3>Unravel</h3><p>Identity work is the heart of this phase. We separate inherited patterns from your actual values and desires: who were you told to be, and who do you actually want to be?</p></div>
+          <div class="card-meta">02 · Goal</div>
+          <div class="phase-panel"><h3>Establish the goal</h3><p>We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.</p></div>
         </div>
         <div class="phase-point">
           <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <div class="card-meta">Phase 03</div>
-          <div class="phase-panel"><h3>Unleash</h3><p>With clarity comes capacity. We build the grounded confidence and decision-making habits that let you move forward as yourself.</p></div>
+          <div class="card-meta">03 · Explore</div>
+          <div class="phase-panel"><h3>Explore the current reality</h3><p>I listen deeply, reflect what I notice, and ask questions that help the client understand the situation, emotions, patterns, and context more fully.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <div class="card-meta">04 · Awareness</div>
+          <div class="phase-panel"><h3>Generate awareness</h3><p>We challenge assumptions, notice beliefs, reframe perspectives, and make room for insights that expand what the client can see.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <div class="card-meta">05 · Options</div>
+          <div class="phase-panel"><h3>Create options</h3><p>The client generates possibilities and explores different ways forward. My role is to invite thinking, not prescribe advice.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <div class="card-meta">06 · Action</div>
+          <div class="phase-panel"><h3>Commit to action</h3><p>The client chooses a next step that feels meaningful, realistic, and aligned with their goals and values.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <div class="card-meta">07 · Close</div>
+          <div class="phase-panel"><h3>Capture learning and accountability</h3><p>We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.</p></div>
         </div>
       </div>
     </div>
@@ -732,13 +754,13 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <p class="section-intro">I created these tools to offer you a free, accessible place to pause, reflect, and reconnect with what you need. Explore them at your own pace, and start wherever feels most supportive today.</p>
     </div>
     <div class="tool-guide">
-      <div class="tool-guide-question"><span>One quick question</span><h3>What would feel most helpful right now?</h3></div>
+      <div class="tool-guide-question"><span>Free, self-led reflection tools</span><h3>Which tool would you like to explore?</h3></div>
       <div class="tool-needs" id="toolNeeds"></div>
     </div>
     <div class="tool-result" id="toolResult" aria-live="polite">
       <div class="tool-result-card">
         <div class="tool-result-main">
-          <div class="tool-result-label">A supportive place to start</div>
+          <div class="tool-result-label">This tool may support you</div>
           <div class="tool-result-title"><span class="tool-result-icon" id="toolResultIcon" aria-hidden="true"></span><h3 id="toolResultTitle"></h3></div>
           <p id="toolResultCopy"></p>
           <div class="tool-result-actions"><a class="btn-fill" id="toolResultLink">Start this free tool</a><button class="btn-text" type="button" onclick="resetToolGuide()">Choose again</button></div>
@@ -872,12 +894,12 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 
 <script>
 const TOOL_CHOICES=[
- {id:'clarity',label:'I need clarity',sub:'My thoughts feel tangled or noisy',icon:'?',color:'#4285f4',soft:'rgba(66,133,244,.09)',tool:'Inner Critic Reframe',href:'tool-inner-critic.html',copy:'Separate the harsh voice from the useful information underneath it, then write a response that feels grounded and believable.',why:'It can turn mental noise into a clearer, kinder perspective without forcing positivity.',time:'About 5 minutes'},
- {id:'decision',label:'I need to decide',sub:'Two or more options are pulling at me',icon:'↗',color:'#215d82',soft:'rgba(33,93,130,.09)',tool:'Decision Compass',href:'tool-decision-compass.html',copy:'Compare your options against the values that matter most and see what the pattern reveals.',why:'It gives the decision structure while leaving room for intuition and emotion.',time:'About 8 minutes'},
- {id:'energy',label:'I feel depleted',sub:'I want to understand what is draining me',icon:'~',color:'#0f9f9a',soft:'rgba(15,159,154,.09)',tool:'Energy Audit',href:'tool-energy.html',copy:'Sort what gives you energy, drains it, or feels neutral, then look for useful patterns.',why:'It turns a vague feeling of depletion into specific information you can act on.',time:'About 7 minutes'},
- {id:'values',label:'I feel disconnected',sub:'I want to remember what matters to me',icon:'◆',color:'#34a853',soft:'rgba(52,168,83,.09)',tool:'Values Sort',href:'tool-values.html',copy:'Sort thirty values, narrow them to five, and notice which ones feel most essential to who you are now.',why:'Values offer a steadier reference point when expectations and outside opinions feel loud.',time:'About 10 minutes'},
- {id:'balance',label:'I feel out of balance',sub:'I want a broader view of my life',icon:'○',color:'#668776',soft:'rgba(102,135,118,.1)',tool:'Wheel of Life',href:'tool-wheel.html',copy:'Rate eight areas of your life and see where attention, satisfaction, or change may be most needed.',why:'It gives you a whole-life snapshot instead of focusing only on the loudest problem.',time:'About 6 minutes'},
- {id:'action',label:'I am ready to act',sub:'I know what I want but need a first step',icon:'+',color:'#c98f00',soft:'rgba(251,188,5,.11)',tool:'Goal Canvas',href:'tool-goal-canvas.html',copy:'Turn an intention into a grounded goal, name likely obstacles, and choose one concrete next step.',why:'It keeps momentum practical and small enough to begin.',time:'About 8 minutes'}
+ {id:'clarity',label:'Inner Critic Reframe',sub:'Gain clarity when your thoughts feel tangled or noisy',icon:'?',color:'#4285f4',soft:'rgba(66,133,244,.09)',tool:'Inner Critic Reframe',href:'tool-inner-critic.html',copy:'This tool can help you separate a harsh inner voice from the useful information underneath it, then shape a response that feels grounded and believable.',why:'It can turn mental noise into a clearer, kinder perspective without forcing positivity.',time:'About 5 minutes'},
+ {id:'decision',label:'Decision Compass',sub:'Find direction when more than one option is pulling at you',icon:'↗',color:'#215d82',soft:'rgba(33,93,130,.09)',tool:'Decision Compass',href:'tool-decision-compass.html',copy:'This tool can help you compare your options against the values that matter most and notice what the pattern reveals.',why:'It gives the decision structure while leaving room for intuition and emotion.',time:'About 8 minutes'},
+ {id:'energy',label:'Energy Audit',sub:'Understand what is energizing you and what is draining you',icon:'~',color:'#0f9f9a',soft:'rgba(15,159,154,.09)',tool:'Energy Audit',href:'tool-energy.html',copy:'This tool can help you sort what gives you energy, drains it, or feels neutral, then identify patterns you can act on.',why:'It turns a vague feeling of depletion into specific information you can use.',time:'About 7 minutes'},
+ {id:'values',label:'Values Sort',sub:'Reconnect with what matters most to you',icon:'◆',color:'#34a853',soft:'rgba(52,168,83,.09)',tool:'Values Sort',href:'tool-values.html',copy:'This tool can help you explore thirty values, narrow them to five, and notice which ones feel most essential to who you are now.',why:'Values offer a steadier reference point when expectations and outside opinions feel loud.',time:'About 10 minutes'},
+ {id:'balance',label:'Wheel of Life',sub:'See a broader picture of balance across your life',icon:'○',color:'#668776',soft:'rgba(102,135,118,.1)',tool:'Wheel of Life',href:'tool-wheel.html',copy:'This tool can help you reflect on eight areas of your life and see where attention, satisfaction, or change may be most needed.',why:'It gives you a whole-life snapshot instead of focusing only on the loudest problem.',time:'About 6 minutes'},
+ {id:'action',label:'Goal Canvas',sub:'Turn an intention into a practical first step',icon:'+',color:'#c98f00',soft:'rgba(251,188,5,.11)',tool:'Goal Canvas',href:'tool-goal-canvas.html',copy:'This tool can help you turn an intention into a grounded goal, name likely obstacles, and choose one concrete next step.',why:'It keeps momentum practical and small enough to begin.',time:'About 8 minutes'}
 ];
 function buildToolGuide(){
  const needs=document.getElementById('toolNeeds');
