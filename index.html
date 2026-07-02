@@ -213,10 +213,10 @@ img{display:block;max-width:100%;}
 .phase-panel p{color:var(--grey);font-size:.92rem;line-height:1.6;}
 .phase-number,.coaching-mobile-controls{display:none}
 @media(max-width:700px){
-  .hero-pill{display:none}
-  .hero-position-mobile{display:flex;flex-direction:column;align-items:center;gap:.35rem;margin:0 auto 1.8rem;line-height:1.3}
-  .hero-position-mobile strong{font-size:.9rem}
-  .hero-position-mobile span{font-size:.8rem;font-weight:650;color:var(--teal)}
+  .hero-pill{display:inline-flex;width:auto;max-width:100%;flex-direction:row;align-items:center;gap:.35rem;padding:.48rem .65rem;border-radius:999px;font-size:clamp(.52rem,2.05vw,.68rem);white-space:nowrap}
+  .hero-role{gap:.35rem;white-space:nowrap}
+  .hero-pill .pdot{width:5px;height:5px;flex:none}
+  .hero-position-mobile{display:none}
   .phase-arc{padding-top:1rem;}
   .phase-arc{min-height:0}
   .phase-arc svg{display:none;}
@@ -233,6 +233,9 @@ img{display:block;max-width:100%;}
   .coaching-dots{display:flex;justify-content:center;gap:5px;margin-top:.45rem}
   .coaching-dot{width:6px;height:6px;border-radius:50%;background:#d7dddf}
   .coaching-dot.active{background:var(--teal);transform:scale(1.25)}
+  #work .framework-carousel{grid-auto-columns:86%;gap:.85rem;scrollbar-width:none}
+  #work .framework-carousel::-webkit-scrollbar{display:none}
+  .framework-carousel-controls{justify-content:center;margin-top:1rem}
 }
 
 /* AI IN MY PRACTICE */
@@ -256,8 +259,11 @@ img{display:block;max-width:100%;}
 #work>.merged-section>.cards{margin-top:2rem}#work>.merged-section>.ai-practice{margin-top:3rem}#work>.merged-section>.section-center:first-child{margin-bottom:0}
 .tool-guide{max-width:900px;margin:3rem auto 0;padding:1.4rem;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#fff,#f5faf9);box-shadow:0 18px 46px rgba(7,16,20,.08)}
 .tool-guide-question{text-align:center;margin-bottom:1.2rem}.tool-guide-question span{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}.tool-guide-question h3{font-size:1.4rem;margin:.35rem 0 0}
-.tool-needs{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}.tool-need{min-height:122px;padding:1rem;border:1px solid var(--line);border-radius:18px;background:#fff;text-align:left;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}.tool-need:hover,.tool-need.selected{transform:translateY(-3px);box-shadow:0 12px 26px rgba(7,16,20,.09);border-color:var(--choice)}.tool-need.selected{background:var(--choice-soft)}
-.tool-need-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--choice-soft);color:var(--choice);font-size:1rem;font-weight:800;margin-bottom:.7rem}.tool-need strong{display:block;font-size:.91rem;margin-bottom:.3rem}.tool-need small{display:block;color:var(--grey);font-size:.75rem;line-height:1.4}
+.tool-needs{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}.tool-need{min-height:122px;padding:1rem;border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none;text-align:left;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}.tool-need:hover,.tool-need.selected{transform:translateY(-3px);box-shadow:0 12px 26px rgba(7,16,20,.09);border-color:var(--choice)}.tool-need.selected{background:var(--choice-soft)}
+.tool-need-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--choice-soft);color:var(--choice);font-size:1rem;font-weight:800;margin-bottom:.7rem}.tool-need strong{display:block;color:var(--ink);-webkit-text-fill-color:var(--ink);font-size:.91rem;margin-bottom:.3rem}.tool-need small{display:block;color:var(--grey);-webkit-text-fill-color:var(--grey);font-size:.75rem;line-height:1.4}
+.framework-carousel-controls{display:flex;justify-content:flex-end;gap:.55rem;margin:1.25rem 0 .8rem}.framework-carousel-controls button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:1.05rem;cursor:pointer;transition:transform .2s,border-color .2s,color .2s}.framework-carousel-controls button:hover{transform:translateY(-2px);border-color:var(--teal);color:var(--teal)}
+#work .framework-carousel{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:calc((100% - 2.3rem)/3);gap:1.15rem;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline mandatory;scroll-behavior:smooth;padding:.25rem .1rem 1rem;margin-top:0;scrollbar-width:thin;scrollbar-color:rgba(15,159,154,.35) transparent}
+#work .framework-carousel>.card{grid-column:auto;scroll-snap-align:start;min-width:0}
 .tool-result{display:none;max-width:900px;margin:1rem auto 0}.tool-result.show{display:block;animation:toolEnter .35s ease}@keyframes toolEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .tool-result-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 46px rgba(7,16,20,.08)}.tool-result-main{padding:2rem}.tool-result-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--active)}.tool-result-title{display:flex;align-items:center;gap:.8rem;margin:.6rem 0 .8rem}.tool-result-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--active-soft);color:var(--active);font-size:1.25rem;font-weight:800}.tool-result-title h3{font-size:clamp(1.7rem,4vw,2.6rem);margin:0}.tool-result-main p{color:var(--grey);line-height:1.65;margin-bottom:1.2rem}.tool-result-actions{display:flex;gap:.65rem;flex-wrap:wrap}.tool-result-side{padding:1.6rem;background:var(--active-soft);display:flex;flex-direction:column;justify-content:center}.tool-result-side span{color:var(--active);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.tool-result-side p{font-weight:700;line-height:1.55}.tool-time{color:var(--grey);font-size:.78rem;font-weight:650}.tool-privacy{text-align:center;color:var(--grey);font-size:.74rem;margin-top:1rem}.browse-all{margin-top:4rem;text-align:center}.browse-all h3{font-size:1.5rem;margin-bottom:.4rem}.browse-all p{color:var(--grey)}
 #coaching .coaching-tools .browse-all,#coaching .coaching-tools .browse-all + .cards{display:none}
@@ -398,7 +404,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <button class="btn-outline" onclick="showPage('about')">Learn about me</button>
         <a href="Juliana-Dos-Santos-Resume-2026.pdf" class="btn-soft">View my resume</a>
       </div>
-      <div class="hero-photo-wrap"><div class="photo-ring"></div><img src="profile-new.jpg" alt="Juliana Dos Santos"></div>
+      <div class="hero-photo-wrap"><div class="photo-ring"></div><img src="profile.jpg" alt="Juliana Dos Santos"></div>
     </div>
   </div>
 
@@ -425,7 +431,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 <section class="page" id="about">
   <div class="section">
     <div class="about-profile">
-      <div class="about-photo"><img src="profile-new.jpg" alt="Juliana Dos Santos"></div>
+      <div class="about-photo"><img src="profile.jpg" alt="Juliana Dos Santos"></div>
       <div class="about-story">
         <div class="eyebrow">My Journey</div>
         <h2>Who <span class="grad">I am.</span></h2>
@@ -577,7 +583,8 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <h2 style="font-size:1.8rem;">The frameworks behind it</h2>
       <p class="section-intro">Evidence-based models keep my work rigorous. The ones I reach for, and why each earns its place.</p>
     </div>
-    <div class="cards" style="margin-top:2.5rem;">
+    <div class="framework-carousel-controls" aria-label="Framework carousel controls"><button type="button" onclick="scrollFrameworks(-1)" aria-label="Previous frameworks">&larr;</button><button type="button" onclick="scrollFrameworks(1)" aria-label="Next frameworks">&rarr;</button></div>
+    <div class="cards framework-carousel" id="frameworkCarousel">
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div><div class="card-meta">Instructional Design</div><h3>ADDIE</h3><p>The classic five-phase model (Analyze, Design, Develop, Implement, Evaluate) that gives every project a rigorous, end-to-end structure. My backbone for large-scale programs like onboarding redesigns.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></div><div class="card-meta">Agile Design</div><h3>SAM</h3><p>The Successive Approximation Model replaces a linear waterfall with rapid cycles of prototyping, review, and iteration. My go-to in fast-moving environments where feedback early and often matters.</p></div>
       <div class="card"><div class="card-ring"></div><div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="card-meta">Cognitive Hierarchy</div><h3>Bloom's Taxonomy</h3><p>A hierarchy of cognitive skills, from remembering and understanding up through applying, analyzing, evaluating, and creating. It shapes how I write objectives and assessments.</p></div>
@@ -951,6 +958,11 @@ function resetToolGuide(){
  document.querySelectorAll('.tool-need').forEach(item=>item.classList.remove('selected'));
  document.getElementById('toolResult').classList.remove('show');
  document.querySelector('.tool-guide-question').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function scrollFrameworks(direction){
+ const carousel=document.getElementById('frameworkCarousel');
+ if(!carousel) return;
+ carousel.scrollBy({left:direction*carousel.clientWidth*.82,behavior:'smooth'});
 }
 function consolidatePages(){
  const frameworks=document.querySelector('#frameworks > .section');
