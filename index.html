@@ -115,18 +115,24 @@ img{display:block;max-width:100%;}
 .section-intro.left{margin:0;}
 
 /* WHO I AM */
-.about-profile{display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:center;margin-bottom:4.5rem;position:relative;z-index:1;}
-.about-photo{position:relative;width:280px;height:280px;margin:auto;}
-.about-photo::before{content:"";position:absolute;inset:-12px;border:1.5px solid rgba(15,159,154,.28);border-radius:50%;animation:decorFloatA 11s ease-in-out infinite;}
-.about-photo::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:var(--yellow);right:8px;top:18px;}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%;border-radius:50%;}
+.about-profile{display:grid;grid-template-columns:340px 1fr;gap:3.5rem;align-items:center;margin-bottom:3.5rem;position:relative;z-index:1;}
+.about-photo{position:relative;width:280px;height:280px;margin:auto;transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+.about-photo:hover{transform:scale(1.03)}
+.about-photo::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line);border-radius:50%;animation:aboutSpin 40s linear infinite;}
+.about-photo::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--yellow);right:12px;top:14px;box-shadow:0 0 0 6px #fff;animation:aboutPulse 2.6s ease-in-out infinite;}
+@keyframes aboutSpin{to{transform:rotate(360deg)}}@keyframes aboutPulse{50%{transform:scale(1.18)}}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%;border-radius:50%;box-shadow:0 20px 40px rgba(20,20,30,.08);}
 .about-story h2{font-size:clamp(2.2rem,4.5vw,3.5rem);margin-bottom:1.2rem;}
 .about-story p{font-size:1.05rem;color:var(--grey);line-height:1.75;margin-bottom:1rem;max-width:42rem;}
 .about-values{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;}
-.about-values span{font-size:.76rem;font-weight:600;color:var(--ink);background:#F3F4F6;border:1px solid #E1E5EA;border-radius:999px;padding:.45rem .8rem;}
-.about-beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:4.5rem;}
-.about-belief{border:1px solid var(--line);border-radius:18px;padding:1.5rem;background:#fff;transition:transform .25s,box-shadow .25s,border-color .25s;}
+.about-values span{font-size:.78rem;font-weight:600;border-radius:999px;padding:.48rem .9rem;display:inline-flex;align-items:center;gap:.4rem;}
+.about-values span::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.about-values .v-blue{background:#EAF1FE;color:#2f5fc4}.about-values .v-green{background:#E9F7EE;color:#227a3e}.about-values .v-teal{background:#E4F6F5;color:#0b736f}.about-values .v-yellow{background:#FFF7E0;color:#a17400}
+.about-beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:4.5rem;}
+.about-belief{border:1px solid var(--line);border-radius:20px;padding:1.75rem;background:#fff;transition:transform .3s,box-shadow .3s,border-color .3s;}
 .about-belief:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(15,159,154,.1);border-color:rgba(15,159,154,.4);}
+.about-belief-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 3px 0 rgba(0,0,0,.06),0 8px 16px rgba(20,20,30,.12)}
+.about-belief-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.about-belief-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}.about-belief-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.about-belief-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
 .about-belief .label{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--teal);margin-bottom:.7rem;}
 .about-belief h3{font-size:1.1rem;margin-bottom:.55rem;}
 .about-belief p{font-size:.9rem;color:var(--grey);line-height:1.55;}
@@ -243,9 +249,10 @@ img{display:block;max-width:100%;}
 .ai-practice>h3{font-size:1.5rem;margin-bottom:.55rem;position:relative;}
 .ai-practice>.ai-intro{color:var(--grey);font-size:1rem;line-height:1.65;max-width:44rem;margin-bottom:1.7rem;position:relative;}
 .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;position:relative;}
-.ai-card{border-radius:22px;padding:1.8rem;background:linear-gradient(135deg,rgba(15,159,154,.11),rgba(255,255,255,.82));border:1px solid rgba(15,159,154,.08);transition:transform .3s,box-shadow .3s,border-color .3s;}
+.ai-card{border-radius:22px;padding:1.8rem;background:linear-gradient(135deg,rgba(15,159,154,.11),rgba(255,255,255,.82));border:1px solid rgba(15,159,154,.08);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
 .ai-card:nth-child(2){background:linear-gradient(135deg,rgba(83,205,232,.16),rgba(255,255,255,.82));}
 .ai-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,159,154,.12);border-color:rgba(15,159,154,.35);}
+.ai-card::after{content:"";position:absolute;width:110px;height:110px;border:1px solid rgba(15,159,154,.2);border-radius:50%;right:-58px;bottom:-62px;pointer-events:none}
 .ai-kicker{display:flex;align-items:center;gap:.5rem;color:var(--teal);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem;}
 .ai-kicker svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;}
 .ai-card h4{font-size:1.25rem;margin-bottom:.5rem;}
@@ -254,6 +261,27 @@ img{display:block;max-width:100%;}
 .ai-list li{position:relative;padding-left:1.5rem;font-size:.88rem;line-height:1.55;}
 .ai-list li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--teal);}
 .ai-outputs{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}.ai-output{padding:.55rem .8rem;border:1px solid #dde3e8;border-radius:999px;background:#fff;color:var(--ink);font-size:.78rem;font-weight:700}
+.ai-toggle{position:absolute;top:1.35rem;right:1.35rem;width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,159,154,.35);background:rgba(255,255,255,.85);color:var(--teal);font-size:1.35rem;line-height:1;display:grid;place-items:center;cursor:pointer;transition:transform .3s,background .3s,color .3s;z-index:2}
+.ai-card.open .ai-toggle{transform:rotate(45deg);background:var(--teal);color:#fff}
+.ai-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease,margin-top .4s ease;margin-top:0}
+.ai-reveal>div{overflow:hidden}
+.ai-reveal.open{grid-template-rows:1fr;margin-top:.8rem}
+.ai-card-prompt{font-size:.72rem;font-weight:700;color:var(--teal);letter-spacing:.04em;text-transform:uppercase;margin-top:.85rem}
+.ai-flow-studio{position:relative;border:1px solid var(--line);border-radius:28px;padding:2rem;background:linear-gradient(145deg,#fff,#f3faf9);box-shadow:0 18px 44px rgba(20,30,40,.07);overflow:hidden}
+.ai-flow-studio::after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(15,159,154,.16);border-radius:50%;right:-110px;top:-120px;pointer-events:none}
+.ai-flow-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,1fr);gap:.65rem}
+.ai-flow-steps::before{content:"";position:absolute;left:7%;right:7%;top:29px;height:2px;background:var(--grad);opacity:.28}
+.ai-flow-step{position:relative;border:0;background:none;font:inherit;color:var(--grey);cursor:pointer;padding:0;text-align:center}
+.ai-flow-dot{position:relative;z-index:1;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto .75rem;background:#fff;border:2px solid var(--line);font-size:.85rem;font-weight:800;transition:.25s}
+.ai-flow-name{display:block;font-size:.78rem;font-weight:750}
+.ai-flow-step:hover .ai-flow-dot,.ai-flow-step.active .ai-flow-dot{transform:translateY(-4px);border-color:var(--tone);color:#fff;background:var(--tone);box-shadow:0 10px 22px rgba(20,30,40,.16)}
+.ai-flow-step.active .ai-flow-name{color:var(--ink)}
+.ai-flow-detail{position:relative;z-index:1;display:grid;grid-template-columns:80px 1fr auto;gap:1.3rem;align-items:center;margin-top:2.2rem;padding:1.7rem;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.ai-flow-icon{width:70px;height:70px;border-radius:20px;display:grid;place-items:center;background:var(--tone);color:#fff;font-size:1.4rem;font-weight:800;box-shadow:0 12px 24px rgba(20,30,40,.15)}
+.ai-flow-label{font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--tone)}
+.ai-flow-detail h4{margin:.3rem 0 .4rem;font-size:1.35rem}.ai-flow-detail p{margin:0;color:var(--grey);font-size:.9rem;line-height:1.6}
+.ai-flow-outputs{display:flex;max-width:310px;justify-content:flex-end;gap:.4rem;flex-wrap:wrap}.ai-flow-outputs span{font-size:.7rem;font-weight:700;padding:.4rem .65rem;border:1px solid var(--line);border-radius:999px;background:#f8f9fa}
+.ai-flow-note{text-align:center;color:var(--grey);font-size:.78rem;margin-top:1rem}
 .merged-section{border-top:1px solid var(--line)}
 #work>.merged-section{padding-bottom:2.25rem}#work>.work-samples-section{padding-top:2.25rem}
 #work>.merged-section>.cards{margin-top:2rem}#work>.merged-section>.ai-practice{margin-top:3rem}#work>.merged-section>.section-center:first-child{margin-bottom:0}
@@ -395,6 +423,30 @@ img{display:block;max-width:100%;}
 .tools-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
 .tool-guide[hidden],.tool-result[hidden]{display:none!important}
 
+/* WORK SAMPLE TILES */
+.sample-unit{margin-top:3rem}
+.sample-row{display:flex;align-items:flex-start;gap:4rem;justify-content:center;flex-wrap:wrap;padding:.75rem .5rem 1.5rem}
+.sample-tile{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:220px;border:0;background:none;cursor:pointer;padding:.5rem;font-family:inherit;color:var(--ink)}
+.sample-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.sample-icon{position:relative;width:112px;height:112px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(20,20,30,.16);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.sample-icon::after{content:"";position:absolute;inset:-10px;border:1px solid currentColor;border-radius:50%;opacity:.22}
+.sample-tile:hover .sample-icon{transform:translateY(-7px) scale(1.03)}
+.sample-tile.open .sample-icon{transform:translateY(-9px) scale(1.05);box-shadow:0 20px 34px rgba(20,20,30,.22)}
+.sample-icon svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sample-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.sample-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}.sample-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}.sample-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.sample-title-label{font-size:1rem;font-weight:700;text-align:center;line-height:1.35;color:var(--ink)}
+.sample-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
+.sample-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.sample-detail-reveal>div{overflow:hidden}.sample-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.sample-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;position:relative;overflow:hidden}
+.sample-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.sample-detail-top{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.1rem}.sample-detail-meta{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}.sample-detail-card h3{font-size:1.35rem;margin:0}.sample-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0 0 1.1rem;position:relative}
+.sample-tags{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1rem}.sample-tags span{font-size:.72rem;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.35rem .65rem}
+.sample-launch{display:inline-flex;font-size:.86rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:999px;padding:.6rem 1.2rem;text-decoration:none;position:relative}.sample-launch:hover{transform:translateY(-1px)}
+.sample-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;z-index:1}.sample-detail-close:hover{border-color:var(--teal);color:var(--teal)}
+.sample-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+.legacy-work-grid[hidden]{display:none!important}
+
 /* CARD ICONS */
 .card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;position:relative;}
 .card-icon svg{width:22px;height:22px;stroke-width:1.8;fill:none;stroke:currentColor;}
@@ -475,6 +527,13 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .tools-title-label{font-size:.7rem}
   .tools-sub-label{display:none}
   .tools-detail-card{flex-direction:column;padding:1.5rem}
+  .sample-row{gap:2rem}
+  .sample-tile{width:132px}
+  .sample-icon{width:82px;height:82px}
+  .sample-icon svg{width:31px;height:31px}
+  .sample-title-label{font-size:.78rem}
+  .sample-cat-label{font-size:.62rem}
+  .sample-detail-card{padding:1.5rem}
   .cards{grid-template-columns:1fr;}
   .about-profile{grid-template-columns:1fr;gap:2.5rem;text-align:center;}
   .about-story p{margin-left:auto;margin-right:auto;}
@@ -486,6 +545,16 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .phase-cards{grid-template-columns:1fr;}
   .ai-practice{padding:1.4rem;}
   .ai-grid{grid-template-columns:1fr;}
+  .ai-flow-studio{padding:1.35rem 1rem}
+  .ai-flow-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem .3rem 1rem;gap:1.1rem;scrollbar-width:none}
+  .ai-flow-steps::-webkit-scrollbar{display:none}
+  .ai-flow-steps::before{display:none}
+  .ai-flow-step{min-width:82px;scroll-snap-align:center}
+  .ai-flow-dot{width:52px;height:52px}
+  .ai-flow-detail{grid-template-columns:56px 1fr;padding:1.2rem;gap:1rem}
+  .ai-flow-icon{width:54px;height:54px;border-radius:16px}
+  .ai-flow-detail h4{font-size:1.15rem}
+  .ai-flow-outputs{grid-column:1/-1;max-width:none;justify-content:flex-start}
   .tool-needs{grid-template-columns:1fr 1fr}.tool-result-card{grid-template-columns:1fr}
   .card.wide{grid-column:1;}
   .stats{grid-template-columns:1fr;gap:2rem;}
@@ -496,7 +565,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   footer{flex-direction:column;align-items:flex-start;}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero .ring,.hero .dot,.cta .ring,.cta .dot,.page:not(#home)::before,.page:not(#home)::after,.page:not(#home) > .section::before,.page:not(#home) > .section::after{animation:none!important;}
+  .hero .ring,.hero .dot,.cta .ring,.cta .dot,.about-photo::before,.about-photo::after,.page:not(#home)::before,.page:not(#home)::after,.page:not(#home) > .section::before,.page:not(#home) > .section::after{animation:none!important;}
 }
 </style>
 </head>
@@ -563,13 +632,13 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <h2>Who <span class="grad">I am.</span></h2>
         <p>I am Juliana, a <strong>CPTD&#174;</strong>, <strong>Instructional Designer</strong>, and <strong>Integrative Coach</strong>. I build learning that changes what people do and coach the humans inside the system, too.</p>
         <p>My work lives at the intersection of <strong>thoughtful design</strong>, <strong>measurable business outcomes</strong>, and <strong>genuine human growth</strong>. Whether I am shaping a leadership program or supporting one person through change, I begin by listening.</p>
-        <div class="about-values"><span>Learner-centred</span><span>Curious</span><span>Practical</span><span>Inclusive</span><span>Evidence-led</span></div>
+        <div class="about-values"><span class="v-blue">Learner-centred</span><span class="v-green">Curious</span><span class="v-teal">Practical</span><span class="v-yellow">Inclusive</span><span class="v-blue">Evidence-led</span></div>
       </div>
     </div>
     <div class="about-beliefs">
-      <div class="about-belief"><div class="label">MISSION</div><h3>Make growth accessible</h3><p>Create learning and coaching experiences that help people act with greater <strong>clarity</strong> and <strong>confidence</strong>.</p></div>
-      <div class="about-belief"><div class="label">WHAT I BELIEVE</div><h3>People before process</h3><p>The strongest solutions respect <strong>context</strong>, <strong>identity</strong>, lived experience, and the reality of the work.</p></div>
-      <div class="about-belief"><div class="label">HOW I SHOW UP</div><h3>Warm and rigorous</h3><p>Empathy and evidence belong together. I bring both to the questions, design, and outcomes.</p></div>
+      <div class="about-belief"><div class="about-belief-icon c-teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5"/></svg></div><div class="label">MISSION</div><h3>Make growth accessible</h3><p>Create learning and coaching experiences that help people act with greater <strong>clarity</strong> and <strong>confidence</strong>.</p></div>
+      <div class="about-belief"><div class="about-belief-icon c-blue"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="label">WHAT I BELIEVE</div><h3>People before process</h3><p>The strongest solutions respect <strong>context</strong>, <strong>identity</strong>, lived experience, and the reality of the work.</p></div>
+      <div class="about-belief"><div class="about-belief-icon c-yellow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></div><div class="label">HOW I SHOW UP</div><h3>Warm and rigorous</h3><p>Empathy and evidence belong together. I bring both to the questions, design, and outcomes.</p></div>
     </div>
     <div class="eyebrow">Selected Impact</div>
     <h2>Where I have <span class="grad">made an impact.</span></h2>
@@ -689,20 +758,11 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="ai-practice">
       <h3>What I build with AI</h3>
       <p class="ai-intro">AI is part of how I research, design, prototype, and teach. I use it to make useful things faster, while keeping judgment, accessibility, and human expertise firmly in the process.</p>
-      <div class="ai-grid">
-        <article class="ai-card">
-          <div class="ai-kicker"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 12h.01M15 12h.01M9 16h6M12 7V3M10 3h4"/></svg>Building with AI</div>
-          <h4>Digital products and learning experiences</h4>
-          <p>I turn ideas into working experiences people can actually use.</p>
-          <div class="ai-outputs"><span class="ai-output">Tools</span><span class="ai-output">Apps</span><span class="ai-output">Courses</span><span class="ai-output">E-learning</span><span class="ai-output">Videos</span><span class="ai-output">Digital assets</span><span class="ai-output">Rapid prototypes</span></div>
-        </article>
-        <article class="ai-card">
-          <div class="ai-kicker"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Teaching AI</div>
-          <h4>AI capability and insight</h4>
-          <p>I help people and teams use AI with confidence, discernment, and a clear purpose.</p>
-          <ul class="ai-list"><li>AI literacy and upskilling programs for leaders and individual contributors</li><li>Needs analysis, synthesis, learning analytics, and insight generation</li><li>Practical workflows that balance speed with judgment, ethics, and responsible use</li></ul>
-        </article>
+      <div class="ai-flow-studio" aria-label="Interactive AI workflow">
+        <div class="ai-flow-steps" id="aiFlowSteps"></div>
+        <article class="ai-flow-detail" id="aiFlowDetail" aria-live="polite"></article>
       </div>
+      <p class="ai-flow-note">Choose a stage to see how AI supports the work.</p>
     </div>
 
     <div class="section-center" style="margin-top:4.5rem;">
@@ -720,9 +780,11 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="section-center">
       <div class="eyebrow c">Work Samples</div>
       <h2>Learning you can <span class="grad">explore.</span></h2>
-      <p class="section-intro">Check out some interactive samples that show how I turn learning strategy into practical experiences.</p>
+      <p class="section-intro">Explore two interactive samples that show how I turn learning strategy into practical, engaging experiences.</p>
     </div>
-    <div class="cards" style="margin-top:3.5rem;">
+    <div class="sample-unit" id="workSampleUnit"></div>
+    <p class="sample-hint">Tap a course to preview it, then launch the full interactive experience.</p>
+    <div class="cards legacy-work-grid" hidden style="margin-top:3.5rem;">
       <div class="card">
         <div class="card-ring"></div>
         <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -1173,6 +1235,51 @@ function buildFrameworks(){
  html+='</div><div class="fw-detail-reveal" data-detail-row="0"><div><div class="fw-detail-card"></div></div></div>';
  unit.innerHTML=html;
 }
+const WORK_SAMPLE_ITEMS=[
+ {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8M8 13h5"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['Interactive','Practice-based','Manager skills'],href:'course-radical-candor.html',action:'Explore interactive module'},
+ {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',action:'Start the course'}
+];
+let openWorkSampleIndex=null;
+function workSampleIcon(item){
+ return `<span class="sample-icon c-${item.color}"><svg viewBox="0 0 24 24" aria-hidden="true">${item.icon}</svg></span>`;
+}
+function closeWorkSamples(){
+ document.querySelectorAll('.sample-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.sample-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openWorkSampleIndex=null;
+}
+function openWorkSample(index){
+ const unit=document.getElementById('workSampleUnit');
+ const tile=unit?.querySelector(`.sample-tile[data-sample-index="${index}"]`);
+ if(!unit||!tile) return;
+ if(openWorkSampleIndex===index){closeWorkSamples();return}
+ closeWorkSamples();
+ const item=WORK_SAMPLE_ITEMS[index];
+ const reveal=unit.querySelector(`.sample-detail-reveal[data-detail-row="${tile.dataset.row}"]`);
+ const tags=item.tags.map(tag=>`<span>${tag}</span>`).join('');
+ const launch=item.href?`<a class="sample-launch" href="${item.href}">${item.action} &rarr;</a>`:'';
+ reveal.querySelector('.sample-detail-card').innerHTML=`<button class="sample-detail-close" type="button" aria-label="Close sample details" onclick="closeWorkSamples()">&times;</button><div class="sample-detail-top">${workSampleIcon(item)}<div><div class="sample-detail-meta">${item.cat}</div><h3>${item.name}</h3></div></div><p>${item.desc}</p><div class="sample-tags">${tags}</div>${launch}`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openWorkSampleIndex=index;
+}
+function buildWorkSamples(){
+ const unit=document.getElementById('workSampleUnit');
+ if(!unit) return;
+ const perRow=3;
+ let html='';
+ for(let start=0;start<WORK_SAMPLE_ITEMS.length;start+=perRow){
+  const row=start/perRow;
+  html+=`<div class="sample-row" data-row="${row}">`;
+  WORK_SAMPLE_ITEMS.slice(start,start+perRow).forEach((item,offset)=>{
+   const index=start+offset;
+   html+=`<button class="sample-tile" type="button" data-sample-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openWorkSample(${index})">${workSampleIcon(item)}<span class="sample-title-label">${item.name}</span><span class="sample-cat-label">${item.cat}</span></button>`;
+  });
+  html+=`</div><div class="sample-detail-reveal" data-detail-row="${row}"><div><div class="sample-detail-card"></div></div></div>`;
+ }
+ unit.innerHTML=html;
+}
 const BOOKSHELF_BOOKS=[
  {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},
  {author:'Maria Morukian',title:'Diversity, Equity, and Inclusion for Trainers',color:'green',desc:'An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.'},
@@ -1293,7 +1400,40 @@ function toggleMethodCard(button){
   button.setAttribute('aria-expanded',String(!open));
   card.classList.toggle('method-open',!open);
   reveal.classList.toggle('open',!open);
-  button.lastChild.textContent=open?' See how I use this':' Hide example';
+ button.lastChild.textContent=open?' See how I use this':' Hide example';
+}
+function toggleAiCard(button){
+ const card=button.closest('.ai-card');
+ const reveal=card.querySelector('.ai-reveal');
+ const open=button.getAttribute('aria-expanded')==='true';
+ button.setAttribute('aria-expanded',String(!open));
+ card.classList.toggle('open',!open);
+ reveal.classList.toggle('open',!open);
+}
+const AI_FLOW_STAGES=[
+ {name:'Research',tone:'#4285f4',icon:'01',title:'Find the real problem',copy:'I use AI to synthesize interviews, survey data, feedback, and patterns, while keeping human judgment at the centre.',outputs:['Needs analysis','Synthesis','Learning analytics','Insight generation']},
+ {name:'Design',tone:'#2b92c5',icon:'02',title:'Shape the learning strategy',copy:'I turn evidence into objectives, journeys, scenarios, and experiences designed around what people need to do.',outputs:['Learning journeys','Scenarios','Course outlines','Blueprints']},
+ {name:'Prototype',tone:'#0f9f9a',icon:'03',title:'Make ideas tangible quickly',copy:'I create early working versions so people can react to something real, test assumptions, and improve the direction sooner.',outputs:['Rapid prototypes','Wireframes','Interactive tests','Workflow design']},
+ {name:'Build',tone:'#25a86d',icon:'04',title:'Create useful digital experiences',copy:'I build tools, apps, courses, e-learning, videos, and digital assets that turn strategy into something people can use.',outputs:['Tools','Apps','Courses','E-learning','Videos','Digital assets']},
+ {name:'Enable',tone:'#63aa3e',icon:'05',title:'Help people use AI well',copy:'I design practical AI literacy and upskilling experiences for leaders and individual contributors that build confidence and discernment.',outputs:['AI literacy','Leader upskilling','IC upskilling','Responsible workflows']},
+ {name:'Measure',tone:'#d4a500',icon:'06',title:'Learn from what happens next',copy:'I use feedback and data to understand adoption, behaviour change, and where the experience needs to evolve.',outputs:['Feedback','Adoption','Behaviour change','Iteration']}
+];
+function showAiFlowStage(index){
+ const stage=AI_FLOW_STAGES[index];
+ const detail=document.getElementById('aiFlowDetail');
+ if(!stage||!detail) return;
+ document.querySelectorAll('.ai-flow-step').forEach((item,i)=>{
+  item.classList.toggle('active',i===index);
+  item.setAttribute('aria-pressed',String(i===index));
+ });
+ detail.style.setProperty('--tone',stage.tone);
+ detail.innerHTML=`<div class="ai-flow-icon">${stage.icon}</div><div><div class="ai-flow-label">${stage.name}</div><h4>${stage.title}</h4><p>${stage.copy}</p></div><div class="ai-flow-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div>`;
+}
+function buildAiFlow(){
+ const steps=document.getElementById('aiFlowSteps');
+ if(!steps) return;
+ steps.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-flow-step" type="button" style="--tone:${stage.tone}" aria-pressed="false" onclick="showAiFlowStage(${index})"><span class="ai-flow-dot">${stage.icon}</span><span class="ai-flow-name">${stage.name}</span></button>`).join('');
+ showAiFlowStage(0);
 }
 function showPage(id, updateHash=true){
   if(id==='frameworks') id='work';
@@ -1315,7 +1455,9 @@ consolidatePages();
 buildToolGuide();
 buildToolTiles();
 buildFrameworks();
+buildWorkSamples();
 buildBookshelf();
+buildAiFlow();
 syncCoachingStep(0);
 routeFromHash();
 function toggleMenu(){
