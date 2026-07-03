@@ -270,14 +270,12 @@ img{display:block;max-width:100%;}
 .ai-flow-studio{position:relative;border:1px solid var(--line);border-radius:28px;padding:2rem;background:linear-gradient(145deg,#fff,#f3faf9);box-shadow:0 18px 44px rgba(20,30,40,.07);overflow:hidden}
 .ai-flow-studio::after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(15,159,154,.16);border-radius:50%;right:-110px;top:-120px;pointer-events:none}
 .ai-flow-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,1fr);gap:.65rem}
-.ai-flow-steps::before{content:"";position:absolute;left:7%;right:7%;top:29px;height:2px;background:var(--grad);opacity:.28}
+.ai-flow-steps::before{content:"";position:absolute;left:7%;right:7%;top:22px;height:2px;background:var(--grad);opacity:.28}
 .ai-flow-step{position:relative;border:0;background:none;font:inherit;color:var(--grey);cursor:pointer;padding:0;text-align:center}
-.ai-flow-dot{position:relative;z-index:1;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto .75rem;background:#fff;border:2px solid var(--line);font-size:.85rem;font-weight:800;transition:.25s}
-.ai-flow-name{display:block;font-size:.78rem;font-weight:750}
+.ai-flow-dot{position:relative;z-index:1;min-width:88px;height:44px;border-radius:999px;display:grid;place-items:center;margin:0 auto;background:#fff;border:2px solid var(--line);padding:0 .85rem;font-size:.75rem;font-weight:800;transition:.25s}
 .ai-flow-step:hover .ai-flow-dot,.ai-flow-step.active .ai-flow-dot{transform:translateY(-4px);border-color:var(--tone);color:#fff;background:var(--tone);box-shadow:0 10px 22px rgba(20,30,40,.16)}
-.ai-flow-step.active .ai-flow-name{color:var(--ink)}
-.ai-flow-detail{position:relative;z-index:1;display:grid;grid-template-columns:80px 1fr auto;gap:1.3rem;align-items:center;margin-top:2.2rem;padding:1.7rem;border-radius:22px;background:#fff;border:1px solid var(--line)}
-.ai-flow-icon{width:70px;height:70px;border-radius:20px;display:grid;place-items:center;background:var(--tone);color:#fff;font-size:1.4rem;font-weight:800;box-shadow:0 12px 24px rgba(20,30,40,.15)}
+.ai-flow-detail{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:1.3rem;align-items:center;margin-top:2.2rem;padding:1.7rem;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.ai-flow-icon{min-width:92px;height:44px;border-radius:999px;padding:0 .9rem;display:grid;place-items:center;background:var(--tone);color:#fff;font-size:.75rem;font-weight:800;box-shadow:0 10px 22px rgba(20,30,40,.14)}
 .ai-flow-label{font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--tone)}
 .ai-flow-detail h4{margin:.3rem 0 .4rem;font-size:1.35rem}.ai-flow-detail p{margin:0;color:var(--grey);font-size:.9rem;line-height:1.6}
 .ai-flow-outputs{display:flex;max-width:310px;justify-content:flex-end;gap:.4rem;flex-wrap:wrap}.ai-flow-outputs span{font-size:.7rem;font-weight:700;padding:.4rem .65rem;border:1px solid var(--line);border-radius:999px;background:#f8f9fa}
@@ -549,10 +547,10 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .ai-flow-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem .3rem 1rem;gap:1.1rem;scrollbar-width:none}
   .ai-flow-steps::-webkit-scrollbar{display:none}
   .ai-flow-steps::before{display:none}
-  .ai-flow-step{min-width:82px;scroll-snap-align:center}
-  .ai-flow-dot{width:52px;height:52px}
-  .ai-flow-detail{grid-template-columns:56px 1fr;padding:1.2rem;gap:1rem}
-  .ai-flow-icon{width:54px;height:54px;border-radius:16px}
+  .ai-flow-step{min-width:96px;scroll-snap-align:center}
+  .ai-flow-dot{min-width:92px;height:42px}
+  .ai-flow-detail{grid-template-columns:auto 1fr;padding:1.2rem;gap:1rem}
+  .ai-flow-icon{min-width:84px;height:40px}
   .ai-flow-detail h4{font-size:1.15rem}
   .ai-flow-outputs{grid-column:1/-1;max-width:none;justify-content:flex-start}
   .tool-needs{grid-template-columns:1fr 1fr}.tool-result-card{grid-template-columns:1fr}
@@ -1427,12 +1425,12 @@ function showAiFlowStage(index){
   item.setAttribute('aria-pressed',String(i===index));
  });
  detail.style.setProperty('--tone',stage.tone);
- detail.innerHTML=`<div class="ai-flow-icon">${stage.icon}</div><div><div class="ai-flow-label">${stage.name}</div><h4>${stage.title}</h4><p>${stage.copy}</p></div><div class="ai-flow-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div>`;
+ detail.innerHTML=`<div class="ai-flow-icon">${stage.name}</div><div><h4>${stage.title}</h4><p>${stage.copy}</p></div><div class="ai-flow-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div>`;
 }
 function buildAiFlow(){
  const steps=document.getElementById('aiFlowSteps');
  if(!steps) return;
- steps.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-flow-step" type="button" style="--tone:${stage.tone}" aria-pressed="false" onclick="showAiFlowStage(${index})"><span class="ai-flow-dot">${stage.icon}</span><span class="ai-flow-name">${stage.name}</span></button>`).join('');
+ steps.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-flow-step" type="button" style="--tone:${stage.tone}" aria-pressed="false" onclick="showAiFlowStage(${index})"><span class="ai-flow-dot">${stage.name}</span></button>`).join('');
  showAiFlowStage(0);
 }
 function showPage(id, updateHash=true){
