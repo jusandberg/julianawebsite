@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet">
+<title>Juliana Dos Santos - Resume - July 2026</title>
+<style>
+@page{size:Letter;margin:0}
+*{box-sizing:border-box}
+:root{--ink:#101114;--grey:#62656d;--line:#e7e9ed;--blue:#4285f4;--teal:#0f9f9a;--green:#34a853;--yellow:#fbbc05;--grad:linear-gradient(90deg,var(--blue),var(--teal),var(--green),#a8b51c)}
+html,body{margin:0;padding:0;background:#eef1f4;color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sheet{width:8.5in;height:11in;margin:18px auto;background:#fff;padding:.48in .58in .42in;position:relative;overflow:hidden;page-break-after:always}
+.sheet:last-child{page-break-after:auto}
+.ring{position:absolute;border:1.5px solid;border-radius:50%;pointer-events:none}.ring-a{width:190px;height:190px;left:-105px;top:-85px;border-color:rgba(66,133,244,.22)}.ring-b{width:125px;height:125px;right:-82px;top:80px;border-color:rgba(15,159,154,.24)}
+.dot{position:absolute;border-radius:50%;pointer-events:none}.dot-a{width:9px;height:9px;background:var(--yellow);left:1.18in;top:24px}.dot-b{width:7px;height:7px;background:var(--teal);right:9%;top:205px}
+.content{position:relative;z-index:1}
+.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.eyebrow{font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:800;color:var(--teal);margin-bottom:7px;display:flex;align-items:center;gap:7px}.eyebrow:before{content:"";width:18px;height:1px;background:var(--teal)}
+h1{font-size:31px;line-height:1;margin:0 0 7px;letter-spacing:-.035em}.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.headline{font-size:12px;color:var(--grey);font-weight:600}
+.contact{text-align:right;font-size:10px;line-height:1.65;color:var(--grey);white-space:nowrap}.contact strong{color:var(--ink)}.contact a{color:#1a73e8;text-decoration:underline;text-underline-offset:2px}
+.li-icon{display:inline-flex;margin-top:3px}.li-icon svg{width:15px;height:15px;border-radius:3px}
+.summary{font-size:11px;line-height:1.55;color:var(--grey);margin:15px 0 13px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 13px}.metric{border:1px solid var(--line);border-radius:13px;padding:9px 11px;position:relative;overflow:hidden}.metric:after{content:"";position:absolute;width:45px;height:45px;border:1px solid rgba(15,159,154,.2);border-radius:50%;right:-20px;top:-18px}.metric strong{display:block;font-size:18px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.metric span{display:block;font-size:7.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--grey);margin-top:4px;font-weight:700}
+.section{margin-top:15px}.section-title{display:flex;align-items:center;gap:9px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin:0 0 10px;color:var(--teal)}.section-title:after{content:"";height:1px;background:linear-gradient(90deg,var(--teal),transparent);flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:9.5px;font-weight:650;padding:5px 8px;border-radius:999px;border:1px solid #dde3e8;background:#f6f7f9;color:#4f5964}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px}.skill{padding:7px 9px;border-left:3px solid rgba(66,133,244,.5);background:#fafbfc;border-radius:0 8px 8px 0;font-size:9.7px;line-height:1.38;color:var(--grey)}.skill:nth-child(2n){border-left-color:rgba(52,168,83,.5)}.skill strong{color:var(--ink)}.skill.ai-skill{border-left-color:rgba(15,159,154,.65)}
+.ai-link{margin-top:12px;text-align:center}.ai-link a{font-size:10px;font-weight:800;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 16px;background:linear-gradient(90deg,var(--blue),var(--teal));box-shadow:0 3px 8px rgba(15,159,154,.3)}
+.role{border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:9px;position:relative;overflow:hidden}.role:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;border:1px solid rgba(66,133,244,.15);right:-32px;top:-35px}.role:nth-child(odd):after{border-color:rgba(52,168,83,.18)}
+.role-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:3px}.role h3{font-size:13px;margin:0;line-height:1.22}.role-date{font-size:9.5px;color:var(--teal);font-weight:750;white-space:nowrap}.company{font-size:10px;color:var(--grey);font-weight:650;margin-bottom:5px}.impact{font-size:10.5px;line-height:1.48;color:#246d69;background:rgba(15,159,154,.06);padding:6px 8px;border-radius:7px;margin-bottom:6px}.role ul{margin:0;padding-left:15px;color:var(--grey);font-size:10.5px;line-height:1.48}.role li{margin:3px 0}.role li::marker{color:var(--teal)}
+.list-card{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:10px}.list-card ul{margin:0;padding-left:14px;font-size:10.5px;line-height:1.58;color:var(--grey)}.list-card li{margin:4px 0}.list-card li::marker{color:var(--teal)}
+.page2-roles{margin-top:18px}.page2-role-row{display:block}.page2-bottom{position:relative;display:block;margin-top:12px;z-index:2}.page2-bottom .section{margin-top:12px}.page2-bottom .list-card{margin:0}.work-bubbles{display:flex;flex-wrap:wrap;gap:6px}.work-bubble{font-size:9.7px;line-height:1.25;font-weight:650;color:#4f5964;background:#f6f7f9;border:1px solid #dde3e8;border-radius:999px;padding:6px 9px}.education-stack{display:flex;flex-direction:column;gap:8px}.language-row{margin-top:10px}.language-row strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:6px}
+.lead-pills{display:flex;flex-wrap:wrap;gap:7px}.lead-pill{font-size:9.7px;font-weight:700;padding:7px 12px;border-radius:999px;display:inline-flex;align-items:center}
+.lead-pill.c-blue{background:#EAF1FE;color:#2f5fc4;border:1px solid rgba(66,133,244,.25)}.lead-pill.c-teal{background:#E4F6F5;color:#0b736f;border:1px solid rgba(15,159,154,.25)}.lead-pill.c-green{background:#E9F7EE;color:#227a3e;border:1px solid rgba(52,168,83,.25)}.lead-pill.c-yellow{background:#FFF7E0;color:#a17400;border:1px solid rgba(251,188,5,.25)}
+.references-line{text-align:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:10px;font-weight:650;font-style:italic;color:#4f5964;letter-spacing:.02em}
+.sheet:first-of-type .summary{margin:9px 0 8px}.sheet:first-of-type .metrics{margin:6px 0 8px}.sheet:first-of-type .section{margin-top:7px}.sheet:first-of-type .section-title{margin-bottom:6px}.sheet:first-of-type .skills-grid{gap:5px}.sheet:first-of-type .skill{padding:6px 8px}.sheet:first-of-type .ai-link{margin-top:7px}.sheet:first-of-type .ai-link a{padding:5px 13px;font-size:9.3px}.sheet:first-of-type .role{padding:6px 9px;margin-bottom:4px}.sheet:first-of-type .impact{padding:3px 6px;margin-bottom:3px}.sheet:first-of-type .role ul{line-height:1.24}.sheet:first-of-type .role li{margin:0}.sheet:first-of-type .role-head h3{font-size:11px}
+.footer{position:absolute;left:.58in;right:.58in;bottom:.25in;border-top:1px solid var(--line);padding-top:6px;display:flex;justify-content:space-between;font-size:7.5px;color:#8a8d94}.footer strong{color:var(--teal)}
+@media print{html,body{background:#fff}.sheet{margin:0}}
+</style>
+</head>
+<body>
+<article class="sheet">
+  <div class="ring ring-a"></div><div class="ring ring-b"></div><div class="dot dot-a"></div><div class="dot dot-b"></div>
+  <main class="content">
+    <header class="topline">
+      <div><div class="eyebrow">Senior talent development leader</div><h1>Juliana <span class="grad">Dos Santos.</span></h1><div class="headline">Leadership Development &middot; Organizational Capability &middot; Manager Enablement &middot; AI Transformation</div></div>
+      <div class="contact"><strong>Ottawa, ON, Canada</strong><br>ju.sandberg@gmail.com<br>(613) 558-0683<br><a href="https://julianadossantos.ca">julianadossantos.ca</a><br><a href="https://www.linkedin.com/in/julianadossantos2019/" class="li-icon" aria-label="LinkedIn: linkedin.com/in/julianadossantos2019" title="linkedin.com/in/julianadossantos2019"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3a1.97 1.97 0 100 3.94 1.97 1.97 0 000-3.94zM20.45 20h-3.37v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V20h-3.37V8.5h3.24v1.57h.05c.45-.85 1.56-1.75 3.21-1.75 3.43 0 4.06 2.26 4.06 5.19V20z"/></svg></a></div>
+    </header>
+    <p class="summary">Talent Development leader with 5+ years of experience building leadership readiness, manager effectiveness, onboarding strategy, and scalable development systems in high-growth technology companies. I partner with senior leaders and cross-functional teams to identify development gaps, accelerate employee growth, and connect data-informed talent strategies to measurable business outcomes.</p>
+    <div class="metrics"><div class="metric"><strong>9→4</strong><span>months to productivity</span></div><div class="metric"><strong>+20%</strong><span>learner performance</span></div><div class="metric"><strong>3,500+</strong><span>employees impacted, cumulative</span></div></div>
+    <section class="section"><h2 class="section-title">Leadership capabilities</h2><div class="chips">
+      <span class="chip">Talent Strategy</span><span class="chip">Leadership Development</span><span class="chip">Organizational Capability</span><span class="chip">Manager Enablement</span><span class="chip">Leadership Effectiveness</span><span class="chip">Executive Partnership</span><span class="chip">Career Pathways</span><span class="chip">Employee Onboarding</span><span class="chip">Organizational Effectiveness</span><span class="chip">Facilitation</span>
+    </div></section>
+    <section class="section"><h2 class="section-title">Strategic capabilities & AI transformation</h2><div class="skills-grid">
+      <div class="skill"><strong>Leadership systems:</strong> pathways, manager playbooks, onboarding frameworks, capability building</div>
+      <div class="skill"><strong>Executive partnership:</strong> needs diagnosis, stakeholder alignment, influence without authority</div>
+      <div class="skill"><strong>Data & measurement:</strong> learning analytics, survey design, feedback systems, measurement strategy</div>
+      <div class="skill"><strong>Scaled delivery:</strong> cohort programs, blended learning, Articulate 360, LMS platforms</div>
+      <div class="skill ai-skill"><strong>AI-enabled development:</strong> custom tools, rapid prototyping, e-learning, workflow design</div>
+      <div class="skill ai-skill"><strong>AI capability building:</strong> AI literacy, responsible-use workflows, AI-enabled learning experiences</div>
+    </div>
+    <div class="ai-link"><a href="https://julianadossantos.ca/#work">Check how I leverage AI in my work &#8594; julianadossantos.ca</a></div>
+    </section>
+    <section class="section"><h2 class="section-title">Experience</h2>
+      <div class="role"><div class="role-head"><h3>Senior Program Manager (L&D), Leadership Development</h3><span class="role-date">Jul 2024 – Present</span></div><div class="company">StackAdapt</div><div class="impact"><strong>Impact:</strong> Building a scalable leadership development ecosystem that grows manager and executive readiness across the organization.</div><ul><li>Build leadership development systems supporting Individual Contributors, People Managers, Vice Presidents, and leadership onboarding.</li><li>Partner with senior leaders and cross-functional teams to identify organizational development gaps and align priorities with business needs.</li><li>Co-design learning experiences with the L&D team across career pathways, People Team programs, and leadership development.</li><li>Use AI end-to-end across the development workflow: turning business needs and data into content, activities, and interactive experiences, and building custom dashboards, websites, and digital artifacts.</li><li>Delivered the Emerging Leaders Program to 100+ graduates, achieving a 4.75 VTS and 4.85 NPS.</li></ul></div>
+      <div class="role"><div class="role-head"><h3>Revenue Onboarding Program Manager (L&D)</h3><span class="role-date">Feb 2024 – Jul 2024</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Strengthened onboarding as a scalable development system during rapid organizational change.</div><ul><li>Led the strategic redesign and expansion of onboarding systems during rapid organizational growth.</li><li>Built AI-powered agents and simulated "playgrounds" where new hires could practice real work scenarios before going live.</li><li>Influenced cross-functional partners to align onboarding priorities, employee experience, and business requirements.</li><li>Built metrics and feedback systems that enabled data-informed decisions and continuous improvement.</li></ul></div>
+      <div class="role"><div class="role-head"><h3>L&D Program Manager</h3><span class="role-date">Mar 2023 – Feb 2024</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Accelerated workforce readiness by connecting onboarding strategy to performance outcomes.</div><ul><li>Reduced onboarding ramp time from 9 months to 4 months through a redesigned development system.</li><li>Improved employee performance metrics by 20% across programs impacting 500+ employees.</li><li>Diagnosed skill gaps, refined career-relevant curricula, and implemented scalable digital solutions.</li><li>Built consensus across departments and secured stakeholder alignment for organization-wide initiatives.</li></ul></div>
+    </section>
+  </main><footer class="footer"><span>Juliana Dos Santos · Resume</span><strong>01 / 02</strong></footer>
+</article>
+
+<article class="sheet page-two">
+  <div class="ring ring-a"></div><div class="ring ring-b"></div><div class="dot dot-a"></div><div class="dot dot-b"></div>
+  <main class="content">
+    <header class="topline"><div><div class="eyebrow">Leadership impact continued</div><h1>Capability that creates <span class="grad">impact.</span></h1></div><div class="contact"><strong>Juliana Dos Santos</strong><br>Talent Development · Coaching · Design</div></header>
+    <section class="section page2-roles"><h2 class="section-title">Professional experience</h2>
+      <div class="role"><div class="role-head"><h3>Quality Assurance Specialist, Education & Resources</h3><span class="role-date">Oct 2021 – Mar 2023</span></div><div class="company">Shopify</div><div class="impact"><strong>Impact:</strong> Turned quality data into performance insights, assessing 1,000+ interactions and contributing to a 70% increase in rubric quality.</div><ul><li>Integrated 25+ feedback loops with leaders to strengthen performance, manager insight, and continuous improvement.</li><li>Published monthly, quarterly, and annual performance reports that informed operational and development priorities.</li><li>Built stakeholder frameworks and partnered with subject-matter experts on leadership and development resources.</li><li>Influenced cross-functional improvements by connecting quality patterns to employee and customer outcomes.</li></ul></div>
+      <div class="page2-role-row">
+        <div class="role"><div class="role-head"><h3>Social Services Worker</h3><span class="role-date">2013 – 2021</span></div><div class="company">Pinecrest Queensway Community Health Centre</div><ul><li>Supported diverse community members through program delivery, advocacy, and individualized planning, building deep skills in communication, empathy, and facilitation.</li></ul></div>
+      </div>
+    </section>
+  </main>
+  <div class="page2-bottom">
+    <section class="section"><h2 class="section-title">Certifications</h2><div class="list-card"><ul><li>Integrative Development Coach · Mind Rebel Academy</li><li>CPTD® · Association for Talent Development</li><li>ATD® Master Instructional Designer</li><li>ATD® Instructional Design Certificate</li><li>CAPM® · Project Management Institute</li><li>Workforce Management Certification</li><li>Data Analytics Certificate · Juno College</li><li>UX Design Certificate · Juno College</li></ul></div></section>
+    <section class="section"><h2 class="section-title">Education</h2><div class="education-stack"><div class="list-card"><ul><li><strong>Social Services Worker Diploma</strong><br>Algonquin College · 2013</li><li><strong>Bachelor's Degree, Linguistics & Literature</strong><br>Unioeste, Brazil · 2006</li></ul></div></div><div class="language-row"><strong>Languages</strong><div class="chips"><span class="chip">English</span><span class="chip">Portuguese</span></div></div></section>
+    <section class="section"><h2 class="section-title">How I lead</h2><div class="lead-pills">
+      <span class="lead-pill c-blue">Diagnose before designing</span>
+      <span class="lead-pill c-teal">Build systems, not just content</span>
+      <span class="lead-pill c-green">Measure behaviour, not completion</span>
+      <span class="lead-pill c-yellow">Connect capability to business outcomes</span>
+      <span class="lead-pill c-blue">Iterate with data & stakeholders</span>
+    </div></section>
+    <div class="references-line">References available upon request</div>
+  </div>
+  <footer class="footer"><span>Juliana Dos Santos · Resume</span><strong>02 / 02</strong></footer>
+</article>
+</body>
+</html>
