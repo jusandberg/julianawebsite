@@ -320,6 +320,24 @@ img{display:block;max-width:100%;}
 #coaching .coaching-tools .browse-all,#coaching .coaching-tools .browse-all + .cards{display:none}
 .coaching-approach{margin:3rem auto 0;max-width:900px;text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.coaching-approach h2{margin:0!important}
 
+/* COACHING CONVERSATION ARC */
+.coach-arc-unit{position:relative;margin-top:4rem;height:170px}
+.coach-arc-line{position:absolute;inset:0;pointer-events:none}.coach-arc-line svg{width:100%;height:100%}
+.coach-arc-tile{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;gap:.6rem;width:108px;margin-left:-54px;cursor:pointer;background:none;border:0;font-family:inherit}
+.coach-arc-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.coach-arc-dot{width:20px;height:20px;border-radius:50%;flex:none;box-shadow:0 2px 6px rgba(20,20,30,.18),0 0 0 4px #fff;transition:transform .3s,box-shadow .3s}
+.coach-arc-tile:hover .coach-arc-dot{transform:scale(1.2)}.coach-arc-tile.open .coach-arc-dot{transform:scale(1.4);box-shadow:0 4px 10px rgba(20,20,30,.28),0 0 0 4px #fff}
+.coach-arc-dot.c-blue,.coach-car-dot.c-blue{background:var(--blue)}.coach-arc-dot.c-green,.coach-car-dot.c-green{background:var(--green)}.coach-arc-dot.c-yellow,.coach-car-dot.c-yellow{background:var(--yellow)}.coach-arc-dot.c-teal,.coach-car-dot.c-teal{background:var(--teal)}
+.coach-arc-label{font-size:.74rem;font-weight:700;text-align:center;color:var(--ink);white-space:nowrap}
+.coach-arc-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin-top:1.5rem}.coach-arc-reveal>div{overflow:hidden}.coach-arc-reveal.open{grid-template-rows:1fr}
+.coach-arc-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}.coach-arc-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.coach-detail-icon{width:56px;height:56px;border-radius:15px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 18px rgba(20,20,30,.13)}.coach-detail-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.coach-detail-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.coach-detail-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}.coach-detail-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}.coach-detail-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.coach-detail-meta,.coach-car-label{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.45rem}.coach-arc-card h3{font-size:1.25rem;margin:0 0 .6rem}.coach-arc-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0;position:relative}.coach-arc-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;font-size:1rem;z-index:2}
+.coach-arc-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:1.5rem}
+.coach-carousel,.coach-car-dots,.coach-car-hint{display:none}
+.coach-car-card{flex:0 0 78vw;scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.75rem;display:flex;flex-direction:column;gap:.9rem}.coach-car-dot{width:14px;height:14px;border-radius:50%}.coach-car-card h3{font-size:1.1rem;margin:0}.coach-car-card p{font-size:.9rem;color:var(--grey);line-height:1.6;margin:0}
+.phase-arc[hidden]{display:none!important}
+
 /* CTA */
 .cta{position:relative;text-align:center;padding:7rem 1.5rem;overflow:hidden;background:var(--soft);}
 .cta .ring1{width:200px;height:200px;border-color:rgba(15,159,154,.15);top:35px;left:-110px;}
@@ -571,6 +589,11 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .ai-flow-icon{display:none}
   .ai-flow-detail h4{font-size:1.15rem}
   .ai-flow-outputs{max-width:none;justify-content:flex-start}
+  .coach-arc-unit,.coach-arc-reveal,.coach-arc-hint{display:none}
+  .coach-carousel{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem 10vw 1.5rem;margin:2rem -1.4rem 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .coach-carousel::-webkit-scrollbar{display:none}
+  .coach-car-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.25rem}.coach-car-dots span{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .25s,transform .25s}.coach-car-dots span.active{background:var(--teal);transform:scale(1.3)}
+  .coach-car-hint{display:block;text-align:center;color:var(--grey);font-size:.82rem;margin-top:.5rem}
   .tool-needs{grid-template-columns:1fr 1fr}.tool-result-card{grid-template-columns:1fr}
   .card.wide{grid-column:1;}
   .stats{grid-template-columns:1fr;gap:2rem;}
@@ -908,7 +931,16 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <div class="eyebrow c">A coaching conversation</div>
       <p class="section-intro">Every conversation responds to the person and what they bring. This is a typical flow, not a rigid formula.</p>
     </div>
-    <div class="phase-arc" aria-label="Seven parts of an ICF-aligned coaching conversation">
+    <div class="coach-arc-unit" id="coachArcUnit" aria-label="Seven stages of a coaching conversation">
+      <div class="coach-arc-line"><svg id="coachArcSvg" preserveAspectRatio="none" aria-hidden="true"><path id="coachArcPath" fill="none" stroke="#EAEAEF" stroke-width="2"/></svg></div>
+      <div id="coachArcRow"></div>
+    </div>
+    <div class="coach-arc-reveal" id="coachArcReveal"><div><div class="coach-arc-card" id="coachArcCard"></div></div></div>
+    <div class="coach-carousel" id="coachCarousel" aria-label="Swipe through coaching conversation stages"></div>
+    <div class="coach-car-dots" id="coachCarDots" aria-hidden="true"></div>
+    <p class="coach-arc-hint">Tap a stage to see what it is for. Tap it again or use the close button to close it.</p>
+    <p class="coach-car-hint">Swipe to explore each stage.</p>
+    <div class="phase-arc" hidden aria-label="Seven parts of a coaching conversation">
       <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M45 128 C235 -5 625 -5 815 128"/></svg>
       <div class="phase-points">
         <div class="phase-point mobile-active">
@@ -1452,6 +1484,80 @@ function buildAiFlow(){
  steps.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-flow-step" type="button" style="--tone:${stage.tone}" aria-pressed="false" onclick="showAiFlowStage(${index})"><span class="ai-flow-dot">${stage.name}</span></button>`).join('');
  showAiFlowStage(0);
 }
+const COACH_ARC_STAGES=[
+ {label:'Connect',color:'blue',icon:'<circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/>',title:'Build trust and presence',desc:'I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.'},
+ {label:'Goal',color:'teal',icon:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',title:'Establish the goal',desc:'We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.'},
+ {label:'Explore',color:'green',icon:'<path d="M16 8l-3 6-6 3 3-6 6-3z"/>',title:'Explore the current reality',desc:'I listen deeply, reflect what I notice, and ask questions that help the client understand the situation, emotions, patterns, and context more fully.'},
+ {label:'Awareness',color:'yellow',icon:'<path d="M9 18h6M12 2a6 6 0 0 0-3 11.2V15h6v-1.8A6 6 0 0 0 12 2z"/>',title:'Generate awareness',desc:'We challenge assumptions, notice beliefs, reframe perspectives, and make room for insights that expand what the client can see.'},
+ {label:'Options',color:'blue',icon:'<path d="M12 3v7M12 10l-7 11M12 10l7 11"/>',title:'Create options',desc:'The client generates possibilities and explores different ways forward. My role is to invite thinking, not prescribe advice.'},
+ {label:'Action',color:'teal',icon:'<path d="M13 2L3 14h7l-1 8 10-12h-7z"/>',title:'Commit to action',desc:'The client chooses a next step that feels meaningful, realistic, and aligned with their goals and values.'},
+ {label:'Close',color:'green',icon:'<path d="M20 6L9 17l-5-5"/>',title:'Capture learning and accountability',desc:'We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.'}
+];
+let openCoachArcIndex=null;
+function coachArcY(t){return 115-90*4*t*(1-t)}
+function positionCoachArc(){
+ const unit=document.getElementById('coachArcUnit');
+ const path=document.getElementById('coachArcPath');
+ const svg=document.getElementById('coachArcSvg');
+ if(!unit||!path||!svg||window.innerWidth<=820) return;
+ const width=unit.getBoundingClientRect().width;
+ if(!width) return;
+ const margin=64;
+ unit.querySelectorAll('.coach-arc-tile').forEach((tile,index)=>{
+  const t=index/(COACH_ARC_STAGES.length-1);
+  tile.style.left=`${margin+t*(width-2*margin)}px`;
+  tile.style.top=`${coachArcY(t)}px`;
+ });
+ svg.setAttribute('viewBox',`0 0 ${width} ${unit.getBoundingClientRect().height}`);
+ let d='';
+ for(let i=0;i<=40;i++){
+  const t=i/40,x=margin+t*(width-2*margin),y=coachArcY(t)+10;
+  d+=`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)} `;
+ }
+ path.setAttribute('d',d);
+}
+function closeCoachArc(){
+ document.querySelectorAll('.coach-arc-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.getElementById('coachArcReveal')?.classList.remove('open');
+ openCoachArcIndex=null;
+}
+function openCoachArc(index){
+ if(openCoachArcIndex===index){closeCoachArc();return}
+ closeCoachArc();
+ const stage=COACH_ARC_STAGES[index];
+ const tile=document.querySelector(`.coach-arc-tile[data-coach-index="${index}"]`);
+ const card=document.getElementById('coachArcCard');
+ if(!stage||!tile||!card) return;
+ card.innerHTML=`<button class="coach-arc-close" type="button" aria-label="Close coaching stage" onclick="closeCoachArc()">&times;</button><span class="coach-detail-icon c-${stage.color}"><svg viewBox="0 0 24 24">${stage.icon}</svg></span><div><div class="coach-detail-meta">${stage.label}</div><h3>${stage.title}</h3><p>${stage.desc}</p></div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ document.getElementById('coachArcReveal').classList.add('open');
+ openCoachArcIndex=index;
+}
+function updateCoachCarouselDots(){
+ const carousel=document.getElementById('coachCarousel');
+ if(!carousel) return;
+ const cards=carousel.querySelectorAll('.coach-car-card');
+ if(!cards.length) return;
+ let closest=0,distance=Infinity;
+ cards.forEach((card,index)=>{
+  const current=Math.abs(card.offsetLeft-carousel.scrollLeft-carousel.clientWidth*.11);
+  if(current<distance){distance=current;closest=index}
+ });
+ document.querySelectorAll('#coachCarDots span').forEach((dot,index)=>dot.classList.toggle('active',index===closest));
+}
+function buildCoachArc(){
+ const row=document.getElementById('coachArcRow');
+ const carousel=document.getElementById('coachCarousel');
+ const dots=document.getElementById('coachCarDots');
+ if(!row||!carousel||!dots) return;
+ row.innerHTML=COACH_ARC_STAGES.map((stage,index)=>`<button class="coach-arc-tile" type="button" data-coach-index="${index}" aria-expanded="false" aria-label="${stage.label}" onclick="openCoachArc(${index})"><span class="coach-arc-dot c-${stage.color}"></span><span class="coach-arc-label">${stage.label.toUpperCase()}</span></button>`).join('');
+ carousel.innerHTML=COACH_ARC_STAGES.map(stage=>`<article class="coach-car-card"><span class="coach-car-dot c-${stage.color}"></span><span class="coach-car-label">${stage.label}</span><h3>${stage.title}</h3><p>${stage.desc}</p></article>`).join('');
+ dots.innerHTML=COACH_ARC_STAGES.map((_,index)=>`<span class="${index===0?'active':''}"></span>`).join('');
+ let ticking=false;
+ carousel.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateCoachCarouselDots();ticking=false})},{passive:true});
+ requestAnimationFrame(positionCoachArc);
+}
 function showPage(id, updateHash=true){
   if(id==='frameworks') id='work';
   if(id==='books') id='about';
@@ -1463,6 +1569,7 @@ function showPage(id, updateHash=true){
   closeMenu();
   if(updateHash) history.replaceState(null,'','#'+page.id);
   window.scrollTo({top:0,behavior:'smooth'});
+  if(page.id==='coaching') requestAnimationFrame(positionCoachArc);
 }
 function routeFromHash(){
   showPage(location.hash.slice(1) || 'home',false);
@@ -1475,6 +1582,7 @@ buildFrameworks();
 buildWorkSamples();
 buildBookshelf();
 buildAiFlow();
+buildCoachArc();
 syncCoachingStep(0);
 routeFromHash();
 function toggleMenu(){
@@ -1487,6 +1595,7 @@ function closeMenu(){
   document.querySelector('.hamburger').classList.remove('active');
   document.getElementById('menuOverlay').classList.remove('open');
 }
+window.addEventListener('resize',positionCoachArc);
 </script>
 </body>
 </html>
