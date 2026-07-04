@@ -318,7 +318,7 @@ img{display:block;max-width:100%;}
 .ai-flow-outputs{display:flex;max-width:310px;justify-content:flex-end;gap:.4rem;flex-wrap:wrap}.ai-flow-outputs span{font-size:.7rem;font-weight:700;padding:.4rem .65rem;border:1px solid var(--line);border-radius:999px;background:#f8f9fa}
 .ai-flow-note{text-align:center;color:var(--grey);font-size:.78rem;margin-top:1rem}
 .merged-section{border-top:1px solid var(--line)}
-#work>.merged-section{padding-bottom:2.25rem}#work>.work-samples-section{padding-top:2.25rem}
+#work>.merged-section{padding-bottom:2.25rem}#work>.work-samples-section{padding-top:2.25rem;padding-bottom:1.5rem}
 #work>.merged-section>.cards{margin-top:2rem}#work>.merged-section>.ai-practice{margin-top:3rem}#work>.merged-section>.section-center:first-child{margin-bottom:0}
 .tool-guide{max-width:900px;margin:3rem auto 0;padding:1.4rem;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#fff,#f5faf9);box-shadow:0 18px 46px rgba(7,16,20,.08)}
 .tool-guide-question{text-align:center;margin-bottom:1.2rem}.tool-guide-question span{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}.tool-guide-question h3{font-size:1.4rem;margin:.35rem 0 0}
@@ -337,6 +337,17 @@ img{display:block;max-width:100%;}
 .tool-result-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 46px rgba(7,16,20,.08)}.tool-result-main{padding:2rem}.tool-result-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--active)}.tool-result-title{display:flex;align-items:center;gap:.8rem;margin:.6rem 0 .8rem}.tool-result-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--active-soft);color:var(--active);font-size:1.25rem;font-weight:800}.tool-result-title h3{font-size:clamp(1.7rem,4vw,2.6rem);margin:0}.tool-result-main p{color:var(--grey);line-height:1.65;margin-bottom:1.2rem}.tool-result-actions{display:flex;gap:.65rem;flex-wrap:wrap}.tool-result-side{padding:1.6rem;background:var(--active-soft);display:flex;flex-direction:column;justify-content:center}.tool-result-side span{color:var(--active);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.tool-result-side p{font-weight:700;line-height:1.55}.tool-time{color:var(--grey);font-size:.78rem;font-weight:650}.tool-privacy{text-align:center;color:var(--grey);font-size:.74rem;margin-top:1rem}.browse-all{margin-top:4rem;text-align:center}.browse-all h3{font-size:1.5rem;margin-bottom:.4rem}.browse-all p{color:var(--grey)}
 #coaching .coaching-tools .browse-all,#coaching .coaching-tools .browse-all + .cards{display:none}
 .coaching-approach{margin:3rem auto 0;max-width:900px;text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.coaching-approach h2{margin:0!important}
+.coaching-intro{max-width:680px;margin:0 auto;text-align:center}
+.coach-services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3rem}
+.coach-service-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem 1.2rem}
+.coach-service-card::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;border:1px solid var(--line);top:-68px;right:-68px}
+.coach-service-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;position:absolute;top:1.1rem;right:1.2rem}
+.coach-service-icon.c-blue{background:#eaf1fe}.coach-service-icon.c-green{background:#e9f7ee}
+.coach-service-icon svg{width:20px;height:20px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.coach-service-icon.c-blue svg{stroke:var(--blue)}.coach-service-icon.c-green svg{stroke:var(--green)}
+.coach-service-label{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);margin:2.9rem 0 .35rem;position:relative}
+.coach-service-card h3{font-size:1.05rem;margin:0 0 .4rem;position:relative}.coach-service-card p{color:var(--grey);font-size:.82rem;line-height:1.5;margin:0 0 .6rem;position:relative}
+.modality-tags{display:flex;flex-wrap:wrap;gap:.4rem;position:relative}.modality-tag{font-size:.72rem;font-weight:650;padding:.3rem .65rem;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--grey)}
+@media(max-width:760px){.coach-services-grid{grid-template-columns:1fr}}
 
 /* COACHING CONVERSATION ARC */
 .coach-arc-unit{position:relative;margin-top:4rem;height:170px}
@@ -358,6 +369,7 @@ img{display:block;max-width:100%;}
 
 /* CTA */
 .cta{position:relative;text-align:center;padding:7rem 1.5rem;overflow:hidden;background:var(--soft);}
+#work>.cta{padding:4.5rem 1.5rem}
 .cta .ring1{width:200px;height:200px;border-color:rgba(15,159,154,.15);top:35px;left:-110px;}
 .cta .ring2{width:120px;height:120px;border-color:rgba(251,188,5,.25);bottom:25px;right:-55px;}
 .cta .dot1{width:10px;height:10px;background:var(--blue);top:80px;right:22%;opacity:.6;}
@@ -478,17 +490,18 @@ img{display:block;max-width:100%;}
 
 /* WORK SAMPLE TILES */
 .sample-unit{margin-top:3rem}
-.sample-row{display:flex;align-items:flex-start;gap:4rem;justify-content:center;flex-wrap:wrap;padding:.75rem .5rem 1.5rem}
+.sample-row{display:flex;align-items:flex-start;gap:4rem;justify-content:center;flex-wrap:wrap;padding:.75rem .5rem .5rem}
 .sample-tile{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:220px;border:0;background:none;cursor:pointer;padding:.5rem;font-family:inherit;color:var(--ink)}
 .sample-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
-.sample-icon{position:relative;width:112px;height:112px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(20,20,30,.16);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.sample-icon::after{content:"";position:absolute;inset:-10px;border:1px solid currentColor;border-radius:50%;opacity:.22}
+.sample-icon{position:relative;width:118px;height:78px;border-radius:12px 12px 7px 7px;flex:none;display:flex;align-items:center;justify-content:center;border:5px solid #fff;box-shadow:0 10px 24px rgba(20,20,30,.16),0 0 0 1px currentColor;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.sample-icon::after{content:"";position:absolute;left:-13px;right:-13px;bottom:-12px;height:8px;background:#fff;border:1px solid currentColor;border-top:0;border-radius:0 0 12px 12px;box-shadow:0 5px 8px rgba(20,20,30,.08)}
 .sample-tile:hover .sample-icon{transform:translateY(-7px) scale(1.03)}
 .sample-tile.open .sample-icon{transform:translateY(-9px) scale(1.05);box-shadow:0 20px 34px rgba(20,20,30,.22)}
-.sample-icon svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.sample-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.sample-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}.sample-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}.sample-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.sample-icon svg{width:38px;height:38px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sample-icon.c-blue{color:#4285f4;background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.sample-icon.c-green{color:#34a853;background:linear-gradient(160deg,#5cc57e,#2c9749)}.sample-icon.c-yellow{color:#c99000;background:linear-gradient(160deg,#fdd25c,#e0a600)}.sample-icon.c-teal{color:#0f9f9a;background:linear-gradient(160deg,#33c1bb,#0c8e89)}
 .sample-title-label{font-size:1rem;font-weight:700;text-align:center;line-height:1.35;color:var(--ink)}
 .sample-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
+.sample-course-pill{max-width:210px;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:#f5f6f7;color:var(--ink);font-size:.78rem;font-weight:700;line-height:1.3;text-align:center}
 .sample-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
 .sample-detail-reveal>div{overflow:hidden}.sample-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
 .sample-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;position:relative;overflow:hidden}
@@ -497,7 +510,7 @@ img{display:block;max-width:100%;}
 .sample-tags{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1rem}.sample-tags span{font-size:.72rem;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.35rem .65rem}
 .sample-launch{display:inline-flex;font-size:.86rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:999px;padding:.6rem 1.2rem;text-decoration:none;position:relative}.sample-launch:hover{transform:translateY(-1px)}
 .sample-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;z-index:1}.sample-detail-close:hover{border-color:var(--teal);color:var(--teal)}
-.sample-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+.sample-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:1.1rem}
 .legacy-work-grid[hidden]{display:none!important}
 
 /* CARD ICONS */
@@ -582,7 +595,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .tools-detail-card{flex-direction:column;padding:1.5rem}
   .sample-row{gap:2rem}
   .sample-tile{width:132px}
-  .sample-icon{width:82px;height:82px}
+  .sample-icon{width:88px;height:60px;border-width:4px}
   .sample-icon svg{width:31px;height:31px}
   .sample-title-label{font-size:.78rem}
   .sample-cat-label{font-size:.62rem}
@@ -843,8 +856,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     </div>
 
     <div class="section-center" style="margin-top:4.5rem;">
-      <div class="eyebrow c">The Frameworks</div>
-      <h2 style="font-size:1.9rem;">The frameworks behind it</h2>
+      <div class="eyebrow c">The Frameworks Behind It</div>
       <p class="section-intro">Evidence-based models keep my work rigorous. Tap one to see how I use it.</p>
     </div>
     <div class="fw-unit" id="frameworkUnit"></div>
@@ -937,25 +949,24 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 
 <section class="page" id="coaching">
   <div class="section">
-    <div class="section-center">
-      <div class="eyebrow c">My approach</div>
+    <div class="coaching-intro">
       <h2>How I <span class="grad">coach.</span></h2>
-      <p class="section-intro">My coaching is grounded in emotional intelligence, identity work, and practical behaviour change. It creates space to understand what is happening beneath the surface, reconnect with what matters, and choose how you want to move forward.</p>
+      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how you want to move forward.</p>
     </div>
-    <div class="cards" style="margin-top:3.5rem;">
-      <div class="card">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="card-meta">For Organizations</div>
-        <h3>IC Development Consulting</h3>
-        <p>I help companies build individual contributor pathways so people can grow, lead, and explore possibilities, including greater seniority in their craft and people management.</p>
+    <div class="coach-services-grid">
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-blue"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="coach-service-label">For Organizations</div>
+        <h3>IC Coaching Programs</h3>
+        <p>I coach individual contributors to grow their craft and step into leadership, building your next generation of leaders from within.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span><span class="modality-tag">Group</span><span class="modality-tag">Peer</span></div>
       </div>
-      <div class="card">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div>
-        <div class="card-meta">For Individuals</div>
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <div class="coach-service-label">For Individuals</div>
         <h3>1:1 Integrative Coaching</h3>
-        <p>I help people quiet their mental noise, build emotional intelligence, and lead themselves with intention. My approach brings EQ, identity work, and behaviour change together in one grounded process.</p>
+        <p>I help people quiet the noise, build emotional intelligence, and lead their life with the same intention they bring to their work.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span></div>
       </div>
     </div>
 
@@ -1353,7 +1364,7 @@ function buildWorkSamples(){
   html+=`<div class="sample-row" data-row="${row}">`;
   WORK_SAMPLE_ITEMS.slice(start,start+perRow).forEach((item,offset)=>{
    const index=start+offset;
-   html+=`<button class="sample-tile" type="button" data-sample-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openWorkSample(${index})">${workSampleIcon(item)}<span class="sample-title-label">${item.name}</span><span class="sample-cat-label">${item.cat}</span></button>`;
+   html+=`<button class="sample-tile" type="button" data-sample-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openWorkSample(${index})">${workSampleIcon(item)}<span class="sample-course-pill">${item.name}</span></button>`;
   });
   html+=`</div><div class="sample-detail-reveal" data-detail-row="${row}"><div><div class="sample-detail-card"></div></div></div>`;
  }
