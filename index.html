@@ -312,19 +312,21 @@ img{display:block;max-width:100%;}
 .ai-reveal>div{overflow:hidden}
 .ai-reveal.open{grid-template-rows:1fr;margin-top:.8rem}
 .ai-card-prompt{font-size:.72rem;font-weight:700;color:var(--teal);letter-spacing:.04em;text-transform:uppercase;margin-top:.85rem}
-.ai-flow-studio{position:relative;border:1px solid var(--line);border-radius:28px;padding:2rem;background:linear-gradient(145deg,#fff,#f3faf9);box-shadow:0 18px 44px rgba(20,30,40,.07);overflow:hidden}
-.ai-flow-studio::after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(15,159,154,.16);border-radius:50%;right:-110px;top:-120px;pointer-events:none}
-.ai-flow-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,1fr);gap:.65rem}
-.ai-flow-steps::before{content:"";position:absolute;left:7%;right:7%;top:22px;height:2px;background:var(--grad);opacity:.28}
-.ai-flow-step{position:relative;border:0;background:none;font:inherit;color:var(--grey);cursor:pointer;padding:0;text-align:center}
-.ai-flow-dot{position:relative;z-index:1;min-width:88px;height:44px;border-radius:999px;display:grid;place-items:center;margin:0 auto;background:#fff;border:2px solid var(--line);padding:0 .85rem;font-size:.75rem;font-weight:800;transition:.25s}
-.ai-flow-step:hover .ai-flow-dot,.ai-flow-step.active .ai-flow-dot{transform:translateY(-4px);border-color:var(--tone);color:#fff;background:var(--tone);box-shadow:0 10px 22px rgba(20,30,40,.16)}
-.ai-flow-detail{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:1.3rem;align-items:center;margin-top:2.2rem;padding:1.7rem;border-radius:22px;background:#fff;border:1px solid var(--line)}
-.ai-flow-icon{min-width:92px;height:44px;border-radius:999px;padding:0 .9rem;display:grid;place-items:center;background:var(--tone);color:#fff;font-size:.75rem;font-weight:800;box-shadow:0 10px 22px rgba(20,30,40,.14)}
-.ai-flow-label{font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--tone)}
-.ai-flow-detail h4{margin:.3rem 0 .4rem;font-size:1.35rem}.ai-flow-detail p{margin:0;color:var(--grey);font-size:.9rem;line-height:1.6}
-.ai-flow-outputs{display:flex;max-width:310px;justify-content:flex-end;gap:.4rem;flex-wrap:wrap}.ai-flow-outputs span{font-size:.7rem;font-weight:700;padding:.4rem .65rem;border:1px solid var(--line);border-radius:999px;background:#f8f9fa}
-.ai-flow-note{text-align:center;color:var(--grey);font-size:.78rem;margin-top:1rem}
+.ai-stage-tiles{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center;padding:0 .5rem}
+.ai-stage-tile{display:flex;flex-direction:column;align-items:center;gap:.6rem;width:96px;border:0;background:none;cursor:pointer;font-family:inherit;color:var(--ink)}
+.ai-stage-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.ai-stage-ring{position:relative;width:56px;height:56px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.ai-stage-tile:hover .ai-stage-ring{transform:translateY(-5px) rotate(-1.5deg)}.ai-stage-tile.active .ai-stage-ring{transform:translateY(-7px) rotate(-2.5deg)}
+.ai-stage-ring svg.badge{width:56px;height:56px;position:absolute;inset:0}.ai-stage-ring-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ai-stage-ring-icon.i-blue{stroke:var(--blue)}.ai-stage-ring-icon.i-green{stroke:var(--green)}.ai-stage-ring-icon.i-yellow{stroke:#c99000}.ai-stage-ring-icon.i-teal{stroke:var(--teal)}
+.ai-stage-label{font-size:.8rem;font-weight:700;color:var(--ink)}
+.ai-stage-detail{margin-top:1.8rem;background:#fff;border-radius:22px;padding:1.9rem;display:none;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
+.ai-stage-detail.open{display:flex}.ai-stage-detail::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.25;top:-40px;right:-40px}
+.ai-stage-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s;z-index:1}.ai-stage-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.ai-stage-detail-ring{position:relative;width:52px;height:52px;flex:none}.ai-stage-detail-ring svg.badge{width:52px;height:52px;position:absolute;inset:0}.ai-stage-detail-ring .ai-stage-ring-icon{width:20px;height:20px}
+.ai-stage-meta{font-size:.76rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;position:relative}.ai-stage-detail h4{font-size:1.2rem;margin:0 0 .5rem;position:relative}.ai-stage-detail p{color:var(--grey);font-size:.92rem;line-height:1.6;margin:0 0 1rem;position:relative}
+.ai-stage-outputs{display:flex;flex-wrap:wrap;gap:.5rem;position:relative}.ai-stage-outputs span{font-size:.74rem;font-weight:500;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem}
+.ai-stage-note{text-align:center;color:var(--grey);font-size:.78rem;margin-top:1.3rem}
 .merged-section{border-top:1px solid var(--line)}
 #work>.merged-section{padding-bottom:2.25rem}#work>.work-samples-section{padding-top:2.25rem;padding-bottom:1.5rem}
 #work>.merged-section>.cards{margin-top:2rem}#work>.merged-section>.ai-practice{margin-top:3rem}#work>.merged-section>.section-center:first-child{margin-bottom:0}
@@ -622,15 +624,9 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   .phase-cards{grid-template-columns:1fr;}
   .ai-practice{padding:1.4rem;}
   .ai-grid{grid-template-columns:1fr;}
-  .ai-flow-studio{padding:1.35rem 1rem}
-  .ai-flow-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:.2rem;gap:.7rem;overflow:visible}
-  .ai-flow-steps::before{display:none}
-  .ai-flow-step{min-width:0}
-  .ai-flow-dot{width:100%;min-width:0;height:42px}
-  .ai-flow-detail{grid-template-columns:1fr;padding:1.25rem;gap:.8rem;margin-top:1.25rem}
-  .ai-flow-icon{display:none}
-  .ai-flow-detail h4{font-size:1.15rem}
-  .ai-flow-outputs{max-width:none;justify-content:flex-start}
+  .ai-stage-tiles{gap:.85rem;padding:0}
+  .ai-stage-tile{width:82px}
+  .ai-stage-detail{flex-direction:column;padding:1.4rem}
   .coach-arc-unit,.coach-arc-reveal,.coach-arc-hint{display:none}
   .coach-carousel{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem 10vw 1.5rem;margin:2rem -1.4rem 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .coach-carousel::-webkit-scrollbar{display:none}
@@ -856,11 +852,9 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="ai-practice">
       <h3>How I leverage AI Tools</h3>
       <p class="ai-intro">AI is part of how I research, design, prototype, and teach. I use it to make useful things faster, while keeping judgment, accessibility, and human expertise firmly in the process.</p>
-      <div class="ai-flow-studio" aria-label="Interactive AI workflow">
-        <div class="ai-flow-steps" id="aiFlowSteps"></div>
-        <article class="ai-flow-detail" id="aiFlowDetail" aria-live="polite"></article>
-      </div>
-      <p class="ai-flow-note">Choose a stage to see how AI supports the work.</p>
+      <div class="ai-stage-tiles" id="aiStageTiles" aria-label="Interactive AI workflow"></div>
+      <article class="ai-stage-detail" id="aiStageDetail" aria-live="polite"></article>
+      <p class="ai-stage-note">Choose a stage to see how AI supports the work.</p>
     </div>
 
     <div class="section-center" style="margin-top:4.5rem;">
@@ -1509,30 +1503,32 @@ function toggleAiCard(button){
  reveal.classList.toggle('open',!open);
 }
 const AI_FLOW_STAGES=[
- {name:'Research',tone:'#4285f4',icon:'01',title:'Find the real problem',copy:'I use AI to synthesize interviews, survey data, feedback, and patterns, while keeping human judgment at the centre.',outputs:['Needs analysis','Synthesis','Learning analytics','Insight generation']},
- {name:'Design',tone:'#2b92c5',icon:'02',title:'Shape the learning strategy',copy:'I turn evidence into objectives, journeys, scenarios, and experiences designed around what people need to do.',outputs:['Learning journeys','Scenarios','Course outlines','Blueprints']},
- {name:'Prototype',tone:'#0f9f9a',icon:'03',title:'Make ideas tangible quickly',copy:'I create early working versions so people can react to something real, test assumptions, and improve the direction sooner.',outputs:['Rapid prototypes','Wireframes','Interactive tests','Workflow design']},
- {name:'Build',tone:'#25a86d',icon:'04',title:'Create useful digital experiences',copy:'I build tools, apps, courses, e-learning, videos, and digital assets that turn strategy into something people can use.',outputs:['Tools','Apps','Courses','E-learning','Videos','Digital assets']},
- {name:'Enable',tone:'#63aa3e',icon:'05',title:'Help people use AI well',copy:'I design practical AI literacy and upskilling experiences for leaders and individual contributors that build confidence and discernment.',outputs:['AI literacy','Leader upskilling','IC upskilling','Responsible workflows']},
- {name:'Measure',tone:'#d4a500',icon:'06',title:'Learn from what happens next',copy:'I use feedback and data to understand adoption, behaviour change, and where the experience needs to evolve.',outputs:['Feedback','Adoption','Behaviour change','Iteration']}
+ {name:'Research',color:'blue',icon:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>',title:'Find the real problem',desc:'I use AI to synthesize interviews, survey data, feedback, and patterns, while keeping human judgment at the centre.',outputs:['Needs analysis','Synthesis','Learning analytics','Insight generation']},
+ {name:'Design',color:'teal',icon:'<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>',title:'Shape the learning strategy',desc:'I turn evidence into objectives, journeys, scenarios, and experiences designed around what people need to do.',outputs:['Learning journeys','Scenarios','Course outlines','Blueprints']},
+ {name:'Prototype',color:'green',icon:'<path d="M9 2v7.5L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9.5V2"/><path d="M9 2h6"/><path d="M8.5 14h7"/>',title:'Make ideas tangible quickly',desc:'I create early working versions so people can react to something real, test assumptions, and improve the direction sooner.',outputs:['Rapid prototypes','Wireframes','Interactive tests','Workflow design']},
+ {name:'Build',color:'yellow',icon:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',title:'Create useful digital experiences',desc:'I build tools, apps, courses, e-learning, videos, and digital assets that turn strategy into something people can use.',outputs:['Tools','Apps','Courses','E-learning','Videos','Digital assets']},
+ {name:'Enable',color:'blue',icon:'<path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>',title:'Help people use AI well',desc:'I design practical AI literacy and upskilling experiences for leaders and individual contributors that build confidence and discernment.',outputs:['AI literacy','Leader upskilling','IC upskilling','Responsible workflows']},
+ {name:'Measure',color:'teal',icon:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',title:'Learn from what happens next',desc:'I use feedback and data to understand adoption, behaviour change, and where the experience needs to evolve.',outputs:['Feedback','Adoption','Behaviour change','Iteration']}
 ];
-function showAiFlowStage(index){
- const stage=AI_FLOW_STAGES[index];
- const detail=document.getElementById('aiFlowDetail');
- if(!stage||!detail) return;
- document.querySelectorAll('.ai-flow-step').forEach((item,i)=>{
-  item.classList.toggle('active',i===index);
-  item.setAttribute('aria-pressed',String(i===index));
- });
- detail.style.setProperty('--tone',stage.tone);
- detail.innerHTML=`<div class="ai-flow-icon">${stage.name}</div><div><h4>${stage.title}</h4><p>${stage.copy}</p></div><div class="ai-flow-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div>`;
+const AI_RING_HEX={blue:'#4285F4',green:'#34A853',yellow:'#e0a600',teal:'#0F9F9A'};
+let activeAiStage=null;
+function aiRingBadge(stage,size){
+ const radius=size/2-6;
+ return `<svg class="badge" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle cx="${size/2}" cy="${size/2}" r="${size/2-4}" fill="#fff" stroke="#EAEAEF" stroke-width="1.5"/><circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="${AI_RING_HEX[stage.color]}" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="${radius*3.2} ${radius}" transform="rotate(-42 ${size/2} ${size/2})"/></svg><svg class="ai-stage-ring-icon i-${stage.color}" viewBox="0 0 24 24" aria-hidden="true">${stage.icon}</svg>`;
 }
-function buildAiFlow(){
- const steps=document.getElementById('aiFlowSteps');
- if(!steps) return;
- steps.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-flow-step" type="button" style="--tone:${stage.tone}" aria-pressed="false" onclick="showAiFlowStage(${index})"><span class="ai-flow-dot">${stage.name}</span></button>`).join('');
- showAiFlowStage(0);
+function renderAiStages(){
+ const tiles=document.getElementById('aiStageTiles');
+ const detail=document.getElementById('aiStageDetail');
+ if(!tiles||!detail) return;
+ tiles.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-stage-tile${index===activeAiStage?' active':''}" type="button" aria-pressed="${index===activeAiStage}" onclick="toggleAiStage(${index})"><span class="ai-stage-ring">${aiRingBadge(stage,56)}</span><span class="ai-stage-label">${stage.name}</span></button>`).join('');
+ if(activeAiStage===null){detail.classList.remove('open');detail.innerHTML='';return}
+ const stage=AI_FLOW_STAGES[activeAiStage];
+ detail.innerHTML=`<button class="ai-stage-close" type="button" aria-label="Close AI stage" onclick="closeAiStage()">&times;</button><span class="ai-stage-detail-ring">${aiRingBadge(stage,52)}</span><div><div class="ai-stage-meta">${stage.name}</div><h4>${stage.title}</h4><p>${stage.desc}</p><div class="ai-stage-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div></div>`;
+ detail.classList.add('open');
 }
+function toggleAiStage(index){activeAiStage=activeAiStage===index?null:index;renderAiStages()}
+function closeAiStage(){activeAiStage=null;renderAiStages()}
+function buildAiFlow(){renderAiStages()}
 const COACH_ARC_STAGES=[
  {label:'Connect',color:'blue',icon:'<circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/>',title:'Build trust and presence',desc:'I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.'},
  {label:'Goal',color:'teal',icon:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',title:'Establish the goal',desc:'We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.'},
