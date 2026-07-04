@@ -227,6 +227,14 @@ img{display:block;max-width:100%;}
 .method-reveal.open{grid-template-rows:1fr;}
 .method-example{margin-top:1rem;padding:1rem 1.05rem;border-radius:14px;background:var(--soft);border-left:3px solid var(--teal);font-size:.86rem;color:var(--grey);line-height:1.6;}
 .method-example strong{display:block;color:var(--ink);margin-bottom:.25rem;}
+.methodology-section>.cards{align-items:stretch}
+.methodology-section .method-card{border-radius:20px;padding:1.4rem}
+.methodology-section .method-card .card-ring{top:-13px;right:-13px}
+.methodology-section .method-card .card-icon{width:50px;height:50px;position:absolute;top:1.4rem;right:1.4rem;margin:0}
+.methodology-section .method-card .card-icon svg{width:24px;height:24px}
+.methodology-section .method-card .card-meta{margin:3.3rem 0 .6rem}
+.methodology-section .method-card h3{font-size:1.3rem;margin-bottom:.6rem}
+.methodology-section .method-card p{font-size:.92rem;line-height:1.55;margin-bottom:.9rem}
 #work .cards,#books .cards,.books-section .cards{align-items:stretch;}
 #work .card,#books .card,.books-section .card{display:flex;flex-direction:column;min-height:300px;height:100%;}
 #about .books-section .cards{gap:1rem}
@@ -816,11 +824,11 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 </section>
 
 <section class="page" id="frameworks">
-  <div class="section">
+  <div class="section methodology-section">
     <div class="section-center">
       <div class="eyebrow c">The Methodology</div>
       <h2>How I design <span class="grad">learning.</span></h2>
-      <p class="section-intro">Listen first. Design for real scenarios. Measure behaviour change, not clicks.</p>
+      <p class="section-intro">Listen first. Design for real scenarios. Measure behaviour change.</p>
     </div>
     <div class="cards">
       <div class="card method-card">
@@ -828,20 +836,20 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div>
         <div class="card-meta">Priority 01</div>
         <h3>Learning experiences people love</h3>
-        <p>If learners are bored, nothing else matters. I design for engagement, relevance, and real application, because adults learn when it connects to their actual work.</p>
+        <p>I design for engagement, relevance, and real-world application over passive content.</p>
         <div class="card-tags"><span class="card-tag">Real scenarios</span><span class="card-tag">Learner choice</span><span class="card-tag">Practice over passive</span></div>
         <button class="method-reveal-toggle" type="button" aria-expanded="false" onclick="toggleMethodCard(this)"><span class="plus">+</span> See how I use this</button>
-        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>I turn real workplace decisions into scenarios where learners choose, see the consequence, and try again. The experience becomes rehearsal for the job rather than information about the job.</div></div></div>
+        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>If learners are bored, nothing else matters. I turn real workplace decisions into scenarios where learners choose, see the consequence, and try again. The experience becomes rehearsal for the job rather than information about the job.</div></div></div>
       </div>
       <div class="card method-card">
         <div class="card-ring"></div>
         <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <div class="card-meta">Priority 02</div>
         <h3>Outcomes the business can measure</h3>
-        <p>Learning is an investment, and I treat it like one. Every program starts from a business goal and ends with evidence of impact, not just completion rates.</p>
+        <p>Every program starts from a business goal and ends with evidence of impact.</p>
         <div class="card-tags"><span class="card-tag">Needs analysis</span><span class="card-tag">Metrics by design</span><span class="card-tag">Behaviour change</span></div>
         <button class="method-reveal-toggle" type="button" aria-expanded="false" onclick="toggleMethodCard(this)"><span class="plus">+</span> See how I use this</button>
-        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>I define the behaviour and business signal before building content. For onboarding, that can mean time to proficiency, quality scores, manager confidence, and evidence that people apply the skill after training.</div></div></div>
+        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>Learning is an investment, and I treat it like one. I define the behaviour and business signal before building content. For onboarding, that can mean time to proficiency, quality scores, manager confidence, and evidence that people apply the skill after training.</div></div></div>
       </div>
     </div>
 
@@ -951,7 +959,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   <div class="section">
     <div class="coaching-intro">
       <h2>How I <span class="grad">coach.</span></h2>
-      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how you want to move forward.</p>
+      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how to move forward.</p>
     </div>
     <div class="coach-services-grid">
       <div class="coach-service-card">
