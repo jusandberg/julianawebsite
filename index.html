@@ -105,7 +105,7 @@ img{display:block;max-width:100%;}
 .hero-btns .btn-soft{color:#087d79;background:#edf8f7;border:1px solid #cce9e7}.hero-btns .btn-soft:hover{transform:translateY(-2px);background:#dff2f0}
 .hero-photo-wrap{position:relative;width:180px;margin:3.5rem auto 0;}
 .hero-photo-wrap .photo-ring{position:absolute;inset:-12px;border:1.5px solid rgba(15,159,154,.25);border-radius:50%;}
-.hero-photo-wrap img{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:center 38%;position:relative;}
+.hero-photo-wrap img{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:50% 50%;position:relative;}
 
 .div-line{position:relative;max-width:1100px;margin:0 auto;height:1px;background:var(--line);}
 .div-line::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:var(--teal);}
@@ -138,7 +138,7 @@ img{display:block;max-width:100%;}
 .about-photo::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line);border-radius:50%;animation:aboutSpin 40s linear infinite;}
 .about-photo::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--yellow);right:12px;top:14px;box-shadow:0 0 0 6px #fff;animation:aboutPulse 2.6s ease-in-out infinite;}
 @keyframes aboutSpin{to{transform:rotate(360deg)}}@keyframes aboutPulse{50%{transform:scale(1.18)}}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%;border-radius:50%;box-shadow:0 20px 40px rgba(20,20,30,.08);}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 34%;border-radius:50%;box-shadow:0 20px 40px rgba(20,20,30,.08);}
 .about-story h2{font-size:clamp(2.2rem,4.5vw,3.5rem);margin-bottom:1.2rem;}
 .about-eyebrow-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
 .about-eyebrow-row .eyebrow{margin-bottom:0}
@@ -675,7 +675,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
         <button class="btn-outline" onclick="showPage('about')">Learn about me</button>
         <a href="Juliana-Dos-Santos-Resume-July-2026.pdf" class="btn-soft">View my resume</a>
       </div>
-      <div class="hero-photo-wrap"><div class="photo-ring"></div><img src="profile.jpg" alt="Juliana Dos Santos"></div>
+      <div class="hero-photo-wrap"><div class="photo-ring"></div><img src="profile-home-side.png" alt="Juliana Dos Santos looking to the side"></div>
     </div>
   </div>
 
@@ -702,7 +702,7 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 <section class="page" id="about">
   <div class="section">
     <div class="about-profile">
-      <div class="about-photo"><img src="profile.jpg" alt="Juliana Dos Santos"></div>
+      <div class="about-photo"><img src="profile-who-i-am.png" alt="Juliana Dos Santos"></div>
       <div class="about-story">
         <div class="about-eyebrow-row">
           <div class="eyebrow">About Me</div>
