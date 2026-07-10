@@ -1,112 +1,1646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The U Method | Coaching Practice</title>
-  <meta name="description" content="A modern coaching practice website for The U Method with booking, services, resources, and coaching education.">
-  <link rel="stylesheet" href="./styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" sizes="any" href="./favicon.svg?v=2">
+<link rel="alternate icon" type="image/x-icon" href="./favicon.ico?v=2">
+<title>Juliana Dos Santos, Talent Development · Coaching</title>
+<meta name="description" content="Talent Development leader, Instructional Designer, and Integrative Coach. Explore frameworks, case studies, and free coaching tools.">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Juliana Dos Santos">
+<meta property="og:url" content="https://julianadossantos.ca/">
+<meta property="og:title" content="Juliana Dos Santos — Talent Development &amp; Integrative Coaching">
+<meta property="og:description" content="Talent Development leader, Instructional Designer, and Integrative Coach. Explore frameworks, case studies, and free coaching tools.">
+<meta property="og:image" content="https://julianadossantos.ca/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Juliana Dos Santos — Talent Development &amp; Integrative Coaching">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Juliana Dos Santos — Talent Development &amp; Integrative Coaching">
+<meta name="twitter:description" content="Talent Development leader, Instructional Designer, and Integrative Coach. Explore frameworks, case studies, and free coaching tools.">
+<meta name="twitter:image" content="https://julianadossantos.ca/og-image.png">
+<meta name="twitter:image:alt" content="Juliana Dos Santos — Talent Development &amp; Integrative Coaching">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
+  --blue:#4285F4; --green:#34A853; --yellow:#FBBC05; --teal:#0F9F9A;
+  --grad:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 80%,#FBBC05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+::selection{background:rgba(15,159,154,.18);}
+img{display:block;max-width:100%;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);gap:.75rem;}
+.nav-name{background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center;}
+.nav-name img{display:block;width:280px;height:auto;max-width:100%;}
+.nav-links{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap;}
+.nav-links button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:.85rem;font-weight:500;color:var(--ink);opacity:.75;transition:opacity .2s,color .2s;padding:0;}
+.nav-links button:hover,.nav-links button.active{opacity:1;color:var(--teal);}
+.nav-links .nav-coaching{opacity:1;color:var(--teal);background:rgba(15,159,154,.08);border:1px solid rgba(15,159,154,.22);border-radius:999px;padding:.48rem .9rem;transition:background .2s,border-color .2s,transform .2s;}
+.nav-links .nav-coaching:hover,.nav-links .nav-coaching.active{background:rgba(15,159,154,.14);border-color:rgba(15,159,154,.45);transform:translateY(-1px);}
+.nav-cta{font-size:.85rem;font-weight:600;color:#fff;background:var(--ink);padding:.5rem 1.1rem;border-radius:980px;text-decoration:none;transition:transform .2s;white-space:nowrap;}
+.nav-cta:hover{transform:scale(1.04);}
+
+.page{display:none;}
+.page.show{display:block;animation:fade .5s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+@keyframes decorFloatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(22px,-16px,0)}}
+@keyframes decorFloatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-18px,20px,0)}}
+.hero .ring,.cta .ring{animation:decorFloatA 11s ease-in-out infinite;will-change:transform;}
+.hero .ring2,.cta .ring2{animation-name:decorFloatB;animation-duration:13s;animation-delay:-4s;}
+.hero .dot,.cta .dot{animation:decorFloatB 7s ease-in-out infinite;will-change:transform;}
+.hero .dot2{animation-name:decorFloatA;animation-delay:-2.5s;}
+.page:not(#home){position:relative;overflow:hidden;}
+.page:not(#home)::before,.page:not(#home) > .section::before{
+  content:"";position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;
+  animation:decorFloatA 12s ease-in-out infinite;will-change:transform;
+}
+.page:not(#home)::before{width:250px;height:250px;left:-175px;top:25px;border-color:rgba(66,133,244,.16);}
+.page:not(#home) > .section::before{width:170px;height:170px;right:-95px;top:35px;border-color:rgba(15,159,154,.2);animation-name:decorFloatB;animation-delay:-4s;}
+.page:not(#home)::after,.page:not(#home) > .section::after{
+  content:"";position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:0;
+  animation:decorFloatB 7s ease-in-out infinite;will-change:transform;
+}
+.page:not(#home)::after{left:8%;top:250px;background:var(--yellow);}
+.page:not(#home) > .section::after{right:10%;top:210px;width:8px;height:8px;background:var(--teal);animation-name:decorFloatA;animation-delay:-2s;}
+.page:not(#home) > .section{isolation:isolate;}
+
+/* ACCENTS */
+.ring{position:absolute;border-radius:50%;border:1.5px solid;pointer-events:none;z-index:0;}
+.dot{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+
+/* HERO */
+.hero{position:relative;text-align:center;padding:6rem 1.5rem 4rem;overflow:hidden;}
+.hero .ring1{width:280px;height:280px;border-color:rgba(66,133,244,.18);top:-90px;left:-80px;}
+.hero .ring2{width:180px;height:180px;border-color:rgba(15,159,154,.22);top:60px;right:-40px;}
+.hero .ring3{width:90px;height:90px;border-color:rgba(52,168,83,.25);bottom:30px;left:12%;}
+.hero .dot1{width:12px;height:12px;background:var(--yellow);top:120px;left:18%;opacity:.7;}
+.hero .dot2{width:8px;height:8px;background:var(--teal);bottom:80px;right:20%;}
+.hero .dot3{width:10px;height:10px;background:var(--blue);top:90px;right:14%;opacity:.6;}
+.hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
+.hero-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;color:var(--ink);background:#F3F4F6;border:1px solid #E1E5EA;padding:.4rem 1rem;border-radius:980px;margin-bottom:2rem;}
+.hero-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.hero-role{display:inline-flex;align-items:center;gap:.5rem}
+.hero-position-mobile{display:none}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin-bottom:1.6rem;}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--grey);max-width:38rem;margin:0 auto 2.4rem;line-height:1.55;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;align-items:center;flex-wrap:wrap;}
+.btn-fill{font-family:inherit;font-size:1rem;font-weight:600;color:#fff;background:var(--ink);border:none;border-radius:980px;padding:.9rem 2rem;cursor:pointer;text-decoration:none;transition:transform .2s;}
+.btn-fill:hover{transform:scale(1.04);}
+.btn-text{font-family:inherit;font-size:1rem;font-weight:600;color:var(--teal);background:none;border:none;cursor:pointer;text-decoration:none;}
+.btn-text:hover{text-decoration:underline;}
+.hero-btns>.btn-text{display:inline-flex;align-items:center;min-height:48px;padding:.4rem .15rem;line-height:1.2}
+.hero-btns .btn-fill,.hero-btns .btn-outline,.hero-btns .btn-soft{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.8rem 1.5rem;border-radius:999px;font:600 .94rem Inter,Arial,sans-serif;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,border-color .2s}
+.hero-btns .btn-outline{color:var(--ink);background:#fff;border:1px solid #d8dde2}.hero-btns .btn-outline:hover{transform:translateY(-2px);border-color:var(--teal)}
+.hero-btns .btn-soft{color:#087d79;background:#edf8f7;border:1px solid #cce9e7}.hero-btns .btn-soft:hover{transform:translateY(-2px);background:#dff2f0}
+.hero-photo-wrap{position:relative;width:180px;margin:3.5rem auto 0;}
+.hero-photo-wrap .photo-ring{position:absolute;inset:-12px;border:1.5px solid rgba(15,159,154,.25);border-radius:50%;}
+.hero-photo-wrap img{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:50% 50%;position:relative;}
+
+.div-line{position:relative;max-width:1100px;margin:0 auto;height:1px;background:var(--line);}
+.div-line::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:var(--teal);}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto;padding:4rem 1.5rem;position:relative;}
+.stats .vline{position:absolute;top:4rem;bottom:4rem;width:1px;background:var(--line);}
+.stats .vline.v1{left:33.33%;}.stats .vline.v2{left:66.66%;}
+.stat{text-align:center;padding:1rem;}
+.stat .n{font-size:clamp(2.6rem,5vw,3.6rem);font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:.5rem;}
+.stat:nth-child(1) .n{color:var(--blue);}
+.stat:nth-child(3) .n{color:var(--green);}
+.stat:nth-child(5) .n{color:var(--yellow);}
+.stat .l{font-size:.85rem;color:var(--grey);font-weight:500;}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:6rem 1.5rem;position:relative;}
+.section-center{text-align:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--teal);}
+.eyebrow.c::after{content:"";width:24px;height:1px;background:var(--teal);}
+.section h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:1rem;}
+.section-intro{font-size:1.1rem;color:var(--grey);max-width:38rem;margin:0 auto;line-height:1.6;}
+.section-intro.left{margin:0;}
+
+/* WHO I AM */
+.about-profile{display:grid;grid-template-columns:340px 1fr;gap:3.5rem;align-items:center;margin-bottom:3.5rem;position:relative;z-index:1;}
+.about-photo{position:relative;width:280px;height:280px;margin:auto;transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+.about-photo:hover{transform:scale(1.03)}
+.about-photo::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line);border-radius:50%;animation:aboutSpin 40s linear infinite;}
+.about-photo::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--yellow);right:12px;top:14px;box-shadow:0 0 0 6px #fff;animation:aboutPulse 2.6s ease-in-out infinite;}
+@keyframes aboutSpin{to{transform:rotate(360deg)}}@keyframes aboutPulse{50%{transform:scale(1.18)}}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 34%;border-radius:50%;box-shadow:0 20px 40px rgba(20,20,30,.08);}
+.about-story h2{font-size:clamp(2.2rem,4.5vw,3.5rem);margin-bottom:1.2rem;}
+.about-eyebrow-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.about-eyebrow-row .eyebrow{margin-bottom:0}
+.about-story p{font-size:1.05rem;color:var(--grey);line-height:1.75;margin-bottom:1rem;max-width:42rem;}
+.about-values{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;}
+.about-values span{font-size:.78rem;font-weight:600;border-radius:999px;padding:.48rem .9rem;display:inline-flex;align-items:center;gap:.4rem;}
+.about-values span::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.about-values .v-blue{background:#EAF1FE;color:#2f5fc4}.about-values .v-green{background:#E9F7EE;color:#227a3e}.about-values .v-teal{background:#E4F6F5;color:#0b736f}.about-values .v-yellow{background:#FFF7E0;color:#a17400}
+.about-linkedin{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;flex:none;border-radius:50%;color:#fff;background:#0a66c2;text-decoration:none;box-shadow:0 6px 14px rgba(10,102,194,.18);transition:transform .2s,box-shadow .2s}
+.about-linkedin:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(10,102,194,.28)}.about-linkedin svg{width:20px;height:20px;fill:currentColor}
+.about-beliefs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start;max-width:1100px;margin:0 auto 4.5rem;}
+.about-belief{min-height:78px;border:1px dashed color-mix(in srgb,var(--belief-tone) 34%,#d9dde2);border-left:3px solid var(--belief-tone);border-radius:11px;padding:.7rem .85rem;background:#fff;transition:box-shadow .3s,border-color .3s,transform .3s;}
+.about-belief:nth-child(1){--belief-tone:#0f9f9a;--belief-soft:#e4f6f5}
+.about-belief:nth-child(2){--belief-tone:#4285f4;--belief-soft:#eaf1fe}
+.about-belief:nth-child(3){--belief-tone:#c98f00;--belief-soft:#fff7e0}
+.about-belief:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(15,159,154,.08);border-color:var(--belief-tone)}
+.about-belief-head{width:100%;display:grid;grid-template-columns:29px 1fr;gap:.7rem;align-items:center;color:var(--ink);text-align:left}
+.about-belief-icon{width:29px;height:29px;display:flex;align-items:center;justify-content:center;color:var(--belief-tone)}
+.about-belief-icon svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.about-belief .label{font-size:.69rem;font-weight:700;letter-spacing:.08em;color:var(--teal);margin-bottom:.3rem}
+.about-belief h3{font-size:.95rem;margin:0;line-height:1.25}
+.credentials-section{max-width:620px;margin:4rem auto 0;text-align:center}
+.cred-panel{display:inline-block;margin-top:.35rem;padding:1.6rem 2rem;background:var(--soft);border:1px solid var(--line);border-radius:22px}
+.cred-grid{display:inline-grid;grid-template-columns:auto auto;gap:1.3rem 2.5rem;text-align:left}
+.cred-card{display:flex;align-items:center;gap:.7rem;text-align:left}
+.cred-badge{width:22px;height:22px;flex:none;display:flex;align-items:center;justify-content:center}
+.cred-badge svg{width:22px;height:22px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cred-badge.c-blue svg{stroke:var(--blue)}.cred-badge.c-green svg{stroke:var(--green)}.cred-badge.c-yellow svg{stroke:#c99000}.cred-badge.c-teal svg{stroke:var(--teal)}
+.cred-text{font-size:.8rem;font-weight:650;color:var(--ink);line-height:1.25}.cred-text span{display:block;font-size:.68rem;font-weight:600;color:var(--grey);margin-top:.1rem}
+@media(max-width:600px){.credentials-section{margin-top:3rem}.cred-panel{display:block;padding:1.5rem 1.25rem;border-radius:18px}.cred-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}.cred-badge,.cred-badge svg{width:20px;height:20px}.cred-text{font-size:.78rem}}
+.impact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:1.15rem;margin:2rem 0 4.5rem;align-items:stretch;}
+.impact-card{border:1px solid var(--line);border-radius:22px;padding:2rem;background:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;height:100%;transition:transform .3s,box-shadow .3s,border-color .3s;}
+.impact-card:hover{transform:translateY(-6px);box-shadow:0 16px 38px rgba(15,159,154,.12);border-color:rgba(15,159,154,.45);}
+.impact-card .card-icon{width:44px;height:44px;margin-bottom:1.2rem;}
+.impact-card:nth-child(1) .card-icon{background:rgba(66,133,244,.1);color:var(--blue);}
+.impact-card:nth-child(2) .card-icon{background:rgba(52,168,83,.1);color:var(--green);}
+.impact-card:nth-child(3) .card-icon{background:rgba(15,159,154,.1);color:var(--teal);}
+.impact-card:nth-child(4) .card-icon{background:rgba(251,188,5,.13);color:#C98F00;}
+.impact-card .card-meta{font-size:.78rem;margin-bottom:.8rem;}
+.impact-card h3{font-size:1.4rem;line-height:1.3;margin-bottom:.8rem;}
+.impact-card p{font-size:.95rem;color:var(--grey);line-height:1.6;margin-bottom:1rem;}
+.impact-number{font-size:2.2rem;font-weight:700;line-height:1;color:var(--blue);margin:auto 0 .4rem;padding-top:1rem;}
+.impact-caption{font-size:.8rem;color:var(--grey);line-height:1.4;}
+#work .work-samples-section>.cards>.card:nth-child(-n+4){display:none;}
+#about .professional-history,#about .professional-history+h2,#about .professional-history+h2+.section-intro,#about .professional-history+h2+.section-intro+.cards{display:none;}
+#about>.section>.section-intro.left{display:none;}
+#about>.section>.cards{margin-top:2rem;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;margin-top:3rem;align-items:start;}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;transition:transform .3s,box-shadow .3s,border-color .3s,background-color .3s;position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-7px) scale(1.008);box-shadow:0 18px 46px rgba(15,159,154,.13);border-color:rgba(15,159,154,.48);background:#fff;}
+.card.wide{grid-column:1/-1;}
+.card-ring{position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid;top:-40px;right:-40px;opacity:.4;transition:transform .45s ease,opacity .3s;}
+.card:hover .card-ring{transform:translate(-7px,7px) scale(1.1);opacity:.75;}
+.card-icon{transition:transform .3s ease,box-shadow .3s ease;}
+.card:hover .card-icon{transform:translateY(-3px) rotate(-2deg);box-shadow:0 8px 18px rgba(15,159,154,.12);}
+.card:nth-child(5n+1) .card-ring{border-color:var(--blue);}
+.card:nth-child(5n+2) .card-ring{border-color:var(--green);}
+.card:nth-child(5n+3) .card-ring{border-color:var(--teal);}
+.card:nth-child(5n+4) .card-ring{border-color:var(--yellow);}
+.card:nth-child(5n+5) .card-ring{border-color:var(--blue);}
+.card-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.8rem;position:relative;}
+.card h3{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.8rem;position:relative;}
+.card p{color:var(--grey);font-size:.95rem;line-height:1.6;margin-bottom:1.2rem;position:relative;}
+.phase-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem;}
+.phase-cards .card{padding:1.75rem;border-radius:20px;}
+.phase-cards .card-icon{width:42px;height:42px;margin-bottom:1.2rem;}
+.phase-cards .card h3{font-size:1.25rem;}
+.phase-cards .card p{font-size:.9rem;line-height:1.55;margin-bottom:0;}
+.card-stat{font-size:2.2rem;font-weight:700;letter-spacing:-.02em;position:relative;margin-bottom:.6rem;color:var(--blue);}
+.card-tags{display:flex;flex-wrap:wrap;gap:.5rem;position:relative;}
+.resume-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;}
+.resume-actions .btn-text:last-child{padding:.45rem .8rem;border:1px solid rgba(15,159,154,.25);border-radius:999px;background:rgba(15,159,154,.06);}
+.card-tag{font-size:.72rem;font-weight:500;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:980px;padding:.3rem .8rem;}
+.card-link{display:inline-block;margin-top:1rem;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;position:relative;}
+.card-link:hover{text-decoration:underline;}
+.method-card{cursor:default;transition:transform .3s,box-shadow .3s,border-color .3s,background .3s;}
+.method-card.method-open{border-color:rgba(15,159,154,.5);background:linear-gradient(145deg,#fff,#f6fbfa);box-shadow:0 18px 42px rgba(15,159,154,.12);}
+.method-reveal-toggle{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;gap:.55rem;width:auto;margin-top:1.15rem;padding:.58rem .85rem;border:1px solid #b8d8d5;border-radius:999px;background:#f3faf9;color:#408f8b;font:700 .82rem Inter,Arial,sans-serif;cursor:pointer;transition:background .2s,transform .2s,color .2s,border-color .2s;}
+.method-reveal-toggle:hover{background:#e4f4f2;color:var(--teal-d);border-color:#78bdb8;transform:translateY(-2px);}
+.method-reveal-toggle .plus{font-size:1rem;line-height:1;transition:transform .25s;}
+.method-reveal-toggle[aria-expanded="true"] .plus{transform:rotate(45deg);}
+.method-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+.method-reveal>div{overflow:hidden;}
+.method-reveal.open{grid-template-rows:1fr;}
+.method-example{margin-top:1rem;padding:1rem 1.05rem;border-radius:14px;background:var(--soft);border-left:3px solid var(--teal);font-size:.86rem;color:var(--grey);line-height:1.6;}
+.method-example strong{display:block;color:var(--ink);margin-bottom:.25rem;}
+.methodology-section>.cards{align-items:stretch}
+.methodology-section .method-card{border-radius:20px;padding:1.4rem}
+.methodology-section .method-card .card-ring{top:-13px;right:-13px}
+.methodology-section .method-card .card-icon{width:50px;height:50px;position:absolute;top:1.4rem;right:1.4rem;margin:0}
+.methodology-section .method-card .card-icon svg{width:24px;height:24px}
+.methodology-section .method-card .card-meta{margin:3.3rem 0 .6rem}
+.methodology-section .method-card h3{font-size:1.3rem;margin-bottom:.6rem}
+.methodology-section .method-card p{font-size:.92rem;line-height:1.55;margin-bottom:.9rem}
+#work .cards,#books .cards,.books-section .cards{align-items:stretch;}
+#work .card,#books .card,.books-section .card{display:flex;flex-direction:column;min-height:300px;height:100%;}
+#about .books-section .cards{gap:1rem}
+#about .books-section .card{min-height:0;padding:1.75rem}
+#about>.section:not(.books-section){padding-bottom:2.5rem}
+#about>.books-section{padding-top:2.75rem;padding-bottom:2.5rem}
+#work .card p,#books .card p,.books-section .card p{flex:1;}
+#work .card-link{margin-top:auto;}
+#coaching>.section>.cards{align-items:stretch}
+#coaching>.section>.cards>.card{display:flex;flex-direction:column;height:100%}
+#coaching>.section>.cards>.card p{flex:1}
+#coaching>.section:not(.coaching-tools){padding-bottom:2.5rem}
+#coaching>.coaching-tools{padding-top:3rem;padding-bottom:2.5rem}
+.phase-arc{position:relative;max-width:1040px;min-height:410px;margin:1.75rem auto 0;padding:3.5rem 1rem 1rem;}
+.phase-arc svg{position:absolute;inset:0;width:100%;height:150px;overflow:visible;pointer-events:none;}
+.arc-path{fill:none;stroke:rgba(15,159,154,.3);stroke-width:2;stroke-linecap:round;}
+.phase-points{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.45rem;position:relative;z-index:1;}
+.phase-point{text-align:center;}
+.phase-point:nth-child(1),.phase-point:nth-child(7){margin-top:62px}.phase-point:nth-child(2),.phase-point:nth-child(6){margin-top:28px}.phase-point:nth-child(3),.phase-point:nth-child(5){margin-top:8px}
+.phase-toggle{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(15,159,154,.42);background:#fff;color:var(--teal);font-size:1.45rem;line-height:1;cursor:pointer;box-shadow:0 9px 22px rgba(15,159,154,.1);transition:transform .25s,box-shadow .25s,border-color .25s,background .25s,color .25s;}
+.phase-toggle:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(15,159,154,.17);border-color:var(--teal)}
+.phase-toggle[aria-expanded="true"]{transform:translateY(-3px);background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 14px 30px rgba(15,159,154,.24)}
+.phase-point .card-meta{margin-top:.75rem;font-size:.66rem;white-space:nowrap}
+.phase-panel{display:none;position:absolute;top:170px;left:50%;transform:translateX(-50%);width:min(650px,90vw);border:1px solid rgba(15,159,154,.2);border-radius:20px;padding:1.45rem 1.65rem;background:linear-gradient(145deg,#fff,#f7fbfa);text-align:left;box-shadow:0 16px 36px rgba(7,16,20,.07);}
+.phase-panel.open{display:block;animation:fade .25s ease;}
+.phase-panel h3{font-size:1.2rem;margin-bottom:.45rem;}
+.phase-panel p{color:var(--grey);font-size:.92rem;line-height:1.6;}
+.phase-number,.coaching-mobile-controls{display:none}
+@media(max-width:700px){
+  .hero-pill{display:inline-flex;width:auto;max-width:100%;flex-direction:row;align-items:center;gap:.22rem;padding:.45rem .5rem;border-radius:999px;font-size:clamp(.47rem,1.78vw,.61rem);letter-spacing:-.015em;white-space:nowrap}
+  .hero-role{gap:.22rem;white-space:nowrap}
+  .hero-pill .pdot{width:4px;height:4px;flex:none}
+  .hero-position-mobile{display:none}
+  .phase-arc{padding-top:1rem;}
+  .phase-arc{min-height:0}
+  .phase-arc svg{display:none;}
+  .phase-points{display:block;}
+  .phase-point{display:none;margin-top:0!important;text-align:left;grid-template-columns:48px 1fr;column-gap:1rem;align-items:center;}
+  .phase-point.mobile-active{display:grid}
+  .phase-toggle{display:none}
+  .phase-number{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--teal);color:#fff;font-size:.76rem;font-weight:800;box-shadow:0 10px 22px rgba(15,159,154,.18)}
+  .phase-point .card-meta{margin:0;}
+  .phase-panel,.phase-point.mobile-active .phase-panel{display:block;position:static;transform:none;width:auto;margin-top:1rem;grid-column:1/-1;}
+  .coaching-mobile-controls{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.75rem;margin-top:1rem}
+  .coaching-mobile-controls button{min-height:42px;padding:.65rem .8rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:700 .76rem Inter,Arial,sans-serif;cursor:pointer}
+  .coaching-progress{text-align:center;color:var(--teal);font-size:.72rem;font-weight:800;letter-spacing:.06em}
+  .coaching-dots{display:flex;justify-content:center;gap:5px;margin-top:.45rem}
+  .coaching-dot{width:6px;height:6px;border-radius:50%;background:#d7dddf}
+  .coaching-dot.active{background:var(--teal);transform:scale(1.25)}
+  #work .framework-carousel{grid-auto-columns:86%;gap:.85rem;scrollbar-width:none}
+  #work .framework-carousel::-webkit-scrollbar{display:none}
+  .framework-carousel-controls{justify-content:center;margin-top:1rem}
+}
+
+/* AI IN MY PRACTICE */
+.ai-practice{margin-top:4.5rem;padding:2.2rem;border-radius:24px;background:linear-gradient(135deg,rgba(66,133,244,.045),rgba(15,159,154,.06));position:relative;overflow:hidden;}
+.ai-practice>h3{font-size:1.5rem;margin-bottom:.55rem;position:relative;}
+.ai-practice>.ai-intro{color:var(--grey);font-size:1rem;line-height:1.65;max-width:44rem;margin-bottom:1.7rem;position:relative;}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;position:relative;}
+.ai-card{border-radius:22px;padding:1.8rem;background:linear-gradient(135deg,rgba(15,159,154,.11),rgba(255,255,255,.82));border:1px solid rgba(15,159,154,.08);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
+.ai-card:nth-child(2){background:linear-gradient(135deg,rgba(83,205,232,.16),rgba(255,255,255,.82));}
+.ai-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,159,154,.12);border-color:rgba(15,159,154,.35);}
+.ai-card::after{content:"";position:absolute;width:110px;height:110px;border:1px solid rgba(15,159,154,.2);border-radius:50%;right:-58px;bottom:-62px;pointer-events:none}
+.ai-kicker{display:flex;align-items:center;gap:.5rem;color:var(--teal);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem;}
+.ai-kicker svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;}
+.ai-card h4{font-size:1.25rem;margin-bottom:.5rem;}
+.ai-card>p{color:var(--grey);font-size:.93rem;line-height:1.6;margin-bottom:1rem;}
+.ai-list{list-style:none;display:grid;gap:.65rem;}
+.ai-list li{position:relative;padding-left:1.5rem;font-size:.88rem;line-height:1.55;}
+.ai-list li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--teal);}
+.ai-outputs{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}.ai-output{padding:.55rem .8rem;border:1px solid #dde3e8;border-radius:999px;background:#fff;color:var(--ink);font-size:.78rem;font-weight:700}
+.ai-toggle{position:absolute;top:1.35rem;right:1.35rem;width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,159,154,.35);background:rgba(255,255,255,.85);color:var(--teal);font-size:1.35rem;line-height:1;display:grid;place-items:center;cursor:pointer;transition:transform .3s,background .3s,color .3s;z-index:2}
+.ai-card.open .ai-toggle{transform:rotate(45deg);background:var(--teal);color:#fff}
+.ai-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease,margin-top .4s ease;margin-top:0}
+.ai-reveal>div{overflow:hidden}
+.ai-reveal.open{grid-template-rows:1fr;margin-top:.8rem}
+.ai-card-prompt{font-size:.72rem;font-weight:700;color:var(--teal);letter-spacing:.04em;text-transform:uppercase;margin-top:.85rem}
+.ai-stage-tiles{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center;padding:0 .5rem}
+.ai-stage-tile{display:flex;flex-direction:column;align-items:center;gap:.6rem;width:96px;border:0;background:none;cursor:pointer;font-family:inherit;color:var(--ink)}
+.ai-stage-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.ai-stage-ring{position:relative;width:56px;height:56px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.ai-stage-tile:hover .ai-stage-ring{transform:translateY(-5px) rotate(-1.5deg)}.ai-stage-tile.active .ai-stage-ring{transform:translateY(-7px) rotate(-2.5deg)}
+.ai-stage-ring svg.badge{width:56px;height:56px;position:absolute;inset:0}.ai-stage-ring-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ai-stage-ring-icon.i-blue{stroke:var(--blue)}.ai-stage-ring-icon.i-green{stroke:var(--green)}.ai-stage-ring-icon.i-yellow{stroke:#c99000}.ai-stage-ring-icon.i-teal{stroke:var(--teal)}
+.ai-stage-label{font-size:.8rem;font-weight:700;color:var(--ink)}
+.ai-stage-detail{margin-top:1.8rem;background:#fff;border-radius:22px;padding:1.9rem;display:none;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
+.ai-stage-detail.open{display:flex}.ai-stage-detail::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.25;top:-40px;right:-40px}
+.ai-stage-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s;z-index:1}.ai-stage-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.ai-stage-detail-ring{position:relative;width:52px;height:52px;flex:none}.ai-stage-detail-ring svg.badge{width:52px;height:52px;position:absolute;inset:0}.ai-stage-detail-ring .ai-stage-ring-icon{width:20px;height:20px}
+.ai-stage-meta{font-size:.76rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem;position:relative}.ai-stage-detail h4{font-size:1.2rem;margin:0 0 .5rem;position:relative}.ai-stage-detail p{color:var(--grey);font-size:.92rem;line-height:1.6;margin:0 0 1rem;position:relative}
+.ai-stage-outputs{display:flex;flex-wrap:wrap;gap:.5rem;position:relative}.ai-stage-outputs span{font-size:.74rem;font-weight:500;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem}
+.ai-stage-note{text-align:center;color:var(--grey);font-size:.78rem;margin-top:1.3rem}
+.merged-section{border-top:1px solid var(--line)}
+#work>.merged-section{padding-bottom:2.25rem}#work>.work-samples-section{padding-top:2.25rem;padding-bottom:1.5rem}
+#work>.merged-section>.cards{margin-top:2rem}#work>.merged-section>.ai-practice{margin-top:3rem}#work>.merged-section>.section-center:first-child{margin-bottom:0}
+.tool-guide{max-width:900px;margin:3rem auto 0;padding:1.4rem;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#fff,#f5faf9);box-shadow:0 18px 46px rgba(7,16,20,.08)}
+.tool-guide-question{text-align:center;margin-bottom:1.2rem}.tool-guide-question span{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}.tool-guide-question h3{font-size:1.4rem;margin:.35rem 0 0}
+.tool-needs{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}.tool-need{min-height:122px;padding:1rem;border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none;text-align:left;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}.tool-need:hover,.tool-need.selected{transform:translateY(-3px);box-shadow:0 12px 26px rgba(7,16,20,.09);border-color:var(--choice)}.tool-need.selected{background:var(--choice-soft)}
+.tool-need-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--choice-soft);color:var(--choice);font-size:1rem;font-weight:800;margin-bottom:.7rem}.tool-need strong{display:block;color:var(--ink);-webkit-text-fill-color:var(--ink);font-size:.91rem;margin-bottom:.3rem}.tool-need small{display:block;color:var(--grey);-webkit-text-fill-color:var(--grey);font-size:.75rem;line-height:1.4}
+.framework-carousel-controls{display:flex;justify-content:flex-end;gap:.55rem;margin:1.25rem 0 .8rem}.framework-carousel-controls button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:1.05rem;cursor:pointer;transition:transform .2s,border-color .2s,color .2s}.framework-carousel-controls button:hover{transform:translateY(-2px);border-color:var(--teal);color:var(--teal)}
+#work .framework-carousel{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:calc((100% - 1.15rem)/2);gap:1.15rem;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline mandatory;scroll-behavior:smooth;touch-action:pan-x;padding:.25rem .1rem 1rem;margin-top:0;scrollbar-width:thin;scrollbar-color:rgba(15,159,154,.35) transparent}
+#work .framework-carousel>.card{grid-column:auto;scroll-snap-align:start;min-width:0}
+@media(max-width:700px){
+  #work .framework-carousel{grid-auto-columns:92%;gap:.8rem;padding-inline:.15rem;scroll-padding-inline:.15rem;scrollbar-width:none}
+  #work .framework-carousel::-webkit-scrollbar{display:none}
+  #work .framework-carousel>.card{width:100%;min-height:0;padding:1.6rem}
+  .framework-carousel-controls{justify-content:center}
+}
+.tool-result{display:none;max-width:900px;margin:1rem auto 0}.tool-result.show{display:block;animation:toolEnter .35s ease}@keyframes toolEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tool-result-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 46px rgba(7,16,20,.08)}.tool-result-main{padding:2rem}.tool-result-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--active)}.tool-result-title{display:flex;align-items:center;gap:.8rem;margin:.6rem 0 .8rem}.tool-result-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--active-soft);color:var(--active);font-size:1.25rem;font-weight:800}.tool-result-title h3{font-size:clamp(1.7rem,4vw,2.6rem);margin:0}.tool-result-main p{color:var(--grey);line-height:1.65;margin-bottom:1.2rem}.tool-result-actions{display:flex;gap:.65rem;flex-wrap:wrap}.tool-result-side{padding:1.6rem;background:var(--active-soft);display:flex;flex-direction:column;justify-content:center}.tool-result-side span{color:var(--active);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.tool-result-side p{font-weight:700;line-height:1.55}.tool-time{color:var(--grey);font-size:.78rem;font-weight:650}.tool-privacy{text-align:center;color:var(--grey);font-size:.74rem;margin-top:1rem}.browse-all{margin-top:4rem;text-align:center}.browse-all h3{font-size:1.5rem;margin-bottom:.4rem}.browse-all p{color:var(--grey)}
+#coaching .coaching-tools .browse-all,#coaching .coaching-tools .browse-all + .cards{display:none}
+.coaching-approach{margin:3rem auto 0;max-width:900px;text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.coaching-approach h2{margin:0!important}
+.coaching-intro{max-width:680px;margin:0 auto;text-align:center}
+.coach-services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3rem}
+.coach-service-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem 1.2rem}
+.coach-service-card::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;border:1px solid var(--line);top:-68px;right:-68px}
+.coach-service-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;position:absolute;top:1.1rem;right:1.2rem}
+.coach-service-icon.c-blue{background:#eaf1fe}.coach-service-icon.c-green{background:#e9f7ee}
+.coach-service-icon svg{width:20px;height:20px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.coach-service-icon.c-blue svg{stroke:var(--blue)}.coach-service-icon.c-green svg{stroke:var(--green)}
+.coach-service-label{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);margin:2.9rem 0 .35rem;position:relative}
+.coach-service-card h3{font-size:1.05rem;margin:0 0 .4rem;position:relative}.coach-service-card p{color:var(--grey);font-size:.82rem;line-height:1.5;margin:0 0 .6rem;position:relative}
+.modality-tags{display:flex;flex-wrap:wrap;gap:.4rem;position:relative}.modality-tag{font-size:.72rem;font-weight:650;padding:.3rem .65rem;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--grey)}
+@media(max-width:760px){.coach-services-grid{grid-template-columns:1fr}}
+
+/* COACHING CONVERSATION ARC */
+.coach-arc-unit{position:relative;margin-top:4rem;height:170px}
+.coach-arc-line{position:absolute;inset:0;pointer-events:none}.coach-arc-line svg{width:100%;height:100%}
+.coach-arc-tile{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;gap:.6rem;width:108px;margin-left:-54px;cursor:pointer;background:none;border:0;font-family:inherit}
+.coach-arc-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.coach-arc-dot{width:20px;height:20px;border-radius:50%;flex:none;box-shadow:0 2px 6px rgba(20,20,30,.18),0 0 0 4px #fff;transition:transform .3s,box-shadow .3s}
+.coach-arc-tile:hover .coach-arc-dot{transform:scale(1.2)}.coach-arc-tile.open .coach-arc-dot{transform:scale(1.4);box-shadow:0 4px 10px rgba(20,20,30,.28),0 0 0 4px #fff}
+.coach-arc-dot.c-blue,.coach-car-dot.c-blue{background:var(--blue)}.coach-arc-dot.c-green,.coach-car-dot.c-green{background:var(--green)}.coach-arc-dot.c-yellow,.coach-car-dot.c-yellow{background:var(--yellow)}.coach-arc-dot.c-teal,.coach-car-dot.c-teal{background:var(--teal)}
+.coach-arc-label{font-size:.74rem;font-weight:700;text-align:center;color:var(--ink);white-space:nowrap}
+.coach-arc-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin-top:1.5rem}.coach-arc-reveal>div{overflow:hidden}.coach-arc-reveal.open{grid-template-rows:1fr}
+.coach-arc-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}.coach-arc-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.coach-detail-icon{width:56px;height:56px;border-radius:15px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 18px rgba(20,20,30,.13)}.coach-detail-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.coach-detail-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.coach-detail-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}.coach-detail-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}.coach-detail-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.coach-detail-meta,.coach-car-label{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.45rem}.coach-arc-card h3{font-size:1.25rem;margin:0 0 .6rem}.coach-arc-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0;position:relative}.coach-arc-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;font-size:1rem;z-index:2}
+.coach-arc-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:1.5rem}
+.coach-carousel,.coach-car-dots,.coach-car-hint{display:none}
+.coach-car-card{flex:0 0 78vw;scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.75rem;display:flex;flex-direction:column;gap:.9rem}.coach-car-dot{width:14px;height:14px;border-radius:50%}.coach-car-card h3{font-size:1.1rem;margin:0}.coach-car-card p{font-size:.9rem;color:var(--grey);line-height:1.6;margin:0}
+.phase-arc[hidden]{display:none!important}
+
+/* CTA */
+.cta{position:relative;text-align:center;padding:7rem 1.5rem;overflow:hidden;background:var(--soft);}
+#work>.cta{padding:4.5rem 1.5rem}
+.cta .ring1{width:200px;height:200px;border-color:rgba(15,159,154,.15);top:35px;left:-110px;}
+.cta .ring2{width:120px;height:120px;border-color:rgba(251,188,5,.25);bottom:25px;right:-55px;}
+.cta .dot1{width:10px;height:10px;background:var(--blue);top:80px;right:22%;opacity:.6;}
+.cta-inner{position:relative;z-index:1;}
+.cta h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.cta p{color:var(--grey);font-size:1.1rem;margin-bottom:2rem;}
+
+/* ICON CHIPS */
+.icon-chip{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:0;position:relative;}
+.icon-chip svg{width:22px;height:22px;display:block;}
+.ic-blue{background:rgba(66,133,244,.1);}.ic-blue svg{stroke:var(--blue);}
+.ic-green{background:rgba(52,168,83,.1);}.ic-green svg{stroke:var(--green);}
+.ic-teal{background:rgba(15,159,154,.1);}.ic-teal svg{stroke:var(--teal);}
+.ic-yellow{background:rgba(251,188,5,.12);}.ic-yellow svg{stroke:#C99405;}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:65;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.menu-overlay{display:none;}
+.menu-close{display:none;}
+
+/* BOOKSHELF */
+.bookshelf-unit{margin-top:3.25rem}
+.bookshelf-row{display:flex;align-items:flex-start;justify-content:center;gap:1.6rem;flex-wrap:wrap;padding:0 .5rem 1rem}
+.book-tile{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:112px;border:0;background:none;cursor:pointer;padding:.25rem;font-family:inherit;color:var(--ink)}
+.book-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.book-notebook{position:relative;width:78px;height:92px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 20px rgba(20,20,30,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.book-tile:hover .book-notebook{transform:translateY(-6px) rotate(-1.5deg)}
+.book-tile.open .book-notebook{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
+.book-spine{position:absolute;left:15px;top:12px;bottom:12px;width:2px;border-radius:1px;background:rgba(255,255,255,.55)}
+.book-rings{position:absolute;right:-5px;top:14px;bottom:14px;display:flex;flex-direction:column;justify-content:space-between}
+.book-rings span{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px rgba(20,20,30,.16),0 1px 1px rgba(20,20,30,.12)}
+.book-notebook svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.7;position:relative;margin-left:6px}
+.book-notebook.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}
+.book-notebook.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}
+.book-notebook.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
+.book-notebook.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.book-title-label{font-size:.78rem;font-weight:600;line-height:1.3;text-align:center;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.book-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.book-detail-reveal>div{overflow:hidden}
+.book-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.book-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
+.book-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.35;top:-40px;right:-40px}
+.book-detail-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.book-detail-card h3{font-size:1.3rem;margin:0 0 .6rem}
+.book-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.6;margin:0}
+.book-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s}
+.book-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.bookshelf-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+
+/* FRAMEWORK TILES */
+.fw-unit{margin-top:3rem}
+.fw-row{display:flex;align-items:flex-start;gap:1.4rem;justify-content:center;flex-wrap:wrap;padding:0 .5rem 1rem}
+.fw-tile{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:140px;border:0;background:none;cursor:pointer;padding:.25rem;font-family:inherit;color:var(--ink)}
+.fw-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.fw-icon{position:relative;width:78px;height:78px;border-radius:18px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 20px rgba(20,20,30,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.fw-tile:hover .fw-icon{transform:translateY(-6px) rotate(-1.5deg)}
+.fw-tile.open .fw-icon{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
+.fw-icon svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.7}
+.fw-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}
+.fw-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}
+.fw-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
+.fw-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.fw-title-label{font-size:.86rem;font-weight:700;text-align:center;color:var(--ink)}
+.fw-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
+.fw-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.fw-detail-reveal>div{overflow:hidden}
+.fw-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.fw-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;position:relative;overflow:hidden}
+.fw-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.fw-detail-top{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.25rem}
+.fw-detail-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}
+.fw-detail-card h3{font-size:1.3rem;margin:0}
+.fw-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0 0 1.25rem;position:relative}
+.fw-steps-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.fw-step-chip{flex:1 1 auto;min-width:90px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;text-align:center;position:relative}
+.fw-step-chip .num{font-size:.68rem;font-weight:700;color:var(--teal);display:block;margin-bottom:.25rem}
+.fw-step-chip .label{font-size:.78rem;font-weight:600;color:var(--ink)}
+.fw-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s;z-index:1}
+.fw-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.fw-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+
+/* TOOL TILES */
+.tools-panel{margin-top:3rem;background:var(--soft);border:1px solid var(--line);border-radius:28px;padding:2.75rem 2rem 2.5rem}
+.tools-panel-head{text-align:center;margin-bottom:2.25rem}
+.tools-panel-eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.tools-panel-head h3{font-size:1.4rem;margin:0}
+.tools-row{display:flex;align-items:flex-start;gap:1.6rem;justify-content:center;flex-wrap:wrap;padding:0 .25rem}
+.tools-tile{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:150px;border:0;background:none;cursor:pointer;padding:.25rem;font-family:inherit;color:var(--ink)}
+.tools-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.tools-icon{position:relative;width:74px;height:74px;border-radius:18px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 20px rgba(20,20,30,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.tools-tile:hover .tools-icon{transform:translateY(-6px) rotate(-1.5deg)}
+.tools-tile.open .tools-icon{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
+.tools-icon svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tools-icon.c-blue{background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}
+.tools-icon.c-green{background:linear-gradient(160deg,#5cc57e,#2c9749)}
+.tools-icon.c-yellow{background:linear-gradient(160deg,#fdd25c,#e0a600)}
+.tools-icon.c-teal{background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.tools-title-label{font-size:.86rem;font-weight:700;text-align:center;color:var(--ink);-webkit-text-fill-color:var(--ink)}
+.tools-sub-label{font-size:.72rem;text-align:center;color:var(--grey);line-height:1.35}
+.tools-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .25rem}
+.tools-detail-reveal>div{overflow:hidden}
+.tools-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:1.75rem}
+.tools-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
+.tools-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.tools-detail-meta{font-size:.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.tools-detail-card h4{font-size:1.25rem;margin:0 0 .6rem}
+.tools-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.6;margin:0 0 1.1rem;position:relative}
+.tools-try-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.86rem;font-weight:600;color:#fff;background:linear-gradient(90deg,var(--blue),var(--teal));border:0;border-radius:999px;padding:.6rem 1.2rem;text-decoration:none;transition:transform .2s,box-shadow .2s;position:relative}
+.tools-try-btn:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(66,133,244,.25)}
+.tools-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:border-color .2s,color .2s,transform .2s;z-index:1}
+.tools-detail-close:hover{border-color:var(--teal);color:var(--teal);transform:rotate(90deg)}
+.tools-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:2.25rem}
+.tool-guide[hidden],.tool-result[hidden]{display:none!important}
+
+/* WORK SAMPLE TILES */
+.sample-unit{margin-top:3rem}
+.sample-row{display:flex;align-items:flex-start;gap:4rem;justify-content:center;flex-wrap:wrap;padding:.75rem .5rem .5rem}
+.sample-tile{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:220px;border:0;background:none;cursor:pointer;padding:.5rem;font-family:inherit;color:var(--ink)}
+.sample-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
+.sample-icon{position:relative;width:118px;height:78px;border-radius:12px 12px 7px 7px;flex:none;display:flex;align-items:center;justify-content:center;border:5px solid #fff;box-shadow:0 10px 24px rgba(20,20,30,.16),0 0 0 1px currentColor;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.sample-icon::after{content:"";position:absolute;left:-13px;right:-13px;bottom:-12px;height:8px;background:#fff;border:1px solid currentColor;border-top:0;border-radius:0 0 12px 12px;box-shadow:0 5px 8px rgba(20,20,30,.08)}
+.sample-tile:hover .sample-icon{transform:translateY(-7px) scale(1.03)}
+.sample-tile.open .sample-icon{transform:translateY(-9px) scale(1.05);box-shadow:0 20px 34px rgba(20,20,30,.22)}
+.sample-icon svg{width:38px;height:38px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sample-icon.c-blue{color:#4285f4;background:linear-gradient(160deg,#6a9dfb,#3f7ce0)}.sample-icon.c-green{color:#34a853;background:linear-gradient(160deg,#5cc57e,#2c9749)}.sample-icon.c-yellow{color:#c99000;background:linear-gradient(160deg,#fdd25c,#e0a600)}.sample-icon.c-teal{color:#0f9f9a;background:linear-gradient(160deg,#33c1bb,#0c8e89)}
+.sample-title-label{font-size:1rem;font-weight:700;text-align:center;line-height:1.35;color:var(--ink)}
+.sample-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
+.sample-course-pill{max-width:210px;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:#f5f6f7;color:var(--ink);font-size:.78rem;font-weight:700;line-height:1.3;text-align:center}
+.sample-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
+.sample-detail-reveal>div{overflow:hidden}.sample-detail-reveal.open{grid-template-rows:1fr;margin-top:.5rem;margin-bottom:2rem}
+.sample-detail-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;position:relative;overflow:hidden}
+.sample-detail-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
+.sample-detail-top{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.1rem}.sample-detail-meta{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}.sample-detail-card h3{font-size:1.35rem;margin:0}.sample-detail-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0 0 1.1rem;position:relative}
+.sample-tags{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1rem}.sample-tags span{font-size:.72rem;color:var(--grey);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.35rem .65rem}
+.sample-launch{display:inline-flex;font-size:.86rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:999px;padding:.6rem 1.2rem;text-decoration:none;position:relative}.sample-launch:hover{transform:translateY(-1px)}
+.sample-detail-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;z-index:1}.sample-detail-close:hover{border-color:var(--teal);color:var(--teal)}
+.sample-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:1.1rem}
+.legacy-work-grid[hidden]{display:none!important}
+
+/* CARD ICONS */
+.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;position:relative;}
+.card-icon svg{width:22px;height:22px;stroke-width:1.8;fill:none;stroke:currentColor;}
+.card:nth-child(5n+1) .card-icon{background:rgba(66,133,244,.1);color:var(--blue);}
+.card:nth-child(5n+2) .card-icon{background:rgba(52,168,83,.1);color:var(--green);}
+.card:nth-child(5n+3) .card-icon{background:rgba(15,159,154,.1);color:var(--teal);}
+.card:nth-child(5n+4) .card-icon{background:rgba(251,188,5,.12);color:#C98F00;}
+.card:nth-child(5n+5) .card-icon{background:rgba(66,133,244,.1);color:var(--blue);}
+
+/* CONTACT FORM */
+.contact-form{max-width:560px;margin:3rem auto 0;text-align:left;display:flex;flex-direction:column;gap:1.2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.form-field{display:flex;flex-direction:column;gap:.5rem;}
+.form-field label{font-size:.82rem;font-weight:600;color:var(--ink);}
+.form-field input,.form-field select,.form-field textarea{
+  font-family:inherit;font-size:.95rem;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:.85rem 1rem;transition:border-color .2s,box-shadow .2s;resize:vertical;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{
+  outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,159,154,.1);
+}
+.form-field input::placeholder,.form-field textarea::placeholder{color:#B0B0B6;}
+.form-note{font-size:.9rem;color:var(--teal);text-align:center;min-height:1.2em;font-weight:500;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+
+/* FOOTER */
+footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-name{font-weight:600;}
+.footer-nav{display:flex;gap:1.6rem;flex-wrap:wrap;}
+.footer-nav button,.footer-nav a{background:none;border:none;cursor:pointer;font-family:inherit;font-size:.82rem;color:var(--grey);text-decoration:none;transition:color .2s;}
+.footer-nav button:hover,.footer-nav a:hover{color:var(--teal);}
+.footer-copy{font-size:.8rem;color:var(--grey);}
+
+@media(max-width:820px){
+  .nav{padding:.8rem 1rem;flex-wrap:nowrap;}
+  .nav-name{min-width:0;flex:1;}
+  .nav-name img{width:260px;max-width:100%;}
+  .nav-links{
+    position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+    flex-direction:column;gap:0;background:#fff;margin:0;
+    padding:4.5rem 1.5rem 1.5rem;box-shadow:-10px 0 40px rgba(0,0,0,.12);
+    transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);
+    z-index:70;align-items:stretch;list-style:none;pointer-events:none;
+  }
+  .nav-links.open{transform:translateX(0);pointer-events:auto;}
+  .nav-links li{width:100%;border-bottom:1px solid var(--line);}
+  .nav-links li:first-of-type{margin-top:0;}
+  .nav-links button{padding:1.1rem .2rem;font-size:1.05rem;font-weight:600;width:100%;text-align:left;opacity:1;}
+  .nav-links .nav-coaching{padding:1rem .8rem;border-radius:12px;}
+  .hamburger{display:flex;flex:none;}
+  .hamburger span{width:25px;height:2.5px;}
+  .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:65;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .menu-overlay.open{opacity:1;pointer-events:auto;}
+  .menu-close{display:block;position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink);z-index:72;width:40px!important;height:40px;padding:.3rem!important;text-align:center!important;}
+  .bookshelf-row{gap:1rem}
+  .book-tile{width:84px}
+  .book-notebook{width:64px;height:76px;border-radius:10px}
+  .book-notebook svg{width:24px;height:24px}
+  .book-spine{left:12px}
+  .book-rings span{width:7px;height:7px}
+  .book-title-label{font-size:.7rem}
+  .book-detail-card{flex-direction:column;padding:1.5rem}
+  .fw-row{gap:1rem}
+  .fw-tile{width:78px}
+  .fw-icon{width:60px;height:60px;border-radius:14px}
+  .fw-icon svg{width:26px;height:26px}
+  .fw-title-label{font-size:.72rem}
+  .fw-cat-label{display:none}
+  .fw-detail-card{padding:1.5rem}
+  .fw-steps-row{gap:.4rem}
+  .fw-step-chip{min-width:72px;padding:.55rem .5rem}
+  .tools-panel{padding:2rem 1.1rem 1.75rem;border-radius:22px}
+  .tools-row{gap:1rem}
+  .tools-tile{width:80px}
+  .tools-icon{width:58px;height:58px;border-radius:14px}
+  .tools-icon svg{width:24px;height:24px}
+  .tools-title-label{font-size:.7rem}
+  .tools-sub-label{display:none}
+  .tools-detail-card{flex-direction:column;padding:1.5rem}
+  .sample-row{gap:2rem}
+  .sample-tile{width:132px}
+  .sample-icon{width:88px;height:60px;border-width:4px}
+  .sample-icon svg{width:31px;height:31px}
+  .sample-title-label{font-size:.78rem}
+  .sample-cat-label{font-size:.62rem}
+  .sample-detail-card{padding:1.5rem}
+  .cards{grid-template-columns:1fr;}
+  .about-profile{grid-template-columns:1fr;gap:2.5rem;text-align:center;}
+  .about-eyebrow-row{justify-content:center}
+  .about-story p{margin-left:auto;margin-right:auto;}
+  .about-values{justify-content:center;}
+  .about-beliefs{display:flex;gap:.85rem;max-width:none;margin-left:-1.4rem;margin-right:-1.4rem;padding:0 1.4rem 1rem;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .about-beliefs::-webkit-scrollbar{display:none}
+  .about-belief{flex:0 0 min(82vw,330px);scroll-snap-align:center}
+  .impact-grid{grid-template-columns:1fr;}
+  .about-photo{width:230px;height:230px;}
+  .card{padding:1.6rem;}
+  .phase-cards{grid-template-columns:1fr;}
+  .ai-practice{padding:1.4rem;}
+  .ai-grid{grid-template-columns:1fr;}
+  .ai-stage-tiles{gap:.85rem;padding:0}
+  .ai-stage-tile{width:82px}
+  .ai-stage-detail{flex-direction:column;padding:1.4rem}
+  .coach-arc-unit,.coach-arc-reveal,.coach-arc-hint{display:none}
+  .coach-carousel{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem 10vw 1.5rem;margin:2rem -1.4rem 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .coach-carousel::-webkit-scrollbar{display:none}
+  .coach-car-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.25rem}.coach-car-dots span{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .25s,transform .25s}.coach-car-dots span.active{background:var(--teal);transform:scale(1.3)}
+  .coach-car-hint{display:block;text-align:center;color:var(--grey);font-size:.82rem;margin-top:.5rem}
+  .tool-needs{grid-template-columns:1fr 1fr}.tool-result-card{grid-template-columns:1fr}
+  .card.wide{grid-column:1;}
+  .stats{grid-template-columns:1fr;gap:2rem;}
+  .stats .vline{display:none;}
+  .section{padding:4rem 1.4rem;}
+  .tool-needs{grid-template-columns:1fr}.tool-need{min-height:0;display:grid;grid-template-columns:40px 1fr;column-gap:.7rem;align-items:center}.tool-need-icon{grid-row:1/3;margin:0}.tool-need strong,.tool-need small{grid-column:2}
+  .cta{padding:4.5rem 1.4rem;}
+  footer{flex-direction:column;align-items:flex-start;}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .ring,.hero .dot,.cta .ring,.cta .dot,.about-photo::before,.about-photo::after,.page:not(#home)::before,.page:not(#home)::after,.page:not(#home) > .section::before,.page:not(#home) > .section::after{animation:none!important;}
+}
+</style>
 </head>
-<body class="home-slate-gold">
-  <nav class="site-nav" aria-label="Primary navigation">
-    <div class="wrap nav-inner">
-      <a class="brand" href="./index.html" aria-label="The U Method home"><img src="./logo.svg" alt="The U Method"></a>
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">+</button>
-      <ul class="nav-links">
-        <li><a aria-current="page" href="./index.html">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./what-is-coaching.html">What is coaching</a></li>
-        <li><a href="./the-u-method.html">The U Method</a></li>
-        <li><a href="./resources.html">Resources</a></li>
-        <li><a class="nav-cta" href="./booking.html">Book</a></li>
-      </ul>
+<body>
+
+<nav class="nav">
+  <button class="nav-name" onclick="showPage('home')" aria-label="Go to home page"><img src="logo.svg" alt="Juliana Dos Santos"></button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <button class="menu-close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+    <li><button class="nav-btn active" data-p="home" onclick="showPage('home')">Home</button></li>
+    <li><button class="nav-btn" data-p="about" onclick="showPage('about')">About</button></li>
+    <li><button class="nav-btn" data-p="work" onclick="showPage('work')">Work</button></li>
+    <li><button class="nav-btn nav-coaching" data-p="coaching" onclick="showPage('coaching')">Coaching</button></li>
+    <li><button class="nav-btn" data-p="contact" onclick="showPage('contact')">Contact</button></li>
+  </ul>
+</nav>
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<section class="page show" id="home">
+  <div class="hero">
+    <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+    <div class="dot dot1"></div><div class="dot dot2"></div><div class="dot dot3"></div>
+    <div class="hero-inner">
+      <span class="hero-pill"><span class="hero-role"><span class="pdot"></span><span>Talent Development Program Manager</span></span><span class="hero-role"><span class="pdot"></span><span>AI-Enabled Learning Designer</span></span><span class="hero-role"><span class="pdot"></span><span>Coach</span></span></span>
+      <h1>I help people <span class="grad">grow.</span><br>At work, and as humans.</h1>
+      <p class="hero-sub">I build talent programs, interactive learning, AI tools, apps, courses, videos, and digital experiences that connect human growth to measurable outcomes.</p>
+      <div class="hero-btns">
+        <button class="btn-fill" onclick="showPage('work')">See my work</button>
+        <button class="btn-outline" onclick="showPage('about')">Learn about me</button>
+        <a href="Juliana-Dos-Santos-Resume-July-2026.pdf" class="btn-soft">View my resume</a>
+      </div>
+      <div class="hero-photo-wrap"><div class="photo-ring"></div><img src="profile-home-side.png" alt="Juliana Dos Santos looking to the side"></div>
     </div>
-  </nav>
+  </div>
 
-  <main>
-    <header class="hero">
-      <span class="balance-motif hero-balance" aria-hidden="true"><span class="balance-ball"></span></span>
-      <span class="decor-dot dot-large dot-hero-left" aria-hidden="true"></span>
-      <span class="decor-dot dot-small dot-hero-right" aria-hidden="true"></span>
-      <span class="decor-dot dot-medium dot-hero-bottom" aria-hidden="true"></span>
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">My Coaching Practice</div>
-          <h1><span class="headline-line">Clarity, direction, and steady</span> <span class="gradient-text headline-keep">self-leadership.</span></h1>
-          <p class="lead">Coaching for people navigating transition, leadership, and growth. A grounded place to slow down, hear yourself clearly, and choose your next step with more trust.</p>
-          <div class="actions">
-            <a class="button" href="./booking.html">Book a discovery call</a>
-            <a class="button secondary" href="./about.html">About me</a>
-            <a class="text-link" href="./what-is-coaching.html">Learn about coaching</a>
-          </div>
-        </div>
-        <div class="portrait-panel" aria-label="Coaching portrait placeholder">
-          <img src="./profile-looking-down.png" alt="Juliana Dos Santos">
-          <div class="portrait-card">
-            <strong>Juliana Dos Santos</strong>
-            <p class="microcopy">Coach and certified EQ-i 2.0&reg; and EQ 360&reg; practitioner. I partner with people through transition, leadership, and personal growth.</p>
-          </div>
-        </div>
-      </div>
-    </header>
+  <div class="div-line"></div>
 
-    <section class="testimonials-section" aria-label="Client testimonials">
-      <span class="decor-dot dot-large dot-section-left" aria-hidden="true"></span>
-      <span class="decor-dot dot-small dot-section-right" aria-hidden="true"></span>
-      <div class="wrap testimonial-carousel" data-carousel>
-        <div class="section-head center">
-          <div class="eyebrow">Client reflections</div>
-          <h2>What shifts when the work gets grounded.</h2>
-        </div>
-        <div class="testimonial-viewport" data-carousel-track tabindex="0" aria-label="Swipe through client testimonials">
-          <article class="testimonial-slide">
-            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote>&ldquo;I came into coaching feeling overwhelmed and stuck. Juliana helped me to understand my reactions, my needs, and how to lead myself through hard moments. This changed the way I relate to myself.&rdquo;</blockquote>
-            <p class="testimonial-meta">Maya R. · Ottawa, ON</p>
-          </article>
-          <article class="testimonial-slide">
-            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote>&ldquo;Juliana is helping me to slow down, reconnect with myself, and make decisions from a grounded place instead of distress. I feel more confident, more centered, and more like myself.&rdquo;</blockquote>
-            <p class="testimonial-meta">Sofia M. · Toronto, ON</p>
-          </article>
-          <article class="testimonial-slide">
-            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote>&ldquo;For the first time in years, I understood what was driving my patterns and felt equipped to change them. Every session felt supportive, calm, and surprisingly transformative.&rdquo;</blockquote>
-            <p class="testimonial-meta">Amelia C. · Vancouver, BC</p>
-          </article>
-          <article class="testimonial-slide">
-            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote>&ldquo;This experience helped me untangle long-standing patterns and step into a stronger, clearer version of myself. Juliana holds space in a way that feels steady and safe, as she calls it brave space.&rdquo;</blockquote>
-            <p class="testimonial-meta">Nadia L. · Montreal, QC</p>
-          </article>
-        </div>
-        <div class="carousel-controls" aria-label="Testimonial controls">
-          <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Previous testimonial">&lsaquo;</button>
-          <div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div>
-          <div class="carousel-dots" aria-label="Choose testimonial">
-            <button class="carousel-dot active" type="button" aria-label="Show testimonial 1"></button>
-            <button class="carousel-dot" type="button" aria-label="Show testimonial 2"></button>
-            <button class="carousel-dot" type="button" aria-label="Show testimonial 3"></button>
-            <button class="carousel-dot" type="button" aria-label="Show testimonial 4"></button>
-          </div>
-          <span class="carousel-count" data-carousel-count>1 / 4</span>
-          <button class="carousel-arrow" type="button" data-carousel-next aria-label="Next testimonial">&rsaquo;</button>
-        </div>
-      </div>
-    </section>
-  </main>
+  <div class="stats">
+    <div class="stat">
+      <div class="n">9&rarr;4</div>
+      <div class="l">Months onboarding ramp</div>
+    </div>
+    <div class="vline v1"></div>
+    <div class="stat">
+      <div class="n">12+</div>
+      <div class="l">Programs built</div>
+    </div>
+    <div class="vline v2"></div>
+    <div class="stat">
+      <div class="n">3,500+</div>
+      <div class="l">Employees impacted</div>
+    </div>
+  </div>
+</section>
 
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <span>&copy; <span data-year></span> The U Method. All rights reserved.</span>
-      <div class="footer-links">
-        <a href="./about.html">About</a>
-        <a href="./the-u-method.html">The U Method</a>
-        <a href="./resources.html">Resources</a>
-        <a href="./booking.html">Book</a>
+<section class="page" id="about">
+  <div class="section">
+    <div class="about-profile">
+      <div class="about-photo"><img src="profile-who-i-am.png" alt="Juliana Dos Santos"></div>
+      <div class="about-story">
+        <div class="about-eyebrow-row">
+          <div class="eyebrow">About Me</div>
+          <a class="about-linkedin" href="https://www.linkedin.com/in/julianadossantos2019/" aria-label="Visit Juliana Dos Santos on LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 7.8H1.4V22h3.8V7.8zM3.3 2A2.2 2.2 0 1 0 3.3 6.4 2.2 2.2 0 0 0 3.3 2zM22.6 13.9c0-4.3-2.3-6.3-5.4-6.3-2.5 0-3.6 1.4-4.2 2.3V7.8H9.2V22H13v-7c0-1.8.4-3.6 2.7-3.6 2.3 0 2.3 2.1 2.3 3.8V22h3.8l.8-8.1z"/></svg></a>
+        </div>
+        <h2>Who <span class="grad">I am.</span></h2>
+        <p>I am Juliana, a <strong>CPTD&#174;</strong>, <strong>Instructional Designer</strong>, and <strong>Integrative Coach</strong>. I build learning that changes what people do and coach the humans inside the system, too.</p>
+        <p>My work lives at the intersection of <strong>thoughtful design</strong>, <strong>measurable business outcomes</strong>, and <strong>genuine human growth</strong>. Whether I am shaping a leadership program or supporting one person through change, I begin by listening.</p>
+        <div class="about-values"><span class="v-blue">Learner-centred</span><span class="v-green">Curious</span><span class="v-teal">Practical</span><span class="v-yellow">Inclusive</span><span class="v-blue">Evidence-led</span></div>
       </div>
     </div>
-  </footer>
-  <script src="./script.js"></script>
+    <div class="about-beliefs">
+      <article class="about-belief">
+        <div class="about-belief-head">
+          <span class="about-belief-icon"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 15c-4 0-7-2-7-6 4 0 7 2 7 6Z"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7Z"/><path d="M7 21h10"/></svg></span>
+          <span><span class="label">MISSION</span><h3>Make growth accessible</h3></span>
+        </div>
+      </article>
+      <article class="about-belief">
+        <div class="about-belief-head">
+          <span class="about-belief-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span><span class="label">VISION</span><h3>People before process</h3></span>
+        </div>
+      </article>
+      <article class="about-belief">
+        <div class="about-belief-head">
+          <span class="about-belief-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></span>
+          <span><span class="label">VALUES</span><h3>Warm and rigorous</h3></span>
+        </div>
+      </article>
+    </div>
+    <div class="eyebrow">Selected Outcomes</div>
+    <h2>Where I have <span class="grad">made an impact.</span></h2>
+    <div class="impact-grid">
+      <article class="impact-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="card-meta">Shopify · Program Design</div>
+        <h3>Revenue Onboarding Redesign</h3>
+        <p>Redesigned onboarding for 500+ employees through needs analysis, e-learning, and stakeholder alignment.</p>
+        <div class="impact-number">9&rarr;4</div><div class="impact-caption">months to proficiency, with a 20% performance lift</div>
+      </article>
+      <article class="impact-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="card-meta">StackAdapt · Leadership</div>
+        <h3>Emerging Leaders Program</h3>
+        <p>A cohort experience supporting the transition from individual contributor to people leadership.</p>
+        <div class="impact-number" style="color:var(--green);">IC&rarr;Mgr</div><div class="impact-caption">identity, people skills, application, and peer coaching</div>
+      </article>
+      <article class="impact-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="card-meta">StackAdapt · Learning Strategy</div>
+        <h3>Full Talent Development Ecosystem</h3>
+        <p>Designing connected learning across IC pathways, People Team programs, VP development, and leadership onboarding.</p>
+        <div class="impact-number" style="color:var(--teal);">5+</div><div class="impact-caption">learning experiences co-designed with the L&amp;D Team</div>
+      </article>
+      <article class="impact-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="card-meta">Shopify · QA Training</div>
+        <h3>Quality Assurance Training Framework</h3>
+        <p>Standardized how support quality was taught and measured, connecting behaviour directly to business outcomes.</p>
+        <div class="impact-number" style="color:#C98F00;">70%</div><div class="impact-caption">increase in rubric quality through 25+ integrated feedback loops</div>
+      </article>
+    </div>
+    <div class="eyebrow professional-history">Professional Experience</div>
+    <h2>Where I have <span class="grad">worked.</span></h2>
+    <p class="section-intro left">CPTD®, Instructional Designer, and Integrative Coach. I build learning that actually changes what people do, and coach the humans inside the system too.</p>
+    
+    <div class="cards">
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="card-meta">StackAdapt · July 2024, Present</div>
+        <h3>Senior Program Manager (L&D), Leadership Development</h3>
+        <p>Designing and developing StackAdapt's leadership programs: Individual Contributor pathways, People Managers, VPs, and onboarding. Strengthening leadership capability across the organization.</p>
+        <div class="card-tags"><span class="card-tag">Leadership Dev</span><span class="card-tag">Strategy</span><span class="card-tag">Facilitation</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <div class="card-meta">Shopify · Feb 2024, Jul 2024</div>
+        <h3>Revenue Onboarding Program Manager (L&D)</h3>
+        <p>Streamlined onboarding and enhanced program structure to improve how new hires integrate into Shopify's culture and workflows. Led the strategic redesign that cut ramp time and lifted performance.</p>
+        <div class="card-tags"><span class="card-tag">Onboarding</span><span class="card-tag">Curriculum</span><span class="card-tag">Metrics</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <div class="card-meta">Shopify · 2021, 2024</div>
+        <h3>Instructional Designer & QA</h3>
+        <p>Designed e-learning, built quality assurance training frameworks, and developed assessments that connected learning to on-the-job behaviour change.</p>
+        <div class="card-tags"><span class="card-tag">Instructional Design</span><span class="card-tag">QA Training</span><span class="card-tag">Assessment</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+        <div class="card-meta">Coaching · Founder</div>
+        <h3>Integrative Development Coach</h3>
+        <p>Founder of Coaching, an integrative development coaching practice blending emotional intelligence, identity work, and behaviour change. EQ-i 2.0® certified. English and Portuguese.</p>
+        <div class="card-tags"><span class="card-tag">Coaching</span><span class="card-tag">EQ-i 2.0®</span><span class="card-tag">EN & PT</span></div>
+      </div>
+    </div>
+
+    <div class="credentials-section">
+      <div class="eyebrow c">Certifications</div>
+      <div class="cred-panel"><div class="cred-grid">
+        <div class="cred-card"><span class="cred-badge c-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">CPTD&reg;<span>Certified Professional in Talent Development</span></span></div>
+        <div class="cred-card"><span class="cred-badge c-teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">Integrative Development Coach<span>Mind Rebel Academy</span></span></div>
+        <div class="cred-card"><span class="cred-badge c-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">EQ-i 2.0&reg; &amp; EQ 360&reg;<span>Practitioner</span></span></div>
+        <div class="cred-card"><span class="cred-badge c-yellow"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">ATD&reg; Master<span>Instructional Design</span></span></div>
+        <div class="cred-card"><span class="cred-badge c-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">CAPM&reg;<span>Project Management</span></span></div>
+        <div class="cred-card"><span class="cred-badge c-teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></span><span class="cred-text">Analytics and Design<span>Juno College</span></span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="frameworks">
+  <div class="section methodology-section">
+    <div class="section-center">
+      <div class="eyebrow c">The Methodology</div>
+      <h2>How I design <span class="grad">learning.</span></h2>
+      <p class="section-intro">Listen first. Design for real scenarios. Measure behaviour change.</p>
+    </div>
+    <div class="cards">
+      <div class="card method-card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div>
+        <div class="card-meta">Priority 01</div>
+        <h3>Learning experiences people love</h3>
+        <p>I design for engagement, relevance, and real-world application over passive content.</p>
+        <div class="card-tags"><span class="card-tag">Real scenarios</span><span class="card-tag">Learner choice</span><span class="card-tag">Practice over passive</span></div>
+        <button class="method-reveal-toggle" type="button" aria-expanded="false" onclick="toggleMethodCard(this)"><span class="plus">+</span> See how I use this</button>
+        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>If learners are bored, nothing else matters. I turn real workplace decisions into scenarios where learners choose, see the consequence, and try again. The experience becomes rehearsal for the job rather than information about the job.</div></div></div>
+      </div>
+      <div class="card method-card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="card-meta">Priority 02</div>
+        <h3>Outcomes the business can measure</h3>
+        <p>Every program starts from a business goal and ends with evidence of impact.</p>
+        <div class="card-tags"><span class="card-tag">Needs analysis</span><span class="card-tag">Metrics by design</span><span class="card-tag">Behaviour change</span></div>
+        <button class="method-reveal-toggle" type="button" aria-expanded="false" onclick="toggleMethodCard(this)"><span class="plus">+</span> See how I use this</button>
+        <div class="method-reveal"><div><div class="method-example"><strong>In practice</strong>Learning is an investment, and I treat it like one. I define the behaviour and business signal before building content. For onboarding, that can mean time to proficiency, quality scores, manager confidence, and evidence that people apply the skill after training.</div></div></div>
+      </div>
+    </div>
+
+    <div class="ai-practice">
+      <h3>How I leverage AI Tools</h3>
+      <p class="ai-intro">AI is part of how I research, design, prototype, and teach. I use it to make useful things faster, while keeping judgment, accessibility, and human expertise firmly in the process.</p>
+      <div class="ai-stage-tiles" id="aiStageTiles" aria-label="Interactive AI workflow"></div>
+      <article class="ai-stage-detail" id="aiStageDetail" aria-live="polite"></article>
+      <p class="ai-stage-note">Choose a stage to see how AI supports the work.</p>
+    </div>
+
+    <div class="section-center" style="margin-top:4.5rem;">
+      <div class="eyebrow c">The Frameworks Behind It</div>
+      <p class="section-intro">Evidence-based models keep my work rigorous. Tap one to see how I use it.</p>
+    </div>
+    <div class="fw-unit" id="frameworkUnit"></div>
+    <p class="fw-hint">Tap a framework to open it. Tap it again or use the close button to close it.</p>
+  </div>
+</section>
+
+<section class="page" id="work">
+  <div class="section work-samples-section">
+    <div class="section-center">
+      <div class="eyebrow c">Work Samples</div>
+      <h2>Learning you can <span class="grad">explore.</span></h2>
+      <p class="section-intro">Explore two interactive samples that show how I turn learning strategy into practical, engaging experiences.</p>
+    </div>
+    <div class="sample-unit" id="workSampleUnit"></div>
+    <p class="sample-hint">Tap a course to preview it, then launch the full interactive experience.</p>
+    <div class="cards legacy-work-grid" hidden style="margin-top:3.5rem;">
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="card-meta">Shopify · Program Design</div>
+        <h3>Revenue Onboarding Redesign</h3>
+        <p>Redesigned onboarding for 500+ employees, cutting ramp time from 9 months to 4 and lifting performance by 20% through needs analysis, e-learning, and stakeholder alignment.</p>
+        <div class="card-stat">9&rarr;4</div>
+        <div class="card-tags"><span class="card-tag">Curriculum</span><span class="card-tag">Needs Analysis</span><span class="card-tag">Metrics</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="card-meta">StackAdapt · Leadership</div>
+        <h3>Emerging Leaders Program</h3>
+        <p>A cohort-based program bridging the IC-to-manager transition, built on identity shift, core people skills, and live application. Grounded in the 70-20-10 model with structured peer coaching.</p>
+        <div class="card-stat" style="color:var(--green);">IC&rarr;Mgr</div>
+        <div class="card-tags"><span class="card-tag">Cohort</span><span class="card-tag">Facilitation</span><span class="card-tag">70-20-10</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="card-meta">StackAdapt · Learning Strategy</div>
+        <h3>Full Talent Development Ecosystem</h3>
+        <p>Designing connected learning across IC pathways, People Team programs, VP development, and leadership onboarding.</p>
+        <div class="card-tags"><span class="card-tag">IC Pathways</span><span class="card-tag">People Managers</span><span class="card-tag">VP-Level</span><span class="card-tag">L&D Strategy</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="card-meta">Shopify · QA Training</div>
+        <h3>Quality Assurance Training Framework</h3>
+        <p>Built a QA training framework that standardized how support quality was taught and measured, connecting behaviour directly to business outcomes.</p>
+        <div class="card-tags"><span class="card-tag">Framework</span><span class="card-tag">QA</span></div>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+        <div class="card-meta">Microlearning · Feedback</div>
+        <h3>Feedback Using Radical Candor</h3>
+        <p>Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.</p>
+        <a class="card-link" href="course-radical-candor.html">Explore interactive module &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="card-meta">Course · Emotional Intelligence</div>
+        <h3>What's Emotional Intelligence?</h3>
+        <p>Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.</p>
+        <a class="card-link" href="course-emotional-intelligence.html">Start the course &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <div class="ring ring1"></div><div class="ring ring2"></div><div class="dot dot1"></div>
+    <div class="cta-inner">
+      <h2>Want to learn more <span class="grad">about my work?</span></h2>
+      <p>Let's talk about what your team needs.</p>
+      <button class="btn-fill" onclick="showPage('contact')">Get in touch</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="books">
+  <div class="section">
+    <div class="section-center">
+      <div class="eyebrow c">Books I Love</div>
+      <p class="section-intro">Some of my favourite instructional design, talent development, leadership, and coaching books. Tap one to read more.</p>
+    </div>
+    <div class="bookshelf-unit" id="bookshelfUnit"></div>
+    <p class="bookshelf-hint">Tap any book to open it. Tap it again or use the close button to close it.</p>
+  </div>
+</section>
+
+<section class="page" id="coaching">
+  <div class="section">
+    <div class="coaching-intro">
+      <h2>How I <span class="grad">coach.</span></h2>
+      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how to move forward.</p>
+    </div>
+    <div class="coach-services-grid">
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-blue"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="coach-service-label">For Organizations</div>
+        <h3>IC Coaching Programs</h3>
+        <p>I coach individual contributors to grow their craft and step into leadership, building your next generation of leaders from within.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span><span class="modality-tag">Group</span><span class="modality-tag">Peer</span></div>
+      </div>
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <div class="coach-service-label">For Individuals</div>
+        <h3>1:1 Integrative Coaching</h3>
+        <p>I help people quiet the noise, build emotional intelligence, and lead their life with the same intention they bring to their work.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span></div>
+      </div>
+    </div>
+
+    <div class="coaching-approach">
+      <h2 style="font-size:1.8rem;">I help people stop performing a version of themselves and <span class="grad">start leading from who they actually are.</span></h2>
+    </div>
+
+    <div class="section-center" style="margin-top:2.25rem;">
+      <div class="eyebrow c">A coaching conversation</div>
+      <p class="section-intro">I use coaching conversations to turn reflection into clarity, awareness, and meaningful action.</p>
+    </div>
+    <div class="coach-arc-unit" id="coachArcUnit" aria-label="Seven stages of a coaching conversation">
+      <div class="coach-arc-line"><svg id="coachArcSvg" preserveAspectRatio="none" aria-hidden="true"><path id="coachArcPath" fill="none" stroke="#EAEAEF" stroke-width="2"/></svg></div>
+      <div id="coachArcRow"></div>
+    </div>
+    <div class="coach-arc-reveal" id="coachArcReveal"><div><div class="coach-arc-card" id="coachArcCard"></div></div></div>
+    <div class="coach-carousel" id="coachCarousel" aria-label="Swipe through coaching conversation stages"></div>
+    <div class="coach-car-dots" id="coachCarDots" aria-hidden="true"></div>
+    <p class="coach-arc-hint">Tap a stage to see what it is for. Tap it again or use the close button to close it.</p>
+    <p class="coach-car-hint">Swipe to explore each stage.</p>
+    <div class="phase-arc" hidden aria-label="Seven parts of a coaching conversation">
+      <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M45 128 C235 -5 625 -5 815 128"/></svg>
+      <div class="phase-points">
+        <div class="phase-point mobile-active">
+          <button class="phase-toggle" type="button" aria-expanded="true" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">01</span>
+          <div class="card-meta">01 · Connect</div>
+          <div class="phase-panel open"><h3>Build trust and presence</h3><p>I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">02</span>
+          <div class="card-meta">02 · Goal</div>
+          <div class="phase-panel"><h3>Establish the goal</h3><p>We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">03</span>
+          <div class="card-meta">03 · Explore</div>
+          <div class="phase-panel"><h3>Explore the current reality</h3><p>I listen deeply, reflect what I notice, and ask questions that help the client understand the situation, emotions, patterns, and context more fully.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">04</span>
+          <div class="card-meta">04 · Awareness</div>
+          <div class="phase-panel"><h3>Generate awareness</h3><p>We challenge assumptions, notice beliefs, reframe perspectives, and make room for insights that expand what the client can see.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">05</span>
+          <div class="card-meta">05 · Options</div>
+          <div class="phase-panel"><h3>Create options</h3><p>The client generates possibilities and explores different ways forward. My role is to invite thinking, not prescribe advice.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">06</span>
+          <div class="card-meta">06 · Action</div>
+          <div class="phase-panel"><h3>Commit to action</h3><p>The client chooses a next step that feels meaningful, realistic, and aligned with their goals and values.</p></div>
+        </div>
+        <div class="phase-point">
+          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
+          <span class="phase-number">07</span>
+          <div class="card-meta">07 · Close</div>
+          <div class="phase-panel"><h3>Capture learning and accountability</h3><p>We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.</p></div>
+        </div>
+      </div>
+      <div class="coaching-mobile-controls">
+        <button type="button" onclick="changeCoachingStep(-1)" aria-label="Previous coaching step">&larr; Previous</button>
+        <div class="coaching-progress"><span id="coachingProgress">01 / 07</span><div class="coaching-dots" id="coachingDots" aria-hidden="true"></div></div>
+        <button type="button" onclick="changeCoachingStep(1)" aria-label="Next coaching step">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <div class="ring ring1"></div><div class="ring ring2"></div><div class="dot dot1"></div>
+    <div class="cta-inner">
+      <h2>Want to talk about <span class="grad">coaching?</span></h2>
+      <p>Bring what you are navigating. We can talk about what support might look like, with no pressure.</p>
+      <a href="#contact" onclick="showPage('contact')" class="btn-fill">Book a discovery call</a>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="resources">
+  <div class="section">
+    <div class="section-center">
+      <div class="eyebrow c">Free, accessible, self-led reflection tools</div>
+      <p class="section-intro">I created these tools to offer you a free, accessible place to pause, reflect, and reconnect with what you need.</p>
+    </div>
+    <div class="tools-panel">
+      <div id="toolsTileUnit"></div>
+    </div>
+    <p class="tools-hint">Tap a tool to preview it. Tap it again or use the close button to close it.</p>
+    <div class="tool-guide" hidden>
+      <div class="tool-needs" id="toolNeeds"></div>
+    </div>
+    <div class="tool-result" id="toolResult" aria-live="polite" hidden>
+      <div class="tool-result-card">
+        <div class="tool-result-main">
+          <div class="tool-result-label">This tool may support you</div>
+          <div class="tool-result-title"><span class="tool-result-icon" id="toolResultIcon" aria-hidden="true"></span><h3 id="toolResultTitle"></h3></div>
+          <p id="toolResultCopy"></p>
+          <div class="tool-result-actions"><a class="btn-fill" id="toolResultLink">Start this free tool</a><button class="btn-text" type="button" onclick="resetToolGuide()">Choose again</button></div>
+        </div>
+        <aside class="tool-result-side"><span>Why this might help</span><p id="toolResultWhy"></p><div class="tool-time" id="toolResultTime"></div></aside>
+      </div>
+      <p class="tool-privacy">Free and self-led. No sign up. Nothing is saved or submitted.</p>
+    </div>
+    <div class="browse-all" hidden><h3>Or browse all tools</h3><p>Choose the one that feels useful to you.</p></div>
+    <div class="cards all-tools-grid" hidden style="margin-top:3.5rem;">
+      <a class="card" href="tool-eq-wheel.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg></div>
+        <div class="card-meta">Emotional Intelligence</div>
+        <h3>The EQ Compass</h3>
+        <p>Explore the five composites of emotional intelligence and reflect on where you're strong and where there's room to grow.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-wheel.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 3v9l6 4"/></svg></div>
+        <div class="card-meta">Life Balance</div>
+        <h3>Wheel of Life</h3>
+        <p>Rate 8 life areas on a scale of 1 to 10. See where you're in balance and where you're not.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-values.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M9 18h6"/></svg></div>
+        <div class="card-meta">Core Values</div>
+        <h3>Values Sort</h3>
+        <p>Sort 30 values into three buckets, then narrow to your true top 5.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-archetype-quiz.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div class="card-meta">Self-Discovery</div>
+        <h3>Inner Archetype</h3>
+        <p>Discover which inner force is guiding you right now: The Witness, The Inner Guide, or The Explorer.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-energy.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="card-meta">Energy Audit</div>
+        <h3>Energy Mapping</h3>
+        <p>Map what energizes and what drains you, so you can design more of your week around what works.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-inner-critic.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="card-meta">Mindset</div>
+        <h3>Inner Critic Reframe</h3>
+        <p>Notice the voice of your inner critic, then practice reframing it into something more useful.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-goal-canvas.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="card-meta">Goal Setting</div>
+        <h3>Goal Canvas</h3>
+        <p>Turn a fuzzy intention into a clear commitment, with your why, likely obstacles, and the first step.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+      <a class="card" href="tool-decision-compass.html" style="text-decoration:none;color:inherit;">
+        <div class="card-ring"></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16 8 14 14 8 16 10 10 16 8"/></svg></div>
+        <div class="card-meta">Decisions</div>
+        <h3>Decision Compass</h3>
+        <p>Work through a tough decision by weighing it against your values, not just the pros and cons.</p>
+        <span class="card-link">Open tool &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="contact">
+  <div class="cta">
+    <div class="ring ring1"></div><div class="ring ring2"></div><div class="dot dot1"></div>
+    <div class="cta-inner">
+      <div class="eyebrow c">Let's connect</div>
+      <h2>Start a <span class="grad">conversation.</span></h2>
+      <p>Whether you want to build a talent track or need 1:1 strategic coaching, I'd love to hear from you.</p>
+      
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xykqbzoo" method="POST" onsubmit="return handleSubmit(event)">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="topic">How can I help you?</label>
+          <select id="topic" name="topic" required>
+            <option value="" disabled selected>Select an option...</option>
+            <option value="L&D / Talent Development">L&D / Talent Development program</option>
+            <option value="IC Development Consulting">IC development consulting</option>
+            <option value="1:1 Coaching">1:1 Coaching (Coaching)</option>
+            <option value="Speaking / Workshop">Speaking / workshop</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Tell me a bit about your project or goal..."></textarea>
+        </div>
+        <button type="submit" class="btn-fill" id="contactSubmit" style="width:100%;margin-top:.5rem;">Send Message</button>
+        <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Juliana Dos Santos</div>
+  <div class="footer-nav">
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('work')">Work</button>
+    <button onclick="showPage('coaching')">Coaching</button>
+    <button onclick="showPage('contact')">Contact</button>
+  </div>
+  <div class="footer-copy">&copy; 2026 Juliana Dos Santos</div>
+</footer>
+
+<script>
+const TOOL_CHOICES=[
+ {id:'clarity',label:'Inner Critic Reframe',sub:'Gain clarity when your thoughts feel tangled or noisy',icon:'?',color:'#4285f4',soft:'rgba(66,133,244,.09)',tool:'Inner Critic Reframe',href:'tool-inner-critic.html',copy:'This tool can help you separate a harsh inner voice from the useful information underneath it, then shape a response that feels grounded and believable.',why:'It can turn mental noise into a clearer, kinder perspective without forcing positivity.',time:'About 5 minutes'},
+ {id:'decision',label:'Decision Compass',sub:'Find direction when more than one option is pulling at you',icon:'↗',color:'#215d82',soft:'rgba(33,93,130,.09)',tool:'Decision Compass',href:'tool-decision-compass.html',copy:'This tool can help you compare your options against the values that matter most and notice what the pattern reveals.',why:'It gives the decision structure while leaving room for intuition and emotion.',time:'About 8 minutes'},
+ {id:'energy',label:'Energy Audit',sub:'Understand what is energizing you and what is draining you',icon:'~',color:'#0f9f9a',soft:'rgba(15,159,154,.09)',tool:'Energy Audit',href:'tool-energy.html',copy:'This tool can help you sort what gives you energy, drains it, or feels neutral, then identify patterns you can act on.',why:'It turns a vague feeling of depletion into specific information you can use.',time:'About 7 minutes'},
+ {id:'values',label:'Values Sort',sub:'Reconnect with what matters most to you',icon:'◆',color:'#34a853',soft:'rgba(52,168,83,.09)',tool:'Values Sort',href:'tool-values.html',copy:'This tool can help you explore thirty values, narrow them to five, and notice which ones feel most essential to who you are now.',why:'Values offer a steadier reference point when expectations and outside opinions feel loud.',time:'About 10 minutes'},
+ {id:'balance',label:'Wheel of Life',sub:'See a broader picture of balance across your life',icon:'○',color:'#668776',soft:'rgba(102,135,118,.1)',tool:'Wheel of Life',href:'tool-wheel.html',copy:'This tool can help you reflect on eight areas of your life and see where attention, satisfaction, or change may be most needed.',why:'It gives you a whole-life snapshot instead of focusing only on the loudest problem.',time:'About 6 minutes'},
+ {id:'action',label:'Goal Canvas',sub:'Turn an intention into a practical first step',icon:'+',color:'#c98f00',soft:'rgba(251,188,5,.11)',tool:'Goal Canvas',href:'tool-goal-canvas.html',copy:'This tool can help you turn an intention into a grounded goal, name likely obstacles, and choose one concrete next step.',why:'It keeps momentum practical and small enough to begin.',time:'About 8 minutes'}
+];
+const TOOL_TILE_ITEMS=[
+ {name:'Inner Critic Reframe',color:'blue',href:'tool-inner-critic.html',icon:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><path d="M12 17h.01"/>',sub:'Gain clarity when your thoughts feel tangled or noisy',desc:"A guided reframe for the moments your inner critic gets loud. Walk through a short prompt sequence that separates the noise from what is actually true."},
+ {name:'Decision Compass',color:'green',href:'tool-decision-compass.html',icon:'<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M16 8l-3 6-6 3 3-6 6-3z"/>',sub:'Find direction when more than one option is pulling at you',desc:'A structured way to weigh competing options against what actually matters to you, so the choice becomes clearer instead of louder.'},
+ {name:'Energy Audit',color:'teal',href:'tool-energy.html',icon:'<path d="M2 12h4l2-7 4 14 2-7h8"/>',sub:'Understand what is energizing you and what is draining you',desc:'Map your week by what fills your tank versus what empties it. A quick audit that makes invisible energy patterns visible.'},
+ {name:'Values Sort',color:'yellow',href:'tool-values.html',icon:'<path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>',sub:'Reconnect with what matters most to you',desc:'A simple card-sort exercise to surface your top values, so decisions and priorities can flow from what you actually care about.'},
+ {name:'Wheel of Life',color:'teal',href:'tool-wheel.html',icon:'<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/>',sub:'See a broader picture of balance across your life',desc:"Rate the key areas of your life at a glance and spot where things feel balanced, and where something is asking for attention."},
+ {name:'Goal Canvas',color:'blue',href:'tool-goal-canvas.html',icon:'<path d="M12 5v14M5 12h14"/>',sub:'Turn an intention into a practical first step',desc:"Take a goal that is still a feeling and turn it into a concrete, doable next step, with a canvas that keeps the big picture and the small step connected."}
+];
+let openToolTileIndex=null;
+function toolsTileIcon(item){
+ return `<span class="tools-icon c-${item.color}"><svg viewBox="0 0 24 24" aria-hidden="true">${item.icon}</svg></span>`;
+}
+function closeToolTiles(){
+ document.querySelectorAll('.tools-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.tools-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openToolTileIndex=null;
+}
+function openToolTile(index){
+ const unit=document.getElementById('toolsTileUnit');
+ const tile=unit?.querySelector(`.tools-tile[data-tool-tile-index="${index}"]`);
+ if(!unit||!tile) return;
+ if(openToolTileIndex===index){closeToolTiles();return}
+ closeToolTiles();
+ const item=TOOL_TILE_ITEMS[index];
+ const reveal=unit.querySelector(`.tools-detail-reveal[data-detail-row="${tile.dataset.row}"]`);
+ reveal.querySelector('.tools-detail-card').innerHTML=`<button class="tools-detail-close" type="button" aria-label="Close tool preview" onclick="closeToolTiles()">&times;</button>${toolsTileIcon(item)}<div><div class="tools-detail-meta">Free tool</div><h4>${item.name}</h4><p>${item.desc}</p><a class="tools-try-btn" href="${item.href}">Try this tool &rarr;</a></div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openToolTileIndex=index;
+}
+function buildToolTiles(){
+ const unit=document.getElementById('toolsTileUnit');
+ if(!unit) return;
+ const perRow=3;
+ let html='';
+ for(let start=0;start<TOOL_TILE_ITEMS.length;start+=perRow){
+  const row=start/perRow;
+  html+=`<div class="tools-row" data-row="${row}">`;
+  TOOL_TILE_ITEMS.slice(start,start+perRow).forEach((item,offset)=>{
+   const index=start+offset;
+   html+=`<button class="tools-tile" type="button" data-tool-tile-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openToolTile(${index})">${toolsTileIcon(item)}<span class="tools-title-label">${item.name}</span><span class="tools-sub-label">${item.sub}</span></button>`;
+  });
+  html+=`</div><div class="tools-detail-reveal" data-detail-row="${row}"><div><div class="tools-detail-card"></div></div></div>`;
+ }
+ unit.innerHTML=html;
+}
+function buildToolGuide(){
+ const needs=document.getElementById('toolNeeds');
+ if(!needs) return;
+ needs.innerHTML=TOOL_CHOICES.map(o=>`<button class="tool-need" type="button" style="--choice:${o.color};--choice-soft:${o.soft}" onclick="recommendTool('${o.id}',this)"><span class="tool-need-icon">${o.icon}</span><strong>${o.label}</strong><small>${o.sub}</small></button>`).join('');
+}
+function recommendTool(id,button){
+ const o=TOOL_CHOICES.find(item=>item.id===id);
+ document.querySelectorAll('.tool-need').forEach(item=>item.classList.toggle('selected',item===button));
+ document.getElementById('toolResultIcon').textContent=o.icon;
+ document.getElementById('toolResultTitle').textContent=o.tool;
+ document.getElementById('toolResultCopy').textContent=o.copy;
+ document.getElementById('toolResultWhy').textContent=o.why;
+ document.getElementById('toolResultTime').textContent=o.time;
+ document.getElementById('toolResultLink').href=o.href;
+ const result=document.getElementById('toolResult');
+ result.style.setProperty('--active',o.color);
+ result.style.setProperty('--active-soft',o.soft);
+ result.classList.add('show');
+ setTimeout(()=>result.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+}
+function resetToolGuide(){
+ document.querySelectorAll('.tool-need').forEach(item=>item.classList.remove('selected'));
+ document.getElementById('toolResult').classList.remove('show');
+ document.querySelector('.tool-guide-question').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function scrollFrameworks(direction){
+ const carousel=document.getElementById('frameworkCarousel');
+ if(!carousel) return;
+ carousel.scrollBy({left:direction*carousel.clientWidth*.82,behavior:'smooth'});
+}
+const FRAMEWORK_ITEMS=[
+ {name:'ADDIE',cat:'Instructional Design',color:'blue',icon:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',desc:'The classic five-phase model that gives every project a rigorous, end-to-end structure. My backbone for large-scale programs like onboarding redesigns.',steps:['Analyze','Design','Develop','Implement','Evaluate']},
+ {name:'SAM',cat:'Agile Design',color:'green',icon:'<path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/>',desc:'The Successive Approximation Model replaces a linear waterfall with rapid cycles of prototyping, review, and iteration. My go-to when feedback early and often matters.',steps:['Prepare','Prototype','Review','Refine','Repeat']},
+ {name:"Bloom's Taxonomy",cat:'Cognitive Hierarchy',color:'yellow',icon:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',desc:'A hierarchy of cognitive skills, from remembering and understanding through applying, analyzing, evaluating, and creating. It shapes how I write objectives and assessments.',steps:['Remember','Understand','Apply','Analyze','Evaluate','Create']},
+ {name:'Kirkpatrick',cat:'Evaluation',color:'teal',icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',desc:'Four levels of training evaluation. It connects what happens in the room to what changes on the job, especially at Levels 3 and 4.',steps:['Reaction','Learning','Behaviour','Results']},
+ {name:'70-20-10',cat:'Development Mix',color:'blue',icon:'<circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/>',desc:'I design leadership pathways as full ecosystems: stretch assignments and peer coaching alongside formal sessions. Most growth happens on the job, and the design should reflect that.',steps:['70% On the job','20% Peer and coaching','10% Formal training']}
+];
+let openFrameworkIndex=null;
+function frameworkIcon(item,small=false){
+ return `<span class="fw-icon c-${item.color}"${small?' style="width:56px;height:56px;border-radius:14px"':''}><svg viewBox="0 0 24 24"${small?' style="width:26px;height:26px"':''}>${item.icon}</svg></span>`;
+}
+function closeFrameworks(){
+ document.querySelectorAll('.fw-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.fw-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openFrameworkIndex=null;
+}
+function openFramework(index){
+ const unit=document.getElementById('frameworkUnit');
+ const tile=unit?.querySelector(`.fw-tile[data-framework-index="${index}"]`);
+ if(!unit||!tile) return;
+ if(openFrameworkIndex===index){closeFrameworks();return}
+ closeFrameworks();
+ const item=FRAMEWORK_ITEMS[index];
+ const reveal=unit.querySelector(`.fw-detail-reveal[data-detail-row="${tile.dataset.row}"]`);
+ const steps=item.steps.map((step,i)=>`<div class="fw-step-chip"><span class="num">${String(i+1).padStart(2,'0')}</span><span class="label">${step}</span></div>`).join('');
+ reveal.querySelector('.fw-detail-card').innerHTML=`<button class="fw-detail-close" type="button" aria-label="Close framework details" onclick="closeFrameworks()">&times;</button><div class="fw-detail-top">${frameworkIcon(item,true)}<div><div class="fw-detail-meta">${item.cat}</div><h3>${item.name}</h3></div></div><p>${item.desc}</p><div class="fw-steps-row">${steps}</div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openFrameworkIndex=index;
+}
+function buildFrameworks(){
+ const unit=document.getElementById('frameworkUnit');
+ if(!unit) return;
+ let html='<div class="fw-row" data-row="0">';
+ FRAMEWORK_ITEMS.forEach((item,index)=>{
+  html+=`<button class="fw-tile" type="button" data-framework-index="${index}" data-row="0" aria-expanded="false" aria-label="${item.name}" onclick="openFramework(${index})">${frameworkIcon(item)}<span class="fw-title-label">${item.name}</span><span class="fw-cat-label">${item.cat}</span></button>`;
+ });
+ html+='</div><div class="fw-detail-reveal" data-detail-row="0"><div><div class="fw-detail-card"></div></div></div>';
+ unit.innerHTML=html;
+}
+const WORK_SAMPLE_ITEMS=[
+ {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['Interactive','Practice-based','Manager skills'],href:'course-radical-candor.html',action:'Explore interactive module'},
+ {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',action:'Start the course'}
+];
+let openWorkSampleIndex=null;
+function workSampleIcon(item){
+ return `<span class="sample-icon c-${item.color}"><svg viewBox="0 0 24 24" aria-hidden="true">${item.icon}</svg></span>`;
+}
+function closeWorkSamples(){
+ document.querySelectorAll('.sample-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.sample-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openWorkSampleIndex=null;
+}
+function openWorkSample(index){
+ const unit=document.getElementById('workSampleUnit');
+ const tile=unit?.querySelector(`.sample-tile[data-sample-index="${index}"]`);
+ if(!unit||!tile) return;
+ if(openWorkSampleIndex===index){closeWorkSamples();return}
+ closeWorkSamples();
+ const item=WORK_SAMPLE_ITEMS[index];
+ const reveal=unit.querySelector(`.sample-detail-reveal[data-detail-row="${tile.dataset.row}"]`);
+ const tags=item.tags.map(tag=>`<span>${tag}</span>`).join('');
+ const launch=item.href?`<a class="sample-launch" href="${item.href}">${item.action} &rarr;</a>`:'';
+ reveal.querySelector('.sample-detail-card').innerHTML=`<button class="sample-detail-close" type="button" aria-label="Close sample details" onclick="closeWorkSamples()">&times;</button><div class="sample-detail-top">${workSampleIcon(item)}<div><div class="sample-detail-meta">${item.cat}</div><h3>${item.name}</h3></div></div><p>${item.desc}</p><div class="sample-tags">${tags}</div>${launch}`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openWorkSampleIndex=index;
+}
+function buildWorkSamples(){
+ const unit=document.getElementById('workSampleUnit');
+ if(!unit) return;
+ const perRow=3;
+ let html='';
+ for(let start=0;start<WORK_SAMPLE_ITEMS.length;start+=perRow){
+  const row=start/perRow;
+  html+=`<div class="sample-row" data-row="${row}">`;
+  WORK_SAMPLE_ITEMS.slice(start,start+perRow).forEach((item,offset)=>{
+   const index=start+offset;
+   html+=`<button class="sample-tile" type="button" data-sample-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openWorkSample(${index})">${workSampleIcon(item)}<span class="sample-course-pill">${item.name}</span></button>`;
+  });
+  html+=`</div><div class="sample-detail-reveal" data-detail-row="${row}"><div><div class="sample-detail-card"></div></div></div>`;
+ }
+ unit.innerHTML=html;
+}
+const BOOKSHELF_BOOKS=[
+ {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},
+ {author:'Maria Morukian',title:'Diversity, Equity, and Inclusion for Trainers',color:'green',desc:'An essential tool for L&D professionals who want DEI principles to be more than a checkbox. This is how you build it into the curriculum itself.'},
+ {author:'Julie Dirksen',title:'Design for How People Learn',color:'teal',desc:'Clear, evidence-based insights on memory, attention, and motivation. Changed the way I think about what learning actually means.'},
+ {author:'Cathy Moore',title:'Map It',color:'yellow',desc:'Action mapping keeps every project anchored to a real business goal and what people need to do, not just know. I return to this constantly.'},
+ {author:'Brown, Roediger & McDaniel',title:'Make It Stick',color:'blue',desc:'The science of durable learning: retrieval practice, spacing, and interleaving. It changed how I design every single course.'},
+ {author:'Brene Brown',title:'Dare to Lead',color:'green',desc:'Courage, vulnerability, and trust reframed as leadership skills you can actually teach. A cornerstone of my leadership development programs.'},
+ {author:'Boyatzis, Smith & Van Oosten',title:'Helping People Change',color:'teal',desc:'Coaching with compassion over compliance. The research on what actually helps people change long-term changed how I approach every coaching conversation.'},
+ {author:'Michael Bungay Stanier',title:'The Coaching Habit',color:'yellow',desc:'Seven questions that make you a better coach and a better leader. Short, practical, and immediately usable. I recommend it to every people manager I work with.'}
+];
+let openBookIndex=null;
+function bookNotebook(color){
+ return `<span class="book-notebook c-${color}"><span class="book-spine"></span><span class="book-rings"><span></span><span></span><span></span><span></span><span></span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>`;
+}
+function closeBookshelf(){
+ document.querySelectorAll('.book-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.querySelectorAll('.book-detail-reveal.open').forEach(detail=>detail.classList.remove('open'));
+ openBookIndex=null;
+}
+function openBook(index){
+ const shelf=document.getElementById('bookshelfUnit');
+ const tile=shelf?.querySelector(`.book-tile[data-book-index="${index}"]`);
+ if(!shelf||!tile) return;
+ if(openBookIndex===index){closeBookshelf();return}
+ closeBookshelf();
+ const row=tile.dataset.row;
+ const reveal=shelf.querySelector(`.book-detail-reveal[data-detail-row="${row}"]`);
+ const book=BOOKSHELF_BOOKS[index];
+ reveal.querySelector('.book-detail-card').innerHTML=`<button class="book-detail-close" type="button" aria-label="Close book details" onclick="closeBookshelf()">&times;</button>${bookNotebook(book.color)}<div><div class="book-detail-meta">${book.author}</div><h3>${book.title}</h3><p>${book.desc}</p></div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ reveal.classList.add('open');
+ openBookIndex=index;
+}
+function buildBookshelf(){
+ const shelf=document.getElementById('bookshelfUnit');
+ if(!shelf) return;
+ const perRow=4;
+ let html='';
+ for(let start=0;start<BOOKSHELF_BOOKS.length;start+=perRow){
+  const row=start/perRow;
+  html+=`<div class="bookshelf-row" data-row="${row}">`;
+  BOOKSHELF_BOOKS.slice(start,start+perRow).forEach((book,offset)=>{
+   const index=start+offset;
+   html+=`<button class="book-tile" type="button" data-book-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${book.title} by ${book.author}" onclick="openBook(${index})">${bookNotebook(book.color)}<span class="book-title-label">${book.title}</span></button>`;
+  });
+  html+=`</div><div class="book-detail-reveal" data-detail-row="${row}"><div><div class="book-detail-card"></div></div></div>`;
+ }
+ shelf.innerHTML=html;
+}
+function consolidatePages(){
+ const frameworks=document.querySelector('#frameworks > .section');
+ const books=document.querySelector('#books > .section');
+ const tools=document.querySelector('#resources > .section');
+ const work=document.getElementById('work');
+ const about=document.getElementById('about');
+ const coaching=document.getElementById('coaching');
+ if(frameworks&&work){frameworks.classList.add('merged-section');work.insertBefore(frameworks,work.firstElementChild);}
+ if(books&&about){books.classList.add('merged-section','books-section');about.appendChild(books);}
+ if(tools&&coaching){
+   tools.classList.add('merged-section','coaching-tools');
+   const coachingCta=Array.from(coaching.children).find(child=>child.classList.contains('cta'));
+   coaching.insertBefore(tools,coachingCta || null);
+ }
+}
+async function handleSubmit(e){
+  e.preventDefault();
+  const form=e.target;
+  const button=document.getElementById('contactSubmit');
+  const note=document.getElementById('formNote');
+  button.disabled=true;
+  button.textContent='Sending...';
+  note.textContent='';
+  try{
+    const response=await fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{Accept:'application/json'}
+    });
+    if(!response.ok) throw new Error('Submission failed');
+    form.reset();
+    note.textContent='Thank you. Your message has been sent, and I will be in touch soon.';
+  }catch(error){
+    note.textContent='Your message could not be sent right now. Please try again, or email ju.sandberg@gmail.com.';
+  }finally{
+    button.disabled=false;
+    button.textContent='Send Message';
+  }
+  return false;
+}
+let coachingStep=0;
+function syncCoachingStep(index){
+  const points=Array.from(document.querySelectorAll('.phase-arc .phase-point'));
+  if(!points.length) return;
+  coachingStep=(index+points.length)%points.length;
+  points.forEach((point,i)=>{
+    point.classList.toggle('mobile-active',i===coachingStep);
+    point.querySelector('.phase-toggle').setAttribute('aria-expanded',String(i===coachingStep));
+    point.querySelector('.phase-panel').classList.toggle('open',i===coachingStep);
+  });
+  const progress=document.getElementById('coachingProgress');
+  if(progress) progress.textContent=String(coachingStep+1).padStart(2,'0')+' / '+String(points.length).padStart(2,'0');
+  const dots=document.getElementById('coachingDots');
+  if(dots) dots.innerHTML=points.map((_,i)=>'<span class="coaching-dot'+(i===coachingStep?' active':'')+'"></span>').join('');
+}
+function changeCoachingStep(direction){
+  syncCoachingStep(coachingStep+direction);
+}
+function togglePhase(button){
+  const arc=button.closest('.phase-arc');
+  const points=Array.from(arc.querySelectorAll('.phase-point'));
+  syncCoachingStep(points.indexOf(button.closest('.phase-point')));
+}
+function toggleMethodCard(button){
+  const card=button.closest('.method-card');
+  const reveal=card.querySelector('.method-reveal');
+  const open=button.getAttribute('aria-expanded')==='true';
+  button.setAttribute('aria-expanded',String(!open));
+  card.classList.toggle('method-open',!open);
+  reveal.classList.toggle('open',!open);
+ button.lastChild.textContent=open?' See how I use this':' Hide example';
+}
+function toggleAiCard(button){
+ const card=button.closest('.ai-card');
+ const reveal=card.querySelector('.ai-reveal');
+ const open=button.getAttribute('aria-expanded')==='true';
+ button.setAttribute('aria-expanded',String(!open));
+ card.classList.toggle('open',!open);
+ reveal.classList.toggle('open',!open);
+}
+const AI_FLOW_STAGES=[
+ {name:'Research',color:'blue',icon:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>',title:'Find the real problem',desc:'I use AI to synthesize interviews, survey data, feedback, and patterns, while keeping human judgment at the centre.',outputs:['Needs analysis','Synthesis','Learning analytics','Insight generation']},
+ {name:'Design',color:'teal',icon:'<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>',title:'Shape the learning strategy',desc:'I turn evidence into objectives, journeys, scenarios, and experiences designed around what people need to do.',outputs:['Learning journeys','Scenarios','Course outlines','Blueprints']},
+ {name:'Prototype',color:'green',icon:'<path d="M9 2v7.5L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9.5V2"/><path d="M9 2h6"/><path d="M8.5 14h7"/>',title:'Make ideas tangible quickly',desc:'I create early working versions so people can react to something real, test assumptions, and improve the direction sooner.',outputs:['Rapid prototypes','Wireframes','Interactive tests','Workflow design']},
+ {name:'Build',color:'yellow',icon:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',title:'Create useful digital experiences',desc:'I build tools, apps, courses, e-learning, videos, and digital assets that turn strategy into something people can use.',outputs:['Tools','Apps','Courses','E-learning','Videos','Digital assets']},
+ {name:'Enable',color:'blue',icon:'<path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>',title:'Help people use AI well',desc:'I design practical AI literacy and upskilling experiences for leaders and individual contributors that build confidence and discernment.',outputs:['AI literacy','Leader upskilling','IC upskilling','Responsible workflows']},
+ {name:'Measure',color:'teal',icon:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',title:'Learn from what happens next',desc:'I use feedback and data to understand adoption, behaviour change, and where the experience needs to evolve.',outputs:['Feedback','Adoption','Behaviour change','Iteration']}
+];
+const AI_RING_HEX={blue:'#4285F4',green:'#34A853',yellow:'#e0a600',teal:'#0F9F9A'};
+let activeAiStage=null;
+function aiRingBadge(stage,size){
+ const radius=size/2-6;
+ return `<svg class="badge" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle cx="${size/2}" cy="${size/2}" r="${size/2-4}" fill="#fff" stroke="#EAEAEF" stroke-width="1.5"/><circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="${AI_RING_HEX[stage.color]}" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="${radius*3.2} ${radius}" transform="rotate(-42 ${size/2} ${size/2})"/></svg><svg class="ai-stage-ring-icon i-${stage.color}" viewBox="0 0 24 24" aria-hidden="true">${stage.icon}</svg>`;
+}
+function renderAiStages(){
+ const tiles=document.getElementById('aiStageTiles');
+ const detail=document.getElementById('aiStageDetail');
+ if(!tiles||!detail) return;
+ tiles.innerHTML=AI_FLOW_STAGES.map((stage,index)=>`<button class="ai-stage-tile${index===activeAiStage?' active':''}" type="button" aria-pressed="${index===activeAiStage}" onclick="toggleAiStage(${index})"><span class="ai-stage-ring">${aiRingBadge(stage,56)}</span><span class="ai-stage-label">${stage.name}</span></button>`).join('');
+ if(activeAiStage===null){detail.classList.remove('open');detail.innerHTML='';return}
+ const stage=AI_FLOW_STAGES[activeAiStage];
+ detail.innerHTML=`<button class="ai-stage-close" type="button" aria-label="Close AI stage" onclick="closeAiStage()">&times;</button><span class="ai-stage-detail-ring">${aiRingBadge(stage,52)}</span><div><div class="ai-stage-meta">${stage.name}</div><h4>${stage.title}</h4><p>${stage.desc}</p><div class="ai-stage-outputs">${stage.outputs.map(output=>`<span>${output}</span>`).join('')}</div></div>`;
+ detail.classList.add('open');
+}
+function toggleAiStage(index){activeAiStage=activeAiStage===index?null:index;renderAiStages()}
+function closeAiStage(){activeAiStage=null;renderAiStages()}
+function buildAiFlow(){renderAiStages()}
+const COACH_ARC_STAGES=[
+ {label:'Connect',color:'blue',icon:'<circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/>',title:'Build trust and presence',desc:'I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.'},
+ {label:'Goal',color:'teal',icon:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',title:'Establish the goal',desc:'We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.'},
+ {label:'Explore',color:'green',icon:'<path d="M16 8l-3 6-6 3 3-6 6-3z"/>',title:'Explore the current reality',desc:'I listen deeply, reflect what I notice, and ask questions that help the client understand the situation, emotions, patterns, and context more fully.'},
+ {label:'Awareness',color:'yellow',icon:'<path d="M9 18h6M12 2a6 6 0 0 0-3 11.2V15h6v-1.8A6 6 0 0 0 12 2z"/>',title:'Generate awareness',desc:'We challenge assumptions, notice beliefs, reframe perspectives, and make room for insights that expand what the client can see.'},
+ {label:'Options',color:'blue',icon:'<path d="M12 3v7M12 10l-7 11M12 10l7 11"/>',title:'Create options',desc:'The client generates possibilities and explores different ways forward. My role is to invite thinking, not prescribe advice.'},
+ {label:'Action',color:'teal',icon:'<path d="M13 2L3 14h7l-1 8 10-12h-7z"/>',title:'Commit to action',desc:'The client chooses a next step that feels meaningful, realistic, and aligned with their goals and values.'},
+ {label:'Close',color:'green',icon:'<path d="M20 6L9 17l-5-5"/>',title:'Capture learning and accountability',desc:'We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.'}
+];
+let openCoachArcIndex=null;
+function coachArcY(t){return 115-90*4*t*(1-t)}
+function positionCoachArc(){
+ const unit=document.getElementById('coachArcUnit');
+ const path=document.getElementById('coachArcPath');
+ const svg=document.getElementById('coachArcSvg');
+ if(!unit||!path||!svg||window.innerWidth<=820) return;
+ const width=unit.getBoundingClientRect().width;
+ if(!width) return;
+ const margin=64;
+ unit.querySelectorAll('.coach-arc-tile').forEach((tile,index)=>{
+  const t=index/(COACH_ARC_STAGES.length-1);
+  tile.style.left=`${margin+t*(width-2*margin)}px`;
+  tile.style.top=`${coachArcY(t)}px`;
+ });
+ svg.setAttribute('viewBox',`0 0 ${width} ${unit.getBoundingClientRect().height}`);
+ let d='';
+ for(let i=0;i<=40;i++){
+  const t=i/40,x=margin+t*(width-2*margin),y=coachArcY(t)+10;
+  d+=`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)} `;
+ }
+ path.setAttribute('d',d);
+}
+function closeCoachArc(){
+ document.querySelectorAll('.coach-arc-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
+ document.getElementById('coachArcReveal')?.classList.remove('open');
+ openCoachArcIndex=null;
+}
+function openCoachArc(index){
+ if(openCoachArcIndex===index){closeCoachArc();return}
+ closeCoachArc();
+ const stage=COACH_ARC_STAGES[index];
+ const tile=document.querySelector(`.coach-arc-tile[data-coach-index="${index}"]`);
+ const card=document.getElementById('coachArcCard');
+ if(!stage||!tile||!card) return;
+ card.innerHTML=`<button class="coach-arc-close" type="button" aria-label="Close coaching stage" onclick="closeCoachArc()">&times;</button><span class="coach-detail-icon c-${stage.color}"><svg viewBox="0 0 24 24">${stage.icon}</svg></span><div><div class="coach-detail-meta">${stage.label}</div><h3>${stage.title}</h3><p>${stage.desc}</p></div>`;
+ tile.classList.add('open');
+ tile.setAttribute('aria-expanded','true');
+ document.getElementById('coachArcReveal').classList.add('open');
+ openCoachArcIndex=index;
+}
+function updateCoachCarouselDots(){
+ const carousel=document.getElementById('coachCarousel');
+ if(!carousel) return;
+ const cards=carousel.querySelectorAll('.coach-car-card');
+ if(!cards.length) return;
+ let closest=0,distance=Infinity;
+ cards.forEach((card,index)=>{
+  const current=Math.abs(card.offsetLeft-carousel.scrollLeft-carousel.clientWidth*.11);
+  if(current<distance){distance=current;closest=index}
+ });
+ document.querySelectorAll('#coachCarDots span').forEach((dot,index)=>dot.classList.toggle('active',index===closest));
+}
+function buildCoachArc(){
+ const row=document.getElementById('coachArcRow');
+ const carousel=document.getElementById('coachCarousel');
+ const dots=document.getElementById('coachCarDots');
+ if(!row||!carousel||!dots) return;
+ row.innerHTML=COACH_ARC_STAGES.map((stage,index)=>`<button class="coach-arc-tile" type="button" data-coach-index="${index}" aria-expanded="false" aria-label="${stage.label}" onclick="openCoachArc(${index})"><span class="coach-arc-dot c-${stage.color}"></span><span class="coach-arc-label">${stage.label.toUpperCase()}</span></button>`).join('');
+ carousel.innerHTML=COACH_ARC_STAGES.map(stage=>`<article class="coach-car-card"><span class="coach-car-dot c-${stage.color}"></span><span class="coach-car-label">${stage.label}</span><h3>${stage.title}</h3><p>${stage.desc}</p></article>`).join('');
+ dots.innerHTML=COACH_ARC_STAGES.map((_,index)=>`<span class="${index===0?'active':''}"></span>`).join('');
+ let ticking=false;
+ carousel.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateCoachCarouselDots();ticking=false})},{passive:true});
+ requestAnimationFrame(positionCoachArc);
+}
+function showPage(id, updateHash=true){
+  if(id==='frameworks') id='work';
+  if(id==='books') id='about';
+  if(id==='resources') id='coaching';
+  const page=document.getElementById(id) || document.getElementById('home');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  page.classList.add('show');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.p===page.id));
+  closeMenu();
+  if(updateHash) history.replaceState(null,'','#'+page.id);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(page.id==='coaching') requestAnimationFrame(positionCoachArc);
+}
+function routeFromHash(){
+  showPage(location.hash.slice(1) || 'home',false);
+}
+window.addEventListener('hashchange',routeFromHash);
+consolidatePages();
+buildToolGuide();
+buildToolTiles();
+buildFrameworks();
+buildWorkSamples();
+buildBookshelf();
+buildAiFlow();
+buildCoachArc();
+syncCoachingStep(0);
+routeFromHash();
+function toggleMenu(){
+  document.querySelector('.nav-links').classList.toggle('open');
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('menuOverlay').classList.toggle('open');
+}
+function closeMenu(){
+  document.querySelector('.nav-links').classList.remove('open');
+  document.querySelector('.hamburger').classList.remove('active');
+  document.getElementById('menuOverlay').classList.remove('open');
+}
+window.addEventListener('resize',positionCoachArc);
+</script>
 </body>
 </html>
