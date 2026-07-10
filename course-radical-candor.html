@@ -75,7 +75,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .quad-face{position:absolute;inset:0;display:block;border-radius:16px;padding:1.1rem;border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 5px 18px rgba(7,16,20,.04);}
 .quad-back{transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;}
 .quad-face .qh,.quad-face .qd{display:block;}
-.quad-hint{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:.6rem;}
+.quad-plus{position:absolute;right:.8rem;bottom:.75rem;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1.5px solid currentColor;font-size:1.1rem;font-weight:700;line-height:1;box-shadow:0 4px 10px rgba(7,16,20,.08);transition:transform .25s,background .25s,color .25s;}
+.quad:hover .quad-plus{transform:scale(1.08);background:var(--ink);border-color:var(--ink);color:#fff;}
+.quad.flipped .quad-plus{transform:rotate(45deg);}
 .quad .qh{font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
 .quad .qd{font-size:.8rem;color:var(--grey);line-height:1.45;}
 .quad.rc .quad-face{background:rgba(52,168,83,.07);border-color:rgba(52,168,83,.3);}
@@ -234,16 +236,16 @@ textarea:focus{outline:none;border-color:var(--teal);}
 
     <div class="quad-map">
       <button class="quad mi" type="button" onclick="flipQuad(this)" aria-pressed="false">
-        <span class="quad-inner"><span class="quad-face"><span class="qh">Manipulative Insincerity</span><span class="qd">Low care, low challenge. Empty praise, political silence.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Everything is fine." You avoid the truth because saying it feels inconvenient or risky.</span></span></span>
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Manipulative Insincerity</span><span class="qd">Low care, low challenge. Empty praise, political silence.</span><span class="quad-plus" aria-hidden="true">+</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Everything is fine." You avoid the truth because saying it feels inconvenient or risky.</span></span></span>
       </button>
       <button class="quad rc" type="button" onclick="flipQuad(this)" aria-pressed="false">
-        <span class="quad-inner"><span class="quad-face"><span class="qh">Feedback Using Radical Candor</span><span class="qd">High care, high challenge. Honest and kind. The target.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"I want you to succeed, so I need to be clear about what is getting in the way."</span></span></span>
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Feedback Using Radical Candor</span><span class="qd">High care, high challenge. Honest and kind. The target.</span><span class="quad-plus" aria-hidden="true">+</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"I want you to succeed, so I need to be clear about what is getting in the way."</span></span></span>
       </button>
       <button class="quad oa" type="button" onclick="flipQuad(this)" aria-pressed="false">
-        <span class="quad-inner"><span class="quad-face"><span class="qh">Obnoxious Aggression</span><span class="qd">Low care, high challenge. Blunt, belittling, all edge.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"That was terrible." The criticism is direct, but offers neither dignity nor a useful path forward.</span></span></span>
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Obnoxious Aggression</span><span class="qd">Low care, high challenge. Blunt, belittling, all edge.</span><span class="quad-plus" aria-hidden="true">+</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"That was terrible." The criticism is direct, but offers neither dignity nor a useful path forward.</span></span></span>
       </button>
       <button class="quad re" type="button" onclick="flipQuad(this)" aria-pressed="false">
-        <span class="quad-inner"><span class="quad-face"><span class="qh">Ruinous Empathy</span><span class="qd">High care, low challenge. So nice it's useless.</span><span class="quad-hint">Click to reveal</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Great job, just a few tiny tweaks." Warmth softens the message until nothing actionable remains.</span></span></span>
+        <span class="quad-inner"><span class="quad-face"><span class="qh">Ruinous Empathy</span><span class="qd">High care, low challenge. So nice it's useless.</span><span class="quad-plus" aria-hidden="true">+</span></span><span class="quad-face quad-back"><span class="qh">What it sounds like</span><span class="qd">"Great job, just a few tiny tweaks." Warmth softens the message until nothing actionable remains.</span></span></span>
       </button>
     </div>
     <p class="section-p" style="margin-bottom:0;">Most well-meaning managers fail on the <strong style="color:#C98F00;">Ruinous Empathy</strong> side: they care, so they soften the message until there's nothing left to act on. Let's train your eye.</p>

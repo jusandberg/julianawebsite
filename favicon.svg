@@ -1,13 +1,15 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="The U Method favicon">
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="faviconTitle">
+  <title id="faviconTitle">Juliana Dos Santos</title>
   <defs>
-    <linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#657482"/>
-      <stop offset="0.52" stop-color="#D9B75E"/>
-      <stop offset="1" stop-color="#F3E4BD"/>
+    <linearGradient id="faviconGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4285F4"/>
+      <stop offset="0.48" stop-color="#0F9F9A"/>
+      <stop offset="0.8" stop-color="#34A853"/>
+      <stop offset="1" stop-color="#FBBC05"/>
     </linearGradient>
   </defs>
-  <circle cx="32" cy="32" r="27" fill="#FBFCFD" stroke="#D9DEE4" stroke-width="1.5"/>
-  <circle cx="32" cy="32" r="24" fill="none" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-dasharray="124 27" transform="rotate(-42 32 32)"/>
-  <text x="32" y="42" fill="#101419" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="800" text-anchor="middle">U</text>
-  <circle cx="51" cy="11" r="4.5" fill="#D9B75E"/>
+  <rect width="64" height="64" rx="16" fill="#FFFFFF"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="url(#faviconGradient)" stroke-width="5" stroke-linecap="round" stroke-dasharray="120 31" transform="rotate(-42 32 32)"/>
+  <text x="32" y="41" fill="#1A1A1C" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" text-anchor="middle">J</text>
+  <circle cx="53" cy="11" r="4" fill="#FBBC05"/>
 </svg>
