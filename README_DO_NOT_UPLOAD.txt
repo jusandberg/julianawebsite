@@ -1,0 +1,1 @@
+﻿This is the separate coaching-site draft, not the main portfolio website. Do not upload this folder to GitHub for julianadossantos.ca unless you intentionally want a separate coaching site. The real portfolio homepage is C:\Users\jusan\Downloads\Website\index.html.

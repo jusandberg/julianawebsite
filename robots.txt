@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://jusandberg.github.io/julianacoaching/sitemap.xml

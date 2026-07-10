@@ -1,11 +1,45 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resources | The U Method</title>
-  <meta name="description" content="Resources, articles, worksheets, tools, and recommended starting points for coaching clients.">
+  <meta name="description" content="Free, accessible, self-led reflection tools from The U Method for clarity, values, energy, goals, EQ, and life balance.">
+  <link rel="canonical" href="https://jusandberg.github.io/julianacoaching/resources.html">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The U Method">
+  <meta property="og:url" content="https://jusandberg.github.io/julianacoaching/resources.html">
+  <meta property="og:title" content="Resources | The U Method">
+  <meta property="og:description" content="Free, accessible, self-led reflection tools from The U Method for clarity, values, energy, goals, EQ, and life balance.">
+  <meta property="og:image" content="https://jusandberg.github.io/julianacoaching/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The U Method coaching by Juliana Dos Santos">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Resources | The U Method">
+  <meta name="twitter:description" content="Free, accessible, self-led reflection tools from The U Method for clarity, values, energy, goals, EQ, and life balance.">
+  <meta name="twitter:image" content="https://jusandberg.github.io/julianacoaching/og-image.png">
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    .resource-tools-hero .lead{max-width:760px}
+    .tool-library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .tool-card{min-height:260px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+    .tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(217,183,94,.42)}
+    .tool-card::after{content:"";position:absolute;width:120px;height:120px;border:1px solid color-mix(in srgb,var(--tone,#d9b75e) 45%,transparent);border-radius:50%;right:-48px;top:-50px;opacity:.72}
+    .tool-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;color:var(--tone,#657482);background:color-mix(in srgb,var(--tone,#657482) 14%,#fff);position:relative;z-index:1}
+    .tool-icon svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .tool-meta{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--tone,#657482);position:relative;z-index:1}
+    .tool-card h3{font-size:clamp(22px,2vw,30px);line-height:1.05;margin:0;position:relative;z-index:1}
+    .tool-card p{margin:0;color:var(--muted);position:relative;z-index:1}
+    .tool-link{margin-top:auto;font-size:14px;font-weight:800;color:var(--ink);position:relative;z-index:1}
+    .featured-tool{grid-column:span 2;background:linear-gradient(135deg,#fff 0%,#f7f3e8 100%)}
+    .resource-note{max-width:780px;margin:26px auto 0;text-align:center;color:var(--muted);font-size:15px}
+    .gentle-cta{background:#f7f3e8}
+    @media(max-width:980px){.tool-library{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-tool{grid-column:span 2}}
+    @media(max-width:640px){.tool-library{grid-template-columns:1fr}.featured-tool{grid-column:auto}.tool-card{min-height:auto;padding:22px}.resource-note{text-align:left}}
+  </style>
 </head>
 <body>
   <nav class="site-nav" aria-label="Primary navigation">
@@ -24,94 +58,105 @@
   </nav>
 
   <main>
-    <header class="page-hero">
+    <header class="page-hero resource-tools-hero">
       <span class="balance-motif page-balance top-right" aria-hidden="true"><span class="balance-ball"></span></span>
       <span class="decor-dot dot-large dot-hero-right"></span>
       <span class="decor-dot dot-small dot-hero-left"></span>
       <div class="wrap page-hero-copy">
         <div class="eyebrow">Resources</div>
-        <h1>Useful tools before, during, and after coaching.</h1>
-        <p class="lead">Use this page for lead magnets, worksheets, articles, reflections, videos, podcasts, or client preparation materials.</p>
+        <h1>Free, accessible, self-led reflection tools.</h1>
+        <p class="lead">I created these tools to offer you a free, accessible place to pause, reflect, and reconnect with what you need. Start wherever feels useful today.</p>
       </div>
     </header>
 
-    <section class="section">
+    <section class="section soft">
       <span class="balance-motif section-balance left" aria-hidden="true"><span class="balance-ball"></span></span>
       <span class="decor-dot dot-small dot-section-right"></span>
       <div class="wrap">
-        <div class="section-head">
-          <div class="eyebrow">Featured</div>
-          <h2>Start with one generous resource.</h2>
-          <p class="lead">A strong free resource can help visitors experience your voice before booking.</p>
-        </div>
-        <div class="card-grid two">
-          <article class="resource-card" style="--tone: var(--mint);">
-            <span class="tag">Free download</span>
-            <h3>[PLACEHOLDER: worksheet or guide title]</h3>
-            <p>[PLACEHOLDER: explain what the resource helps someone understand, decide, or practice.]</p>
-            <div class="placeholder-note">Add email signup form or download link here.</div>
-          </article>
-          <article class="resource-card" style="--tone: var(--blue);">
-            <span class="tag">Client prep</span>
-            <h3>[PLACEHOLDER: before your first session]</h3>
-            <p>[PLACEHOLDER: add prompts, expectations, reflection questions, or what to bring to a session.]</p>
-            <div class="placeholder-note">Add PDF, form, or checklist link here.</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft">
-      <span class="balance-motif section-balance right" aria-hidden="true"><span class="balance-ball"></span></span>
-      <span class="decor-dot dot-medium dot-section-left"></span>
-      <div class="wrap">
         <div class="section-head center">
-          <div class="eyebrow">Library</div>
-          <h2>Build a thoughtful resource hub.</h2>
+          <div class="eyebrow">Self-led tools</div>
+          <h2>Choose the kind of support you need.</h2>
+          <p class="lead">Each tool is private, free to use, and designed for reflection. Nothing is saved or submitted.</p>
         </div>
-        <div class="card-grid">
-          <article class="resource-card" style="--tone: var(--peach);">
-            <div class="resource-meta">Article - 5 min read</div>
-            <h3>[PLACEHOLDER: article title]</h3>
-            <p>[PLACEHOLDER: short article summary.]</p>
-          </article>
-          <article class="resource-card" style="--tone: var(--lilac);">
-            <div class="resource-meta">Exercise - worksheet</div>
-            <h3>[PLACEHOLDER: reflection prompt]</h3>
-            <p>[PLACEHOLDER: short worksheet summary.]</p>
-          </article>
-          <article class="resource-card" style="--tone: var(--lemon);">
-            <div class="resource-meta">Audio - practice</div>
-            <h3>[PLACEHOLDER: grounding practice]</h3>
-            <p>[PLACEHOLDER: short audio or meditation summary.]</p>
-          </article>
-          <article class="resource-card" style="--tone: var(--blue);">
-            <div class="resource-meta">Tool - assessment</div>
-            <h3>[PLACEHOLDER: self-check tool]</h3>
-            <p>[PLACEHOLDER: short tool summary.]</p>
-          </article>
-          <article class="resource-card" style="--tone: var(--mint);">
-            <div class="resource-meta">Guide - coaching</div>
-            <h3>[PLACEHOLDER: coaching readiness guide]</h3>
-            <p>[PLACEHOLDER: short readiness guide summary.]</p>
-          </article>
-          <article class="resource-card placeholder" style="--tone: var(--peach);">
-            <div class="resource-meta">Coming soon</div>
-            <h3>[PLACEHOLDER: future resource]</h3>
-            <p>Use placeholders like this while you build your content library over time.</p>
-          </article>
+
+        <div class="tool-library" aria-label="Self-led coaching tools">
+          <a class="tool-card featured-tool" href="./tools/tool-inner-critic.html" style="--tone:#657482">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-7 7c0 2.9 1.7 5.2 4.2 6.3V20h5.6v-3.7A6.9 6.9 0 0 0 19 10a7 7 0 0 0-7-7Z"/><path d="M9.5 10.5h.01M14.5 10.5h.01M9.5 14c1.4.8 3.6.8 5 0"/></svg></span>
+            <div class="tool-meta">Mental noise</div>
+            <h3>Inner Critic Reframe</h3>
+            <p>Separate the harsh voice from the useful information underneath it, then write a response that feels grounded and believable.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-decision-compass.html" style="--tone:#d9b75e">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.4 5.6-5.6 2.4 2.4-5.6 5.6-2.4Z"/></svg></span>
+            <div class="tool-meta">Decision support</div>
+            <h3>Decision Compass</h3>
+            <p>Compare two options through values, energy, and readiness so the next step feels clearer.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-energy.html" style="--tone:#657482">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z"/></svg></span>
+            <div class="tool-meta">Energy patterns</div>
+            <h3>Energy Audit</h3>
+            <p>Notice what is energizing you, draining you, and asking for a boundary or a shift.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-values.html" style="--tone:#b99117">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 8 6-8 12L4 9l8-6Z"/><path d="M4 9h16"/></svg></span>
+            <div class="tool-meta">Values clarity</div>
+            <h3>Values Sort</h3>
+            <p>Sort and narrow your values so you can reconnect with what matters most right now.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-wheel.html" style="--tone:#657482">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></span>
+            <div class="tool-meta">Life balance</div>
+            <h3>Wheel of Life</h3>
+            <p>Rate key areas of your life and get reflection prompts for the places that need care.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-goal-canvas.html" style="--tone:#d9b75e">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <div class="tool-meta">Action planning</div>
+            <h3>Goal Canvas</h3>
+            <p>Turn an intention into a first grounded step, with obstacles, supports, and follow-through.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-archetype-quiz.html" style="--tone:#657482">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4c0 2.8-4 7-4 7s-4-4.2-4-7a4 4 0 0 1 4-4Z"/><path d="M6 20c1.5-2 3.5-3 6-3s4.5 1 6 3"/></svg></span>
+            <div class="tool-meta">Self-discovery</div>
+            <h3>Inner Archetype Quiz</h3>
+            <p>Explore which inner force feels most active right now: the Witness, the Inner Guide, or the Explorer.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
+
+          <a class="tool-card" href="./tools/tool-eq-wheel.html" style="--tone:#b99117">
+            <span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/><path d="M9 13h6"/></svg></span>
+            <div class="tool-meta">Emotional intelligence</div>
+            <h3>EQ Compass</h3>
+            <p>Explore the five EQ composites and reflect on how emotional intelligence shows up in daily life.</p>
+            <span class="tool-link">Open tool -></span>
+          </a>
         </div>
+
+        <p class="resource-note">These tools are not therapy, diagnosis, or a replacement for support. They are gentle starting points for reflection and self-leadership.</p>
       </div>
     </section>
 
-    <section class="cta-strip">
+    <section class="cta-strip gentle-cta">
       <span class="balance-motif section-balance left" aria-hidden="true"><span class="balance-ball"></span></span>
       <span class="decor-dot dot-small dot-cta-left"></span>
       <div class="wrap cta-inner">
         <div>
-          <div class="eyebrow">From insight to action</div>
-          <h2>Invite resource readers into coaching.</h2>
-          <p class="lead">Use this section as a soft bridge from self-guided learning to working together.</p>
+          <div class="eyebrow">From reflection to support</div>
+          <h2>Want to talk through what came up?</h2>
+          <p class="lead">A discovery call is a simple place to ask questions and see whether coaching feels like the right next step.</p>
         </div>
         <a class="button" href="./booking.html">Book a call</a>
       </div>
@@ -127,3 +172,4 @@
   <script src="./script.js"></script>
 </body>
 </html>
+

@@ -1732,6 +1732,10 @@ h3 {
   cursor: grab;
 }
 
+.testimonial-carousel {
+  --testimonial-arrow-top: calc(50% + 54px);
+}
+
 .testimonial-viewport:active {
   cursor: grabbing;
 }
@@ -1794,13 +1798,13 @@ h3 {
 }
 
 .carousel-controls {
-  position: relative;
+  position: static;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin-top: 8px;
+  margin-top: 6px;
   flex-wrap: wrap;
 }
 
@@ -1827,6 +1831,25 @@ h3 {
   cursor: not-allowed;
   opacity: .35;
   background: #fff;
+}
+
+.carousel-arrow-side {
+  position: absolute;
+  top: var(--testimonial-arrow-top);
+  z-index: 4;
+  width: 54px;
+  height: 54px;
+  transform: translateY(-50%);
+  font-size: 34px;
+  box-shadow: 0 14px 34px rgba(16, 20, 25, .08);
+}
+
+.carousel-arrow-prev {
+  left: clamp(-24px, -2vw, -8px);
+}
+
+.carousel-arrow-next {
+  right: clamp(-24px, -2vw, -8px);
 }
 
 .carousel-dots {
@@ -2357,6 +2380,21 @@ details p {
     gap: 0;
     padding-inline: 0;
     scroll-padding-inline: 0;
+  }
+
+  .carousel-arrow-side {
+    top: calc(50% + 68px);
+    width: 46px;
+    height: 46px;
+    font-size: 30px;
+  }
+
+  .carousel-arrow-prev {
+    left: -10px;
+  }
+
+  .carousel-arrow-next {
+    right: -10px;
   }
 
   .carousel-progress {
