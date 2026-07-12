@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=4">
+  <title>Style Samples | The U Method</title>
+  <link rel="stylesheet" href="./styles.css?v=5">
+  <style>
+    .sample-hero {
+      padding: 76px 0 42px;
+      background: linear-gradient(180deg, #fbfcfd 0%, #f4f0e5 100%);
+    }
+
+    .sample-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sample-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .swatch-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .swatch {
+      min-height: 110px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--swatch);
+      color: var(--text, var(--ink));
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .gradient-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .gradient-sample {
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, .42);
+      border-radius: var(--radius);
+      background: var(--gradient);
+      color: #fff;
+      box-shadow: 0 14px 34px rgba(16, 20, 25, .1);
+    }
+
+    .gradient-sample strong { font-size: 15px; }
+    .gradient-sample span { margin-top: 4px; font-size: 11px; font-weight: 700; opacity: .9; }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .icon-mark {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fbfcfd;
+      color: var(--ink);
+    }
+
+    .icon-mark.gold {
+      background: #f3e4bd;
+      color: #101419;
+    }
+
+    .icon-mark.slate {
+      background: #dfe5ea;
+      color: #101419;
+    }
+
+
+    .icon-mark.blue-slate {
+      background: #dbe6ed;
+      color: #385768;
+    }
+
+    .icon-mark.cream {
+      background: #f7efe1;
+      color: #7d6231;
+    }
+    .icon-mark svg {
+      width: 23px;
+      height: 23px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .image-sample {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      align-items: center;
+      gap: 24px;
+    }
+
+    .image-sample img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+
+    .circle-field {
+      position: relative;
+      min-height: 220px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .circle-field .balance-ball {
+      left: 38%;
+      bottom: 46px;
+      --ball-size: 122px;
+    }
+
+    .circle-field .decor-dot {
+      position: absolute;
+    }
+
+    @media (max-width: 850px) {
+      .sample-grid,
+      .swatch-row,
+      .gradient-row,
+      .image-sample {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="wrap nav-inner">
+<a class="brand" href="./index.html" aria-label="The U Method home"><img src="./logo.svg?v=4" alt="The U Method"></a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">+</button>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./services.html">Services</a></li>
+        <li><a href="./resources.html">Resources</a></li>
+        <li><a class="nav-cta" href="./booking.html">Book</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="sample-hero">
+    <div class="wrap">
+      <div class="eyebrow">Style samples</div>
+      <h1>Visual rules for new content.</h1>
+      <p class="lead">Use these examples when adding icons, images, resources, cards, and motion details.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Palette</div>
+          <h2>A calm palette with greater range.</h2>
+        </div>
+        <div class="swatch-row">
+          <div class="swatch" style="--swatch:#101419;--text:#fff;">Ink #101419</div>
+          <div class="swatch" style="--swatch:#657482;--text:#fff;">Slate #657482</div>
+          <div class="swatch" style="--swatch:#385768;--text:#fff;">Blue Slate #385768</div>
+          <div class="swatch" style="--swatch:#dbe6ed;">Mist Blue #dbe6ed</div>
+          <div class="swatch" style="--swatch:#d9b75e;">Gold #d9b75e</div>
+          <div class="swatch" style="--swatch:#f7efe1;">Soft Cream #f7efe1</div>
+          <div class="swatch" style="--swatch:#52685b;--text:#fff;">Sage #52685b</div>
+          <div class="swatch" style="--swatch:#365f61;--text:#fff;">Muted Teal #365f61</div>
+          <div class="swatch" style="--swatch:#80513f;--text:#fff;">Soft Clay #80513f</div>
+          <div class="swatch" style="--swatch:#5b4e63;--text:#fff;">Dusty Plum #5b4e63</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Gradients</div>
+          <h2>Quiet movement between brand tones.</h2>
+          <p class="lead">Use one gradient consistently within a feature. Slate to gold is the primary treatment for tool icons and signature brand moments.</p>
+        </div>
+        <div class="gradient-row">
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#385768 0%,#d9b75e 100%);">
+            <strong>Slate to Gold</strong><span>Primary · icons and signature moments</span>
+          </div>
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#657482 0%,#385768 100%);">
+            <strong>Slate to Blue-slate</strong><span>Structure · calm and clarity</span>
+          </div>
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#92752c 0%,#d9b75e 100%);">
+            <strong>Deep Gold to Gold</strong><span>Emphasis · warmth and progress</span>
+          </div>
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#365f61 0%,#52685b 100%);">
+            <strong>Teal to Sage</strong><span>Reflection · growth and grounding</span>
+          </div>
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#5b4e63 0%,#385768 100%);">
+            <strong>Plum to Blue-slate</strong><span>Inner work · depth and insight</span>
+          </div>
+          <div class="gradient-sample" style="--gradient:linear-gradient(135deg,#385768 0%,#d9b75e 58%,#f3e4bd 100%);">
+            <strong>Signature Arc</strong><span>Logo · slate, gold, and cream</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Icons</div>
+          <h2>Round, quiet, line-based.</h2>
+          <p class="lead">Use simple stroke icons in circular containers. Keep them functional and minimal.</p>
+        </div>
+        <div class="icon-row">
+          <span class="icon-mark"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="m9 16 2 2 4-5"/></svg></span>
+          <span class="icon-mark gold"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M7 16h10"/><path d="M8 3h8"/></svg></span>
+          <span class="icon-mark slate"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m14.5 9.5-5 5M10 10h.01M14 14h.01"/></svg></span>
+          <span class="icon-mark blue-slate"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-6 4 12 2-6h4"/></svg></span>
+          <span class="icon-mark cream"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+          <span class="icon-mark"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-1.5Z"/><path d="M8 7h6M8 11h8"/></svg></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap sample-grid">
+        <article class="sample-card">
+          <span class="tag">Service</span>
+          <h3>Focused coaching</h3>
+          <p>Cards stay white, crisp, and quiet. Add one accent marker, not many competing decorations.</p>
+        </article>
+        <article class="sample-card">
+          <span class="tag" style="--tone:#dbe6ed;">Resource</span>
+          <h3>Reflection guide</h3>
+          <p>Resources can use tags, simple icons, and short summary copy for scannability.</p>
+        </article>
+        <article class="sample-card">
+          <span class="tag" style="--tone:#f7efe1;">Quote</span>
+          <h3>Client reflection</h3>
+          <p>Testimonials should feel spacious. Keep quote cards uncluttered and human.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap image-sample">
+        <img src="./about-portrait.png" alt="Circular portrait sample">
+        <div>
+          <div class="eyebrow">Imagery</div>
+          <h2>Portraits are circular and calm.</h2>
+          <p class="lead">Use real, clear photography with simple backgrounds. Avoid square frames for portraits in this direction.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Motion</div>
+          <h2>Detached floating circles.</h2>
+          <p class="lead">Decorations should drift softly around the edges and never cover text or faces.</p>
+        </div>
+        <div class="circle-field">
+          <span class="balance-ball"></span>
+          <span class="decor-dot dot-large" style="left:12%;top:22%;"></span>
+          <span class="decor-dot dot-medium" style="right:18%;bottom:22%;"></span>
+          <span class="decor-dot dot-small" style="right:26%;top:24%;"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
+
+
+
