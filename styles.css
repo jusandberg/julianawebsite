@@ -90,7 +90,7 @@ img {
 }
 
 .brand img {
-  width: 214px;
+  width: 242px;
   height: auto;
 }
 
@@ -216,10 +216,23 @@ h1 {
 }
 
 .home-slate-gold h1 {
-  max-width: 760px;
-  font-size: clamp(50px, 7vw, 96px);
+  max-width: 720px;
+  font-size: clamp(50px, 5vw, 72px);
   line-height: 1.02;
   letter-spacing: 0;
+}
+
+.home-slate-gold .hero-copy {
+  max-width: 720px;
+}
+
+.home-hero-lead {
+  max-width: 590px;
+  font-size: clamp(18px, 1.8vw, 22px);
+}
+
+.home-slate-gold .portrait-panel {
+  width: min(300px, 100%);
 }
 
 .page-hero h1 {
@@ -487,7 +500,7 @@ h3 {
 }
 
 .home-slate-gold .portrait-panel {
-  width: min(330px, 100%);
+  width: min(300px, 100%);
   min-height: 0;
 }
 
@@ -2371,11 +2384,35 @@ details p {
 
   .hero {
     min-height: auto;
-    padding: 58px 0 42px;
+    padding: 38px 0 50px;
   }
 
   .home-slate-gold .hero {
-    padding-bottom: 172px;
+    padding-bottom: 50px;
+  }
+
+  .home-slate-gold .hero-grid {
+    gap: 40px;
+  }
+
+  .home-slate-gold .hero .decor-dot {
+    display: none;
+  }
+
+  .home-slate-gold .hero .actions {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .home-slate-gold .hero .button {
+    width: 100%;
+  }
+
+  .home-slate-gold .home-hero-lead {
+    max-width: 34ch;
+    margin-bottom: 24px;
+    font-size: 17px;
   }
 
   .page-hero {
@@ -2404,8 +2441,24 @@ details p {
   }
 
   .home-slate-gold h1 {
-    font-size: clamp(42px, 11vw, 58px);
+    font-size: clamp(38px, 10.5vw, 50px);
     line-height: 1.08;
+  }
+
+  .home-slate-gold .headline-keep {
+    display: block;
+    white-space: normal;
+  }
+
+  .home-slate-gold .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .home-slate-gold .hero-copy .actions {
+    justify-items: center;
   }
 
   h2 {
@@ -2465,7 +2518,19 @@ details p {
   }
 
   .home-slate-gold .portrait-panel {
+    width: min(248px, 76vw);
+    margin-inline: auto;
+    margin-bottom: 150px;
     min-height: 0;
+  }
+
+  .home-slate-gold .portrait-card {
+    display: block;
+    right: 50%;
+    bottom: -140px;
+    width: min(280px, calc(100vw - 48px));
+    transform: translateX(50%);
+    text-align: left;
   }
 
   .hero-balance {
@@ -2474,7 +2539,7 @@ details p {
     --motif-width: 240px;
     --motif-height: 160px;
     --ball-size: 104px;
-    opacity: .42;
+    opacity: .18;
   }
 
   .page-balance {
@@ -2724,6 +2789,12 @@ details p {
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+@media (max-width: 420px) {
+  .brand img { width: 170px; }
+  .home-slate-gold h1 { font-size: clamp(36px, 10vw, 42px); }
+  .home-slate-gold .hero { padding-top: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
