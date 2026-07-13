@@ -116,6 +116,37 @@ document.addEventListener('DOMContentLoaded', async function() {
     // The manifest bytes are ours; SRI protects against CDN compromise, not this.
     template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
 
+    // Build the portfolio course chrome into the real bundled document before
+    // it renders. This avoids React replacing navigation added afterward.
+    const courseNav =
+      '<nav style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid #EAEAEF">' +
+        '<div style="max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative">' +
+          '<a href="index.html#home" aria-label="Juliana Dos Santos portfolio home" style="display:flex;align-items:center;text-decoration:none;min-width:0">' +
+            '<img src="logo.svg" alt="Juliana Dos Santos" style="display:block;width:220px;height:auto;max-width:42vw">' +
+          '</a>' +
+          '<span style="position:absolute;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;color:#0F9F9A;background:rgba(15,159,154,.07);padding:7px 16px;border-radius:999px;font:600 13px Inter,Arial,sans-serif;white-space:nowrap">' +
+            '<span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:#0F9F9A"></span>Microlearning' +
+          '</span>' +
+          '<a href="index.html#work" aria-label="Exit course and return to portfolio work samples" style="margin-left:auto;flex:none;text-decoration:none;background:transparent;color:#1A1A1C;border:1.5px solid #EAEAEF;padding:8px 16px;border-radius:999px;font:700 13px Inter,Arial,sans-serif;white-space:nowrap">Exit course</a>' +
+        '</div>' +
+      '</nav>';
+    template = template.replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/i, courseNav);
+
+    const courseFooter =
+      '<nav id="eq-course-footer-nav" class="sample-footer-nav" aria-label="Course navigation" style="position:static!important;width:auto!important;max-width:760px!important;margin:2.5rem auto 1.5rem!important;padding:1.5rem!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:.8rem!important;flex-wrap:wrap!important;background:transparent!important;border:0!important;border-top:1px solid #E7E9ED!important;box-shadow:none!important;font-family:Inter,Arial,sans-serif!important">' +
+        '<a href="index.html#work" aria-label="Back to work samples" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:44px!important;margin:0!important;padding:12px 20px!important;border:1.5px solid #171719!important;border-radius:999px!important;background:#171719!important;color:#fff!important;box-shadow:0 8px 22px rgba(7,16,20,.12)!important;font:700 14px Inter,Arial,sans-serif!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important">&larr; Back to work samples</a>' +
+        '<a href="index.html#home" aria-label="Back to home page" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:44px!important;margin:0!important;padding:12px 20px!important;border:1.5px solid #DFE2E7!important;border-radius:999px!important;background:transparent!important;color:#171719!important;box-shadow:none!important;font:700 14px Inter,Arial,sans-serif!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important">Back to home page</a>' +
+      '</nav>';
+    template = template.replace(/<\/main>/i, courseFooter + '</main>');
+    const courseChromeStyles =
+      '<style>' +
+        '#eq-course-footer-nav{position:static!important;width:auto!important;max-width:760px!important;margin:2.5rem auto 1.5rem!important;padding:1.5rem!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:.8rem!important;flex-wrap:wrap!important;background:transparent!important;border:0!important;border-top:1px solid #E7E9ED!important;box-shadow:none!important;font-family:Inter,Arial,sans-serif!important}' +
+        '#eq-course-footer-nav a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:44px!important;margin:0!important;padding:12px 20px!important;border-radius:999px!important;font:700 14px Inter,Arial,sans-serif!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important}' +
+        '#eq-course-footer-nav a:first-child{border:1.5px solid #171719!important;background:#171719!important;color:#fff!important;box-shadow:0 8px 22px rgba(7,16,20,.12)!important}' +
+        '#eq-course-footer-nav a:last-child{border:1.5px solid #DFE2E7!important;background:transparent!important;color:#171719!important;box-shadow:none!important}' +
+      '</style>';
+    template = template.replace(/<\/head>/i, '<link rel="icon" type="image/svg+xml" sizes="any" href="favicon.svg?v=3">' + courseChromeStyles + '</head>');
+
     const resourceScript = '<script>window.__resources = ' +
       JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
       ';</' + 'script>';
@@ -160,34 +191,52 @@ document.addEventListener('DOMContentLoaded', async function() {
       window.Babel.transformScriptTags();
     }
     // Keep the packaged course header aligned with the portfolio brand.
-    window.setTimeout(function() {
-      var nav = document.querySelector('nav');
-      if (!nav) return;
+    window.setTimeout(function installCourseChrome() {
+      var nav = document.querySelector('nav:not(.sample-footer-nav)');
+      if (!nav) {
+        window.setTimeout(installCourseChrome, 500);
+        return;
+      }
       var navInner = nav.firstElementChild || nav;
-      var logo = nav.querySelector('img');
-      if (logo) {
-        logo.src = 'logo.svg';
-        logo.alt = 'Juliana Dos Santos';
-        logo.style.width = '220px';
-        logo.style.height = 'auto';
-        logo.style.maxWidth = '42vw';
+      navInner.innerHTML =
+        '<a href="index.html#home" aria-label="Juliana Dos Santos portfolio home" style="display:flex;align-items:center;text-decoration:none;min-width:0">' +
+          '<img src="logo.svg" alt="Juliana Dos Santos" style="display:block;width:220px;height:auto;max-width:42vw">' +
+        '</a>' +
+        '<span style="position:absolute;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;color:#0F9F9A;background:rgba(15,159,154,.07);padding:7px 16px;border-radius:999px;font:600 13px Inter,Arial,sans-serif;white-space:nowrap">' +
+          '<span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:#0F9F9A"></span>Microlearning' +
+        '</span>' +
+        '<a id="portfolio-course-exit" href="index.html#work" aria-label="Exit course and return to portfolio work samples" style="margin-left:auto;flex:none;text-decoration:none;background:transparent;color:#1A1A1C;border:1.5px solid #EAEAEF;padding:8px 16px;border-radius:999px;font:700 13px Inter,Arial,sans-serif;white-space:nowrap">Exit course</a>';
+      navInner.style.position = 'relative';
+      navInner.style.display = 'flex';
+      navInner.style.alignItems = 'center';
+      navInner.style.justifyContent = 'space-between';
+      var favicon = document.querySelector('link[rel~="icon"]');
+      if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/svg+xml';
+        document.head.appendChild(favicon);
       }
-      var oldExit = document.getElementById('portfolio-course-exit');
-      if (oldExit) oldExit.remove();
-      var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
-      var exit = links.find(function(link) {
-        return /make a call|book a call|contact/i.test(link.textContent || '');
-      });
-      if (!exit) {
-        exit = document.createElement('a');
-        navInner.appendChild(exit);
+      favicon.href = 'favicon.svg?v=3';
+      function ensureCourseFooter() {
+        if (document.getElementById('eq-course-footer-nav')) return;
+        Array.prototype.slice.call(document.querySelectorAll('.sample-footer-nav')).forEach(function(existingFooter) {
+          existingFooter.remove();
+        });
+        var footer = document.createElement('nav');
+        footer.id = 'eq-course-footer-nav';
+        footer.className = 'sample-footer-nav';
+        footer.setAttribute('aria-label', 'Course navigation');
+        footer.style.cssText = 'position:static!important;width:auto!important;max-width:760px!important;margin:2.5rem auto 1.5rem!important;padding:1.5rem!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:.8rem!important;flex-wrap:wrap!important;background:transparent!important;border:0!important;border-top:1px solid #E7E9ED!important;box-shadow:none!important;font-family:Inter,Arial,sans-serif!important;';
+        footer.innerHTML =
+          '<a href="index.html#work" aria-label="Back to work samples" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:44px!important;margin:0!important;padding:12px 20px!important;border:1.5px solid #171719!important;border-radius:999px!important;background:#171719!important;color:#fff!important;box-shadow:0 8px 22px rgba(7,16,20,.12)!important;font:700 14px Inter,Arial,sans-serif!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important">&larr; Back to work samples</a>' +
+          '<a href="index.html#home" aria-label="Back to home page" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:44px!important;margin:0!important;padding:12px 20px!important;border:1.5px solid #DFE2E7!important;border-radius:999px!important;background:transparent!important;color:#171719!important;box-shadow:none!important;font:700 14px Inter,Arial,sans-serif!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important">Back to home page</a>';
+        document.body.appendChild(footer);
       }
-      exit.id = 'portfolio-course-exit';
-      exit.href = 'index.html#home';
-      exit.textContent = 'Exit course';
-      exit.setAttribute('aria-label', 'Exit course and return to portfolio home');
-      exit.style.cssText = 'margin-left:auto;flex:none;text-decoration:none;background:transparent;color:#1A1A1C;border:1.5px solid #EAEAEF;padding:8px 16px;border-radius:999px;font:700 13px Inter,Arial,sans-serif;white-space:nowrap;';
-    }, 250);
+      ensureCourseFooter();
+      window.setTimeout(ensureCourseFooter, 1000);
+      window.setTimeout(ensureCourseFooter, 2500);
+    }, 750);
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
