@@ -21,8 +21,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.4rem;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
-.back-btn{font-size:.85rem;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;}
-.back-btn:hover{color:var(--teal);}
+.course-logo{display:flex;align-items:center;text-decoration:none;min-width:0;}
+.course-logo img{display:block;width:220px;height:auto;max-width:42vw;}
+.exit-course{font-size:.82rem;font-weight:700;color:var(--ink);text-decoration:none;background:transparent;border:1.5px solid var(--line);padding:.5rem 1rem;border-radius:999px;white-space:nowrap;transition:transform .2s,border-color .2s,color .2s;}
+.exit-course:hover{transform:translateY(-1px);border-color:var(--teal);color:var(--teal);}
 .nav-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--teal);background:rgba(15,159,154,.07);padding:.4rem 1rem;border-radius:980px;}
 .nav-pill .pdot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
 
@@ -132,6 +134,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .btn{font-family:inherit;font-size:1rem;font-weight:600;color:#fff;background:var(--ink);border:none;border-radius:980px;padding:.9rem 2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,opacity .2s;}
 .btn:hover{transform:scale(1.03);}
 .btn:disabled{opacity:.35;cursor:default;transform:none;}
+.btn-start{background:var(--teal);box-shadow:0 8px 22px rgba(15,159,154,.2);}
 .btn-ghost{background:none;color:var(--teal);border:1.5px solid var(--line);}
 .btn-ghost:hover{border-color:var(--teal);}
 .btn-row{display:flex;gap:.8rem;justify-content:flex-end;align-items:center;margin-top:1.6rem;flex-wrap:wrap;}
@@ -176,11 +179,9 @@ textarea:focus{outline:none;border-color:var(--teal);}
 <body>
 
 <nav class="nav">
-  <a class="back-btn" href="javascript:history.back()">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    Back
-  </a>
+  <a class="course-logo" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><img src="logo.svg" alt="Juliana Dos Santos"></a>
   <span class="nav-pill"><span class="pdot"></span> Microlearning</span>
+  <a class="exit-course" href="index.html#home" aria-label="Exit course and return to portfolio home">Exit course</a>
 </nav>
 <div class="prog-bar"><div class="fill" id="progFill"></div></div>
 
@@ -251,7 +252,7 @@ textarea:focus{outline:none;border-color:var(--teal);}
     <p class="section-p" style="margin-bottom:0;">Most well-meaning managers fail on the <strong style="color:#C98F00;">Ruinous Empathy</strong> side: they care, so they soften the message until there's nothing left to act on. Let's train your eye.</p>
 
     <div class="btn-row">
-      <button class="btn" onclick="go(1)">Start practice</button>
+    <button class="btn btn-start" onclick="go(1)">Start practice</button>
     </div>
   </div>
 

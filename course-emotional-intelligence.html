@@ -159,6 +159,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
       window.Babel.transformScriptTags();
     }
+    // Keep the packaged course header aligned with the portfolio brand.
+    window.setTimeout(function() {
+      var nav = document.querySelector('nav');
+      if (!nav) return;
+      var navInner = nav.firstElementChild || nav;
+      var logo = nav.querySelector('img');
+      if (logo) {
+        logo.src = 'logo.svg';
+        logo.alt = 'Juliana Dos Santos';
+        logo.style.width = '220px';
+        logo.style.height = 'auto';
+        logo.style.maxWidth = '42vw';
+      }
+      var oldExit = document.getElementById('portfolio-course-exit');
+      if (oldExit) oldExit.remove();
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+      var exit = links.find(function(link) {
+        return /make a call|book a call|contact/i.test(link.textContent || '');
+      });
+      if (!exit) {
+        exit = document.createElement('a');
+        navInner.appendChild(exit);
+      }
+      exit.id = 'portfolio-course-exit';
+      exit.href = 'index.html#home';
+      exit.textContent = 'Exit course';
+      exit.setAttribute('aria-label', 'Exit course and return to portfolio home');
+      exit.style.cssText = 'margin-left:auto;flex:none;text-decoration:none;background:transparent;color:#1A1A1C;border:1.5px solid #EAEAEF;padding:8px 16px;border-radius:999px;font:700 13px Inter,Arial,sans-serif;white-space:nowrap;';
+    }, 250);
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
