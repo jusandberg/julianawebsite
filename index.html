@@ -644,6 +644,59 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 @media(prefers-reduced-motion:reduce){
   .hero .ring,.hero .dot,.cta .ring,.cta .dot,.about-photo::before,.about-photo::after,.page:not(#home)::before,.page:not(#home)::after,.page:not(#home) > .section::before,.page:not(#home) > .section::after{animation:none!important;}
 }
+/* ===== Interaction polish ===== */
+.fw-tile .fw-icon::after,.tools-tile .tools-icon::after,.book-tile .book-notebook::after{content:"+";position:absolute;top:-7px;right:-7px;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--ink);font:600 15px/22px Inter,-apple-system,sans-serif;text-align:center;box-shadow:0 2px 6px rgba(20,20,30,.16),0 0 0 1px rgba(20,20,30,.05);transition:transform .35s cubic-bezier(.2,.8,.2,1),background .25s,color .25s;z-index:2}
+.fw-tile:hover .fw-icon::after,.tools-tile:hover .tools-icon::after,.book-tile:hover .book-notebook::after{transform:scale(1.12)}
+.fw-tile.open .fw-icon::after,.tools-tile.open .tools-icon::after,.book-tile.open .book-notebook::after{transform:rotate(45deg);background:var(--ink);color:#fff}
+.fw-title-label,.tools-title-label,.book-title-label,.ai-stage-label{transition:color .25s}
+.fw-tile:hover .fw-title-label,.tools-tile:hover .tools-title-label,.book-tile:hover .book-title-label,.ai-stage-tile:hover .ai-stage-label,.fw-tile.open .fw-title-label,.tools-tile.open .tools-title-label,.book-tile.open .book-title-label,.ai-stage-tile.active .ai-stage-label{color:var(--teal)}
+.fw-tile,.tools-tile,.book-tile,.ai-stage-tile{transition:opacity .3s}
+.fw-row:has(.open) .fw-tile:not(.open),#toolsTileUnit:has(.tools-tile.open) .tools-tile:not(.open),.bookshelf-unit:has(.book-tile.open) .book-tile:not(.open),.ai-stage-tiles:has(.active) .ai-stage-tile:not(.active){opacity:.5}
+.fw-row:has(.open) .fw-tile:not(.open):hover,#toolsTileUnit:has(.tools-tile.open) .tools-tile:not(.open):hover,.bookshelf-unit:has(.book-tile.open) .book-tile:not(.open):hover,.ai-stage-tiles:has(.active) .ai-stage-tile:not(.active):hover{opacity:1}
+.fw-tile:focus-visible,.tools-tile:focus-visible,.book-tile:focus-visible,.ai-stage-tile:focus-visible,.coach-arc-tile:focus-visible{outline:2px solid var(--teal);outline-offset:6px;border-radius:14px}
+
+/* Work sample cards */
+.ws-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;max-width:1000px;margin:0 auto;padding:0 .5rem}
+.ws-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s}
+.ws-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(20,20,30,.11);border-color:rgba(15,159,154,.35)}
+.ws-card:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+.ws-shot{position:relative;display:block;margin:1rem 1rem 0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#f7f8f9}
+.ws-bar{display:flex;gap:5px;padding:8px 10px;background:#fff;border-bottom:1px solid var(--line)}
+.ws-bar i{width:8px;height:8px;border-radius:50%;background:#e3e4e8}
+.ws-shot img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.ws-card:hover .ws-shot img{transform:scale(1.045)}
+.ws-live{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .65rem;border-radius:999px;background:rgba(255,255,255,.94);font-size:.7rem;font-weight:700;color:var(--ink);box-shadow:0 4px 12px rgba(20,20,30,.1)}
+.ws-live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,168,83,.18)}
+.ws-body{display:flex;flex-direction:column;gap:.55rem;padding:1.3rem 1.5rem 1.5rem;flex:1}
+.ws-meta{font-size:.72rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em}
+.ws-name{font-size:1.25rem;font-weight:700;line-height:1.3}
+.ws-desc{color:var(--grey);font-size:.94rem;line-height:1.6}
+.ws-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.15rem}
+.ws-tags span{font-size:.72rem;font-weight:600;padding:.28rem .6rem;border-radius:999px;background:#f5f6f7;border:1px solid var(--line)}
+.ws-go{margin-top:auto;padding-top:.7rem;display:inline-flex;align-items:center;gap:.35rem;font-weight:700;font-size:.92rem;color:var(--teal)}
+.ws-go .arr{transition:transform .3s}
+.ws-card:hover .ws-go .arr{transform:translateX(5px)}
+@media(max-width:760px){.ws-grid{grid-template-columns:1fr;gap:1.1rem}.ws-shot{margin:.8rem .8rem 0}.ws-body{padding:1.1rem 1.2rem 1.3rem}}
+
+/* Living coaching arc */
+.coach-arc-traveller{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:2px solid var(--teal);background:rgba(15,159,154,.08);pointer-events:none;z-index:0;box-shadow:0 0 0 6px rgba(15,159,154,.06)}
+.coach-arc-tile{z-index:1}
+.coach-arc-tile.open .coach-arc-label{color:var(--teal)}
+.coach-arc-reveal{grid-template-rows:1fr;max-width:760px;margin:1.75rem auto 0}
+.coach-arc-card{align-items:center}
+.coach-arc-card .ca-text{flex:1;min-width:0}
+.ca-nav{display:flex;flex-direction:column;align-items:center;gap:.4rem;flex:none;font-size:.75rem;font-weight:700;color:var(--grey);position:relative;z-index:1}
+.ca-nav button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:1rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.ca-nav button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ca-nav button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.coach-arc-card.ca-swap .coach-detail-icon,.coach-arc-card.ca-swap .ca-text{animation:caSwap .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes caSwap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Scroll reveals */
+.rv{opacity:0;translate:0 18px;transition:opacity .7s cubic-bezier(.2,.8,.2,1),translate .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--rv-delay,0ms)}
+.rv.in{opacity:1;translate:0 0}
+html{overflow-x:clip}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;translate:none;transition:none}.coach-arc-card.ca-swap .coach-detail-icon,.coach-arc-card.ca-swap .ca-text{animation:none}}
 </style>
 </head>
 <body>
@@ -854,15 +907,13 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <p class="ai-intro">AI is part of how I research, design, prototype, and teach. I use it to make useful things faster, while keeping judgment, accessibility, and human expertise firmly in the process.</p>
       <div class="ai-stage-tiles" id="aiStageTiles" aria-label="Interactive AI workflow"></div>
       <article class="ai-stage-detail" id="aiStageDetail" aria-live="polite"></article>
-      <p class="ai-stage-note">Choose a stage to see how AI supports the work.</p>
     </div>
 
     <div class="section-center" style="margin-top:4.5rem;">
       <div class="eyebrow c">The Frameworks Behind It</div>
-      <p class="section-intro">Evidence-based models keep my work rigorous. Tap one to see how I use it.</p>
+      <p class="section-intro">Evidence-based models keep my work rigorous.</p>
     </div>
     <div class="fw-unit" id="frameworkUnit"></div>
-    <p class="fw-hint">Tap a framework to open it. Tap it again or use the close button to close it.</p>
   </div>
 </section>
 
@@ -874,7 +925,6 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
       <p class="section-intro">Explore two interactive samples that show how I turn learning strategy into practical, engaging experiences.</p>
     </div>
     <div class="sample-unit" id="workSampleUnit"></div>
-    <p class="sample-hint">Tap a course to preview it, then launch the full interactive experience.</p>
     <div class="cards legacy-work-grid" hidden style="margin-top:3.5rem;">
       <div class="card">
         <div class="card-ring"></div>
@@ -942,10 +992,9 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
   <div class="section">
     <div class="section-center">
       <div class="eyebrow c">Books I Love</div>
-      <p class="section-intro">Some of my favourite instructional design, talent development, leadership, and coaching books. Tap one to read more.</p>
+      <p class="section-intro">Some of my favourite instructional design, talent development, leadership, and coaching books.</p>
     </div>
     <div class="bookshelf-unit" id="bookshelfUnit"></div>
-    <p class="bookshelf-hint">Tap any book to open it. Tap it again or use the close button to close it.</p>
   </div>
 </section>
 
@@ -987,8 +1036,6 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="coach-arc-reveal" id="coachArcReveal"><div><div class="coach-arc-card" id="coachArcCard"></div></div></div>
     <div class="coach-carousel" id="coachCarousel" aria-label="Swipe through coaching conversation stages"></div>
     <div class="coach-car-dots" id="coachCarDots" aria-hidden="true"></div>
-    <p class="coach-arc-hint">Tap a stage to see what it is for. Tap it again or use the close button to close it.</p>
-    <p class="coach-car-hint">Swipe to explore each stage.</p>
     <div class="phase-arc" hidden aria-label="Seven parts of a coaching conversation">
       <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M45 128 C235 -5 625 -5 815 128"/></svg>
       <div class="phase-points">
@@ -1061,7 +1108,6 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
     <div class="tools-panel">
       <div id="toolsTileUnit"></div>
     </div>
-    <p class="tools-hint">Tap a tool to preview it. Tap it again or use the close button to close it.</p>
     <div class="tool-guide" hidden>
       <div class="tool-needs" id="toolNeeds"></div>
     </div>
@@ -1328,8 +1374,8 @@ function buildFrameworks(){
  unit.innerHTML=html;
 }
 const WORK_SAMPLE_ITEMS=[
- {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['Interactive','Practice-based','Manager skills'],href:'course-radical-candor.html',action:'Explore interactive module'},
- {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',action:'Start the course'}
+ {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['5 minutes','Practice-based','Manager skills'],href:'course-radical-candor.html',thumb:'thumb-radical-candor.webp',action:'Try the module'},
+ {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',thumb:'thumb-emotional-intelligence.webp',action:'Start the course'}
 ];
 let openWorkSampleIndex=null;
 function workSampleIcon(item){
@@ -1359,18 +1405,7 @@ function openWorkSample(index){
 function buildWorkSamples(){
  const unit=document.getElementById('workSampleUnit');
  if(!unit) return;
- const perRow=3;
- let html='';
- for(let start=0;start<WORK_SAMPLE_ITEMS.length;start+=perRow){
-  const row=start/perRow;
-  html+=`<div class="sample-row" data-row="${row}">`;
-  WORK_SAMPLE_ITEMS.slice(start,start+perRow).forEach((item,offset)=>{
-   const index=start+offset;
-   html+=`<button class="sample-tile" type="button" data-sample-index="${index}" data-row="${row}" aria-expanded="false" aria-label="${item.name}" onclick="openWorkSample(${index})">${workSampleIcon(item)}<span class="sample-course-pill">${item.name}</span></button>`;
-  });
-  html+=`</div><div class="sample-detail-reveal" data-detail-row="${row}"><div><div class="sample-detail-card"></div></div></div>`;
- }
- unit.innerHTML=html;
+ unit.innerHTML='<div class="ws-grid">'+WORK_SAMPLE_ITEMS.map(item=>`<a class="ws-card c-${item.color}" href="${item.href}"><span class="ws-shot"><span class="ws-bar" aria-hidden="true"><i></i><i></i><i></i></span><img src="${item.thumb}" alt="Opening screen of ${item.name.replace(/"/g,'&quot;')}" width="960" height="540" loading="lazy"><span class="ws-live" aria-hidden="true">Interactive</span></span><span class="ws-body"><span class="ws-meta">${item.cat}</span><span class="ws-name">${item.name}</span><span class="ws-desc">${item.desc}</span><span class="ws-tags">${item.tags.map(tag=>`<span>${tag}</span>`).join('')}</span><span class="ws-go">${item.action} <span class="arr" aria-hidden="true">&rarr;</span></span></span></a>`).join('')+'</div>';
 }
 const BOOKSHELF_BOOKS=[
  {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},
@@ -1539,7 +1574,26 @@ const COACH_ARC_STAGES=[
  {label:'Close',color:'green',icon:'<path d="M20 6L9 17l-5-5"/>',title:'Capture learning and accountability',desc:'We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.'}
 ];
 let openCoachArcIndex=null;
+let coachArcT=0,coachArcAnim=null;
+const COACH_ARC_MARGIN=64;
 function coachArcY(t){return 115-90*4*t*(1-t)}
+function coachArcPoint(t,width){return {x:COACH_ARC_MARGIN+t*(width-2*COACH_ARC_MARGIN),y:coachArcY(t)+10}}
+function coachArcPathD(width,upto=1){
+ let d='';const steps=Math.max(1,Math.round(40*upto));
+ for(let i=0;i<=steps;i++){const p=coachArcPoint(upto*i/steps,width);d+=`${i?'L':'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)} `}
+ return d;
+}
+function drawCoachArcProgress(){
+ const unit=document.getElementById('coachArcUnit');
+ const prog=document.getElementById('coachArcProgress');
+ const trav=document.getElementById('coachArcTraveller');
+ if(!unit||!prog||!trav) return;
+ const width=unit.getBoundingClientRect().width;
+ if(!width) return;
+ prog.setAttribute('d',coachArcT>0.001?coachArcPathD(width,coachArcT):'');
+ const p=coachArcPoint(coachArcT,width);
+ trav.style.left=p.x+'px';trav.style.top=p.y+'px';
+}
 function positionCoachArc(){
  const unit=document.getElementById('coachArcUnit');
  const path=document.getElementById('coachArcPath');
@@ -1547,37 +1601,51 @@ function positionCoachArc(){
  if(!unit||!path||!svg||window.innerWidth<=820) return;
  const width=unit.getBoundingClientRect().width;
  if(!width) return;
- const margin=64;
  unit.querySelectorAll('.coach-arc-tile').forEach((tile,index)=>{
   const t=index/(COACH_ARC_STAGES.length-1);
-  tile.style.left=`${margin+t*(width-2*margin)}px`;
+  tile.style.left=`${COACH_ARC_MARGIN+t*(width-2*COACH_ARC_MARGIN)}px`;
   tile.style.top=`${coachArcY(t)}px`;
  });
  svg.setAttribute('viewBox',`0 0 ${width} ${unit.getBoundingClientRect().height}`);
- let d='';
- for(let i=0;i<=40;i++){
-  const t=i/40,x=margin+t*(width-2*margin),y=coachArcY(t)+10;
-  d+=`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)} `;
- }
- path.setAttribute('d',d);
+ path.setAttribute('d',coachArcPathD(width));
+ drawCoachArcProgress();
+}
+function moveCoachArcTo(target){
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(coachArcAnim) cancelAnimationFrame(coachArcAnim);
+ const start=coachArcT,dist=target-start;
+ if(reduce||Math.abs(dist)<.001){coachArcT=target;drawCoachArcProgress();return}
+ const dur=Math.min(900,350+Math.abs(dist)*900);let t0=null;
+ const step=now=>{
+  if(t0===null) t0=now;
+  const k=Math.min(1,(now-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+  coachArcT=start+dist*e;drawCoachArcProgress();
+  if(k<1) coachArcAnim=requestAnimationFrame(step);
+ };
+ coachArcAnim=requestAnimationFrame(step);
 }
 function closeCoachArc(){
  document.querySelectorAll('.coach-arc-tile.open').forEach(tile=>{tile.classList.remove('open');tile.setAttribute('aria-expanded','false')});
- document.getElementById('coachArcReveal')?.classList.remove('open');
  openCoachArcIndex=null;
 }
-function openCoachArc(index){
- if(openCoachArcIndex===index){closeCoachArc();return}
+function openCoachArc(index,focusTile=false){
+ const total=COACH_ARC_STAGES.length;
+ index=(index+total)%total;
+ if(openCoachArcIndex===index) return;
+ const first=openCoachArcIndex===null;
  closeCoachArc();
  const stage=COACH_ARC_STAGES[index];
  const tile=document.querySelector(`.coach-arc-tile[data-coach-index="${index}"]`);
  const card=document.getElementById('coachArcCard');
  if(!stage||!tile||!card) return;
- card.innerHTML=`<button class="coach-arc-close" type="button" aria-label="Close coaching stage" onclick="closeCoachArc()">&times;</button><span class="coach-detail-icon c-${stage.color}"><svg viewBox="0 0 24 24">${stage.icon}</svg></span><div><div class="coach-detail-meta">${stage.label}</div><h3>${stage.title}</h3><p>${stage.desc}</p></div>`;
+ card.innerHTML=`<span class="coach-detail-icon c-${stage.color}"><svg viewBox="0 0 24 24">${stage.icon}</svg></span><div class="ca-text"><div class="coach-detail-meta">${String(index+1).padStart(2,'0')} · ${stage.label}</div><h3>${stage.title}</h3><p>${stage.desc}</p></div><div class="ca-nav"><button type="button" aria-label="Previous stage" onclick="openCoachArc(${index-1},true)">&larr;</button><span>${index+1} / ${total}</span><button type="button" aria-label="Next stage" onclick="openCoachArc(${index+1},true)">&rarr;</button></div>`;
+ card.classList.remove('ca-swap');void card.offsetWidth;if(!first) card.classList.add('ca-swap');
  tile.classList.add('open');
  tile.setAttribute('aria-expanded','true');
  document.getElementById('coachArcReveal').classList.add('open');
  openCoachArcIndex=index;
+ moveCoachArcTo(index/(total-1));
+ if(focusTile) tile.focus({preventScroll:true});
 }
 function updateCoachCarouselDots(){
  const carousel=document.getElementById('coachCarousel');
@@ -1601,6 +1669,19 @@ function buildCoachArc(){
  dots.innerHTML=COACH_ARC_STAGES.map((_,index)=>`<span class="${index===0?'active':''}"></span>`).join('');
  let ticking=false;
  carousel.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateCoachCarouselDots();ticking=false})},{passive:true});
+ const svgEl=document.getElementById('coachArcSvg');
+ if(svgEl&&!document.getElementById('coachArcProgress')){
+  svgEl.insertAdjacentHTML('afterbegin','<defs><linearGradient id="coachArcGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#0F9F9A"/><stop offset="1" stop-color="#34A853"/></linearGradient></defs>');
+  const prog=document.createElementNS('http://www.w3.org/2000/svg','path');
+  prog.id='coachArcProgress';prog.setAttribute('fill','none');prog.setAttribute('stroke','url(#coachArcGrad)');prog.setAttribute('stroke-width','3');prog.setAttribute('stroke-linecap','round');
+  svgEl.appendChild(prog);
+  const trav=document.createElement('span');trav.id='coachArcTraveller';trav.className='coach-arc-traveller';trav.setAttribute('aria-hidden','true');
+  document.getElementById('coachArcUnit').appendChild(trav);
+ }
+ document.getElementById('coachArcUnit').addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();openCoachArc((openCoachArcIndex??0)+(e.key==='ArrowRight'?1:-1),true)}
+ });
+ openCoachArc(0);
  requestAnimationFrame(positionCoachArc);
 }
 function showPage(id, updateHash=true){
@@ -1641,6 +1722,54 @@ function closeMenu(){
   document.getElementById('menuOverlay').classList.remove('open');
 }
 window.addEventListener('resize',positionCoachArc);
+// ===== Interaction polish =====
+document.addEventListener('keydown',e=>{
+ if(e.key!=='Escape') return;
+ closeFrameworks();closeToolTiles();closeBookshelf();
+ if(activeAiStage!==null) closeAiStage();
+});
+(function(){
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!('IntersectionObserver' in window)) return;
+ // Count-up for headline numbers
+ const counters=document.querySelectorAll('.stats .n, .impact-number');
+ const fmt=n=>n.toLocaleString('en-CA');
+ function runCount(el){
+  const final=el.textContent.trim();
+  const m=final.match(/^(.*?)(\d[\d,]*)(\D*)$/);
+  if(!m) return;
+  const target=parseInt(m[2].replace(/,/g,''),10);
+  const from=(m[1].match(/^(\d+)\s*→/)||[])[1];
+  const start=from?parseInt(from,10):0;
+  const useComma=m[2].includes(',');
+  el.setAttribute('aria-label',final);
+  const dur=1300;let t0=null;
+  const tick=now=>{
+   if(t0===null) t0=now;
+   const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);
+   const v=Math.round(start+(target-start)*e);
+   el.textContent=m[1]+(useComma?fmt(v):v)+m[3];
+   if(k<1) requestAnimationFrame(tick); else el.textContent=final;
+  };
+  requestAnimationFrame(tick);
+ }
+ if(!reduce){
+  const co=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){co.unobserve(en.target);runCount(en.target)}}),{threshold:.6});
+  counters.forEach(el=>co.observe(el));
+ }
+ if(reduce) return;
+ // Fade-up as sections scroll into view
+ const sel=['.page:not(#home) h2','.page .section-intro','.page .eyebrow','.impact-card','.method-card','.ai-practice','.fw-row','.ws-card','.bookshelf-row','.coach-service-card','.coaching-approach','.coach-arc-unit','.coach-arc-reveal','.tools-row','.cred-panel','.about-photo','.about-beliefs','.cta-inner','.contact-form'].join(',');
+ const items=[...document.querySelectorAll(sel)].filter(el=>!el.closest('[hidden]')&&!el.closest('.cards.legacy-work-grid'));
+ const groups=new Map();
+ items.forEach(el=>{
+  el.classList.add('rv');
+  const n=groups.get(el.parentElement)||0;groups.set(el.parentElement,n+1);
+  el.style.setProperty('--rv-delay',Math.min(n,5)*80+'ms');
+ });
+ const ro=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');ro.unobserve(en.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ items.forEach(el=>ro.observe(el));
+})();
 </script>
 </body>
 </html>
