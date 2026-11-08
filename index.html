@@ -710,7 +710,7 @@ body{background:#fff}
 .hero,.cta,.section,.stats{background:transparent!important}
 .hero::before,.hero::after,.cta::before,.cta::after{opacity:.0!important}
 h1{letter-spacing:-.045em;font-weight:800}
-.hero h1{font-size:clamp(2.8rem,7.4vw,5.6rem);line-height:.98}
+.hero h1{font-size:clamp(2.8rem,7.4vw,5.6rem);line-height:1.08}
 .grad{background:linear-gradient(90deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
 h2{letter-spacing:-.035em}
 .eyebrow{letter-spacing:.16em;font-weight:700;font-size:.74rem}
@@ -750,7 +750,7 @@ footer{background:transparent}
 /* 1 · hero entrance */
 .hero h1 .w{display:inline-block;opacity:0;transform:translateY(.45em) rotate(2deg);filter:blur(8px);animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*90ms + 150ms)}
 @keyframes wordUp{to{opacity:1;transform:none;filter:none}}
-.hero h1 .grad.w{background-size:300% 100%!important;animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards,gradSweep 2.4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms),.6s}
+.hero h1 .grad.w{background:linear-gradient(90deg,#4285F4 0%,#0F9F9A 22.5%,#34A853 39%,#FBBC05 50%,#34A853 61%,#0F9F9A 77.5%,#4285F4 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;padding:0 .04em .14em 0;margin-bottom:-.14em;animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards,gradSweep 2.4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms),.6s}
 @keyframes gradSweep{from{background-position:100% 0}to{background-position:0 0}}
 .hero .hero-sub,.hero .hero-btns,.hero .hero-pill{opacity:0;animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) forwards}
 .hero .hero-pill{animation-delay:.05s}.hero .hero-sub{animation-delay:.75s}.hero .hero-btns{animation-delay:.95s}
