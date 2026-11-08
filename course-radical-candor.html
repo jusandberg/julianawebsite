@@ -142,7 +142,7 @@ main{position:relative;z-index:2}
 /* ---------- scene 2: candor plane ---------- */
 .planewrap{display:grid;gap:14px}
 .plane{position:relative;width:100%;aspect-ratio:1.5;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid var(--gline);touch-action:none;cursor:crosshair;user-select:none}
-.pq{position:absolute;width:50%;height:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px;font-weight:800;font-size:15px;color:rgba(255,255,255,.32);transition:background .5s,color .5s}
+.pq{position:absolute;width:50%;height:50%;display:flex;flex-direction:column;justify-content:flex-start;padding-top:20px!important;align-items:center;text-align:center;padding:12px;font-weight:800;font-size:15px;color:rgba(255,255,255,.32);transition:background .5s,color .5s}
 .pq small{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;margin-top:5px;opacity:.8}
 .pq.tl{left:0;top:0}.pq.tr{right:0;top:0}.pq.bl{left:0;bottom:0}.pq.br{right:0;bottom:0}
 .pq.seen{color:rgba(255,255,255,.55)}
@@ -413,6 +413,16 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
 [data-theme="light"] .signal.l4 i,[data-theme="light"] .signal.l3 i:nth-child(-n+3),[data-theme="light"] .signal.l1 i:nth-child(1),[data-theme="light"] .signal.l2 i:nth-child(-n+2){background:#34A853;box-shadow:none}
 [data-theme="light"] .piece:hover:not(:disabled){border-color:#C9CDD6;background:#fff}
 [data-theme="light"] .piece.right{background:rgba(52,168,83,.09);border-color:#34A853}
+
+.plane .alab{display:none}
+.axes-key{display:flex;justify-content:space-between;gap:10px;margin-top:-4px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+@media(max-width:900px){
+ .plane{aspect-ratio:1.05}
+ .plane .alab{display:none}
+ .axes-key{display:flex;justify-content:space-between;gap:10px;margin-top:-4px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+ .pq{padding:10px;font-size:13px;line-height:1.25}
+ .puck{width:26px;height:26px;margin:-13px 0 0 -13px}
+}
 </style>
 </head>
 <body>
@@ -483,6 +493,7 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
     <span class="alab y">Care personally &uarr;</span><span class="alab x">Challenge directly &rarr;</span>
     <button class="puck" id="puck" type="button" aria-label="Feedback style marker. Use the arrow keys to move it across the model."></button>
    </div>
+   <div class="axes-key" aria-hidden="true"><span>&uarr; Care personally</span><span>Challenge directly &rarr;</span></div>
    <div class="readout glass placeholder" id="readout" aria-live="polite">Move the marker into a corner to hear what that style sounds like.</div>
   </div>
   <div class="cue" id="cue2"><i></i>Drag the dot into each corner</div>
@@ -714,7 +725,7 @@ $('#backBtn').onclick = ()=>go(cur-1);
     $('#cue2').classList.add('gone');
   }
   function fromEvent(e){const r=plane.getBoundingClientRect();return [(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height];}
-  plane.addEventListener('pointerdown',e=>{dragging=true;puck.classList.add('drag');plane.setPointerCapture(e.pointerId);const [x,y]=fromEvent(e);place(x,y,e.target!==puck);});
+  plane.addEventListener('pointerdown',e=>{dragging=true;puck.classList.add('drag');plane.setPointerCapture(e.pointerId);const [x,y]=fromEvent(e);if(e.target===puck){place(x,y,false);return}dragging=false;place(x<.5?.25:.75,y<.5?.33:.83,true);});
   plane.addEventListener('pointermove',e=>{if(!dragging)return;const [x,y]=fromEvent(e);place(x,y,false);});
   const end=()=>{dragging=false;puck.classList.remove('drag');};
   plane.addEventListener('pointerup',end);plane.addEventListener('pointercancel',end);
