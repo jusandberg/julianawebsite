@@ -306,6 +306,7 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
 [data-theme="light"] .brand .mark{filter:none}
 [data-theme="light"] .prog button{background:#E3E5EA}
 [data-theme="light"] .prog button.done{background:rgba(15,159,154,.45)}
+[data-theme="light"] .prog button.on{background:var(--grad)}
 [data-theme="light"] .exit,[data-theme="light"] .back{background:rgba(255,255,255,.85);border-color:#E3E5EA;box-shadow:0 2px 8px rgba(20,20,30,.05)}
 [data-theme="light"] .stage{background:radial-gradient(120% 90% at 50% 0%,rgba(66,133,244,.07),transparent 55%),radial-gradient(100% 80% at 50% 100%,rgba(15,159,154,.07),transparent 60%),rgba(255,255,255,.82);border-color:#E9EBF0;box-shadow:0 30px 70px -30px rgba(20,30,60,.22),inset 0 1px 0 #fff}
 [data-theme="light"] .glass{box-shadow:0 6px 18px -10px rgba(20,30,60,.15)}
@@ -369,6 +370,49 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
 [data-theme="light"] .endlinks .primary{background:#1A1A1C;color:#fff}
 [data-theme="light"] .endlinks a,[data-theme="light"] .endlinks button{border-color:#E3E5EA}
 @media(max-width:900px){[data-theme="light"] .dock{background:linear-gradient(180deg,transparent,rgba(247,248,250,.95) 40%)}}
+
+/* ---------- scene 4: build the feedback ---------- */
+.needs{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.needs li{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--gline);background:var(--glass);font-size:14.5px;line-height:1.4;transition:border-color .4s,background .4s}
+.needs li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(127,127,140,.45);transition:all .4s var(--ease)}
+.needs li.met{border-color:rgba(52,168,83,.5);background:rgba(52,168,83,.1)}
+.needs li.met::before{border-color:#34A853;background:#34A853 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
+.weak.gone{opacity:.45;filter:grayscale(1);text-decoration:line-through;text-decoration-color:rgba(234,67,53,.6)}
+.build{margin-top:14px;padding:18px 20px;border-radius:20px 20px 6px 20px;transition:border-color .6s,box-shadow .6s,background .6s}
+.build b{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);margin-bottom:8px}
+.build p{margin:0;font-size:16px;line-height:1.6;min-height:52px}
+.build .slot{display:inline-block;width:64px;height:10px;margin:0 6px 2px 0;border-radius:99px;background:rgba(127,127,140,.18);vertical-align:middle}
+.build .slot.cur{background:linear-gradient(90deg,rgba(15,159,154,.2),rgba(15,159,154,.5),rgba(15,159,154,.2));background-size:200% 100%;animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.build .piece-in{animation:dropIn .6s var(--ease) both}
+@keyframes dropIn{from{opacity:0;transform:translateY(-14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.build.whole{border-color:rgba(52,168,83,.55);background:linear-gradient(160deg,rgba(52,168,83,.14),rgba(15,159,154,.06));box-shadow:0 0 50px -14px rgba(52,168,83,.55)}
+.build.whole b{color:var(--mint)}
+.picker{margin-top:16px}
+.steprow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stepnum{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.steplbl{font-weight:800;font-size:16px;letter-spacing:-.01em}
+.steprow .signal{margin:0 0 0 auto;height:22px}
+.steprow .signal i{width:8px}
+.signal i:nth-child(1){height:25%}.signal i:nth-child(2){height:50%}.signal i:nth-child(3){height:75%}.signal i:nth-child(4){height:100%}
+.signal.l4 i,.signal.l3 i:nth-child(-n+3){background:var(--mint);box-shadow:0 0 12px rgba(126,226,160,.7)}
+.pieces{display:grid;gap:9px;margin-top:12px}
+.piece{text-align:left;padding:13px 16px;border-radius:14px;border:1px solid var(--gline);background:var(--glass);font-size:15px;line-height:1.45;font-weight:500;transition:transform .3s var(--ease),border-color .3s,background .3s,opacity .3s}
+.piece:hover:not(:disabled){transform:translateX(4px);border-color:rgba(127,127,140,.45)}
+.piece.right{border-color:var(--mint);background:rgba(52,168,83,.14)}
+.piece.nope{border-color:var(--rose);background:rgba(234,67,53,.08);opacity:.55;animation:shake .45s}
+.piece:disabled{cursor:default}
+.pfb{margin-top:10px;min-height:22px;font-size:14px;line-height:1.5;color:var(--body)}
+.pfb strong{font-weight:800}
+.pfb .k-rc{color:var(--mint)}.pfb .k-re{color:var(--sun)}.pfb .k-oa{color:var(--rose)}.pfb .k-mi{color:var(--sky)}
+.picker.finished .pieces,.picker.finished .steprow .stepnum{display:none}
+[data-theme="light"] .needs li::before{border-color:#C9CDD6}
+[data-theme="light"] .needs li.met{background:rgba(52,168,83,.08)}
+[data-theme="light"] .build .slot{background:#ECEEF2}
+[data-theme="light"] .build.whole{background:linear-gradient(160deg,rgba(52,168,83,.09),rgba(15,159,154,.04));box-shadow:0 16px 40px -18px rgba(52,168,83,.45)}
+[data-theme="light"] .signal.l4 i,[data-theme="light"] .signal.l3 i:nth-child(-n+3),[data-theme="light"] .signal.l1 i:nth-child(1),[data-theme="light"] .signal.l2 i:nth-child(-n+2){background:#34A853;box-shadow:none}
+[data-theme="light"] .piece:hover:not(:disabled){border-color:#C9CDD6;background:#fff}
+[data-theme="light"] .piece.right{background:rgba(52,168,83,.09);border-color:#34A853}
 </style>
 </head>
 <body>
@@ -426,7 +470,6 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
   <span class="eyebrow">The idea</span>
   <h2>Two questions decide everything</h2>
   <p class="lede">Kim Scott found that good feedback sits at the meeting point of two things: how much you <strong>care personally</strong> about the person, and how willing you are to <strong>challenge them directly</strong>. Drop one, and feedback slides into a failure mode.</p>
-  <div class="explored after" id="explored" aria-live="polite"><span></span><span></span><span></span><span></span><em id="exploredTxt" style="font-style:normal">0 of 4 styles explored</em></div>
   <p class="closing after" id="closing">Most well-meaning managers fail on the <b>Ruinous Empathy</b> side: they care, so they soften the message until there's nothing left to act on. Let's train your eye.</p>
  </div>
  <div class="stage">
@@ -442,7 +485,7 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
    </div>
    <div class="readout glass placeholder" id="readout" aria-live="polite">Move the marker into a corner to hear what that style sounds like.</div>
   </div>
-  <div class="cue" id="cue2"><i></i>Drag the dot around the model</div>
+  <div class="cue" id="cue2"><i></i>Drag the dot into each corner</div>
  </div>
 </section>
 
@@ -464,19 +507,20 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
   <h2>Rewrite it with feedback using Radical Candor</h2>
   <p class="lede">Here's a piece of ruinously empathetic feedback: kind, but useless. Rewrite it so it keeps the care and adds the challenge.</p>
   <p class="checks-lead after">A strong rewrite usually does three things:</p>
-  <div class="checks after" id="checks">
-   <button class="check" type="button" aria-pressed="false"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>Names the specific behaviour, not a vague "tweaks"</button>
-   <button class="check" type="button" aria-pressed="false"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>Says why it matters (the impact)</button>
-   <button class="check" type="button" aria-pressed="false"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>Stays warm and offers a clear next step</button>
-  </div>
+  <ul class="needs after" id="needs">
+   <li data-n="1">Names the specific behaviour, not a vague "tweaks"</li>
+   <li data-n="2">Says why it matters (the impact)</li>
+   <li data-n="3">Stays warm and offers a clear next step</li>
+  </ul>
  </div>
  <div class="stage">
   <div class="weak flicker" id="weak"><b>The weak version</b>"Hey, the client deck was great, really good effort! Maybe just tiny tweaks here and there next time, but honestly don't worry about it, it was fine!"</div>
-  <div class="sigrow"><div class="signal" id="signal" aria-hidden="true"><i></i><i></i><i></i></div><span id="sigTxt">Tick what your rewrite does</span></div>
-  <label for="rewrite" class="eyebrow" style="margin-top:6px">Your rewrite</label>
-  <textarea id="rewrite" placeholder="Write your radically candid version here..."></textarea>
-  <button class="ghost" id="modelBtn" type="button">Compare with a model answer</button>
-  <div class="model" id="model"><b>One model answer</b>"I want this deck to land because the client meeting matters for you. Two things would make it stronger: the recommendation is buried on slide 9, move it up front, and the data slides have no takeaway line, so the client has to interpret them. Want to rework those two together before Thursday?"</div>
+  <div class="build glass" id="build" aria-live="polite"><b>Your version</b><p id="buildText"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></p></div>
+  <div class="picker" id="picker">
+   <div class="steprow"><span class="stepnum" id="stepNum">Step 1 of 4</span><span class="steplbl" id="stepLbl">Open with care</span><div class="signal" id="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+   <div class="pieces" id="pieces"></div>
+   <div class="pfb" id="pfb" aria-live="polite"></div>
+  </div>
  </div>
 </section>
 
@@ -664,9 +708,8 @@ $('#backBtn').onclick = ()=>go(cur-1);
     if(!seen.has(k)){
       seen.add(k);
       $$('.pq.'+k).forEach(q=>q.classList.add('seen'));
-      const dots=$$('#explored span'); dots[seen.size-1].className=k;
-      $('#exploredTxt').textContent=seen.size+' of 4 styles explored';
-      if(seen.size===4){$('#closing').classList.add('show');done[2]=true;syncDock();}
+      if(!done[2]){done[2]=true;syncDock();}
+      if(seen.size===4) $('#closing').classList.add('show');
     }
     $('#cue2').classList.add('gone');
   }
@@ -727,21 +770,71 @@ function choose(k, btn){
   syncDock();
 }
 
-// ─── Scene 4: make it land ────────────────────────────────
-(function(){
-  const checks=$$('#checks .check'), sig=$('#signal'), weak=$('#weak');
-  const TXT=['Tick what your rewrite does','Signal is getting clearer','Almost there','Clear signal'];
-  function update(){
-    const n=checks.filter(c=>c.getAttribute('aria-pressed')==='true').length;
-    sig.className='signal'+(n?' l'+n:'');
-    $('#sigTxt').textContent=TXT[n];
-    weak.classList.toggle('flicker',n<3);
-    if(n===3){document.body.dataset.mood='rc';}
-    if(n===3 || $('#model').classList.contains('show')){done[4]=true;syncDock();}
+// ─── Scene 4: build the feedback ──────────────────────────
+const BUILD = [
+  {label:'Open with care', meets:[3], options:[
+    {k:'re', t:'Hey, great effort on the deck, honestly!', fb:'Warm, but it sets up a message with nothing to act on.'},
+    {k:'rc', t:'I want this deck to land because the client meeting matters for you.', fb:'Warm, and it says why you care.'},
+    {k:'oa', t:"I'm going to be blunt with you.", fb:'It braces them for a hit instead of showing you care.'}]},
+  {label:'Name the behaviour', meets:[1], options:[
+    {k:'oa', t:'The structure is a mess.', fb:'Harsh, and still not specific.'},
+    {k:'re', t:'Maybe just tiny tweaks here and there.', fb:'Too vague to act on.'},
+    {k:'rc', t:'The recommendation is buried on slide 9, move it up front.', fb:'Specific: they know exactly what to change.'}]},
+  {label:'Say why it matters', meets:[2], options:[
+    {k:'rc', t:'The data slides have no takeaway line, so the client has to interpret them.', fb:'It names the impact on the client.'},
+    {k:'mi', t:"Let's just see how the client reacts.", fb:'It avoids the truth and leaves them exposed.'},
+    {k:'oa', t:'Clients notice sloppy work.', fb:'It judges the person instead of explaining the impact.'}]},
+  {label:'Offer a next step', meets:[3], options:[
+    {k:'oa', t:'Fix it before Thursday.', fb:'A demand, with no support.'},
+    {k:'re', t:'No need to change anything, really.', fb:'It takes back everything you just said.'},
+    {k:'rc', t:'Want to rework those two together before Thursday?', fb:'A clear next step, offered together.'}]}
+];
+const LEANS = {re:'Ruinous Empathy', oa:'Obnoxious Aggression', mi:'Manipulative Insincerity', rc:'Radical Candor'};
+let bStep = 0;
+function renderBuild(){
+  const st = BUILD[bStep];
+  $('#stepNum').textContent = 'Step '+(bStep+1)+' of '+BUILD.length;
+  $('#stepLbl').textContent = st.label;
+  $('#pfb').innerHTML = '';
+  $$('#buildText .slot').forEach((sl,i)=>sl.classList.toggle('cur', i===bStep));
+  const box = $('#pieces'); box.innerHTML = '';
+  st.options.forEach(o=>{
+    const b = document.createElement('button');
+    b.type='button'; b.className='piece'; b.textContent=o.t;
+    b.onclick = ()=>pickPiece(o,b);
+    box.appendChild(b);
+  });
+}
+function pickPiece(o, btn){
+  const fb = $('#pfb');
+  if(o.k!=='rc'){
+    btn.classList.add('nope'); btn.disabled = true;
+    fb.innerHTML = '<strong class="k-'+o.k+'">Leans '+LEANS[o.k]+'.</strong> '+o.fb+' Try another.';
+    document.body.dataset.mood = o.k;
+    return;
   }
-  checks.forEach(c=>c.onclick=()=>{c.setAttribute('aria-pressed',String(c.getAttribute('aria-pressed')!=='true'));update();});
-  $('#modelBtn').onclick=()=>{$('#model').classList.add('show');$('#modelBtn').style.display='none';document.body.dataset.mood='rc';done[4]=true;syncDock();};
-})();
+  $$('#pieces .piece').forEach(b=>b.disabled=true);
+  btn.classList.add('right');
+  fb.innerHTML = '<strong class="k-rc">Yes.</strong> '+o.fb;
+  document.body.dataset.mood = 'rc';
+  const slot = $$('#buildText .slot')[0];
+  const span = document.createElement('span'); span.className='piece-in'; span.textContent = o.t+' ';
+  slot.replaceWith(span);
+  BUILD[bStep].meets.forEach(n=>{ if(n!==3 || bStep===3) $('#needs li[data-n="'+n+'"]').classList.add('met'); });
+  $('#signal').className = 'signal l'+(bStep+1);
+  setTimeout(()=>{
+    if(bStep < BUILD.length-1){ bStep++; renderBuild(); }
+    else {
+      $('#picker').classList.add('finished');
+      $('#stepLbl').textContent = 'Clear signal';
+      $('#build').classList.add('whole');
+      $('#weak').classList.remove('flicker'); $('#weak').classList.add('gone');
+      $('#pfb').innerHTML = '<strong class="k-rc">That\'s feedback using Radical Candor.</strong> Same care as the weak version, and now they know what to do.';
+      done[4] = true; syncDock();
+    }
+  }, REDUCE ? 200 : 1100);
+}
+renderBuild();
 
 // ─── Scene 5: finish ──────────────────────────────────────
 function showResults(){
@@ -759,17 +852,19 @@ $('#restart').onclick=()=>{
   idx=0;score=0;answered=false;results=[];
   $('#ex').innerHTML='';
   $$('#tally span').forEach(s=>s.className='');
-  $('#rewrite').value='';
-  $('#model').classList.remove('show');$('#modelBtn').style.display='';
-  $$('#checks .check').forEach(c=>c.setAttribute('aria-pressed','false'));
-  $('#signal').className='signal';$('#sigTxt').textContent='Tick what your rewrite does';$('#weak').classList.add('flicker');
+  bStep=0;
+  $('#buildText').innerHTML='<span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span>';
+  $('#build').classList.remove('whole');$('#picker').classList.remove('finished');
+  $$('#needs li').forEach(li=>li.classList.remove('met'));
+  $('#signal').className='signal';$('#weak').classList.add('flicker');$('#weak').classList.remove('gone');
+  renderBuild();
   done[3]=false;done[4]=false;
   go(3);
 };
 
 buildProg(); syncDock();
 document.addEventListener('keydown',e=>{
-  if(e.target.closest('textarea,input,.puck')) return;
+  if(e.target.closest('textarea,input,.puck,.piece')) return;
   if(e.key==='ArrowRight' && !$('#nextBtn').disabled && $('#nextBtn').style.visibility!=='hidden') $('#nextBtn').click();
   if(e.key==='ArrowLeft' && cur>0) go(cur-1);
 });
