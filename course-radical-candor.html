@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" sizes="any" href="./favicon.svg?v=3">
 <title>Feedback Using Radical Candor: Feedback That Helps, Microlearning</title>
 <meta name="description" content="A five-minute interactive microlearning on Radical Candor by Juliana Dos Santos: explore the four feedback styles, spot them in real lines, and rewrite weak feedback so it lands.">
-<meta name="theme-color" content="#F7F8FA">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -424,6 +424,11 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
  .pq{padding:10px;font-size:13px;line-height:1.25}
  .puck{width:26px;height:26px;margin:-13px 0 0 -13px}
 }
+/* ---------- always-white background ---------- */
+[data-theme="light"] body{background:#fff}
+[data-theme="light"] .sky{display:none}
+[data-theme="light"] .stage{background:#fff;border-color:#ECEEF2;box-shadow:0 24px 60px -32px rgba(20,30,60,.22)}
+@media(max-width:900px){[data-theme="light"] .dock{background:linear-gradient(180deg,rgba(255,255,255,0),#fff 40%)}}
 </style>
 </head>
 <body>
