@@ -182,6 +182,33 @@ img{display:block;max-width:100%;}
 .impact-card p{font-size:.95rem;color:var(--grey);line-height:1.6;margin-bottom:1rem;}
 .impact-number{font-size:2.2rem;font-weight:700;line-height:1;color:var(--blue);margin:.65rem 0 .4rem;padding-top:0;}
 .impact-caption{font-size:.8rem;color:var(--grey);line-height:1.4;}
+/* cinematic outcomes */
+.impact-card::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-100px;bottom:-120px;pointer-events:none;opacity:.55;background:radial-gradient(closest-side,var(--cg),transparent)}
+.impact-card:nth-child(1){--cg:rgba(66,133,244,.32)}.impact-card:nth-child(2){--cg:rgba(52,168,83,.28)}.impact-card:nth-child(3){--cg:rgba(15,159,154,.28)}.impact-card:nth-child(4){--cg:rgba(251,188,5,.32)}
+.impact-card>*{position:relative;z-index:1}.impact-card>.card-icon{position:absolute}
+.ix{margin:auto 0 .5rem}
+.ix-num{font-size:3.4rem;font-weight:800;line-height:1;letter-spacing:-.03em;text-shadow:0 6px 28px var(--glow)}
+.ix-num .ix-arrow{font-weight:700;margin:0 .08em;opacity:.55}
+.ix-num small{font-size:1.15rem;font-weight:700;margin-left:.35rem;letter-spacing:0;opacity:.6}
+.ix-bars{display:flex;gap:4px;margin-top:.8rem;max-width:340px}
+.ix-bars i{flex:1;height:8px;border-radius:99px;background:var(--blue);transition:background .35s}
+.ix-bars i.off{background:#E8EEF8}
+.ix-ring{display:flex;align-items:center;gap:1.1rem;margin-bottom:0}
+.ix-ring svg{width:124px;height:124px;flex:none;filter:drop-shadow(0 6px 16px rgba(52,168,83,.22))}
+.ix-ring text{font:800 13px Inter,sans-serif;fill:var(--ink)}
+.ix-legend{list-style:none;display:flex;flex-direction:column;gap:.45rem;font-size:.85rem;font-weight:600;color:var(--ink)}
+.ix-legend li{display:flex;align-items:center;gap:.5rem}.ix-legend i{width:10px;height:10px;border-radius:50%;flex:none}
+.ix-net{display:flex;align-items:center;gap:1rem}
+.ix-net svg{width:150px;height:90px;flex:none}
+.ix-ln{stroke:var(--teal);stroke-width:1.5;opacity:.5;stroke-dasharray:80;stroke-dashoffset:0}
+.ix-gauge{display:flex;align-items:center;gap:1rem}
+.ix-gauge svg{width:150px;height:86px;flex:none}
+.ix-g{filter:drop-shadow(0 4px 10px rgba(251,188,5,.5))}
+.ix-gauge text{font:900 34px Inter,sans-serif;fill:#C98F00}
+.ix.play .ix-arc{transition:stroke-dashoffset 1s cubic-bezier(.3,.9,.3,1)}
+.ix.play .ix-ln{transition:stroke-dashoffset .8s ease}
+.ix.play .ix-nd{transition:opacity .5s}
+.ix.play .ix-g{transition:stroke-dashoffset 2s cubic-bezier(.3,.9,.3,1)}
 #work .work-samples-section>.cards>.card:nth-child(-n+4){display:none;}
 #about .professional-history,#about .professional-history+h2,#about .professional-history+h2+.section-intro,#about .professional-history+h2+.section-intro+.cards{display:none;}
 #about>.section>.section-intro.left{display:none;}
@@ -912,28 +939,40 @@ footer{background:transparent}
         <div class="card-meta">Shopify · Program Design</div>
         <h3>Revenue Onboarding Redesign</h3>
         <p>Redesigned onboarding for 500+ employees through needs analysis, e-learning, and stakeholder alignment.</p>
-        <div class="impact-number">9&rarr;4</div><div class="impact-caption">months to proficiency, with a 20% performance lift</div>
+        <div class="ix ix-months" data-ix="months" role="img" aria-label="9 to 4 months to proficiency">
+          <div class="ix-num" style="color:var(--blue);--glow:rgba(66,133,244,.45)">9<span class="ix-arrow">&rarr;</span><span class="ix-m">4</span></div>
+          <div class="ix-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+        </div><div class="impact-caption">months to proficiency, with a 20% performance lift</div>
       </article>
       <article class="impact-card">
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="card-meta">StackAdapt · Leadership</div>
         <h3>New Managers Program</h3>
         <p>A cohort experience supporting the transition from individual contributor to people leadership.</p>
-        <div class="impact-number" style="color:var(--green);">IC&rarr;Mgr</div><div class="impact-caption">identity, people skills, application, and peer coaching</div>
+        <div class="ix ix-ring" data-ix="ring" role="img" aria-label="Individual contributor to leader, in four parts: identity, people skills, application, and peer coaching">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-90 60 60)" fill="none" stroke-width="12" stroke-linecap="round"><circle cx="60" cy="60" r="48" stroke="#F0F0F4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#4285F4" stroke-dasharray="64 238" stroke-dashoffset="0" data-s="0"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#0F9F9A" stroke-dasharray="64 238" stroke-dashoffset="-75.4" data-s="-75.4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#34A853" stroke-dasharray="64 238" stroke-dashoffset="-150.8" data-s="-150.8"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#FBBC05" stroke-dasharray="64 238" stroke-dashoffset="-226.2" data-s="-226.2"/></g><text x="60" y="57" text-anchor="middle">IC to</text><text x="60" y="74" text-anchor="middle">leader</text></svg>
+          <ul class="ix-legend" aria-hidden="true"><li><i style="background:#4285F4"></i>Identity</li><li><i style="background:#0F9F9A"></i>People skills</li><li><i style="background:#34A853"></i>Application</li><li><i style="background:#FBBC05"></i>Peer coaching</li></ul>
+        </div>
       </article>
       <article class="impact-card">
         <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
         <div class="card-meta">StackAdapt · Learning Strategy</div>
         <h3>Full Talent Development Ecosystem</h3>
         <p>Designing connected learning across IC pathways, People Team programs, VP development, and leadership onboarding.</p>
-        <div class="impact-number" style="color:var(--teal);">5+</div><div class="impact-caption">learning experiences co-designed with the L&amp;D Team</div>
+        <div class="ix ix-net" data-ix="net" role="img" aria-label="5+">
+          <div class="ix-num" style="color:var(--teal);--glow:rgba(15,159,154,.4)"><span class="ix-c" data-to="5">5</span>+</div>
+          <svg viewBox="0 0 150 90" aria-hidden="true"><line class="ix-ln" x1="75" y1="45" x2="20" y2="20"/><line class="ix-ln" x1="75" y1="45" x2="130" y2="18"/><line class="ix-ln" x1="75" y1="45" x2="25" y2="75"/><line class="ix-ln" x1="75" y1="45" x2="128" y2="72"/><circle class="ix-nd" cx="75" cy="45" r="11" fill="#0F9F9A"/><circle class="ix-nd" cx="20" cy="20" r="7" fill="#4285F4"/><circle class="ix-nd" cx="130" cy="18" r="7" fill="#34A853"/><circle class="ix-nd" cx="25" cy="75" r="7" fill="#FBBC05"/><circle class="ix-nd" cx="128" cy="72" r="7" fill="#4285F4"/></svg>
+        </div><div class="impact-caption">learning experiences co-designed with the L&amp;D Team</div>
       </article>
       <article class="impact-card">
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="card-meta">Shopify · QA Training</div>
         <h3>Quality Assurance Training Framework</h3>
         <p>Standardized how support quality was taught and measured, connecting behaviour directly to business outcomes.</p>
-        <div class="impact-number" style="color:#C98F00;">70%</div><div class="impact-caption">increase in rubric quality through 25+ integrated feedback loops</div>
+        <div class="ix ix-gauge" data-ix="gauge">
+          <svg viewBox="0 0 150 86" role="img" aria-label="70%"><path d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#FBF1D3" stroke-width="13" stroke-linecap="round"/><path class="ix-g" d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#FBBC05" stroke-width="13" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="56.55"/><text x="75" y="74" text-anchor="middle"><tspan class="ix-c" data-to="70">70</tspan>%</text></svg>
+          <div class="impact-caption">increase in rubric quality through 25+ integrated feedback loops</div>
+        </div>
       </article>
     </div>
     <div class="eyebrow professional-history">Professional Experience</div>
@@ -1845,6 +1884,28 @@ document.addEventListener('keydown',e=>{
  closeFrameworks();closeToolTiles();closeBookshelf();
  if(activeAiStage!==null) closeAiStage();
 });
+// Cinematic outcomes: final state is in the HTML; animate from the start state when scrolled into view
+(function(){
+ const boxes=document.querySelectorAll('.ix[data-ix]');
+ if(!boxes.length||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
+ const count=(el,to,ms,delay)=>setTimeout(()=>{let t0=null;const st=n=>{if(t0===null)t0=n;const k=Math.min(1,(n-t0)/ms);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)},delay);
+ const reset={
+  months:b=>{b.querySelector('.ix-m').textContent='9';b.querySelectorAll('.ix-bars i').forEach(i=>i.classList.remove('off'))},
+  ring:b=>b.querySelectorAll('.ix-arc').forEach(a=>a.setAttribute('stroke-dashoffset','64')),
+  net:b=>{b.querySelector('.ix-c').textContent='0';b.querySelectorAll('.ix-ln').forEach(l=>l.style.strokeDashoffset='80');b.querySelectorAll('.ix-nd').forEach(n=>n.style.opacity='0')},
+  gauge:b=>{b.querySelector('.ix-c').textContent='0';b.querySelector('.ix-g').setAttribute('stroke-dashoffset','188.5')}
+ };
+ const run={
+  months:b=>{const m=b.querySelector('.ix-m'),bars=b.querySelectorAll('.ix-bars i');for(let k=0;k<5;k++)setTimeout(()=>{bars[8-k].classList.add('off');m.textContent=String(8-k)},500+k*380)},
+  ring:b=>b.querySelectorAll('.ix-arc').forEach((a,i)=>setTimeout(()=>a.setAttribute('stroke-dashoffset',a.dataset.s),150+i*320)),
+  net:b=>{const nd=b.querySelectorAll('.ix-nd');nd[0].style.opacity='1';b.querySelectorAll('.ix-ln').forEach((l,i)=>setTimeout(()=>{l.style.strokeDashoffset='0';nd[i+1].style.opacity='1'},250+i*250));count(b.querySelector('.ix-c'),5,1400,200)},
+  gauge:b=>{setTimeout(()=>b.querySelector('.ix-g').setAttribute('stroke-dashoffset','56.55'),150);count(b.querySelector('.ix-c'),70,2000,150)}
+ };
+ boxes.forEach(b=>reset[b.dataset.ix](b));
+ requestAnimationFrame(()=>boxes.forEach(b=>b.classList.add('play')));
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.intersectionRatio>=.5||(e.isIntersecting&&e.boundingClientRect.top<0)){io.unobserve(e.target);run[e.target.dataset.ix](e.target)}}),{threshold:[0,.5]});
+ boxes.forEach(b=>io.observe(b));
+})();
 (function(){
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(!('IntersectionObserver' in window)) return;
