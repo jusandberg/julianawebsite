@@ -374,9 +374,9 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
 /* ---------- scene 4: build the feedback ---------- */
 .needs{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
 .needs li{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--gline);background:var(--glass);font-size:14.5px;line-height:1.4;transition:border-color .4s,background .4s}
-.needs li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(127,127,140,.45);transition:all .4s var(--ease)}
+.needs li::before{content:"";flex:none;width:24px;height:24px;border-radius:50%;border:3px solid transparent;background:linear-gradient(var(--night),var(--night)) padding-box,linear-gradient(135deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05) border-box;transition:all .4s var(--ease)}
 .needs li.met{border-color:rgba(52,168,83,.5);background:rgba(52,168,83,.1)}
-.needs li.met::before{border-color:#34A853;background:#34A853 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
+.needs li.met::before{transform:scale(1.08);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat,linear-gradient(135deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05) border-box}
 .weak.gone{opacity:.45;filter:grayscale(1);text-decoration:line-through;text-decoration-color:rgba(234,67,53,.6)}
 .build{margin-top:14px;padding:18px 20px;border-radius:20px 20px 6px 20px;transition:border-color .6s,box-shadow .6s,background .6s}
 .build b{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);margin-bottom:8px}
@@ -406,7 +406,8 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
 .pfb strong{font-weight:800}
 .pfb .k-rc{color:var(--mint)}.pfb .k-re{color:var(--sun)}.pfb .k-oa{color:var(--rose)}.pfb .k-mi{color:var(--sky)}
 .picker.finished .pieces,.picker.finished .steprow .stepnum{display:none}
-[data-theme="light"] .needs li::before{border-color:#C9CDD6}
+[data-theme="light"] .needs li::before{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05) border-box}
+[data-theme="light"] .needs li.met::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat,linear-gradient(135deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05) border-box}
 [data-theme="light"] .needs li.met{background:rgba(52,168,83,.08)}
 [data-theme="light"] .build .slot{background:#ECEEF2}
 [data-theme="light"] .build.whole{background:linear-gradient(160deg,rgba(52,168,83,.09),rgba(15,159,154,.04));box-shadow:0 16px 40px -18px rgba(52,168,83,.45)}
@@ -517,8 +518,8 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
   <span class="eyebrow">Round 2 · Make it land</span>
   <h2>Rewrite it with feedback using Radical Candor</h2>
   <p class="lede">Here's a piece of ruinously empathetic feedback: kind, but useless. Rewrite it so it keeps the care and adds the challenge.</p>
-  <p class="checks-lead after">A strong rewrite usually does three things:</p>
-  <ul class="needs after" id="needs">
+  <p class="checks-lead">A strong rewrite usually does three things:</p>
+  <ul class="needs" id="needs">
    <li data-n="1">Names the specific behaviour, not a vague "tweaks"</li>
    <li data-n="2">Says why it matters (the impact)</li>
    <li data-n="3">Stays warm and offers a clear next step</li>
