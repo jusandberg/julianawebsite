@@ -697,6 +697,20 @@ footer{padding:3rem 2.4rem;border-top:1px solid var(--line);display:flex;justify
 .rv.in{opacity:1;translate:0 0}
 html{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;translate:none;transition:none}.coach-arc-card.ca-swap .coach-detail-icon,.coach-arc-card.ca-swap .ca-text{animation:none}}
+
+/* Work sample covers (clean) */
+.ws-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:.7rem;margin:.9rem .9rem 0;padding:1.6rem;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#F8F9FB}
+.ws-orb{position:absolute;right:-18%;top:-30%;width:70%;aspect-ratio:1;border-radius:50%;filter:blur(30px);opacity:.35;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ws-ring{position:absolute;right:-8%;top:-20%;width:46%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(26,26,28,.08);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.c-blue .ws-orb{background:#4285F4}.c-green .ws-orb{background:#34A853}.c-teal .ws-orb{background:#0F9F9A}.c-yellow .ws-orb{background:#FBBC05}
+.ws-card:hover .ws-orb{transform:translate(-14%,10%) scale(1.1)}
+.ws-card:hover .ws-ring{transform:scale(1.12)}
+.ws-time{position:relative;align-self:flex-start;font-size:.72rem;font-weight:700;padding:.3rem .65rem;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.ws-hook{position:relative;font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;color:var(--ink);max-width:14ch}
+.ws-body{padding:1.25rem 1.5rem 1.5rem;gap:.45rem}
+.ws-desc{font-size:.93rem}
+.ws-go{padding-top:.5rem}
+.ws-shot,.ws-tags,.ws-live{display:none!important}
 </style>
 </head>
 <body>
@@ -1374,8 +1388,8 @@ function buildFrameworks(){
  unit.innerHTML=html;
 }
 const WORK_SAMPLE_ITEMS=[
- {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['5 minutes','Practice-based','Manager skills'],href:'course-radical-candor.html',thumb:'thumb-radical-candor.webp',action:'Try the module'},
- {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',thumb:'thumb-emotional-intelligence.webp',action:'Start the course'}
+ {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['5 minutes','Practice-based','Manager skills'],href:'course-radical-candor.html',thumb:'thumb-radical-candor.webp',hook:'Feedback that actually <span class="grad">helps.</span>',time:'5 min',action:'Try the module'},
+ {name:"What's Emotional Intelligence?",cat:'Course · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Six short video lessons, knowledge checks, and practical resources covering the five EQ composites in one simple course.',tags:['Six lessons','Video','Knowledge checks'],href:'course-emotional-intelligence.html',thumb:'thumb-emotional-intelligence.webp',hook:'What\'s <span class="grad">emotional intelligence?</span>',time:'6 lessons',action:'Start the course'}
 ];
 let openWorkSampleIndex=null;
 function workSampleIcon(item){
@@ -1405,7 +1419,7 @@ function openWorkSample(index){
 function buildWorkSamples(){
  const unit=document.getElementById('workSampleUnit');
  if(!unit) return;
- unit.innerHTML='<div class="ws-grid">'+WORK_SAMPLE_ITEMS.map(item=>`<a class="ws-card c-${item.color}" href="${item.href}"><span class="ws-shot"><span class="ws-bar" aria-hidden="true"><i></i><i></i><i></i></span><img src="${item.thumb}" alt="Opening screen of ${item.name.replace(/"/g,'&quot;')}" width="960" height="540" loading="lazy"><span class="ws-live" aria-hidden="true">Interactive</span></span><span class="ws-body"><span class="ws-meta">${item.cat}</span><span class="ws-name">${item.name}</span><span class="ws-desc">${item.desc}</span><span class="ws-tags">${item.tags.map(tag=>`<span>${tag}</span>`).join('')}</span><span class="ws-go">${item.action} <span class="arr" aria-hidden="true">&rarr;</span></span></span></a>`).join('')+'</div>';
+ unit.innerHTML='<div class="ws-grid">'+WORK_SAMPLE_ITEMS.map(item=>`<a class="ws-card c-${item.color}" href="${item.href}"><span class="ws-cover" aria-hidden="true"><span class="ws-orb"></span><span class="ws-ring"></span><span class="ws-time">${item.time}</span><span class="ws-hook">${item.hook}</span></span><span class="ws-body"><span class="ws-meta">${item.cat}</span><span class="ws-name">${item.name}</span><span class="ws-desc">${item.desc}</span><span class="ws-go">${item.action} <span class="arr" aria-hidden="true">&rarr;</span></span></span></a>`).join('')+'</div>';
 }
 const BOOKSHELF_BOOKS=[
  {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Packed with tools and insight for those of us who stumbled into instructional design. Relatable, practical, and genuinely fun to read.'},

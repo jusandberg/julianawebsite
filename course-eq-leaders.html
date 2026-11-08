@@ -495,6 +495,27 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
  .pulsewrap.cover{min-height:180px}
  .setup{font-size:20px}
 }
+/* ===== C: Deck ===== */
+.deck{position:relative;height:400px;perspective:1400px;margin-bottom:6px}
+.dcard{position:absolute;left:50%;top:40px;width:210px;height:300px;margin-left:-105px;border:0;padding:0;background:none;transition:transform .7s var(--ease)}
+.dcard .inner{position:absolute;inset:0;transition:transform .22s ease-in}
+.dcard.turn .inner{transform:perspective(900px) rotateY(90deg)}
+.dcard .face{position:absolute;inset:0;border-radius:22px;display:flex;flex-direction:column;justify-content:flex-start;gap:8px;padding:20px;text-align:left;box-shadow:0 24px 50px -24px rgba(20,30,60,.4)}
+.dcard .front{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c));color:#fff}
+.dcard .front .n{font-size:13px;font-weight:800;opacity:.85}
+.dcard .front .t{max-width:120px;font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.dcard .front .glyph{position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;border:24px solid rgba(255,255,255,.18)}
+.dcard .back{display:none;background:#fff;border:2px solid var(--c);justify-content:space-between}
+.dcard .back .t{font-size:18px;font-weight:800;color:var(--c);letter-spacing:-.02em}
+.dcard .back ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:7px}
+.dcard .back li{font-size:13.5px;font-weight:700;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--c) 10%,#fff)}
+.dcard .back .w{font-size:12px;color:var(--muted);font-weight:600}
+.dcard.flipped{transform:translateY(-10px) scale(1.08)!important;z-index:9!important}
+.dcard.flipped .front{display:none}
+.dcard.flipped .back{display:flex}
+.deck.has .dcard:not(.flipped){filter:saturate(.7) brightness(1.03)}
+@media(max-width:900px){.deck{height:360px}.dcard{width:170px;height:260px;margin-left:-85px;top:30px}.dcard .front .t{font-size:19px;max-width:110px}.dcard .back li{font-size:12.5px;padding:7px 9px}}
+.stage .deck{flex:1;min-height:420px}
 </style>
 </head>
 <body>
@@ -533,12 +554,8 @@ textarea:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 4px rgba(9
   <p class="lede">Each scenario quietly tests one or two of the EQ-i 2.0 composites. There's rarely a perfect answer, just choices that are more or less emotionally intelligent. You'll see which skill was in play after each one.</p>
  </div>
  <div class="stage">
-  <div class="wheel" id="wheel">
-   <svg class="wheel-ring" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="140" fill="none" stroke-dasharray="3 7"/></svg>
-   <div class="wheel-core"><span>EQ-i 2.0®</span></div>
-  </div>
-  <div class="wread glass" id="wread" aria-live="polite"><p class="empty">Tap a skill to see where it shows up.</p></div>
-  <div class="cue" id="cueW"><i></i>Tap a skill</div>
+  <div class="deck" id="deck"></div>
+  <div class="cue" id="cueW"><i></i>Tap a card to flip it</div>
  </div>
 </section>
 
@@ -658,11 +675,11 @@ const SCENES = [
 ];
 
 const COMPS = [
-  {n:'Self-Perception', c:'#4285F4', in:[2]},
-  {n:'Self-Expression', c:'#0F9F9A', in:[1]},
-  {n:'Interpersonal', c:'#34A853', in:[2]},
-  {n:'Decision Making', c:'#FBBC05', in:[3]},
-  {n:'Stress Management', c:'#EA4335', in:[1,3]}
+  {n:'Self-Perception', c:'#4285F4', subs:['Self-Regard','Self-Actualization','Emotional Self-Awareness'], in:[2]},
+  {n:'Self-Expression', c:'#0F9F9A', subs:['Emotional Expression','Assertiveness','Independence'], in:[1]},
+  {n:'Interpersonal', c:'#34A853', subs:['Interpersonal Relationships','Empathy','Social Responsibility'], in:[2]},
+  {n:'Decision Making', c:'#E0A600', subs:['Problem Solving','Reality Testing','Impulse Control'], in:[3]},
+  {n:'Stress Management', c:'#EA4335', subs:['Flexibility','Stress Tolerance','Optimism'], in:[1,3]}
 ];
 const TIER_PTS = {best:2, ok:1, poor:0};
 const TAGS = {best:'Emotionally intelligent', ok:'Workable, but', poor:'Worth rethinking'};
@@ -729,28 +746,25 @@ function go(n){
   window.scrollTo({top:0,behavior:REDUCE?'auto':'smooth'});
   if(cur===2 && !$('#choices').children.length && !answered) renderScene();
   if(cur===3) showResults();
+  if(cur===1) requestAnimationFrame(()=>window.layDeck&&window.layDeck());
   buildProg(); syncDock();
 }
 $('#nextBtn').onclick=()=>{ if(cur===2 && idx<SCENES.length-1){ idx++; renderScene(); window.scrollTo({top:0,behavior:REDUCE?'auto':'smooth'}); return; } go(cur+1); };
 $('#backBtn').onclick=()=>go(cur-1);
 
-// ─── Scene 1: the five composites ─────────────────────────
+// ─── Scene 1: deal the cards ──────────────────────────────
 (function(){
-  const wheel=$('#wheel');
+  const deck=$('#deck');
+  const fan=()=>{const w=deck.clientWidth||600,sp=Math.min(120,(w-190)/4);return COMPS.map((_,i)=>{const k=i-2;return `translateX(${k*sp}px) translateY(${Math.abs(k)*14}px) rotate(${k*7}deg)`;});};
   COMPS.forEach((c,i)=>{
-    const a=-Math.PI/2+i*2*Math.PI/COMPS.length;
-    const b=document.createElement('button');
-    b.type='button';b.className='node';b.style.setProperty('--c',c.c);
-    b.style.left=(50+35*Math.cos(a))+'%';b.style.top=(50+35*Math.sin(a))+'%';
-    b.innerHTML=`<span class="orb"></span><span class="nm">${c.n}</span>`;
-    b.onclick=()=>{
-      $$('#wheel .node').forEach(n=>n.classList.toggle('on',n===b)); wheel.classList.add('live');
-      $('#cueW').classList.add('gone');
-      const list=c.in.map(n=>'Scenario '+n).join(' and ');
-      $('#wread').innerHTML=`<div class="swap"><div class="wnm" style="color:${c.c}">${c.n}</div><p>Shows up in ${list}.</p></div>`;
-    };
-    wheel.appendChild(b);
+    const d=document.createElement('button');d.type='button';d.className='dcard';d.style.setProperty('--c',c.c);d.style.zIndex=i+1;
+    d.setAttribute('aria-label',c.n);
+    d.innerHTML=`<div class="inner"><div class="face front"><span class="glyph"></span><span class="n">0${i+1}</span><span class="t">${c.n}</span></div><div class="face back"><div><div class="t">${c.n}</div><ul>${c.subs.map(s=>`<li>${s}</li>`).join('')}</ul></div><div class="w">Tested in ${c.in.map(n=>'Scenario '+n).join(' and ')}</div></div></div>`;
+    d.onclick=()=>{const was=d.classList.contains('flipped');const others=$$('#deck .dcard.flipped').filter(x=>x!==d);others.forEach(x=>x.classList.remove('flipped'));$('#cueW').classList.add('gone');d.classList.add('turn');setTimeout(()=>{d.classList.toggle('flipped',!was);deck.classList.toggle('has',!was);lay();d.classList.remove('turn');},220);};
+    deck.appendChild(d);
   });
+  function lay(){const f=fan();$$('#deck .dcard').forEach((d,i)=>{if(!d.classList.contains('flipped'))d.style.transform=f[i];});}
+  window.layDeck=lay; lay(); addEventListener('resize',lay);
 })();
 
 // ─── Scene 2: scenarios with a pause ──────────────────────
@@ -841,7 +855,7 @@ $('#restart').onclick=()=>{ idx=0; score=0; answered=false; $$('#tally span').fo
 
 buildProg(); syncDock();
 document.addEventListener('keydown',e=>{
-  if(e.target.closest('.hold,.choice,.node')) return;
+  if(e.target.closest('.hold,.choice,.dcard')) return;
   if(e.key==='ArrowRight' && !$('#nextBtn').disabled && $('#nextBtn').style.visibility!=='hidden') $('#nextBtn').click();
   if(e.key==='ArrowLeft' && cur>0) go(cur-1);
 });
