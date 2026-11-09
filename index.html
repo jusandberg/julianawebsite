@@ -423,6 +423,7 @@ img{display:block;max-width:100%;}
 @media(max-width:760px){.coach-services-grid{grid-template-columns:1fr}}
 
 /* COACHING CONVERSATION ARC */
+.coaching-simple{text-align:center;max-width:640px;margin:0 auto;padding:2rem 0 3rem}.coaching-simple .section-intro{margin:1rem auto 1.8rem}.coaching-simple .section-intro a{color:var(--teal);font-weight:600}
 .coach-arc-unit{position:relative;margin-top:4rem;height:170px}
 .coach-arc-line{position:absolute;inset:0;pointer-events:none}.coach-arc-line svg{width:100%;height:100%}
 .coach-arc-tile{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;gap:.6rem;width:108px;margin-left:-54px;cursor:pointer;background:none;border:0;font-family:inherit}
@@ -1203,101 +1204,10 @@ footer{background:transparent}
 
 <section class="page" id="coaching">
   <div class="section">
-    <div class="coaching-intro">
+    <div class="coaching-intro coaching-simple">
       <h2>How I <span class="grad">coach.</span></h2>
-      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how to move forward.</p>
-    </div>
-    <div class="coach-services-grid">
-      <div class="coach-service-card">
-        <div class="coach-service-icon c-blue"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="coach-service-label">For Organizations</div>
-        <h3>IC Coaching Programs</h3>
-        <p>I coach individual contributors to grow their craft and step into leadership, building your next generation of leaders from within.</p>
-        <div class="modality-tags"><span class="modality-tag">1:1</span><span class="modality-tag">Group</span><span class="modality-tag">Peer</span></div>
-      </div>
-      <div class="coach-service-card">
-        <div class="coach-service-icon c-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
-        <div class="coach-service-label">For Individuals</div>
-        <h3>1:1 Integrative Coaching</h3>
-        <p>I help people quiet the noise, build emotional intelligence, and lead their life with the same intention they bring to their work.</p>
-        <div class="modality-tags"><span class="modality-tag">1:1</span></div>
-      </div>
-    </div>
-
-    <div class="coaching-approach">
-      <h2 style="font-size:1.8rem;">I help people stop performing a version of themselves and <span class="grad">start leading from who they actually are.</span></h2>
-    </div>
-
-    <div class="section-center" style="margin-top:2.25rem;">
-      <div class="eyebrow c">A coaching conversation</div>
-      <p class="section-intro">I use coaching conversations to turn reflection into clarity, awareness, and meaningful action.</p>
-    </div>
-    <div class="coach-arc-unit" id="coachArcUnit" aria-label="Seven stages of a coaching conversation">
-      <div class="coach-arc-line"><svg id="coachArcSvg" preserveAspectRatio="none" aria-hidden="true"><path id="coachArcPath" fill="none" stroke="#EAEAEF" stroke-width="2"/></svg></div>
-      <div id="coachArcRow"></div>
-    </div>
-    <div class="coach-arc-reveal" id="coachArcReveal"><div><div class="coach-arc-card" id="coachArcCard"></div></div></div>
-    <div class="coach-carousel" id="coachCarousel" aria-label="Swipe through coaching conversation stages"></div>
-    <div class="coach-car-dots" id="coachCarDots" aria-hidden="true"></div>
-    <div class="phase-arc" hidden aria-label="Seven parts of a coaching conversation">
-      <svg viewBox="0 0 860 150" aria-hidden="true"><path class="arc-path" d="M45 128 C235 -5 625 -5 815 128"/></svg>
-      <div class="phase-points">
-        <div class="phase-point mobile-active">
-          <button class="phase-toggle" type="button" aria-expanded="true" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">01</span>
-          <div class="card-meta">01 · Connect</div>
-          <div class="phase-panel open"><h3>Build trust and presence</h3><p>I create a grounded, psychologically safe space, establish rapport, and meet the person where they are before moving into the work.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">02</span>
-          <div class="card-meta">02 · Goal</div>
-          <div class="phase-panel"><h3>Establish the goal</h3><p>We clarify what the client wants from the conversation and what would make the time feel genuinely valuable.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">03</span>
-          <div class="card-meta">03 · Explore</div>
-          <div class="phase-panel"><h3>Explore the current reality</h3><p>I listen deeply, reflect what I notice, and ask questions that help the client understand the situation, emotions, patterns, and context more fully.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">04</span>
-          <div class="card-meta">04 · Awareness</div>
-          <div class="phase-panel"><h3>Generate awareness</h3><p>We challenge assumptions, notice beliefs, reframe perspectives, and make room for insights that expand what the client can see.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">05</span>
-          <div class="card-meta">05 · Options</div>
-          <div class="phase-panel"><h3>Create options</h3><p>The client generates possibilities and explores different ways forward. My role is to invite thinking, not prescribe advice.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">06</span>
-          <div class="card-meta">06 · Action</div>
-          <div class="phase-panel"><h3>Commit to action</h3><p>The client chooses a next step that feels meaningful, realistic, and aligned with their goals and values.</p></div>
-        </div>
-        <div class="phase-point">
-          <button class="phase-toggle" type="button" aria-expanded="false" onclick="togglePhase(this)">+</button>
-          <span class="phase-number">07</span>
-          <div class="card-meta">07 · Close</div>
-          <div class="phase-panel"><h3>Capture learning and accountability</h3><p>We reflect on insights, confidence, commitments, and what support or accountability will help the client carry the learning forward.</p></div>
-        </div>
-      </div>
-      <div class="coaching-mobile-controls">
-        <button type="button" onclick="changeCoachingStep(-1)" aria-label="Previous coaching step">&larr; Previous</button>
-        <div class="coaching-progress"><span id="coachingProgress">01 / 07</span><div class="coaching-dots" id="coachingDots" aria-hidden="true"></div></div>
-        <button type="button" onclick="changeCoachingStep(1)" aria-label="Next coaching step">Next &rarr;</button>
-      </div>
-    </div>
-  </div>
-  <div class="cta">
-    <div class="ring ring1"></div><div class="ring ring2"></div><div class="dot dot1"></div>
-    <div class="cta-inner">
-      <h2>Want to talk about <span class="grad">coaching?</span></h2>
-      <p>Bring what you are navigating. We can talk about what support might look like, with no pressure.</p>
-      <a href="#contact" onclick="showPage('contact')" class="btn-fill">Book a discovery call</a>
+      <p class="section-intro">Learn more about my coaching practice here: <a href="https://www.theumethod.ca/" target="_blank" rel="noopener">theumethod.ca</a></p>
+      <a href="https://www.theumethod.ca/" target="_blank" rel="noopener" class="btn-fill">Visit The U Method</a>
     </div>
   </div>
 </section>
