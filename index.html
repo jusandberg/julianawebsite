@@ -423,7 +423,7 @@ img{display:block;max-width:100%;}
 @media(max-width:760px){.coach-services-grid{grid-template-columns:1fr}}
 
 /* COACHING CONVERSATION ARC */
-.coaching-simple{text-align:center;max-width:640px;margin:0 auto;padding:2rem 0 3rem}.coaching-simple .section-intro{margin:1rem auto 1.8rem}.coaching-simple .section-intro a{color:var(--teal);font-weight:600}
+.coaching-more{text-align:center;margin:3rem auto 1rem;max-width:640px}.coaching-more p{font-size:1.1rem;color:var(--grey);margin-bottom:1.6rem}.coaching-more p a{color:var(--teal);font-weight:600}
 .coach-arc-unit{position:relative;margin-top:4rem;height:170px}
 .coach-arc-line{position:absolute;inset:0;pointer-events:none}.coach-arc-line svg{width:100%;height:100%}
 .coach-arc-tile{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;gap:.6rem;width:108px;margin-left:-54px;cursor:pointer;background:none;border:0;font-family:inherit}
@@ -1204,107 +1204,34 @@ footer{background:transparent}
 
 <section class="page" id="coaching">
   <div class="section">
-    <div class="coaching-intro coaching-simple">
+    <div class="coaching-intro">
       <h2>How I <span class="grad">coach.</span></h2>
-      <p class="section-intro">Learn more about my coaching practice here: <a href="https://www.theumethod.ca/" target="_blank" rel="noopener">theumethod.ca</a></p>
+      <p class="section-intro">My coaching creates space to understand what's beneath the surface, reconnect with what matters, and choose how to move forward.</p>
+    </div>
+    <div class="coach-services-grid">
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-blue"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="coach-service-label">For Organizations</div>
+        <h3>IC Coaching Programs</h3>
+        <p>I coach individual contributors to grow their craft and step into leadership, building your next generation of leaders from within.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span><span class="modality-tag">Group</span><span class="modality-tag">Peer</span></div>
+      </div>
+      <div class="coach-service-card">
+        <div class="coach-service-icon c-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <div class="coach-service-label">For Individuals</div>
+        <h3>1:1 Integrative Coaching</h3>
+        <p>I help people quiet the noise, build emotional intelligence, and lead their life with the same intention they bring to their work.</p>
+        <div class="modality-tags"><span class="modality-tag">1:1</span></div>
+      </div>
+    </div>
+
+    <div class="coaching-more">
+      <p>Learn more about my coaching practice here: <a href="https://www.theumethod.ca/" target="_blank" rel="noopener">theumethod.ca</a></p>
       <a href="https://www.theumethod.ca/" target="_blank" rel="noopener" class="btn-fill">Visit The U Method</a>
     </div>
   </div>
 </section>
 
-<section class="page" id="resources">
-  <div class="section">
-    <div class="section-center">
-      <div class="eyebrow c">Free, accessible, self-led reflection tools</div>
-      <p class="section-intro">I created these tools to offer you a free, accessible place to pause, reflect, and reconnect with what you need.</p>
-    </div>
-    <div class="tools-panel">
-      <div id="toolsTileUnit"></div>
-    </div>
-    <div class="tool-guide" hidden>
-      <div class="tool-needs" id="toolNeeds"></div>
-    </div>
-    <div class="tool-result" id="toolResult" aria-live="polite" hidden>
-      <div class="tool-result-card">
-        <div class="tool-result-main">
-          <div class="tool-result-label">This tool may support you</div>
-          <div class="tool-result-title"><span class="tool-result-icon" id="toolResultIcon" aria-hidden="true"></span><h3 id="toolResultTitle"></h3></div>
-          <p id="toolResultCopy"></p>
-          <div class="tool-result-actions"><a class="btn-fill" id="toolResultLink">Start this free tool</a><button class="btn-text" type="button" onclick="resetToolGuide()">Choose again</button></div>
-        </div>
-        <aside class="tool-result-side"><span>Why this might help</span><p id="toolResultWhy"></p><div class="tool-time" id="toolResultTime"></div></aside>
-      </div>
-      <p class="tool-privacy">Free and self-led. No sign up. Nothing is saved or submitted.</p>
-    </div>
-    <div class="browse-all" hidden><h3>Or browse all tools</h3><p>Choose the one that feels useful to you.</p></div>
-    <div class="cards all-tools-grid" hidden style="margin-top:3.5rem;">
-      <a class="card" href="tool-eq-wheel.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg></div>
-        <div class="card-meta">Emotional Intelligence</div>
-        <h3>The EQ Compass</h3>
-        <p>Explore the five composites of emotional intelligence and reflect on where you're strong and where there's room to grow.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-wheel.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 3v9l6 4"/></svg></div>
-        <div class="card-meta">Life Balance</div>
-        <h3>Wheel of Life</h3>
-        <p>Rate 8 life areas on a scale of 1 to 10. See where you're in balance and where you're not.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-values.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M9 18h6"/></svg></div>
-        <div class="card-meta">Core Values</div>
-        <h3>Values Sort</h3>
-        <p>Sort 30 values into three buckets, then narrow to your true top 5.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-archetype-quiz.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div class="card-meta">Self-Discovery</div>
-        <h3>Inner Archetype</h3>
-        <p>Discover which inner force is guiding you right now: The Witness, The Inner Guide, or The Explorer.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-energy.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <div class="card-meta">Energy Audit</div>
-        <h3>Energy Mapping</h3>
-        <p>Map what energizes and what drains you, so you can design more of your week around what works.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-inner-critic.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <div class="card-meta">Mindset</div>
-        <h3>Inner Critic Reframe</h3>
-        <p>Notice the voice of your inner critic, then practice reframing it into something more useful.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-goal-canvas.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-        <div class="card-meta">Goal Setting</div>
-        <h3>Goal Canvas</h3>
-        <p>Turn a fuzzy intention into a clear commitment, with your why, likely obstacles, and the first step.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-      <a class="card" href="tool-decision-compass.html" style="text-decoration:none;color:inherit;">
-        <div class="card-ring"></div>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16 8 14 14 8 16 10 10 16 8"/></svg></div>
-        <div class="card-meta">Decisions</div>
-        <h3>Decision Compass</h3>
-        <p>Work through a tough decision by weighing it against your values, not just the pros and cons.</p>
-        <span class="card-link">Open tool &rarr;</span>
-      </a>
-    </div>
-  </div>
-</section>
 
 <section class="page" id="contact">
   <div class="cta">
