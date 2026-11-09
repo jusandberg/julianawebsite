@@ -423,6 +423,22 @@ img{display:block;max-width:100%;}
 @media(max-width:760px){.coach-services-grid{grid-template-columns:1fr}}
 
 /* COACHING CONVERSATION ARC */
+.page-next{padding:4.5rem 1.5rem 5rem;border-top:1px solid var(--line);background:linear-gradient(180deg,#fff,#F8FAFB)}
+.pn-inner{max-width:880px;margin:0 auto;text-align:center}
+.pn-inner h2{font-size:clamp(1.8rem,4vw,2.4rem);margin:.6rem 0 2rem}
+.pn-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;text-align:left}
+.pn-tile{position:relative;overflow:hidden;font-family:inherit;text-align:left;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.5rem 4.2rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.3rem;transition:transform .3s,box-shadow .3s,border-color .3s}
+.pn-tile::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-80px;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 28%,transparent),transparent);transition:transform .5s}
+.pn-tile:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--c) 45%,#fff);box-shadow:0 18px 40px -20px rgba(20,20,30,.35)}
+.pn-tile:hover::before{transform:scale(1.35)}
+.pn-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+.pn-k{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 72%,#1A1A1C);position:relative}
+.pn-t{font-size:1.35rem;font-weight:800;color:var(--ink);position:relative}
+.pn-d{font-size:.9rem;color:var(--grey);line-height:1.45;position:relative}
+.pn-a{position:absolute;right:1.3rem;top:50%;margin-top:-19px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#4285F4,#0F9F9A 45%,#34A853 78%,#FBBC05);transition:transform .3s}
+.pn-tile:hover .pn-a{transform:translateX(4px)}
+@media(max-width:640px){.pn-row{grid-template-columns:1fr}.page-next{padding:3.5rem 1.25rem 4rem}}
+@media(prefers-reduced-motion:reduce){.pn-tile,.pn-tile::before,.pn-a{transition:none}}
 .coaching-more{text-align:center;margin:3rem auto 1rem;max-width:640px}.coaching-more p{font-size:1.1rem;color:var(--grey);margin-bottom:1.6rem}.coaching-more p a{color:var(--teal);font-weight:600}
 .coach-arc-unit{position:relative;margin-top:4rem;height:170px}
 .coach-arc-line{position:absolute;inset:0;pointer-events:none}.coach-arc-line svg{width:100%;height:100%}
@@ -931,6 +947,9 @@ footer{background:transparent}
       <div class="l">Employees impacted</div>
     </div>
   </div>
+  <nav class="page-next" aria-label="Keep exploring">
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#4285F4" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+  </nav>
 </section>
 
 <section class="page" id="about">
@@ -1063,6 +1082,9 @@ footer{background:transparent}
       </div></div>
     </div>
   </div>
+  <nav class="page-next" aria-label="Keep exploring">
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#4285F4" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#34A853" onclick="showPage('coaching')"><span class="pn-k">Or</span><span class="pn-t">Coaching</span><span class="pn-d">How I coach and where to learn more</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+  </nav>
 </section>
 
 <section class="page" id="frameworks">
@@ -1190,6 +1212,9 @@ footer{background:transparent}
       <button class="btn-fill" onclick="showPage('contact')">Get in touch</button>
     </div>
   </div>
+  <nav class="page-next" aria-label="Keep exploring">
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#34A853" onclick="showPage('coaching')"><span class="pn-k">Or</span><span class="pn-t">Coaching</span><span class="pn-d">How I coach and where to learn more</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+  </nav>
 </section>
 
 <section class="page" id="books">
@@ -1230,6 +1255,9 @@ footer{background:transparent}
       <a href="https://www.theumethod.ca/" target="_blank" rel="noopener" class="btn-fill">Visit The U Method</a>
     </div>
   </div>
+  <nav class="page-next" aria-label="Keep exploring">
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#4285F4" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#FBBC05" onclick="showPage('contact')"><span class="pn-k">Or</span><span class="pn-t">Contact</span><span class="pn-d">Start a conversation with me</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+  </nav>
 </section>
 
 
@@ -1273,6 +1301,9 @@ footer{background:transparent}
       </form>
     </div>
   </div>
+  <nav class="page-next" aria-label="Keep exploring">
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#4285F4" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+  </nav>
 </section>
 
 <footer>
@@ -1505,7 +1536,7 @@ function consolidatePages(){
  const about=document.getElementById('about');
  const coaching=document.getElementById('coaching');
  if(frameworks&&work){frameworks.classList.add('merged-section');work.insertBefore(frameworks,work.firstElementChild);}
- if(books&&about){books.classList.add('merged-section','books-section');about.appendChild(books);}
+ if(books&&about){books.classList.add('merged-section','books-section');about.insertBefore(books,about.querySelector(':scope > .page-next'));}
  if(tools&&coaching){
    tools.classList.add('merged-section','coaching-tools');
    const coachingCta=Array.from(coaching.children).find(child=>child.classList.contains('cta'));
