@@ -29,8 +29,8 @@
 <style>
 :root{
   --bg:#FFFFFF; --ink:#1A1A1C; --grey:#6E6E73; --line:#EAEAEF; --soft:#FAFAFB;
-  --blue:#2C7A7B; --green:#5FB3A6; --yellow:#A9D3CD; --teal:#0F9F9A;
-  --grad:linear-gradient(90deg,#0F9F9A,#2C7A7B);
+  --blue:#1B3A5C; --green:#5FB3A6; --yellow:#B9D8E0; --teal:#0F9F9A;
+  --grad:linear-gradient(90deg,#1B3A5C,#0F9F9A);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -146,14 +146,14 @@ img{display:block;max-width:100%;}
 .about-values{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;}
 .about-values span{font-size:.78rem;font-weight:600;border-radius:999px;padding:.48rem .9rem;display:inline-flex;align-items:center;gap:.4rem;}
 .about-values span::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.about-values .v-blue{background:#EEF7F6;color:#2f5fc4}.about-values .v-green{background:#EEF7F6;color:#227a3e}.about-values .v-teal{background:#E4F6F5;color:#0b736f}.about-values .v-yellow{background:#EEF7F6;color:#0B6E6A}
+.about-values .v-blue{background:#EEF5F7;color:#2f5fc4}.about-values .v-green{background:#EEF5F7;color:#227a3e}.about-values .v-teal{background:#E4F6F5;color:#0b736f}.about-values .v-yellow{background:#EEF5F7;color:#1B3A5C}
 .about-linkedin{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;flex:none;border-radius:50%;color:#fff;background:#0a66c2;text-decoration:none;box-shadow:0 6px 14px rgba(10,102,194,.18);transition:transform .2s,box-shadow .2s}
 .about-linkedin:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(10,102,194,.28)}.about-linkedin svg{width:20px;height:20px;fill:currentColor}
 .about-beliefs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start;max-width:1100px;margin:0 auto 4.5rem;}
 .about-belief{min-height:78px;border:1px dashed color-mix(in srgb,var(--belief-tone) 34%,#d9dde2);border-left:3px solid var(--belief-tone);border-radius:11px;padding:.7rem .85rem;background:#fff;transition:box-shadow .3s,border-color .3s,transform .3s;}
 .about-belief:nth-child(1){--belief-tone:#0f9f9a;--belief-soft:#e4f6f5}
-.about-belief:nth-child(2){--belief-tone:#2C7A7B;--belief-soft:#EEF7F6}
-.about-belief:nth-child(3){--belief-tone:#0B6E6A;--belief-soft:#EEF7F6}
+.about-belief:nth-child(2){--belief-tone:#1B3A5C;--belief-soft:#EEF5F7}
+.about-belief:nth-child(3){--belief-tone:#1B3A5C;--belief-soft:#EEF5F7}
 .about-belief:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(15,159,154,.08);border-color:var(--belief-tone)}
 .about-belief-head{width:100%;display:grid;grid-template-columns:29px 1fr;gap:.7rem;align-items:center;color:var(--ink);text-align:left}
 .about-belief-icon{width:29px;height:29px;display:flex;align-items:center;justify-content:center;color:var(--belief-tone)}
@@ -166,7 +166,7 @@ img{display:block;max-width:100%;}
 .cred-card{display:flex;align-items:center;gap:.7rem;text-align:left}
 .cred-badge{width:22px;height:22px;flex:none;display:flex;align-items:center;justify-content:center}
 .cred-badge svg{width:22px;height:22px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.cred-badge.c-blue svg{stroke:var(--blue)}.cred-badge.c-green svg{stroke:var(--green)}.cred-badge.c-yellow svg{stroke:#0B6E6A}.cred-badge.c-teal svg{stroke:var(--teal)}
+.cred-badge.c-blue svg{stroke:var(--blue)}.cred-badge.c-green svg{stroke:var(--green)}.cred-badge.c-yellow svg{stroke:#1B3A5C}.cred-badge.c-teal svg{stroke:var(--teal)}
 .cred-text{font-size:.8rem;font-weight:650;color:var(--ink);line-height:1.25}.cred-text span{display:block;font-size:.68rem;font-weight:600;color:var(--grey);margin-top:.1rem}
 @media(max-width:600px){.credentials-section{margin-top:3rem}.cred-panel{display:block;padding:1.5rem 1.25rem;border-radius:18px}.cred-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}.cred-badge,.cred-badge svg{width:20px;height:20px}.cred-text{font-size:.78rem}}
 .impact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:1.15rem;margin:2rem 0 4.5rem;align-items:stretch;}
@@ -176,7 +176,7 @@ img{display:block;max-width:100%;}
 .impact-card:nth-child(1) .card-icon{background:rgba(15,159,154,.1);color:var(--blue);}
 .impact-card:nth-child(2) .card-icon{background:rgba(15,159,154,.1);color:var(--green);}
 .impact-card:nth-child(3) .card-icon{background:rgba(15,159,154,.1);color:var(--teal);}
-.impact-card:nth-child(4) .card-icon{background:rgba(15,159,154,.13);color:#0B6E6A;}
+.impact-card:nth-child(4) .card-icon{background:rgba(15,159,154,.13);color:#1B3A5C;}
 .impact-card .card-meta{font-size:.78rem;margin:0 4rem .65rem 0;}
 .impact-card h3{font-size:1.4rem;line-height:1.3;margin:0 3.6rem .8rem 0;}
 .impact-card p{font-size:.95rem;color:var(--grey);line-height:1.6;margin-bottom:1rem;}
@@ -192,7 +192,7 @@ img{display:block;max-width:100%;}
 .ix-num small{font-size:1.15rem;font-weight:700;margin-left:.35rem;letter-spacing:0;opacity:.6}
 .ix-bars{display:flex;gap:4px;margin-top:.8rem;max-width:340px}
 .ix-bars i{flex:1;height:8px;border-radius:99px;background:var(--blue);transition:background .35s}
-.ix-bars i.off{background:#E6EEEE}
+.ix-bars i.off{background:#E4ECF0}
 .ix-ring{display:flex;align-items:center;gap:1.1rem;margin-bottom:0}
 .ix-ring svg{width:124px;height:124px;flex:none;filter:drop-shadow(0 6px 16px rgba(15,159,154,.22))}
 .ix-ring text{font:800 13px Inter,sans-serif;fill:var(--ink)}
@@ -204,7 +204,7 @@ img{display:block;max-width:100%;}
 .ix-gauge{display:flex;align-items:center;gap:1rem}
 .ix-gauge svg{width:150px;height:86px;flex:none}
 .ix-g{filter:drop-shadow(0 4px 10px rgba(15,159,154,.5))}
-.ix-gauge text{font:900 34px Inter,sans-serif;fill:#0B6E6A}
+.ix-gauge text{font:900 34px Inter,sans-serif;fill:#1B3A5C}
 .ix.play .ix-arc{transition:stroke-dashoffset 1s cubic-bezier(.3,.9,.3,1)}
 .ix.play .ix-ln{transition:stroke-dashoffset .8s ease}
 .ix.play .ix-nd{transition:opacity .5s}
@@ -286,13 +286,13 @@ img{display:block;max-width:100%;}
 .pm-hv.beat svg{animation:pmBeat 1s ease 2}
 @keyframes pmBeat{30%{transform:scale(1.12)}60%{transform:scale(.98)}}
 .pm-console{border-radius:16px;padding:1rem;background:#F7FBF9;border:1px solid #E1F0EB;margin:.2rem 0 .9rem}
-.pm-goal{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:600;color:#0B6E6A;margin-bottom:.75rem}
+.pm-goal{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:600;color:#1B3A5C;margin-bottom:.75rem}
 .pm-goal b{background:#fff;border:1px solid #CDE7E1;border-radius:99px;padding:.3rem .65rem;font-weight:700}
 .pm-m{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 18px;align-items:center;gap:.6rem;margin:.55rem 0;font-size:.8rem;font-weight:600;color:#3A3A3C}
 .pm-bar{height:10px;border-radius:99px;background:#EDF1EF;overflow:hidden}
 .pm-bar b{display:block;height:100%;width:var(--w);border-radius:99px}
 .pm-ar{font-size:.95rem;font-weight:800}
-.pm-stamp{margin-top:.8rem;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#0B6E6A;border:2px dashed #A9D3CD;border-radius:12px;padding:.55rem;transform:rotate(-2deg)}
+.pm-stamp{margin-top:.8rem;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#1B3A5C;border:2px dashed #B9D8E0;border-radius:12px;padding:.55rem;transform:rotate(-2deg)}
 .pm-console.pm-pre .pm-bar b{width:0}.pm-console.pm-pre .pm-ar{opacity:0}.pm-console.pm-pre .pm-stamp{opacity:0;transform:scale(1.4) rotate(-4deg)}
 .pm-console.pm-play .pm-bar b{transition:width 1.4s cubic-bezier(.3,.9,.3,1)}
 .pm-console.pm-play .pm-ar{transition:opacity .4s}
@@ -381,7 +381,7 @@ img{display:block;max-width:100%;}
 .ai-stage-ring{position:relative;width:56px;height:56px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .ai-stage-tile:hover .ai-stage-ring{transform:translateY(-5px) rotate(-1.5deg)}.ai-stage-tile.active .ai-stage-ring{transform:translateY(-7px) rotate(-2.5deg)}
 .ai-stage-ring svg.badge{width:56px;height:56px;position:absolute;inset:0}.ai-stage-ring-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.ai-stage-ring-icon.i-blue{stroke:var(--blue)}.ai-stage-ring-icon.i-green{stroke:var(--green)}.ai-stage-ring-icon.i-yellow{stroke:#0B6E6A}.ai-stage-ring-icon.i-teal{stroke:var(--teal)}
+.ai-stage-ring-icon.i-blue{stroke:var(--blue)}.ai-stage-ring-icon.i-green{stroke:var(--green)}.ai-stage-ring-icon.i-yellow{stroke:#1B3A5C}.ai-stage-ring-icon.i-teal{stroke:var(--teal)}
 .ai-stage-label{font-size:.8rem;font-weight:700;color:var(--ink)}
 .ai-stage-detail{margin-top:1.8rem;background:#fff;border-radius:22px;padding:1.9rem;display:none;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}
 .ai-stage-detail.open{display:flex}.ai-stage-detail::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.25;top:-40px;right:-40px}
@@ -415,7 +415,7 @@ img{display:block;max-width:100%;}
 .coach-service-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem 1.2rem}
 .coach-service-card::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;border:1px solid var(--line);top:-68px;right:-68px}
 .coach-service-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;position:absolute;top:1.1rem;right:1.2rem}
-.coach-service-icon.c-blue{background:#EEF7F6}.coach-service-icon.c-green{background:#EEF7F6}
+.coach-service-icon.c-blue{background:#EEF5F7}.coach-service-icon.c-green{background:#EEF5F7}
 .coach-service-icon svg{width:20px;height:20px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.coach-service-icon.c-blue svg{stroke:var(--blue)}.coach-service-icon.c-green svg{stroke:var(--green)}
 .coach-service-label{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);margin:2.9rem 0 .35rem;position:relative}
 .coach-service-card h3{font-size:1.05rem;margin:0 0 .4rem;position:relative}.coach-service-card p{color:var(--grey);font-size:.82rem;line-height:1.5;margin:0 0 .6rem;position:relative}
@@ -435,7 +435,7 @@ img{display:block;max-width:100%;}
 .pn-k{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 72%,#1A1A1C);position:relative}
 .pn-t{font-size:1.35rem;font-weight:800;color:var(--ink);position:relative}
 .pn-d{font-size:.9rem;color:var(--grey);line-height:1.45;position:relative}
-.pn-a{position:absolute;right:1.3rem;top:50%;margin-top:-19px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#2C7A7B,#0F9F9A 45%,#5FB3A6 78%,#A9D3CD);transition:transform .3s}
+.pn-a{position:absolute;right:1.3rem;top:50%;margin-top:-19px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#1B3A5C,#0F9F9A 45%,#5FB3A6 78%,#B9D8E0);transition:transform .3s}
 .pn-tile:hover .pn-a{transform:translateX(4px)}
 @media(max-width:640px){.pn-row{grid-template-columns:1fr}.page-next{padding:3.5rem 1.25rem 4rem}}
 @media(prefers-reduced-motion:reduce){.pn-tile,.pn-tile::before,.pn-a{transition:none}}
@@ -450,7 +450,7 @@ img{display:block;max-width:100%;}
 .coach-arc-label{font-size:.74rem;font-weight:700;text-align:center;color:var(--ink);white-space:nowrap}
 .coach-arc-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin-top:1.5rem}.coach-arc-reveal>div{overflow:hidden}.coach-arc-reveal.open{grid-template-rows:1fr}
 .coach-arc-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;position:relative;overflow:hidden}.coach-arc-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid var(--teal);opacity:.3;top:-40px;right:-40px}
-.coach-detail-icon{width:56px;height:56px;border-radius:15px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 18px rgba(20,20,30,.13)}.coach-detail-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.coach-detail-icon.c-blue{background:linear-gradient(160deg,#4F9A9B,#256A6B)}.coach-detail-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#3E8F84)}.coach-detail-icon.c-yellow{background:linear-gradient(160deg,#7FBDB8,#2C7A7B)}.coach-detail-icon.c-teal{background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
+.coach-detail-icon{width:56px;height:56px;border-radius:15px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.06),0 10px 18px rgba(20,20,30,.13)}.coach-detail-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.coach-detail-icon.c-blue{background:linear-gradient(160deg,#2A5A7E,#1B3A5C)}.coach-detail-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#2A5A7E)}.coach-detail-icon.c-yellow{background:linear-gradient(160deg,#7FB2C4,#1B3A5C)}.coach-detail-icon.c-teal{background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
 .coach-detail-meta,.coach-car-label{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.45rem}.coach-arc-card h3{font-size:1.25rem;margin:0 0 .6rem}.coach-arc-card p{color:var(--grey);font-size:.94rem;line-height:1.65;margin:0;position:relative}.coach-arc-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--grey);cursor:pointer;font-size:1rem;z-index:2}
 .coach-arc-hint{text-align:center;color:var(--grey);font-size:.82rem;margin-top:1.5rem}
 .coach-carousel,.coach-car-dots,.coach-car-hint{display:none}
@@ -496,9 +496,9 @@ img{display:block;max-width:100%;}
 .book-rings{position:absolute;right:-5px;top:14px;bottom:14px;display:flex;flex-direction:column;justify-content:space-between}
 .book-rings span{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px rgba(20,20,30,.16),0 1px 1px rgba(20,20,30,.12)}
 .book-notebook svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.7;position:relative;margin-left:6px}
-.book-notebook.c-blue{background:linear-gradient(160deg,#4F9A9B,#256A6B)}
-.book-notebook.c-green{background:linear-gradient(160deg,#7FC4B8,#3E8F84)}
-.book-notebook.c-yellow{background:linear-gradient(160deg,#7FBDB8,#2C7A7B)}
+.book-notebook.c-blue{background:linear-gradient(160deg,#2A5A7E,#1B3A5C)}
+.book-notebook.c-green{background:linear-gradient(160deg,#7FC4B8,#2A5A7E)}
+.book-notebook.c-yellow{background:linear-gradient(160deg,#7FB2C4,#1B3A5C)}
 .book-notebook.c-teal{background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
 .book-title-label{font-size:.78rem;font-weight:600;line-height:1.3;text-align:center;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .book-detail-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease;margin:0 .5rem}
@@ -522,9 +522,9 @@ img{display:block;max-width:100%;}
 .fw-tile:hover .fw-icon{transform:translateY(-6px) rotate(-1.5deg)}
 .fw-tile.open .fw-icon{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
 .fw-icon svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.7}
-.fw-icon.c-blue{background:linear-gradient(160deg,#4F9A9B,#256A6B)}
-.fw-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#3E8F84)}
-.fw-icon.c-yellow{background:linear-gradient(160deg,#7FBDB8,#2C7A7B)}
+.fw-icon.c-blue{background:linear-gradient(160deg,#2A5A7E,#1B3A5C)}
+.fw-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#2A5A7E)}
+.fw-icon.c-yellow{background:linear-gradient(160deg,#7FB2C4,#1B3A5C)}
 .fw-icon.c-teal{background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
 .fw-title-label{font-size:.86rem;font-weight:700;text-align:center;color:var(--ink)}
 .fw-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
@@ -557,9 +557,9 @@ img{display:block;max-width:100%;}
 .tools-tile:hover .tools-icon{transform:translateY(-6px) rotate(-1.5deg)}
 .tools-tile.open .tools-icon{transform:translateY(-10px) rotate(-2.5deg);box-shadow:0 3px 0 rgba(0,0,0,.06),0 18px 30px rgba(20,20,30,.2)}
 .tools-icon svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tools-icon.c-blue{background:linear-gradient(160deg,#4F9A9B,#256A6B)}
-.tools-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#3E8F84)}
-.tools-icon.c-yellow{background:linear-gradient(160deg,#7FBDB8,#2C7A7B)}
+.tools-icon.c-blue{background:linear-gradient(160deg,#2A5A7E,#1B3A5C)}
+.tools-icon.c-green{background:linear-gradient(160deg,#7FC4B8,#2A5A7E)}
+.tools-icon.c-yellow{background:linear-gradient(160deg,#7FB2C4,#1B3A5C)}
 .tools-icon.c-teal{background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
 .tools-title-label{font-size:.86rem;font-weight:700;text-align:center;color:var(--ink);-webkit-text-fill-color:var(--ink)}
 .tools-sub-label{font-size:.72rem;text-align:center;color:var(--grey);line-height:1.35}
@@ -588,7 +588,7 @@ img{display:block;max-width:100%;}
 .sample-tile:hover .sample-icon{transform:translateY(-7px) scale(1.03)}
 .sample-tile.open .sample-icon{transform:translateY(-9px) scale(1.05);box-shadow:0 20px 34px rgba(20,20,30,.22)}
 .sample-icon svg{width:38px;height:38px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.sample-icon.c-blue{color:#2C7A7B;background:linear-gradient(160deg,#4F9A9B,#256A6B)}.sample-icon.c-green{color:#5FB3A6;background:linear-gradient(160deg,#7FC4B8,#3E8F84)}.sample-icon.c-yellow{color:#0B6E6A;background:linear-gradient(160deg,#7FBDB8,#2C7A7B)}.sample-icon.c-teal{color:#0f9f9a;background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
+.sample-icon.c-blue{color:#1B3A5C;background:linear-gradient(160deg,#2A5A7E,#1B3A5C)}.sample-icon.c-green{color:#5FB3A6;background:linear-gradient(160deg,#7FC4B8,#2A5A7E)}.sample-icon.c-yellow{color:#1B3A5C;background:linear-gradient(160deg,#7FB2C4,#1B3A5C)}.sample-icon.c-teal{color:#0f9f9a;background:linear-gradient(160deg,#4FB5AF,#0C8E89)}
 .sample-title-label{font-size:1rem;font-weight:700;text-align:center;line-height:1.35;color:var(--ink)}
 .sample-cat-label{font-size:.68rem;font-weight:600;text-align:center;color:var(--grey);text-transform:uppercase;letter-spacing:.03em}
 .sample-course-pill{max-width:210px;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:#f5f6f7;color:var(--ink);font-size:.78rem;font-weight:700;line-height:1.3;text-align:center}
@@ -609,7 +609,7 @@ img{display:block;max-width:100%;}
 .card:nth-child(5n+1) .card-icon{background:rgba(15,159,154,.1);color:var(--blue);}
 .card:nth-child(5n+2) .card-icon{background:rgba(15,159,154,.1);color:var(--green);}
 .card:nth-child(5n+3) .card-icon{background:rgba(15,159,154,.1);color:var(--teal);}
-.card:nth-child(5n+4) .card-icon{background:rgba(15,159,154,.12);color:#0B6E6A;}
+.card:nth-child(5n+4) .card-icon{background:rgba(15,159,154,.12);color:#1B3A5C;}
 .card:nth-child(5n+5) .card-icon{background:rgba(15,159,154,.1);color:var(--blue);}
 
 /* CONTACT FORM */
@@ -791,7 +791,7 @@ body{background:#fff}
 .hero::before,.hero::after,.cta::before,.cta::after{opacity:.0!important}
 h1{letter-spacing:-.045em;font-weight:800}
 .hero h1{font-size:clamp(2.8rem,7.4vw,5.6rem);line-height:1.08}
-.grad{background:linear-gradient(90deg,#0F9F9A,#2C7A7B)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.grad{background:linear-gradient(90deg,#1B3A5C,#0F9F9A)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
 h2{letter-spacing:-.035em}
 .eyebrow{letter-spacing:.16em;font-weight:700;font-size:.74rem}
 .eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7}
@@ -799,12 +799,12 @@ h2{letter-spacing:-.035em}
 .card,.impact-card,.method-card,.ws-card,.cred-panel,.coach-service-card,.ai-practice,.contact-form,.fw-detail,.tools-detail,.book-detail,.ai-stage-detail,.coach-arc-card{background:rgba(255,255,255,.72)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(230,232,238,.9)!important;box-shadow:0 20px 50px -30px rgba(20,30,60,.25)}
 .card:hover,.impact-card:hover,.ws-card:hover{background:#fff!important;box-shadow:0 30px 60px -28px rgba(20,30,60,.3)!important}
 .btn-fill,.nav-cta{display:inline-flex!important;align-items:center;gap:.8rem;padding:.5rem .5rem .5rem 1.4rem!important;box-shadow:0 14px 34px -12px rgba(20,20,30,.45)}
-.btn-fill::after,.nav-cta::after{content:"\2192";display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2C7A7B,#0F9F9A 45%,#5FB3A6 78%,#A9D3CD);color:#fff;font-size:1rem;transition:transform .3s}
+.btn-fill::after,.nav-cta::after{content:"\2192";display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1B3A5C,#0F9F9A 45%,#5FB3A6 78%,#B9D8E0);color:#fff;font-size:1rem;transition:transform .3s}
 .nav-cta{padding:.35rem .35rem .35rem 1rem!important}
 .nav-cta::after{width:26px;height:26px;font-size:.85rem}
 .btn-fill:hover::after,.nav-cta:hover::after{transform:translateX(3px)}
 .btn-outline,.btn-soft{background:rgba(255,255,255,.75)!important;backdrop-filter:blur(10px)}
-.stats .n{background:linear-gradient(90deg,#2C7A7B,#0F9F9A 50%,#5FB3A6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats .n{background:linear-gradient(90deg,#1B3A5C,#0F9F9A 50%,#5FB3A6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-photo-wrap img{box-shadow:0 30px 60px -24px rgba(15,159,154,.45)}
 footer{background:transparent}
 @media(prefers-reduced-motion:reduce){.cine-sky i{animation:none}}
@@ -813,7 +813,7 @@ footer{background:transparent}
 .ws-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:.7rem;margin:.9rem .9rem 0;padding:1.6rem;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#F8F9FB}
 .ws-orb{position:absolute;right:-18%;top:-30%;width:70%;aspect-ratio:1;border-radius:50%;filter:blur(30px);opacity:.35;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .ws-ring{position:absolute;right:-8%;top:-20%;width:46%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(26,26,28,.08);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.c-blue .ws-orb{background:#2C7A7B}.c-green .ws-orb{background:#5FB3A6}.c-teal .ws-orb{background:#0F9F9A}.c-yellow .ws-orb{background:#A9D3CD}
+.c-blue .ws-orb{background:#1B3A5C}.c-green .ws-orb{background:#5FB3A6}.c-teal .ws-orb{background:#0F9F9A}.c-yellow .ws-orb{background:#B9D8E0}
 .ws-card:hover .ws-orb{transform:translate(-14%,10%) scale(1.1)}
 .ws-card:hover .ws-ring{transform:scale(1.12)}
 .ws-time{position:relative;align-self:flex-start;font-size:.72rem;font-weight:700;padding:.3rem .65rem;border-radius:999px;background:#fff;border:1px solid var(--line)}
@@ -830,7 +830,7 @@ footer{background:transparent}
 /* 1 · hero entrance */
 .hero h1 .w{display:inline-block;opacity:0;transform:translateY(.45em) rotate(2deg);filter:blur(8px);animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*90ms + 150ms)}
 @keyframes wordUp{to{opacity:1;transform:none;filter:none}}
-.hero h1 .grad.w{background:linear-gradient(90deg,#2C7A7B 0%,#0F9F9A 22.5%,#5FB3A6 39%,#A9D3CD 50%,#5FB3A6 61%,#0F9F9A 77.5%,#2C7A7B 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;padding:0 .04em .14em 0;margin-bottom:-.14em;animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards,gradSweep 2.4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms),.6s}
+.hero h1 .grad.w{background:linear-gradient(90deg,#1B3A5C 0%,#0F9F9A 22.5%,#5FB3A6 39%,#B9D8E0 50%,#5FB3A6 61%,#0F9F9A 77.5%,#1B3A5C 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;padding:0 .04em .14em 0;margin-bottom:-.14em;animation:wordUp .9s cubic-bezier(.2,.8,.2,1) forwards,gradSweep 2.4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms),.6s}
 @keyframes gradSweep{from{background-position:100% 0}to{background-position:0 0}}
 .hero .hero-sub,.hero .hero-btns,.hero .hero-pill{opacity:0;animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) forwards}
 .hero .hero-pill{animation-delay:.05s}.hero .hero-sub{animation-delay:.75s}.hero .hero-btns{animation-delay:.95s}
@@ -839,7 +839,7 @@ footer{background:transparent}
 .photo-ring svg{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);transform:rotate(-42deg);overflow:visible}
 .photo-ring .arc{fill:none;stroke:url(#ringGrad);stroke-width:3;stroke-linecap:round;stroke-dasharray:0 1000;animation:drawRing 1.8s cubic-bezier(.2,.8,.2,1) 1.1s forwards}
 @keyframes drawRing{to{stroke-dasharray:var(--arc) 1000}}
-.photo-ring .spark{position:absolute;width:12px;height:12px;border-radius:50%;background:#A9D3CD;right:10%;top:6%;transform:scale(0);animation:pop 0.6s cubic-bezier(.2,1.6,.4,1) 2.6s forwards;box-shadow:0 0 0 4px rgba(15,159,154,.18)}
+.photo-ring .spark{position:absolute;width:12px;height:12px;border-radius:50%;background:#B9D8E0;right:10%;top:6%;transform:scale(0);animation:pop 0.6s cubic-bezier(.2,1.6,.4,1) 2.6s forwards;box-shadow:0 0 0 4px rgba(15,159,154,.18)}
 @keyframes pop{to{transform:scale(1)}}
 .hero-photo-wrap img{opacity:0;transform:scale(.94);animation:photoIn 1.1s cubic-bezier(.2,.8,.2,1) .9s forwards}
 @keyframes photoIn{to{opacity:1;transform:none}}
@@ -849,12 +849,12 @@ footer{background:transparent}
 #about .professional-history+h2,#about .professional-history+h2+.section-intro{display:block!important}
 #about .cards.timeline{display:block!important;position:relative;max-width:860px;margin:2.6rem auto 0;padding-left:64px}
 .timeline::before{content:"";position:absolute;left:21px;top:10px;bottom:10px;width:2px;border-radius:2px;background:#ECEEF2}
-.tl-fill{position:absolute;left:21px;top:10px;width:2px;height:0;border-radius:2px;background:linear-gradient(180deg,#2C7A7B,#0F9F9A 45%,#5FB3A6 78%,#A9D3CD);box-shadow:0 0 12px rgba(15,159,154,.45)}
+.tl-fill{position:absolute;left:21px;top:10px;width:2px;height:0;border-radius:2px;background:linear-gradient(180deg,#1B3A5C,#0F9F9A 45%,#5FB3A6 78%,#B9D8E0);box-shadow:0 0 12px rgba(15,159,154,.45)}
 .tl-head{position:absolute;left:16px;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:#fff;border:2px solid #0F9F9A;box-shadow:0 0 0 5px rgba(15,159,154,.15);top:10px;transition:opacity .3s}
 .timeline .card{margin-bottom:1.1rem;min-height:0!important;opacity:.25;transform:translateX(18px);transition:opacity .6s,transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
 .timeline .card.reached{opacity:1;transform:none}
 .tl-node{position:absolute;left:-51px;top:30px;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid #D5D8DF;transition:all .5s cubic-bezier(.2,.8,.2,1)}
-.timeline .card.reached .tl-node{border-color:transparent;background:linear-gradient(135deg,#2C7A7B,#0F9F9A 50%,#5FB3A6);box-shadow:0 0 0 6px rgba(15,159,154,.14);transform:scale(1.15)}
+.timeline .card.reached .tl-node{border-color:transparent;background:linear-gradient(135deg,#1B3A5C,#0F9F9A 50%,#5FB3A6);box-shadow:0 0 0 6px rgba(15,159,154,.14);transform:scale(1.15)}
 .timeline .card{overflow:visible!important}
 .timeline .card .card-ring{display:none}
 .timeline .card-meta{color:#0F9F9A;font-weight:700}
@@ -899,7 +899,7 @@ footer{background:transparent}
 .impact-card::after,.pn-tile::before{display:none}
 .ix-num{text-shadow:none}
 .ix-ring svg,.ix-g{filter:none}
-.stats .stat .n{background:none!important;-webkit-text-fill-color:#0B6E6A!important;color:#0B6E6A!important}
+.stats .stat .n{background:none!important;-webkit-text-fill-color:#1B3A5C!important;color:#1B3A5C!important}
 </style>
 </head>
 <body>
@@ -954,7 +954,7 @@ footer{background:transparent}
     </div>
   </div>
   <nav class="page-next" aria-label="Keep exploring">
-    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#2C7A7B" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#1B3A5C" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
   </nav>
 </section>
 
@@ -1012,8 +1012,8 @@ footer{background:transparent}
         <h3>New Managers Program</h3>
         <p>A cohort experience supporting the transition from individual contributor to people leadership.</p>
         <div class="ix ix-ring" data-ix="ring" role="img" aria-label="Individual contributor to leader, in four parts: identity, people skills, application, and peer coaching">
-          <svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-90 60 60)" fill="none" stroke-width="12" stroke-linecap="round"><circle cx="60" cy="60" r="48" stroke="#F0F0F4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#2C7A7B" stroke-dasharray="64 238" stroke-dashoffset="0" data-s="0"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#0F9F9A" stroke-dasharray="64 238" stroke-dashoffset="-75.4" data-s="-75.4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#5FB3A6" stroke-dasharray="64 238" stroke-dashoffset="-150.8" data-s="-150.8"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#A9D3CD" stroke-dasharray="64 238" stroke-dashoffset="-226.2" data-s="-226.2"/></g><text x="60" y="57" text-anchor="middle">IC to</text><text x="60" y="74" text-anchor="middle">leader</text></svg>
-          <ul class="ix-legend" aria-hidden="true"><li><i style="background:#2C7A7B"></i>Identity</li><li><i style="background:#0F9F9A"></i>People skills</li><li><i style="background:#5FB3A6"></i>Application</li><li><i style="background:#A9D3CD"></i>Peer coaching</li></ul>
+          <svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-90 60 60)" fill="none" stroke-width="12" stroke-linecap="round"><circle cx="60" cy="60" r="48" stroke="#F0F0F4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#1B3A5C" stroke-dasharray="64 238" stroke-dashoffset="0" data-s="0"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#0F9F9A" stroke-dasharray="64 238" stroke-dashoffset="-75.4" data-s="-75.4"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#5FB3A6" stroke-dasharray="64 238" stroke-dashoffset="-150.8" data-s="-150.8"/><circle class="ix-arc" cx="60" cy="60" r="48" stroke="#B9D8E0" stroke-dasharray="64 238" stroke-dashoffset="-226.2" data-s="-226.2"/></g><text x="60" y="57" text-anchor="middle">IC to</text><text x="60" y="74" text-anchor="middle">leader</text></svg>
+          <ul class="ix-legend" aria-hidden="true"><li><i style="background:#1B3A5C"></i>Identity</li><li><i style="background:#0F9F9A"></i>People skills</li><li><i style="background:#5FB3A6"></i>Application</li><li><i style="background:#B9D8E0"></i>Peer coaching</li></ul>
         </div>
       </article>
       <article class="impact-card">
@@ -1023,7 +1023,7 @@ footer{background:transparent}
         <p>Designing connected learning across IC pathways, People Team programs, VP development, and leadership onboarding.</p>
         <div class="ix ix-net" data-ix="net" role="img" aria-label="5+">
           <div class="ix-num" style="color:var(--teal);--glow:rgba(15,159,154,.4)"><span class="ix-c" data-to="5">5</span>+</div>
-          <svg viewBox="0 0 150 90" aria-hidden="true"><line class="ix-ln" x1="75" y1="45" x2="20" y2="20"/><line class="ix-ln" x1="75" y1="45" x2="130" y2="18"/><line class="ix-ln" x1="75" y1="45" x2="25" y2="75"/><line class="ix-ln" x1="75" y1="45" x2="128" y2="72"/><circle class="ix-nd" cx="75" cy="45" r="11" fill="#0F9F9A"/><circle class="ix-nd" cx="20" cy="20" r="7" fill="#2C7A7B"/><circle class="ix-nd" cx="130" cy="18" r="7" fill="#5FB3A6"/><circle class="ix-nd" cx="25" cy="75" r="7" fill="#A9D3CD"/><circle class="ix-nd" cx="128" cy="72" r="7" fill="#2C7A7B"/></svg>
+          <svg viewBox="0 0 150 90" aria-hidden="true"><line class="ix-ln" x1="75" y1="45" x2="20" y2="20"/><line class="ix-ln" x1="75" y1="45" x2="130" y2="18"/><line class="ix-ln" x1="75" y1="45" x2="25" y2="75"/><line class="ix-ln" x1="75" y1="45" x2="128" y2="72"/><circle class="ix-nd" cx="75" cy="45" r="11" fill="#0F9F9A"/><circle class="ix-nd" cx="20" cy="20" r="7" fill="#1B3A5C"/><circle class="ix-nd" cx="130" cy="18" r="7" fill="#5FB3A6"/><circle class="ix-nd" cx="25" cy="75" r="7" fill="#B9D8E0"/><circle class="ix-nd" cx="128" cy="72" r="7" fill="#1B3A5C"/></svg>
         </div><div class="impact-caption">learning experiences co-designed with the L&amp;D Team</div>
       </article>
       <article class="impact-card">
@@ -1032,7 +1032,7 @@ footer{background:transparent}
         <h3>Enablement QA Frameworks</h3>
         <p>Standardized how support quality was taught and measured, connecting behaviour directly to business outcomes.</p>
         <div class="ix ix-gauge" data-ix="gauge">
-          <svg viewBox="0 0 150 86" role="img" aria-label="70%"><path d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#E3F1EF" stroke-width="13" stroke-linecap="round"/><path class="ix-g" d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#A9D3CD" stroke-width="13" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="56.55"/><text x="75" y="74" text-anchor="middle"><tspan class="ix-c" data-to="70">70</tspan>%</text></svg>
+          <svg viewBox="0 0 150 86" role="img" aria-label="70%"><path d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#E4EEF2" stroke-width="13" stroke-linecap="round"/><path class="ix-g" d="M15 78 A60 60 0 0 1 135 78" fill="none" stroke="#B9D8E0" stroke-width="13" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="56.55"/><text x="75" y="74" text-anchor="middle"><tspan class="ix-c" data-to="70">70</tspan>%</text></svg>
           <div class="impact-caption">increase in rubric quality through 25+ integrated feedback loops</div>
         </div>
       </article>
@@ -1089,7 +1089,7 @@ footer{background:transparent}
     </div>
   </div>
   <nav class="page-next" aria-label="Keep exploring">
-    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#2C7A7B" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#5FB3A6" onclick="showPage('coaching')"><span class="pn-k">Or</span><span class="pn-t">Coaching</span><span class="pn-d">How I coach and where to learn more</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#1B3A5C" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#5FB3A6" onclick="showPage('coaching')"><span class="pn-k">Or</span><span class="pn-t">Coaching</span><span class="pn-d">How I coach and where to learn more</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
   </nav>
 </section>
 
@@ -1107,12 +1107,12 @@ footer{background:transparent}
         <p>I design for engagement, relevance, and real-world application over passive content.</p>
         <div class="pm-heart">
           <div class="pm-ing">
-            <button type="button" aria-pressed="false" style="--c:#2C7A7B" onclick="pmIng(this)"><i></i>Real scenarios</button>
+            <button type="button" aria-pressed="false" style="--c:#1B3A5C" onclick="pmIng(this)"><i></i>Real scenarios</button>
             <button type="button" aria-pressed="false" style="--c:#0F9F9A" onclick="pmIng(this)"><i></i>Learner choice</button>
             <button type="button" aria-pressed="false" style="--c:#5FB3A6" onclick="pmIng(this)"><i></i>Practice over passive</button>
           </div>
           <div class="pm-hv">
-            <svg viewBox="0 0 120 110" aria-hidden="true"><defs><clipPath id="pmHc"><path d="M60 100 C20 74 6 52 6 34 C6 18 18 6 34 6 C46 6 55 13 60 22 C65 13 74 6 86 6 C102 6 114 18 114 34 C114 52 100 74 60 100Z"/></clipPath><linearGradient id="pmHg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2C7A7B"/><stop offset=".5" stop-color="#0F9F9A"/><stop offset=".8" stop-color="#5FB3A6"/><stop offset="1" stop-color="#A9D3CD"/></linearGradient></defs><path d="M60 100 C20 74 6 52 6 34 C6 18 18 6 34 6 C46 6 55 13 60 22 C65 13 74 6 86 6 C102 6 114 18 114 34 C114 52 100 74 60 100Z" fill="#F4F4F6" stroke="#E0E0E6" stroke-width="2"/><rect class="pm-fill" x="0" y="110" width="120" height="0" fill="url(#pmHg)" clip-path="url(#pmHc)"/></svg>
+            <svg viewBox="0 0 120 110" aria-hidden="true"><defs><clipPath id="pmHc"><path d="M60 100 C20 74 6 52 6 34 C6 18 18 6 34 6 C46 6 55 13 60 22 C65 13 74 6 86 6 C102 6 114 18 114 34 C114 52 100 74 60 100Z"/></clipPath><linearGradient id="pmHg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1B3A5C"/><stop offset=".5" stop-color="#0F9F9A"/><stop offset=".8" stop-color="#5FB3A6"/><stop offset="1" stop-color="#B9D8E0"/></linearGradient></defs><path d="M60 100 C20 74 6 52 6 34 C6 18 18 6 34 6 C46 6 55 13 60 22 C65 13 74 6 86 6 C102 6 114 18 114 34 C114 52 100 74 60 100Z" fill="#F4F4F6" stroke="#E0E0E6" stroke-width="2"/><rect class="pm-fill" x="0" y="110" width="120" height="0" fill="url(#pmHg)" clip-path="url(#pmHc)"/></svg>
             <p class="pm-hl" aria-live="polite">0 of 3</p>
           </div>
         </div>
@@ -1125,7 +1125,7 @@ footer{background:transparent}
         <p>Every program starts from a business goal and ends with evidence of impact.</p>
         <div class="pm-console" role="img" aria-label="From the business goal to evidence of impact: time to proficiency down; quality scores, manager confidence, and skill applied on the job up">
           <div class="pm-goal">Start with <b>the business goal</b></div>
-          <div class="pm-m"><span>Time to proficiency</span><div class="pm-bar"><b style="background:#2C7A7B;--w:72%"></b></div><span class="pm-ar" style="color:#2C7A7B">&darr;</span></div><div class="pm-m"><span>Quality scores</span><div class="pm-bar"><b style="background:#0F9F9A;--w:80%"></b></div><span class="pm-ar" style="color:#0F9F9A">&uarr;</span></div><div class="pm-m"><span>Manager confidence</span><div class="pm-bar"><b style="background:#5FB3A6;--w:68%"></b></div><span class="pm-ar" style="color:#5FB3A6">&uarr;</span></div><div class="pm-m"><span>Skill applied on the job</span><div class="pm-bar"><b style="background:#A9D3CD;--w:76%"></b></div><span class="pm-ar" style="color:#0B6E6A">&uarr;</span></div>
+          <div class="pm-m"><span>Time to proficiency</span><div class="pm-bar"><b style="background:#1B3A5C;--w:72%"></b></div><span class="pm-ar" style="color:#1B3A5C">&darr;</span></div><div class="pm-m"><span>Quality scores</span><div class="pm-bar"><b style="background:#0F9F9A;--w:80%"></b></div><span class="pm-ar" style="color:#0F9F9A">&uarr;</span></div><div class="pm-m"><span>Manager confidence</span><div class="pm-bar"><b style="background:#5FB3A6;--w:68%"></b></div><span class="pm-ar" style="color:#5FB3A6">&uarr;</span></div><div class="pm-m"><span>Skill applied on the job</span><div class="pm-bar"><b style="background:#B9D8E0;--w:76%"></b></div><span class="pm-ar" style="color:#1B3A5C">&uarr;</span></div>
           <div class="pm-stamp">&check; Evidence of impact</div>
         </div>
         <div class="card-tags"><span class="card-tag">Needs analysis</span><span class="card-tag">Metrics by design</span><span class="card-tag">Behaviour change</span></div>
@@ -1262,7 +1262,7 @@ footer{background:transparent}
     </div>
   </div>
   <nav class="page-next" aria-label="Keep exploring">
-    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#2C7A7B" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#A9D3CD" onclick="showPage('contact')"><span class="pn-k">Or</span><span class="pn-t">Contact</span><span class="pn-d">Start a conversation with me</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#1B3A5C" onclick="showPage('work')"><span class="pn-k">Next</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#B9D8E0" onclick="showPage('contact')"><span class="pn-k">Or</span><span class="pn-t">Contact</span><span class="pn-d">Start a conversation with me</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
   </nav>
 </section>
 
@@ -1308,7 +1308,7 @@ footer{background:transparent}
     </div>
   </div>
   <nav class="page-next" aria-label="Keep exploring">
-    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#2C7A7B" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
+    <div class="pn-inner"><div class="eyebrow c">Keep exploring</div><h2>Where to <span class="grad">next?</span></h2><div class="pn-row"><button type="button" class="pn-tile" style="--c:#0F9F9A" onclick="showPage('about')"><span class="pn-k">Next</span><span class="pn-t">About me</span><span class="pn-d">My story, approach and reading list</span><span class="pn-a" aria-hidden="true">&rarr;</span></button><button type="button" class="pn-tile" style="--c:#1B3A5C" onclick="showPage('work')"><span class="pn-k">Or</span><span class="pn-t">My work</span><span class="pn-d">Programs, outcomes and how I design them</span><span class="pn-a" aria-hidden="true">&rarr;</span></button></div></div>
   </nav>
 </section>
 
@@ -1325,12 +1325,12 @@ footer{background:transparent}
 
 <script>
 const TOOL_CHOICES=[
- {id:'clarity',label:'Inner Critic Reframe',sub:'Gain clarity when your thoughts feel tangled or noisy',icon:'?',color:'#2C7A7B',soft:'rgba(15,159,154,.09)',tool:'Inner Critic Reframe',href:'tool-inner-critic.html',copy:'This tool can help you separate a harsh inner voice from the useful information underneath it, then shape a response that feels grounded and believable.',why:'It can turn mental noise into a clearer, kinder perspective without forcing positivity.',time:'About 5 minutes'},
+ {id:'clarity',label:'Inner Critic Reframe',sub:'Gain clarity when your thoughts feel tangled or noisy',icon:'?',color:'#1B3A5C',soft:'rgba(15,159,154,.09)',tool:'Inner Critic Reframe',href:'tool-inner-critic.html',copy:'This tool can help you separate a harsh inner voice from the useful information underneath it, then shape a response that feels grounded and believable.',why:'It can turn mental noise into a clearer, kinder perspective without forcing positivity.',time:'About 5 minutes'},
  {id:'decision',label:'Decision Compass',sub:'Find direction when more than one option is pulling at you',icon:'↗',color:'#215d82',soft:'rgba(33,93,130,.09)',tool:'Decision Compass',href:'tool-decision-compass.html',copy:'This tool can help you compare your options against the values that matter most and notice what the pattern reveals.',why:'It gives the decision structure while leaving room for intuition and emotion.',time:'About 8 minutes'},
  {id:'energy',label:'Energy Audit',sub:'Understand what is energizing you and what is draining you',icon:'~',color:'#0f9f9a',soft:'rgba(15,159,154,.09)',tool:'Energy Audit',href:'tool-energy.html',copy:'This tool can help you sort what gives you energy, drains it, or feels neutral, then identify patterns you can act on.',why:'It turns a vague feeling of depletion into specific information you can use.',time:'About 7 minutes'},
  {id:'values',label:'Values Sort',sub:'Reconnect with what matters most to you',icon:'◆',color:'#5FB3A6',soft:'rgba(15,159,154,.09)',tool:'Values Sort',href:'tool-values.html',copy:'This tool can help you explore thirty values, narrow them to five, and notice which ones feel most essential to who you are now.',why:'Values offer a steadier reference point when expectations and outside opinions feel loud.',time:'About 10 minutes'},
  {id:'balance',label:'Wheel of Life',sub:'See a broader picture of balance across your life',icon:'○',color:'#668776',soft:'rgba(102,135,118,.1)',tool:'Wheel of Life',href:'tool-wheel.html',copy:'This tool can help you reflect on eight areas of your life and see where attention, satisfaction, or change may be most needed.',why:'It gives you a whole-life snapshot instead of focusing only on the loudest problem.',time:'About 6 minutes'},
- {id:'action',label:'Goal Canvas',sub:'Turn an intention into a practical first step',icon:'+',color:'#0B6E6A',soft:'rgba(15,159,154,.11)',tool:'Goal Canvas',href:'tool-goal-canvas.html',copy:'This tool can help you turn an intention into a grounded goal, name likely obstacles, and choose one concrete next step.',why:'It keeps momentum practical and small enough to begin.',time:'About 8 minutes'}
+ {id:'action',label:'Goal Canvas',sub:'Turn an intention into a practical first step',icon:'+',color:'#1B3A5C',soft:'rgba(15,159,154,.11)',tool:'Goal Canvas',href:'tool-goal-canvas.html',copy:'This tool can help you turn an intention into a grounded goal, name likely obstacles, and choose one concrete next step.',why:'It keeps momentum practical and small enough to begin.',time:'About 8 minutes'}
 ];
 const TOOL_TILE_ITEMS=[
  {name:'Inner Critic Reframe',color:'blue',href:'tool-inner-critic.html',icon:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><path d="M12 17h.01"/>',sub:'Gain clarity when your thoughts feel tangled or noisy',desc:"A guided reframe for the moments your inner critic gets loud. Walk through a short prompt sequence that separates the noise from what is actually true."},
@@ -1642,7 +1642,7 @@ const AI_FLOW_STAGES=[
  {name:'Enable',color:'blue',icon:'<path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>',title:'Help people use AI well',desc:'I design practical AI literacy and upskilling experiences for leaders and individual contributors that build confidence and discernment.',outputs:['AI literacy','Leader upskilling','IC upskilling','Responsible workflows']},
  {name:'Measure',color:'teal',icon:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',title:'Learn from what happens next',desc:'I use feedback and data to understand adoption, behaviour change, and where the experience needs to evolve.',outputs:['Feedback','Adoption','Behaviour change','Iteration']}
 ];
-const AI_RING_HEX={blue:'#2C7A7B',green:'#5FB3A6',yellow:'#2C7A7B',teal:'#0F9F9A'};
+const AI_RING_HEX={blue:'#1B3A5C',green:'#5FB3A6',yellow:'#1B3A5C',teal:'#0F9F9A'};
 let activeAiStage=null;
 function aiRingBadge(stage,size){
  const radius=size/2-6;
@@ -1768,7 +1768,7 @@ function buildCoachArc(){
  carousel.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateCoachCarouselDots();ticking=false})},{passive:true});
  const svgEl=document.getElementById('coachArcSvg');
  if(svgEl&&!document.getElementById('coachArcProgress')){
-  svgEl.insertAdjacentHTML('afterbegin','<defs><linearGradient id="coachArcGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2C7A7B"/><stop offset=".5" stop-color="#0F9F9A"/><stop offset="1" stop-color="#5FB3A6"/></linearGradient></defs>');
+  svgEl.insertAdjacentHTML('afterbegin','<defs><linearGradient id="coachArcGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1B3A5C"/><stop offset=".5" stop-color="#0F9F9A"/><stop offset="1" stop-color="#5FB3A6"/></linearGradient></defs>');
   const prog=document.createElementNS('http://www.w3.org/2000/svg','path');
   prog.id='coachArcProgress';prog.setAttribute('fill','none');prog.setAttribute('stroke','url(#coachArcGrad)');prog.setAttribute('stroke-width','3');prog.setAttribute('stroke-linecap','round');
   svgEl.appendChild(prog);
@@ -1892,7 +1892,7 @@ document.addEventListener('keydown',e=>{
 // ===== Cinematic site touches =====
 (function(){
  const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const GRAD='<defs><linearGradient id="%ID%" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2C7A7B"/><stop offset=".46" stop-color="#0F9F9A"/><stop offset=".78" stop-color="#5FB3A6"/><stop offset="1" stop-color="#A9D3CD"/></linearGradient></defs>';
+ const GRAD='<defs><linearGradient id="%ID%" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset=".46" stop-color="#0F9F9A"/><stop offset=".78" stop-color="#5FB3A6"/><stop offset="1" stop-color="#B9D8E0"/></linearGradient></defs>';
 
  // 1 · hero: split words, draw ring
  const h1=document.querySelector('.hero h1');
@@ -1988,7 +1988,7 @@ document.addEventListener('keydown',e=>{
  // 7 · frameworks deck
  const unit=document.getElementById('frameworkUnit');
  if(unit && window.FRAMEWORK_ITEMS!==undefined || (unit && typeof FRAMEWORK_ITEMS!=='undefined')){
-  const COL={blue:'#2C7A7B',green:'#5FB3A6',yellow:'#3E8F84',teal:'#0F9F9A'};
+  const COL={blue:'#1B3A5C',green:'#5FB3A6',yellow:'#2A5A7E',teal:'#0F9F9A'};
   const items=FRAMEWORK_ITEMS;
   unit.innerHTML='<div class="fw-deck" id="fwDeck"></div><p class="fw-deck-note">Tap a card to turn it over.</p>';
   const deck=document.getElementById('fwDeck');
