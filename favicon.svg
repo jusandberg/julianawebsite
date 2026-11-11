@@ -2,13 +2,11 @@
   <title id="faviconTitle">Juliana Dos Santos</title>
   <defs>
     <linearGradient id="faviconGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4285F4"/>
-      <stop offset="0.48" stop-color="#0F9F9A"/>
-      <stop offset="0.8" stop-color="#34A853"/>
-      <stop offset="1" stop-color="#FBBC05"/>
+      <stop offset="0" stop-color="#1B3A5C"/>
+      <stop offset="1" stop-color="#0F9F9A"/>
     </linearGradient>
   </defs>
   <circle cx="32" cy="32" r="28" fill="none" stroke="url(#faviconGradient)" stroke-width="6" stroke-linecap="round" stroke-dasharray="140 36" transform="rotate(-42 32 32)"/>
   <text x="32" y="43" fill="#1A1A1C" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="850" text-anchor="middle">J</text>
-  <circle cx="54" cy="9" r="4.5" fill="#FBBC05"/>
+  <circle cx="54" cy="9" r="4.5" fill="#0F9F9A"/>
 </svg>
