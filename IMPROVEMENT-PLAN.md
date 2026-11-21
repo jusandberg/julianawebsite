@@ -4,7 +4,7 @@ Based on a review of the repo as of the Nov 13, 2026 commit (gradient accents me
 Tick items off as they're done.
 
 ## 1. Fix what's broken or unfinished
-- [ ] **Rebuild `course-emotional-intelligence.html`.** It's 390 KB, its page title is literally "Bundled Page",
+- [x] **Rebuild `course-emotional-intelligence.html`.** It's 390 KB, its page title is literally "Bundled Page",
       and it has no `lang` attribute, so it was exported from another tool. Rebuild it in the same frame as
       `course-radical-candor.html` and `course-eq-leaders.html`, with interactive activities in place of the
       videos, as an intro to the EQ wheel. Give it a real title and meta description.
