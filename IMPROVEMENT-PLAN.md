@@ -18,10 +18,12 @@ Tick items off as they're done.
       and meta description, then add it to the work samples.
 - [ ] **Rebuild `course-assessments.html`.** Same as SAM: shared course frame, real title and meta description,
       then add it to the work samples.
-- [ ] **Check the tools links.** `page-nav.js` sends tool pages back to `index.html#resources`, but there is no
+- [x] **Check the tools links.** `page-nav.js` sends tool pages back to `index.html#resources`, but there is no
       `#resources` section; `index.html` quietly remaps it to `#coaching`. Point it at the real section, and
       confirm the tools are still reachable from the site now that Coaching points to theumethod.ca.
       If the tools now live on theumethod.ca, decide whether they stay here at all.
+      Decided: the tools live on theumethod.ca. The `tool-*.html` pages here now forward there, `page-nav.js`
+      and the unused tool code in `index.html` are removed.
 
 ## 2. Consistency
 - [ ] Make every page's `<title>` follow one pattern, e.g. `Page name · Juliana Dos Santos`
