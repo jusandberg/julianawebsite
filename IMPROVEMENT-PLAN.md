@@ -8,7 +8,7 @@ Tick items off as they're done.
       and it has no `lang` attribute, so it was exported from another tool. Rebuild it in the same frame as
       `course-radical-candor.html` and `course-eq-leaders.html`, with interactive activities in place of the
       videos, as an intro to the EQ wheel. Give it a real title and meta description.
-- [ ] **Clean up course sample backgrounds.** `course-radical-candor.html` and `course-eq-leaders.html` still carry
+- [x] **Clean up course sample backgrounds.** `course-radical-candor.html` and `course-eq-leaders.html` still carry
       a dark "night" theme and an off-white `#F7F8FA` layer underneath the final white override. Confirm they
       always open on plain white, then remove the leftover dark and grey background rules.
 - [ ] **Decide on the orphan pages.** `course-eq-leaders.html`, `course-sam.html` and `course-assessments.html`
