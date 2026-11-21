@@ -11,8 +11,13 @@ Tick items off as they're done.
 - [x] **Clean up course sample backgrounds.** `course-radical-candor.html` and `course-eq-leaders.html` still carry
       a dark "night" theme and an off-white `#F7F8FA` layer underneath the final white override. Confirm they
       always open on plain white, then remove the leftover dark and grey background rules.
-- [ ] **Decide on the orphan pages.** `course-eq-leaders.html`, `course-sam.html` and `course-assessments.html`
+- [x] **Decide on the orphan pages.** `course-eq-leaders.html`, `course-sam.html` and `course-assessments.html`
       aren't linked from `index.html`. Either add them to the work samples or remove them (ask Juliana first).
+      Decided: EQ for New Managers is added to the work samples. SAM and Assessments get rebuilt first (below).
+- [ ] **Rebuild `course-sam.html`.** Rebuild it in the shared course frame (like the EI course) with a real title
+      and meta description, then add it to the work samples.
+- [ ] **Rebuild `course-assessments.html`.** Same as SAM: shared course frame, real title and meta description,
+      then add it to the work samples.
 - [ ] **Check the tools links.** `page-nav.js` sends tool pages back to `index.html#resources`, but there is no
       `#resources` section; `index.html` quietly remaps it to `#coaching`. Point it at the real section, and
       confirm the tools are still reachable from the site now that Coaching points to theumethod.ca.
