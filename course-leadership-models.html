@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leadership Models · Juliana Dos Santos</title>
+<meta name="description" content="A five-minute zoom map by Juliana Dos Santos of the leadership models most leadership programs are built on, from servant leadership to Lencioni and Situational Leadership.">
+<meta property="og:title" content="Leadership Models · Juliana Dos Santos">
+<meta property="og:description" content="The leadership models most programs are built on, in a five-minute zoom map.">
+<meta property="og:image" content="https://www.julianadossantos.ca/og-image.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="./favicon.svg?v=6" type="image/svg+xml">
+<link rel="icon" href="./favicon.ico?v=5" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A5C; --teal:#0F9F9A; --mid:#2A5A7E; --slate:#5C7A99; --line:#C9D5E1; --faint:#E7ECF2; --soft:#EEF3F8;
+  --ink:#1A2B3F; --body:#3A4F66;
+  --grad:linear-gradient(90deg,#1B3A5C,#0F9F9A);
+  --font:Inter,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:#fff;color:var(--ink);font-family:var(--font);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ---------- viewport + world ---------- */
+#viewport{position:fixed;inset:0;overflow:hidden;cursor:grab;touch-action:none;background:#fff}
+#world{position:absolute;left:0;top:0;transform-origin:0 0}
+#rings{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+#rings .ring{fill:none;stroke:var(--faint);stroke-width:6}
+#rings .spoke{stroke:var(--faint);stroke-width:4}
+#rings .route-live{fill:none;stroke:var(--teal);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .8s}
+body.overview #rings .route-live{opacity:.55}
+
+/* ---------- frames ---------- */
+.frame{position:absolute;background:transparent;isolation:isolate;transition:opacity 1s ease}
+body:not(.overview) .frame:not(.active){opacity:.12}
+/* text comes into focus as the camera lands */
+.rv > *{opacity:0;transform:translateY(30px);transition:opacity .8s, transform .9s cubic-bezier(.2,.7,.2,1)}
+.frame.active .rv > *, body.overview .rv > *{opacity:1;transform:none}
+.rv > *:nth-child(1){transition-delay:.55s}.rv > *:nth-child(2){transition-delay:.7s}.rv > *:nth-child(3){transition-delay:.85s}
+.rv > *:nth-child(4){transition-delay:1s}.rv > *:nth-child(5){transition-delay:1.15s}.rv > *:nth-child(6){transition-delay:1.3s}
+.bignum{position:absolute;left:-150px;top:-330px;font-size:720px;font-weight:800;line-height:1;letter-spacing:-.06em;color:transparent;
+  -webkit-text-stroke:3px #DCE4EC;pointer-events:none;user-select:none;z-index:-1}
+.frame .pad{position:absolute;inset:0;padding:80px 90px;display:flex;flex-direction:column}
+body.overview .frame{cursor:zoom-in}
+body.overview .frame:hover{opacity:.8}
+
+.eyebrow{font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);flex:none}
+.h1{font-weight:800;letter-spacing:-.035em;line-height:1.02;margin:0;color:var(--navy);text-wrap:balance}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g-self{--gc:var(--navy)} .g-biz{--gc:var(--teal)} .g-team{--gc:var(--mid)}
+
+/* title */
+#f-title .pad{flex-direction:row;align-items:center;gap:40px;padding:90px 110px}
+#f-title .tx{flex:1}
+#f-title .h1{font-size:86px;margin:28px 0 36px}
+#f-title .h1 span{display:block;opacity:0;transform:translateY(24px);transition:opacity .7s, transform .7s}
+#f-title .h1 span:nth-child(2){transition-delay:.25s} #f-title .h1 span:nth-child(3){transition-delay:.5s}
+body.s-title #f-title .h1 span, body.overview #f-title .h1 span{opacity:1;transform:none}
+#f-title .lede{font-size:32px;line-height:1.45;color:var(--body);max-width:30ch;margin:0 0 40px}
+.pills{display:flex;gap:14px;flex-wrap:wrap}
+.pill{font-size:22px;font-weight:600;color:var(--navy);border:2px solid var(--line);border-radius:999px;padding:10px 22px}
+.orbit{width:480px;height:480px;flex:none}
+.orbit .o-ring{fill:none;stroke:var(--line);stroke-width:3}
+.orbit .o-core{fill:var(--navy)}
+.orbit .o-spin{transform-origin:280px 280px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* hub */
+#f-hub .hubhead{position:absolute;left:96px;top:80px;width:900px}
+#f-hub .hubhead .h1{font-size:80px;margin-top:18px}
+#f-hub .hubhead p{font-size:36px;color:var(--body);line-height:1.45;margin:22px 0 0;max-width:30ch;opacity:0;transition:opacity .8s .3s}
+body.s-hub-b #f-hub .hubhead p, body.overview #f-hub .hubhead p{opacity:1}
+#hubLinks{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#hubLinks line{stroke:var(--line);stroke-width:4;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .8s calc(.9s + var(--k)*.12s)}
+body.s-hub-b #hubLinks line, body.overview #hubLinks line{stroke-dashoffset:0}
+.hub{position:absolute;left:1150px;top:820px;width:400px;height:400px;margin:-200px 0 0 -200px;border-radius:50%;
+  background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;font-size:44px;font-weight:800;line-height:1.15;letter-spacing:-.02em;
+  box-shadow:0 0 0 18px rgba(15,159,154,.12)}
+.chip{position:absolute;transform:translate(-50%,-50%) scale(.6);opacity:0;background:var(--gc);color:#fff;border-radius:999px;
+  padding:16px 34px 20px;text-align:center;white-space:nowrap;cursor:pointer;border:none;font-family:var(--font);
+  transition:opacity .5s calc(1.1s + var(--k)*.14s), transform .6s cubic-bezier(.34,1.8,.64,1) calc(1.1s + var(--k)*.14s)}
+.chip small{display:block;font-size:20px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:4px}
+.chip b{font-size:38px;font-weight:700}
+body.s-hub-b .chip, body.overview .chip{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.chip:hover{filter:brightness(1.12)}
+
+/* ---------- model frames ---------- */
+.mf .pad{flex-direction:row;gap:50px}
+.mf .txt{width:820px;flex:none;display:flex;flex-direction:column}
+.mf .eyebrow{color:var(--gc)}
+.mf .h1{font-size:84px;margin:18px 0 0}
+.mf .src{font-size:22px;font-weight:500;color:var(--slate);margin-top:12px}
+.mf .def{font-size:34px;line-height:1.42;color:var(--body);margin:22px 0 0}
+.mf .lab{font-size:19px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.mf .pattern{margin-top:30px}
+.mf .pattern p{font-size:31px;line-height:1.4;font-weight:600;color:var(--navy);margin:0}
+.mf .ask{margin-top:auto;padding-left:28px;border-left:6px solid var(--teal)}
+.mf .ask .lab{color:var(--teal)}
+.mf .ask p{font-size:33px;line-height:1.38;font-weight:700;color:var(--ink);margin:0}
+.mf .vis{flex:1;position:relative}
+.stage{position:absolute;left:0;top:50%;width:760px;height:760px;margin-top:-380px}
+.stage > svg{position:absolute;inset:0;width:760px;height:760px;overflow:visible}
+.stage > svg.clip{overflow:hidden}
+.draw{stroke-dasharray:1;stroke-dashoffset:1}
+
+/* 1 servant leadership */
+.sv-tri{transform-box:view-box;transform-origin:380px 370px;transition:transform 1.3s cubic-bezier(.6,0,.25,1) .8s}
+body.s-sv-b .sv-tri, body.overview .sv-tri{transform:rotate(180deg)}
+.sv-lab{position:absolute;left:180px;width:400px;text-align:center;font-size:28px;font-weight:800;color:#fff;transition:top 1.3s cubic-bezier(.6,0,.25,1) .8s}
+.sv-you{top:212px} .sv-team{top:352px} .sv-cust{top:522px}
+body.s-sv-b .sv-you, body.overview .sv-you{top:522px}
+body.s-sv-b .sv-cust, body.overview .sv-cust{top:180px}
+.sv-cap{position:absolute;left:0;width:760px;top:680px;text-align:center;font-size:26px;font-weight:700;transition:opacity .6s}
+.sv-cap.c1{color:var(--slate)} .sv-cap.c2{color:var(--teal);opacity:0;transition-delay:1.9s}
+body.s-sv-b .sv-cap.c1, body.overview .sv-cap.c1{opacity:0;transition-delay:.4s}
+body.s-sv-b .sv-cap.c2, body.overview .sv-cap.c2{opacity:1}
+
+/* 2 six leadership styles */
+.gs-arc{fill:none;stroke:var(--line);stroke-width:34;transition:stroke .5s}
+.gs-arc.habit{stroke:var(--slate)}
+body.s-gs-b .gs-arc.habit, body.overview .gs-arc.habit{stroke:var(--line);transition-delay:.9s}
+body.s-gs-b .gs-arc.goal, body.overview .gs-arc.goal{stroke:var(--teal);transition-delay:1.9s}
+.gs-needle{transform-box:view-box;transform-origin:380px 380px;transform:rotate(210deg);transition:transform 1.3s cubic-bezier(.5,-0.3,.3,1.4) .9s}
+body.s-gs-b .gs-needle, body.overview .gs-needle{transform:rotate(90deg)}
+.gs-needle line{stroke:var(--navy);stroke-width:10;stroke-linecap:round}
+.gs-hub{fill:var(--navy)}
+.gs-name{position:absolute;transform:translate(-50%,-50%);font-size:24px;font-weight:700;color:var(--slate);white-space:nowrap;transition:color .5s}
+.gs-name.habit{color:var(--navy)}
+body.s-gs-b .gs-name.habit, body.overview .gs-name.habit{color:var(--slate);transition-delay:.9s}
+body.s-gs-b .gs-name.goal, body.overview .gs-name.goal{color:var(--teal);transition-delay:1.9s}
+.gs-say{position:absolute;left:260px;width:240px;top:226px;text-align:center;transition:opacity .5s}
+.gs-say b{display:block;font-size:26px;font-weight:800;color:var(--navy)}
+.gs-say span{display:block;font-size:22px;color:var(--body);margin-top:4px}
+.gs-say.c2{opacity:0} .gs-say.c2 b{color:var(--teal)}
+body.s-gs-b .gs-say.c1, body.overview .gs-say.c1{opacity:0;transition-delay:.7s}
+body.s-gs-b .gs-say.c2, body.overview .gs-say.c2{opacity:1;transition-delay:2s}
+.gs-tag{position:absolute;left:0;width:760px;top:735px;text-align:center;font-size:24px;font-weight:700;color:var(--slate)}
+
+/* 3 five practices */
+.fpx-rail{stroke:var(--line);stroke-width:5}
+.fpx-fill{stroke:var(--navy);stroke-width:5;transition:stroke-dashoffset 2.4s ease-in-out .8s}
+body.s-fpx .fpx-fill, body.overview .fpx-fill{stroke-dashoffset:0}
+.fpx-row{position:absolute;left:30px;width:720px;display:flex;gap:30px;align-items:flex-start;opacity:0;transform:translateX(24px);
+  transition:opacity .6s calc(.9s + var(--i)*.45s), transform .6s calc(.9s + var(--i)*.45s)}
+body.s-fpx .fpx-row, body.overview .fpx-row{opacity:1;transform:none}
+.fpx-dot{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;border:5px solid var(--navy);display:grid;place-items:center;font-size:18px;font-weight:800;color:var(--navy);margin-top:2px}
+.fpx-row h4{margin:0;font-size:30px;font-weight:800;color:var(--navy)}
+.fpx-row p{margin:4px 0 0;font-size:23px;line-height:1.35;color:var(--body)}
+
+/* 4 situational leadership */
+.sit-ax{stroke:var(--line);stroke-width:4;stroke-linecap:round}
+.sit-mid{stroke:var(--faint);stroke-width:3}
+.sit-axt{font-size:21px;font-weight:700;fill:var(--slate)}
+.sit-curve{fill:none;stroke:var(--line);stroke-width:6;stroke-linecap:round}
+.sit-live{fill:none;stroke:var(--teal);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 3s linear .9s}
+body.s-sit-b .sit-live, body.overview .sit-live{stroke-dashoffset:0}
+.sit-dot{fill:var(--teal);opacity:0;offset-path:path("M700 600 C 620 60, 160 60, 80 600");offset-rotate:0deg}
+body.s-sit-b .sit-dot{animation:sitgo 3s linear .9s forwards}
+@keyframes sitgo{0%{opacity:1;offset-distance:0%}100%{opacity:1;offset-distance:100%}}
+.sit-q{position:absolute;width:250px;margin-left:-125px;text-align:center;transition:opacity .5s}
+.sit-q b{display:block;font-size:17px;font-weight:800;letter-spacing:.12em;color:var(--slate)}
+.sit-q h4{margin:2px 0 0;font-size:30px;font-weight:800;color:var(--navy);transition:color .4s}
+.sit-q p{margin:4px 0 0;font-size:20px;line-height:1.3;color:var(--body)}
+body.s-sit-b .sit-q h4, body.overview .sit-q h4{color:var(--teal);transition-delay:calc(1s + var(--k)*.75s)}
+.sit-grow{position:absolute;left:80px;width:620px;top:690px;text-align:center;font-size:22px;font-weight:700;color:var(--teal);opacity:0;transition:opacity .6s 1s}
+body.s-sit-b .sit-grow, body.overview .sit-grow{opacity:1}
+
+/* 5 GROW */
+.gr-road{fill:none;stroke:var(--line);stroke-width:8;stroke-linecap:round}
+.gr-col{position:absolute;top:170px;width:180px;margin-left:-90px;text-align:center}
+.gr-col .gr-l{font-size:110px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:3px var(--line);transition:color .5s, -webkit-text-stroke-color .5s}
+.gr-col .gr-n{font-size:22px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:6px}
+.gr-col .gr-pin{width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid var(--line);margin:22px auto 26px;transition:border-color .5s, background .5s}
+.gr-col p{margin:0;font-size:24px;line-height:1.32;font-weight:600;color:var(--navy);opacity:0;transform:translateY(14px);transition:opacity .5s, transform .5s}
+.gr-col.on1, .gr-col.on2{--d:calc(1s + var(--i)*.5s)}
+body.s-gr-a .gr-col.on1 .gr-l, body.s-gr-b .gr-col .gr-l, body.overview .gr-col .gr-l{color:var(--teal);-webkit-text-stroke-color:var(--teal);transition-delay:var(--d)}
+body.s-gr-a .gr-col.on1 .gr-pin, body.s-gr-b .gr-col .gr-pin, body.overview .gr-col .gr-pin{border-color:var(--teal);background:var(--teal);transition-delay:var(--d)}
+body.s-gr-a .gr-col.on1 p, body.s-gr-b .gr-col p, body.overview .gr-col p{opacity:1;transform:none;transition-delay:calc(var(--d) + .2s)}
+body.s-gr-b .gr-col.on1{--d:0s}
+.gr-cap{position:absolute;left:0;width:760px;top:600px;text-align:center;font-size:27px;font-weight:800;color:var(--teal);opacity:0;transition:opacity .6s 2.4s}
+body.s-gr-b .gr-cap, body.overview .gr-cap{opacity:1}
+
+/* 6 five dysfunctions */
+.lc-layer{transform-box:fill-box;transform-origin:center bottom;opacity:0;transform:translateY(30px);
+  transition:opacity .5s calc(.9s + var(--i)*.3s), transform .6s calc(.9s + var(--i)*.3s), fill .5s}
+body.s-lc-a .lc-layer, body.s-lc-b .lc-layer, body.overview .lc-layer{opacity:1;transform:none}
+body.s-lc-b .lc-layer{transition-delay:0s}
+body.s-lc-b .lc-layer.up, body.overview .lc-layer.up{opacity:.35}
+body.s-lc-b .lc-layer.base, body.overview .lc-layer.base{fill:var(--slate)}
+.lc-name{position:absolute;left:130px;width:500px;text-align:center;font-size:27px;font-weight:800;color:#fff;opacity:0;transition:opacity .5s calc(1.1s + var(--i)*.3s)}
+body.s-lc-a .lc-name, body.s-lc-b .lc-name, body.overview .lc-name{opacity:1}
+body.s-lc-b .lc-name{transition-delay:0s}
+.lc-name .dys{display:none}
+body.s-lc-b .lc-name .dys, body.overview .lc-name .dys{display:inline}
+body.s-lc-b .lc-name.up, body.overview .lc-name.up{color:var(--navy)}
+body.s-lc-b .lc-name .pos, body.overview .lc-name .pos{display:none}
+.lc-crack{fill:none;stroke:#fff;stroke-width:5;stroke-linejoin:round;transition:stroke-dashoffset .8s 1s}
+body.s-lc-b .lc-crack, body.overview .lc-crack{stroke-dashoffset:0}
+.lc-cap{position:absolute;left:0;width:760px;top:690px;text-align:center;font-size:26px;font-weight:700;transition:opacity .6s}
+.lc-cap.c1{color:var(--slate);opacity:0;transition-delay:2.6s}
+body.s-lc-a .lc-cap.c1{opacity:1}
+.lc-cap.c2{color:var(--mid);opacity:0;transition-delay:1.6s}
+body.s-lc-b .lc-cap.c2, body.overview .lc-cap.c2{opacity:1}
+
+
+/* golden circle */
+.gc-ring{transition:fill .6s}
+.gc-why{fill:var(--navy);transition:fill .6s 1.6s}
+body.s-gc-b .gc-why, body.overview .gc-why{fill:var(--teal)}
+.gc-w{position:absolute;width:300px;margin-left:-150px;text-align:center}
+.gc-w h4{margin:0;font-size:32px;font-weight:800;color:var(--navy)}
+.gc-w p{margin:2px 0 0;font-size:20px;color:var(--body)}
+.gc-w.why h4{color:#fff} .gc-w.why p{color:rgba(255,255,255,.85)}
+.gc-arrow{fill:none;stroke:var(--slate);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1s .9s, opacity .4s}
+.gc-head{fill:var(--slate);opacity:0;transition:opacity .3s 1.8s}
+body.s-gc-a .gc-in, body.overview .gc-in{stroke-dashoffset:0}
+body.s-gc-a .gc-in-h{opacity:1}
+body.s-gc-b .gc-in{opacity:0;transition-delay:0s}
+.gc-out{stroke:var(--teal)} .gc-out-h{fill:var(--teal);transition-delay:2.6s}
+body.s-gc-b .gc-out, body.overview .gc-out{stroke-dashoffset:0;transition-delay:1.7s}
+body.s-gc-b .gc-out-h, body.overview .gc-out-h{opacity:1}
+.gc-cap{position:absolute;left:0;width:760px;top:690px;text-align:center;font-size:26px;font-weight:700;transition:opacity .6s}
+.gc-cap.c1{color:var(--slate);opacity:0;transition-delay:1.9s} body.s-gc-a .gc-cap.c1{opacity:1}
+.gc-cap.c2{color:var(--teal);opacity:0;transition-delay:2.7s} body.s-gc-b .gc-cap.c2, body.overview .gc-cap.c2{opacity:1}
+
+/* kotter */
+.kt-stair{fill:none;stroke:var(--line);stroke-width:7;stroke-linejoin:round;stroke-linecap:round}
+.kt-live{fill:none;stroke:var(--teal);stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+.kt-l1{transition:stroke-dashoffset 1.6s ease-in-out .9s} .kt-l2{transition:stroke-dashoffset 1.6s ease-in-out .8s}
+body.s-kt-a .kt-l1, body.s-kt-b .kt-l1, body.overview .kt-l1{stroke-dashoffset:0}
+body.s-kt-b .kt-l1{transition-delay:0s}
+body.s-kt-b .kt-l2, body.overview .kt-l2{stroke-dashoffset:0}
+.kt-colh{position:absolute;top:440px;font-size:19px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.kt-it{position:absolute;width:350px;display:flex;gap:12px;align-items:baseline;font-size:24px;font-weight:600;color:var(--slate);transition:color .5s var(--d)}
+.kt-it b{font-size:22px;font-weight:800;width:22px;flex:none}
+body.s-kt-a .kt-it.p1, body.s-kt-b .kt-it, body.overview .kt-it{color:var(--navy)}
+body.s-kt-a .kt-it.p1 b, body.s-kt-b .kt-it b, body.overview .kt-it b{color:var(--teal)}
+body.s-kt-b .kt-it.p1{transition-delay:0s}
+
+/* 7 team stages */
+.tk-ax{stroke:var(--line);stroke-width:4;stroke-linecap:round}
+.tk-axt{font-size:21px;font-weight:700;fill:var(--slate)}
+.tk-p1,.tk-p2{fill:none;stroke:var(--mid);stroke-width:9;stroke-linecap:round}
+.tk-p1{transition:stroke-dashoffset 1.6s ease-in-out .9s} .tk-p2{transition:stroke-dashoffset 1.6s ease-in-out .7s}
+body.s-tk-a .tk-p1, body.s-tk-b .tk-p1, body.overview .tk-p1{stroke-dashoffset:0}
+body.s-tk-b .tk-p1{transition-delay:0s}
+body.s-tk-b .tk-p2, body.overview .tk-p2{stroke-dashoffset:0}
+.tk-pt{fill:#fff;stroke:var(--mid);stroke-width:6;opacity:0;transition:opacity .4s var(--d)}
+.tk-st{position:absolute;width:230px;opacity:0;transform:translateY(12px);transition:opacity .5s var(--d), transform .5s var(--d)}
+.tk-st h4{margin:0;font-size:29px;font-weight:800;color:var(--navy)}
+.tk-st p{margin:2px 0 0;font-size:21px;line-height:1.3;color:var(--body)}
+.tk-st.stm h4{color:var(--mid)}
+body.s-tk-a .tk-a1, body.s-tk-b .tk-a1, body.overview .tk-a1, body.s-tk-b .tk-b1, body.overview .tk-b1{opacity:1;transform:none}
+body.s-tk-b .tk-a1{transition-delay:0s}
+
+/* closing guide */
+#f-close .h1{font-size:70px;margin:12px 0 22px}
+.rows{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:28px;padding:11px 0;border-top:2px solid var(--faint);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;
+  font-family:var(--font);text-align:left;width:100%;opacity:0;transform:translateX(-20px);transition:opacity .5s calc(.9s + var(--i)*.12s), transform .5s calc(.9s + var(--i)*.12s)}
+.row:last-child{border-bottom:2px solid var(--faint)}
+.row .w{flex:1;font-size:29px;font-weight:600;color:var(--body)}
+.row .m{flex:none;background:var(--gc);color:#fff;border-radius:999px;padding:9px 24px;font-size:25px;font-weight:700;min-width:380px;text-align:center}
+.row .arw{flex:none;width:28px;height:28px;color:var(--slate)}
+.row:hover .w{color:var(--navy)}
+body.s-close .row, body.overview .row{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){ *{transition-duration:0s!important;transition-delay:0s!important;animation:none!important} }
+
+/* ---------- chrome ---------- */
+.ui{position:fixed;z-index:10;font-family:var(--font)}
+#topbar{left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;pointer-events:none;
+  padding-top:calc(16px + env(safe-area-inset-top,0px))}
+#topbar > *{pointer-events:auto}
+.left{display:flex;align-items:center;gap:10px}
+.brand{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);margin-left:6px}
+.tools{display:flex;gap:8px}
+.btn{font:600 14px var(--font);color:var(--navy);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;
+  padding:9px 15px;display:inline-flex;gap:8px;align-items:center;cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--teal)}
+.btn[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn svg{width:16px;height:16px}
+button:focus-visible,a:focus-visible,.frame:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+#bottombar{left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:7px 9px;box-shadow:0 10px 30px -14px rgba(27,58,92,.35)}
+.round{width:44px;height:44px;border-radius:50%;border:none;background:var(--navy);color:#fff;display:grid;place-items:center;cursor:pointer}
+.round.ghost{background:var(--soft);color:var(--navy)}
+.round svg{width:20px;height:20px}
+.round:disabled{opacity:.35;cursor:default}
+#where{min-width:230px;text-align:center}
+#where .t{font-weight:700;font-size:15px;color:var(--navy);white-space:nowrap}
+#where .c{font-size:11px;color:var(--slate);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+#prog{position:fixed;left:0;top:0;height:3px;background:var(--grad);z-index:11;transition:width .6s}
+#cue{left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:10px;
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px 8px 10px;font-size:14px;font-weight:600;color:var(--navy);transition:opacity .6s;white-space:nowrap}
+#cue .hand{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;animation:pulse 1.6s ease-in-out infinite}
+#cue .hand svg{width:15px;height:15px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(15,159,154,.6)}50%{box-shadow:0 0 0 9px rgba(15,159,154,0)}}
+#notes{right:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 36px));max-height:40vh;overflow:auto;
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;font-size:15px;line-height:1.5;color:var(--body);
+  box-shadow:0 16px 40px -20px rgba(27,58,92,.4);display:none}
+#notes.open{display:block}
+#notes .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+#rotate{display:none;left:50%;top:calc(70px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--navy);color:#fff;font-size:13px;font-weight:600;border-radius:16px;padding:8px 16px;width:max-content;max-width:calc(100vw - 32px);text-align:center;line-height:1.35}
+@media (max-width:760px) and (orientation:portrait){ #rotate{display:block;transition:opacity .8s} body.tipgone #rotate{opacity:0;pointer-events:none} }
+@media (hover:none),(max-width:900px){ .bignum{display:none} .frame{transition:none} .ping{animation:none} }
+@media (max-height:520px){ #topbar{padding-top:8px} .btn{padding:6px 10px} #bottombar{bottom:8px;padding:4px 6px;gap:8px} .round{width:34px;height:34px} #where{min-width:160px} #where .t{font-size:12px} #where .c{display:none} #cue{display:none} }
+@media (max-width:760px){ #where{min-width:120px} #where .t{font-size:13px;white-space:normal} .btn .lbl,.brand,.homelink{display:none} #cue{font-size:12px} }
+</style>
+</head>
+<body class="">
+<div id="prog"></div>
+<div id="viewport">
+  <div id="world">
+    <svg id="rings" width="10000" height="10000" aria-hidden="true"></svg>
+
+    <!-- TITLE -->
+    <section class="frame" id="f-title" data-x="5000" data-y="1000" data-w="1800" data-h="1013" data-r="-3" tabindex="-1">
+      <div class="pad">
+        <div class="tx rv">
+          <div class="eyebrow">Microlearning · Zoom map</div>
+          <h1 class="h1"><span>The leadership models</span><span>most programs</span><span class="grad">are built on</span></h1>
+          <p class="lede">If you've been through a leadership program, you've probably met a few of these. Here's what each one says, what it looks like on a real team, and a question to take into your week.</p>
+          <div class="pills"><span class="pill">About 5 minutes</span><span class="pill">Self-paced</span><span class="pill">Press → to move</span></div>
+        </div>
+        <svg class="orbit" viewBox="0 0 560 560" aria-hidden="true" id="orbit"></svg>
+      </div>
+    </section>
+
+    <!-- HUB -->
+    <section class="frame" id="f-hub" data-x="5000" data-y="5000" data-w="2200" data-h="1400" tabindex="-1">
+      <svg id="hubLinks" viewBox="0 0 2200 1400" aria-hidden="true"></svg>
+      <div class="hubhead rv">
+        <div class="eyebrow">The map</div>
+        <h2 class="h1">Start with the one that <span class="grad">sounds familiar</span></h2>
+        <p>Some are about leading yourself, a couple are about the business, and the rest are about your team. Pick one to jump in.</p>
+      </div>
+      <div class="hub">Leading<br>people</div>
+      <div id="chips"></div>
+    </section>
+
+    <!-- MODELS -->
+    <section class="frame mf g-self" id="f-sv" data-x="7163" data-y="1635" data-w="1800" data-h="1013" data-r="5" tabindex="-1">
+      <div class="bignum" aria-hidden="true">01</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading yourself · 1 of 9</div>
+          <h2 class="h1"><span class="grad">Servant</span> leadership</h2>
+          <div class="src">Robert K. Greenleaf, 1970</div>
+          <p class="def">Your main job is to help your people grow and do their best work. Your authority is there to serve the team.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>The team keeps waiting for you before anything can move.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>What's getting in my team's way that I could clear?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true"><g class="sv-tri">
+            <polygon points="380,120 473.4,287 286.6,287" fill="#1B3A5C"/>
+            <polygon points="286.6,287 473.4,287 566.2,453 193.8,453" fill="#2A5A7E"/>
+            <polygon points="193.8,453 566.2,453 660,620 100,620" fill="#0F9F9A"/>
+          </g></svg>
+          <div class="sv-lab sv-you">You</div><div class="sv-lab sv-team">Your team</div><div class="sv-lab sv-cust">Customers</div>
+          <div class="sv-cap c1">The usual picture: the team works for you</div>
+          <div class="sv-cap c2">Servant leadership: you hold the team up</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-self" id="f-gs" data-x="8639" data-y="3338" data-w="1800" data-h="1013" data-r="-4" tabindex="-1">
+      <div class="bignum" aria-hidden="true">02</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading yourself · 2 of 9</div>
+          <h2 class="h1">Six <span class="grad">leadership</span> styles</h2>
+          <div class="src">Daniel Goleman, Harvard Business Review, 2000</div>
+          <p class="def">Good leaders switch styles depending on the moment, the way a golfer picks a different club for each shot.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>A manager who's great in a crisis keeps running every week like it's a crisis.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>Which style does this moment need, and which one am I using out of habit?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true"><path class="gs-arc" d="M279.2 173.3 A 230 230 0 0 1 480.8 173.3"/><path class="gs-arc" d="M508.6 189.3 A 230 230 0 0 1 609.4 364.0"/><path class="gs-arc" d="M609.4 396.0 A 230 230 0 0 1 508.6 570.7"/><path class="gs-arc goal" d="M480.8 586.7 A 230 230 0 0 1 279.2 586.7"/><path class="gs-arc" d="M251.4 570.7 A 230 230 0 0 1 150.6 396.0"/><path class="gs-arc habit" d="M150.6 364.0 A 230 230 0 0 1 251.4 189.3"/>
+            <g class="gs-needle"><line x1="380" y1="380" x2="500" y2="380"/></g><circle class="gs-hub" cx="380" cy="380" r="22"/></svg>
+          <div class="gs-name" style="left:380px;top:80px">Coercive</div><div class="gs-name" style="left:640px;top:230px">Authoritative</div><div class="gs-name" style="left:640px;top:530px">Affiliative</div><div class="gs-name goal" style="left:380px;top:680px">Coaching</div><div class="gs-name" style="left:120px;top:530px">Democratic</div><div class="gs-name habit" style="left:120px;top:230px">Pacesetting</div>
+          <div class="gs-say c1"><b>Pacesetting</b><span>"Keep up with me"</span></div>
+          <div class="gs-say c2"><b>Coaching</b><span>"Let's grow you"</span></div>
+          <div class="gs-tag">Six styles. Most of us lean on one or two out of habit.</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-self" id="f-fpx" data-x="8959" data-y="5569" data-w="1800" data-h="1013" data-r="6" tabindex="-1">
+      <div class="bignum" aria-hidden="true">03</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading yourself · 3 of 9</div>
+          <h2 class="h1">The Five <span class="grad">Practices</span></h2>
+          <div class="src">James Kouzes and Barry Posner, The Leadership Challenge</div>
+          <p class="def">They studied thousands of leaders at their best and kept finding the same five behaviours. Anyone can learn them.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>People copy what the leader does, not the values written on the wall.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>Which of these five have I let slide lately?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true"><line class="fpx-rail" x1="52" y1="62" x2="52" y2="622"/><line class="fpx-fill draw" pathLength="1" x1="52" y1="62" x2="52" y2="622"/></svg>
+          <div class="fpx-row" style="top:40px;--i:0"><span class="fpx-dot">1</span><div><h4>Model the way</h4><p>Do what you say you'll do, and show what matters by how you act.</p></div></div><div class="fpx-row" style="top:180px;--i:1"><span class="fpx-dot">2</span><div><h4>Inspire a shared vision</h4><p>Paint a picture of the future people want to be part of.</p></div></div><div class="fpx-row" style="top:320px;--i:2"><span class="fpx-dot">3</span><div><h4>Challenge the process</h4><p>Look for better ways of working, and learn from what goes wrong.</p></div></div><div class="fpx-row" style="top:460px;--i:3"><span class="fpx-dot">4</span><div><h4>Enable others to act</h4><p>Build trust, share decisions and help people grow their skills.</p></div></div><div class="fpx-row" style="top:600px;--i:4"><span class="fpx-dot">5</span><div><h4>Encourage the heart</h4><p>Notice good work and celebrate it, in ways that feel real.</p></div></div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-biz" id="f-gc" data-x="8023" data-y="7619" data-w="1800" data-h="1013" data-r="-5" tabindex="-1">
+      <div class="bignum" aria-hidden="true">04</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the business · 4 of 9</div>
+          <h2 class="h1">The Golden <span class="grad">Circle</span></h2>
+          <div class="src">Simon Sinek, Start With Why, 2009</div>
+          <p class="def">People don't just buy into what you do. They buy into why you do it. So lead with the purpose, then the how and the what.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>Strategy updates are all numbers and deadlines, and nobody remembers them a week later.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>Have I explained why this matters before what we need to do?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true">
+            <circle class="gc-ring" cx="380" cy="360" r="300" fill="#EEF3F8"/><circle class="gc-ring" cx="380" cy="360" r="200" fill="#DCE5EE"/>
+            <circle class="gc-why" cx="380" cy="360" r="100"/>
+            <path class="gc-arrow gc-in draw" pathLength="1" d="M20 640 L250 450"/><polygon class="gc-head gc-in-h" points="268,436 232,446 252,468"/>
+            <path class="gc-arrow gc-out draw" pathLength="1" d="M470 430 L720 640"/><polygon class="gc-head gc-out-h" points="740,656 706,640 724,618"/>
+          </svg>
+          <div class="gc-w" style="left:380px;top:82px"><h4>What</h4><p>What you actually do</p></div>
+          <div class="gc-w" style="left:380px;top:188px"><h4>How</h4><p>The way you do it</p></div>
+          <div class="gc-w why" style="left:380px;top:318px"><h4>Why</h4><p>The purpose</p></div>
+          <div class="gc-cap c1">How most updates go: what first, why last (if at all)</div>
+          <div class="gc-cap c2">Start with why, and the what makes sense</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-biz" id="f-kt" data-x="6127" data-y="8838" data-w="1800" data-h="1013" data-r="4" tabindex="-1">
+      <div class="bignum" aria-hidden="true">05</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the business · 5 of 9</div>
+          <h2 class="h1">Leading <span class="grad">change</span></h2>
+          <div class="src">John Kotter's 8 steps, Leading Change, 1996</div>
+          <p class="def">Big changes fail in predictable ways, usually by skipping the early steps. Do the groundwork before you push.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>A change gets announced with lots of energy, and six months later things are back to how they were.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>Have we built enough urgency and support before we push this change?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true">
+            <path class="kt-stair" d="M40 400 h80 v-36 h80 v-36 h80 v-36 h80 v-36 h80 v-36 h80 v-36 h80 v-36 h80 v-36"/><path class="kt-live kt-l1 draw" pathLength="1" d="M40 400 h80 v-36 h80 v-36 h80 v-36 h80 v-36"/><path class="kt-live kt-l2 draw" pathLength="1" d="M360 256 h80 v-36 h80 v-36 h80 v-36 h80 v-36"/>
+          </svg>
+          <div class="kt-colh" style="left:20px">Getting ready</div><div class="kt-colh" style="left:400px">Making it happen</div>
+          <div class="kt-it p1" style="left:20px;top:482px;--d:1.00s"><b>1</b>Make the case for change</div><div class="kt-it p1" style="left:20px;top:540px;--d:1.35s"><b>2</b>Build a group to lead it</div><div class="kt-it p1" style="left:20px;top:598px;--d:1.70s"><b>3</b>Shape a clear vision</div><div class="kt-it p1" style="left:20px;top:656px;--d:2.05s"><b>4</b>Share it, again and again</div><div class="kt-it p2" style="left:400px;top:482px;--d:0.90s"><b>5</b>Clear the obstacles</div><div class="kt-it p2" style="left:400px;top:540px;--d:1.25s"><b>6</b>Get some early wins</div><div class="kt-it p2" style="left:400px;top:598px;--d:1.60s"><b>7</b>Keep the momentum going</div><div class="kt-it p2" style="left:400px;top:656px;--d:1.95s"><b>8</b>Make it part of the culture</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-team" id="f-sit" data-x="3873" data-y="8838" data-w="1800" data-h="1013" data-r="-5" tabindex="-1">
+      <div class="bignum" aria-hidden="true">06</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the team · 6 of 9</div>
+          <h2 class="h1"><span class="grad">Situational</span> Leadership</h2>
+          <div class="src">Paul Hersey and Ken Blanchard</div>
+          <p class="def">Match how you lead to where the person is on this task: how skilled they are and how confident they feel.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>Your strongest person goes quiet on a new kind of project, and you leave them alone like always.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>On this task, does this person need more direction from me, more support, or both?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true">
+            <line class="sit-mid" x1="390" y1="80" x2="390" y2="640"/><line class="sit-mid" x1="60" y1="360" x2="720" y2="360"/>
+            <line class="sit-ax" x1="60" y1="640" x2="720" y2="640"/><line class="sit-ax" x1="60" y1="80" x2="60" y2="640"/>
+            <text class="sit-axt" x="720" y="672" text-anchor="end">More direction →</text>
+            <text class="sit-axt" x="40" y="62">More support</text>
+            <path class="sit-curve" d="M700 600 C 620 60, 160 60, 80 600"/>
+            <path class="sit-live draw" pathLength="1" d="M700 600 C 620 60, 160 60, 80 600"/>
+            <circle class="sit-dot" r="16"/>
+          </svg>
+          <div class="sit-q" style="left:225px;top:400px;--k:3"><b>S4</b><h4>Delegating</h4><p>Hand it over and stay available</p></div>
+          <div class="sit-q" style="left:540px;top:400px;--k:0"><b>S1</b><h4>Directing</h4><p>Clear steps and close follow-up</p></div>
+          <div class="sit-q" style="left:150px;top:96px;--k:2"><b>S3</b><h4>Supporting</h4><p>Listen, encourage, decide together</p></div>
+          <div class="sit-q" style="left:610px;top:96px;--k:1"><b>S2</b><h4>Coaching</h4><p>Explain the why and keep guiding</p></div>
+          <div class="sit-grow">← As skill and confidence on the task grow</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-team" id="f-gr" data-x="1977" data-y="7619" data-w="1800" data-h="1013" data-r="4" tabindex="-1">
+      <div class="bignum" aria-hidden="true">07</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the team · 7 of 9</div>
+          <h2 class="h1">The <span class="grad">GROW</span> model</h2>
+          <div class="src">John Whitmore, Coaching for Performance</div>
+          <p class="def">A simple shape for a coaching conversation. Instead of handing over the answer, you ask questions that help them find it.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>People keep bringing you problems, and you keep solving them yourself.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>What could I ask here instead of giving the answer?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true"><path class="gr-road" d="M40 348 L720 348"/></svg>
+          <div class="gr-col on1" style="left:95px;--i:0"><div class="gr-l">G</div><div class="gr-n">Goal</div><div class="gr-pin"></div><p>What do you want to happen?</p></div><div class="gr-col on1" style="left:285px;--i:1"><div class="gr-l">R</div><div class="gr-n">Reality</div><div class="gr-pin"></div><p>What's going on right now?</p></div><div class="gr-col on2" style="left:475px;--i:0"><div class="gr-l">O</div><div class="gr-n">Options</div><div class="gr-pin"></div><p>What could you try?</p></div><div class="gr-col on2" style="left:665px;--i:1"><div class="gr-l">W</div><div class="gr-n">Will</div><div class="gr-pin"></div><p>What will you do, and by when?</p></div>
+          <div class="gr-cap">You ask the questions. They find the answer.</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-team" id="f-lc" data-x="1041" data-y="5569" data-w="1800" data-h="1013" data-r="-6" tabindex="-1">
+      <div class="bignum" aria-hidden="true">08</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the team · 8 of 9</div>
+          <h2 class="h1">The Five <span class="grad">Dysfunctions</span></h2>
+          <div class="src">Patrick Lencioni, The Five Dysfunctions of a Team, 2002</div>
+          <p class="def">Teams build from the bottom up. Without trust people avoid real debate, so they don't fully commit, and results slip.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>Meetings are polite and quiet, and decisions keep getting reopened afterwards.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>Where does our team crack first?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true"><polygon class="lc-layer base" style="--i:0" fill="#1B3A5C" points="30,650 730,650 684,550 76,550"/><polygon class="lc-layer up" style="--i:1" fill="#2A5A7E" points="80,542 680,542 634,442 126,442"/><polygon class="lc-layer up" style="--i:2" fill="#3B6E93" points="130,434 630,434 584,334 176,334"/><polygon class="lc-layer up" style="--i:3" fill="#2A8F94" points="180,326 580,326 534,226 226,226"/><polygon class="lc-layer up" style="--i:4" fill="#0F9F9A" points="230,218 530,218 484,118 276,118"/>
+            <polyline class="lc-crack draw" pathLength="1" points="125,646 150,622 172,636 198,612 222,630"/></svg>
+          <div class="lc-name base" style="top:584px;--i:0"><span class="pos">Trust</span><span class="dys">Absence of trust</span></div><div class="lc-name up" style="top:476px;--i:1"><span class="pos">Healthy conflict</span><span class="dys">Fear of conflict</span></div><div class="lc-name up" style="top:368px;--i:2"><span class="pos">Commitment</span><span class="dys">Lack of commitment</span></div><div class="lc-name up" style="top:260px;--i:3"><span class="pos">Accountability</span><span class="dys">Avoiding accountability</span></div><div class="lc-name up" style="top:152px;--i:4"><span class="pos" style="font-size:24px">Results</span><span class="dys">Results slip</span></div>
+          <div class="lc-cap c1">Each layer rests on the one below it</div>
+          <div class="lc-cap c2">Without trust, everything above it wobbles</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="frame mf g-team" id="f-tk" data-x="1361" data-y="3338" data-w="1800" data-h="1013" data-r="5" tabindex="-1">
+      <div class="bignum" aria-hidden="true">09</div>
+      <div class="pad">
+        <div class="txt rv">
+          <div class="eyebrow">Leading the team · 9 of 9</div>
+          <h2 class="h1">How teams <span class="grad">grow</span></h2>
+          <div class="src">Bruce Tuckman, 1965</div>
+          <p class="def">New teams go through stages. The rough patch is normal. It usually means the team is getting real, not failing.</p>
+          <div class="pattern"><div class="lab">On a real team</div><p>A team that started well hits a bumpy few weeks, and everyone wonders what went wrong.</p></div>
+          <div class="ask"><div class="lab">Ask yourself</div><p>What stage is my team in, and what do they need from me right now?</p></div>
+        </div>
+        <div class="vis"><div class="stage">
+          <svg viewBox="0 0 760 760" aria-hidden="true">
+            <line class="tk-ax" x1="60" y1="640" x2="720" y2="640"/><line class="tk-ax" x1="60" y1="80" x2="60" y2="640"/>
+            <text class="tk-axt" x="720" y="672" text-anchor="end">Time</text>
+            <text class="tk-axt" x="40" y="62">How well the team works</text>
+            <path class="tk-p1 draw" pathLength="1" d="M80 430 C 140 400, 180 380, 210 385 C 260 395, 290 560, 340 560"/>
+            <path class="tk-p2 draw" pathLength="1" d="M340 560 C 400 560, 440 360, 500 340 C 580 310, 630 180, 700 150"/>
+            <circle class="tk-pt tk-a1" style="--d:1.4s" cx="210" cy="385" r="12"/>
+            <circle class="tk-pt tk-a1" style="--d:2.4s" cx="340" cy="560" r="12"/>
+            <circle class="tk-pt tk-b1" style="--d:1.3s" cx="500" cy="340" r="12"/>
+            <circle class="tk-pt tk-b1" style="--d:2.2s" cx="700" cy="150" r="12"/>
+          </svg>
+          <div class="tk-st tk-a1" style="left:110px;top:270px;--d:1.5s"><h4>Forming</h4><p>Polite, a bit unsure</p></div>
+          <div class="tk-st tk-a1 stm" style="left:240px;top:582px;--d:2.5s"><h4>Storming</h4><p>Friction shows up, and that's normal</p></div>
+          <div class="tk-st tk-b1" style="left:520px;top:362px;width:250px;--d:1.4s"><h4>Norming</h4><p>Ways of working settle in</p></div>
+          <div class="tk-st tk-b1" style="left:400px;top:62px;width:270px;text-align:right;--d:2.3s"><h4>Performing</h4><p>The team runs well on its own</p></div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section class="frame" id="f-close" data-x="2837" data-y="1635" data-w="1800" data-h="1013" data-r="-4" tabindex="-1">
+      <div class="pad">
+        <div class="eyebrow">A quick guide</div>
+        <h2 class="h1">Not sure which one <span class="grad">to reach for?</span></h2>
+        <div class="rows" id="rows"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="ui" id="topbar">
+  <div class="left">
+    <a class="btn" href="index.html#work" aria-label="Back to work samples"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg><span class="lbl">Work samples</span></a>
+    <a class="btn homelink" href="index.html#home">Home</a>
+    <span class="brand">Leadership Models</span>
+  </div>
+  <div class="tools">
+    <button class="btn" id="bOverview" aria-pressed="false" title="Overview (O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><span class="lbl">Overview</span></button>
+    <button class="btn" id="bNotes" aria-pressed="false" title="Facilitator notes (N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg><span class="lbl">Notes</span></button>
+    <button class="btn" id="bFull" title="Full screen (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg><span class="lbl">Full screen</span></button>
+  </div>
+</div>
+<div class="ui" id="cue" role="status"><span class="hand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span><span>Press → or tap Next to start</span></div>
+<div class="ui" id="bottombar">
+  <button class="round ghost" id="bPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <div id="where" aria-live="polite"><div class="t" id="whereT"></div><div class="c" id="whereC"></div></div>
+  <button class="round" id="bNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+<div class="ui" id="rotate" role="note">Pinch or double-tap to zoom. Sideways gives a bigger view.</div>
+<aside class="ui" id="notes" aria-label="Facilitator notes"><div class="k">Facilitator notes</div><div id="notesBody"></div></aside>
+
+<script>
+(function(){
+const vp=document.getElementById('viewport'), world=document.getElementById('world');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const g=id=>document.getElementById(id);
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+document.querySelectorAll('.ok').forEach(e=>e.innerHTML=e.innerHTML.replace('#CHECK#',CHECK));
+
+const frames={};
+document.querySelectorAll('.frame').forEach(f=>{
+  const d=f.dataset, x=+d.x,y=+d.y,w=+d.w,h=+d.h,r=+(d.r||0);
+  f.style.left=(x-w/2)+'px'; f.style.top=(y-h/2)+'px'; f.style.width=w+'px'; f.style.height=h+'px';
+  if(r) f.style.transform='rotate('+r+'deg)';
+  frames[f.id]={x,y,w,h,r,el:f};
+});
+function subOf(fid,l,t,w,h){ const F=frames[fid], a=F.r*Math.PI/180, lx=l+w/2-F.w/2, ly=t+h/2-F.h/2;
+  return {x:F.x+lx*Math.cos(a)-ly*Math.sin(a), y:F.y+lx*Math.sin(a)+ly*Math.cos(a), w, h, r:F.r}; }
+const fr=id=>{const F=frames[id];return {x:F.x,y:F.y,w:F.w,h:F.h,r:F.r};};
+
+const A=k=>-90+k*360/11;
+const MODELS=[
+ {id:'f-sv', name:'Servant leadership', grp:'Leading yourself', cls:'g-self', ang:A(1), when:"You're thinking about what kind of leader you want to be"},
+ {id:'f-gs', name:'Six leadership styles', grp:'Leading yourself', cls:'g-self', ang:A(2), when:'You handle every situation the same way'},
+ {id:'f-fpx',name:'The Five Practices', grp:'Leading yourself', cls:'g-self', ang:A(3), when:'You want to know what good leaders do day to day'},
+ {id:'f-gc', name:'The Golden Circle', grp:'Leading the business', cls:'g-biz', ang:A(4), when:'You need people to care about a new direction'},
+ {id:'f-kt', name:'Leading change', grp:'Leading the business', cls:'g-biz', ang:A(5), when:"You're leading a big change"},
+ {id:'f-sit',name:'Situational Leadership', grp:'Leading the team', cls:'g-team', ang:A(6), when:'Someone needs a different kind of help from you'},
+ {id:'f-gr', name:'GROW coaching', grp:'Leading the team', cls:'g-team', ang:A(7), when:'Someone brings you a problem to solve'},
+ {id:'f-lc', name:'The Five Dysfunctions', grp:'Leading the team', cls:'g-team', ang:A(8), when:'Meetings are polite, but nothing really changes'},
+ {id:'f-tk', name:'How teams grow', grp:'Leading the team', cls:'g-team', ang:A(9), when:'A new team hits a rough patch'}
+];
+
+// canvas rings + spokes
+(function(){ let h=`<circle class="ring" cx="5000" cy="5000" r="2700"/><circle class="ring" cx="5000" cy="5000" r="1650"/><circle class="ring" cx="5000" cy="5000" r="5300"/>`;
+  MODELS.forEach(m=>{ const a=m.ang*Math.PI/180; h+=`<line class="spoke" x1="${5000+Math.cos(a)*1650}" y1="${5000+Math.sin(a)*1650}" x2="${5000+Math.cos(a)*2700}" y2="${5000+Math.sin(a)*2700}"/>`; });
+  h+='<polyline id="routeLive" class="route-live" points=""/>'; g('rings').innerHTML=h; })();
+
+// title orbit
+(function(){ const C=['#1B3A5C','#1B3A5C','#1B3A5C','#0F9F9A','#0F9F9A','#2A5A7E','#2A5A7E','#2A5A7E','#2A5A7E']; let h='<circle class="o-ring" cx="280" cy="280" r="220"/><circle class="o-ring" cx="280" cy="280" r="130"/><g class="o-spin">';
+  C.forEach((c,k)=>{ const a=(-90+k*360/9)*Math.PI/180; h+=`<circle cx="${280+Math.cos(a)*220}" cy="${280+Math.sin(a)*220}" r="${k%2?22:28}" fill="${c}"/>`; });
+  h+='</g><circle class="o-core" cx="280" cy="280" r="62"/>'; g('orbit').innerHTML=h; })();
+
+// hub chips
+(function(){ let L='',C=''; const cx=1150, cy=820;
+  MODELS.forEach((m,k)=>{ const a=m.ang*Math.PI/180, x=cx+Math.cos(a)*770, y=cy+Math.sin(a)*480;
+    L+=`<line pathLength="1" x1="${(cx+Math.cos(a)*230).toFixed(0)}" y1="${(cy+Math.sin(a)*230).toFixed(0)}" x2="${(cx+Math.cos(a)*620).toFixed(0)}" y2="${(cy+Math.sin(a)*350).toFixed(0)}" style="--k:${k}"/>`;
+    C+=`<button class="chip ${m.cls}" data-go="${m.id}" style="--k:${k};left:${x.toFixed(0)}px;top:${y.toFixed(0)}px"><small>${m.grp}</small><b>${m.name}</b></button>`; });
+  g('hubLinks').innerHTML=L; g('chips').innerHTML=C; })();
+
+// closing rows
+g('rows').innerHTML=MODELS.map((m,i)=>`<button class="row ${m.cls}" data-go="${m.id}" style="--i:${i}"><span class="w">${m.when}</span><span class="m">${m.name}</span><svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>`).join('');
+
+const N={
+ title:"Welcome people in. Most leadership programs draw on the same handful of ideas. The goal today isn't to memorize them, it's to recognise them and know when each one helps.",
+ hubA:"Everything on this map is about the same job: leading people well.",
+ hubB:"Point out the three groups: leading yourself, leading the business and leading the team. Ask which one feels hardest right now.",
+ sv:"Greenleaf's idea flips the usual org chart. Ask: what would change in your week if you saw your main job as clearing the way for your team?",
+ gs:"Goleman found that leaders who can switch between several styles get better results. Ask people which style they fall back on under pressure, and which one they rarely use.",
+ fpx:"These come from research on leaders at their best. Ask people to pick the practice they're strongest at and the one they've let slide.",
+ gc:"Ask people to think of the last big update they gave. Did it start with why? Have them rewrite the first sentence so it does.",
+ kt:"Most change efforts stall because the first steps get rushed. Ask which step their current change is on, and whether any earlier ones were skipped.",
+ sit:"The key point is that it's about the task, not the person. Someone can be a self-reliant expert on one task and brand new on another. Ask for an example from their own team.",
+ gr:"Practise it in pairs: one person brings a real problem, the other can only ask questions, one stage at a time.",
+ lc:"Lencioni's model works from the bottom up. If trust is missing, fixing accountability won't stick. Ask people where their team's pyramid cracks first.",
+ tk:"Many teams worry when they hit storming. Reassure people it's a normal stage, and ask what their team needs from them to move through it.",
+ close:"Close by asking each person to pick one model to try this week, and the moment they'll use it."
+};
+const BASE=[
+ {t:'Leadership models',c:'Start',f:'f-title',n:N.title,cls:'s-title',cam:'frame'},
+ {t:'Leading people',c:'The map',f:'f-hub',n:N.hubA,cls:'s-hub-a',cam:'hubcore'},
+ {t:'The whole map',c:'Pick one or keep going',f:'f-hub',n:N.hubB,cls:'s-hub-b',cam:'frame'},
+ {t:'Servant leadership',c:'the usual picture',f:'f-sv',n:N.sv,cls:'s-sv-a'},
+ {t:'Servant leadership',c:'flip it',f:'f-sv',n:N.sv,cls:'s-sv-b'},
+ {t:'Six leadership styles',c:'the habit',f:'f-gs',n:N.gs,cls:'s-gs-a'},
+ {t:'Six leadership styles',c:'what the moment needs',f:'f-gs',n:N.gs,cls:'s-gs-b'},
+ {t:'The Five Practices',c:'what good leaders do',f:'f-fpx',n:N.fpx,cls:'s-fpx'},
+ {t:'The Golden Circle',c:'what first',f:'f-gc',n:N.gc,cls:'s-gc-a'},
+ {t:'The Golden Circle',c:'start with why',f:'f-gc',n:N.gc,cls:'s-gc-b'},
+ {t:'Leading change',c:'getting ready',f:'f-kt',n:N.kt,cls:'s-kt-a'},
+ {t:'Leading change',c:'making it happen',f:'f-kt',n:N.kt,cls:'s-kt-b'},
+ {t:'Situational Leadership',c:'four ways to lead',f:'f-sit',n:N.sit,cls:'s-sit-a'},
+ {t:'Situational Leadership',c:'as people grow',f:'f-sit',n:N.sit,cls:'s-sit-b'},
+ {t:'The GROW model',c:'goal and reality',f:'f-gr',n:N.gr,cls:'s-gr-a'},
+ {t:'The GROW model',c:'options and will',f:'f-gr',n:N.gr,cls:'s-gr-b'},
+ {t:'The Five Dysfunctions',c:'build it up',f:'f-lc',n:N.lc,cls:'s-lc-a'},
+ {t:'The Five Dysfunctions',c:'where it cracks',f:'f-lc',n:N.lc,cls:'s-lc-b'},
+ {t:'How teams grow',c:'forming and storming',f:'f-tk',n:N.tk,cls:'s-tk-a'},
+ {t:'How teams grow',c:'norming and performing',f:'f-tk',n:N.tk,cls:'s-tk-b'},
+ {t:'Not sure which one to reach for?',c:'A quick guide',f:'f-close',n:N.close,cls:'s-close',cam:'frame'}
+];
+const isPortraitPhone=()=>vp.clientWidth<700 && vp.clientHeight>vp.clientWidth;
+function camFor(st,part){ const f=st.f;
+  if(st.cam==='hubcore') return ()=>subOf('f-hub',810,530,680,580);
+  if(part==='text') return ()=>subOf(f,40,40,920,933);
+  if(part==='vis') return ()=>subOf(f,900,40,880,933);
+  return ()=>fr(f); }
+function buildSteps(){ const out=[]; const split=isPortraitPhone(); let lastF=null;
+  BASE.forEach(st=>{ const mf=frames[st.f].el.classList.contains('mf');
+    if(split&&mf){ if(st.f!==lastF) out.push({...st,c:'read first',cam:camFor(st,'text')}); out.push({...st,cam:camFor(st,'vis')}); }
+    else out.push({...st,cam:camFor(st)});
+    lastF=st.f; });
+  return out; }
+let STEPS=buildSteps(), splitMode=isPortraitPhone();
+const OVERVIEW={x:5000,y:5000,w:10300,h:10300,r:0};
+
+let cam={x:5000,y:5000,s:.1,r:0}, idx=0, anim=null, overview=false, lastKey=null;
+let TOP=72, BOT=100;
+function fit(t){ const W=vp.clientWidth,H=vp.clientHeight; if(H<520){TOP=46;BOT=52;}else{TOP=72;BOT=100;} const m=W<700?.97:.94;
+  const s=Math.min(W/t.w,(H-TOP-BOT)/t.h)*m; const shift=(BOT-TOP)/2/s, a=(t.r||0)*Math.PI/180;
+  return {x:t.x-shift*Math.sin(a), y:t.y+shift*Math.cos(a), s, r:t.r||0}; }
+function apply(c){ const W=vp.clientWidth,H=vp.clientHeight;
+  world.style.transform=`translate(${W/2}px,${H/2}px) scale(${c.s}) rotate(${-c.r}deg) translate(${-c.x}px,${-c.y}px)`; }
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function fly(target,dur){
+  const a={...cam}, b=fit(target); if(anim) cancelAnimationFrame(anim);
+  const W=vp.clientWidth; const dist=Math.hypot(b.x-a.x,b.y-a.y)*Math.min(a.s,b.s)/W; const bow=Math.min(3.2,dist*.85);
+  dur=reduce?0:(dur||Math.min(2700,1300+dist*320));
+  if(!dur){cam=b;apply(cam);return;}
+  const t0=performance.now();
+  (function step(now){ let t=Math.min(1,(now-t0)/dur), e=ease(t); const ls=Math.log(a.s)+(Math.log(b.s)-Math.log(a.s))*e;
+    cam={x:a.x+(b.x-a.x)*e, y:a.y+(b.y-a.y)*e, s:Math.exp(ls)/(1+bow*Math.sin(Math.PI*e)), r:a.r+(b.r-a.r)*e};
+    apply(cam); if(t<1) anim=requestAnimationFrame(step); else {anim=null;} })(t0);
+}
+const ALL=[...new Set(BASE.flatMap(s=>(s.cls||'').split(' ')))].join(' ');
+function go(i,dur){
+  idx=Math.max(0,Math.min(STEPS.length-1,i)); const s=STEPS[idx];
+  setOverview(false,true);
+  const tg=document.body.classList.contains('tipgone'); document.body.className=(s.cls||'')+(tg?' tipgone':'');
+  document.querySelectorAll('.frame.active').forEach(e=>e.classList.remove('active'));
+  frames[s.f].el.classList.add('active');
+  const tgt=s.cam(), key=JSON.stringify(tgt); if(key!==lastKey) fly(tgt,dur); lastKey=key;
+  g('whereT').textContent=s.t; g('whereC').textContent=(idx+1)+' / '+STEPS.length+' · '+s.c;
+  g('notesBody').textContent=s.n||''; g('prog').style.width=(idx/(STEPS.length-1)*100)+'%';
+  g('bPrev').disabled=idx===0; g('bNext').disabled=idx===STEPS.length-1;
+  const pts=[]; let last=null; for(let k=0;k<=idx;k++){const f=STEPS[k].f; if(f===last) continue; last=f; pts.push(frames[f].x+','+frames[f].y);}
+  g('routeLive').setAttribute('points',pts.join(' '));
+  g('cue').style.opacity=idx>0?'0':'';
+  try{ history.replaceState(null,'','#step-'+(idx+1)); }catch(e){}
+}
+function setOverview(on,silent){ overview=on; document.body.classList.toggle('overview',on);
+  g('bOverview').setAttribute('aria-pressed',on);
+  if(on&&!silent){ document.body.className='overview '+ALL+(document.body.classList.contains('tipgone')||true?' tipgone':''); lastKey=null; fly(OVERVIEW); g('whereT').textContent='The whole map'; g('whereC').textContent='Click any frame to zoom in'; } }
+g('bNext').onclick=()=>go(idx+1); g('bPrev').onclick=()=>go(idx-1);
+g('bOverview').onclick=()=>overview?go(idx):setOverview(true);
+g('bNotes').onclick=()=>{const o=g('notes').classList.toggle('open'); g('bNotes').setAttribute('aria-pressed',o);};
+g('bFull').onclick=()=>{ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen().catch(()=>{}); };
+addEventListener('keydown',e=>{
+  const onCtl=e.target.closest&&e.target.closest('button,a');
+  if(['ArrowRight','PageDown'].includes(e.key)||([' ','Enter'].includes(e.key)&&!onCtl)){e.preventDefault();go(idx+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(idx-1);}
+  else if(e.key==='Home') go(0); else if(e.key==='End') go(STEPS.length-1);
+  else if(e.key==='o'||e.key==='O'||e.key==='Escape') overview?go(idx):setOverview(true);
+  else if(e.key==='n'||e.key==='N') g('bNotes').click();
+  else if(e.key==='f'||e.key==='F') g('bFull').click();
+});
+let drag=null, moved=false, pinch=null, lastTap={t:0,x:0,y:0};
+const ptrs=new Map();
+function offs(mx,my,sc,r){ const a=r*Math.PI/180; return [(mx*Math.cos(a)+my*Math.sin(a))/sc, (-mx*Math.sin(a)+my*Math.cos(a))/sc]; }
+function baseScale(){ return fit(overview?OVERVIEW:STEPS[idx].cam()).s; }
+function zoomTo(ns,cx,cy,dur){ const W=vp.clientWidth,H=vp.clientHeight, mx=cx-W/2, my=cy-H/2, o0=offs(mx,my,cam.s,cam.r), px=cam.x+o0[0], py=cam.y+o0[1];
+  const a={...cam}, o1=offs(mx,my,ns,cam.r), b={x:px-o1[0], y:py-o1[1], s:ns, r:cam.r}; if(anim) cancelAnimationFrame(anim); const t0=performance.now(); dur=reduce?0:dur;
+  (function st(now){ const t=dur?Math.min(1,(now-t0)/dur):1, e=ease(t); cam={x:a.x+(b.x-a.x)*e,y:a.y+(b.y-a.y)*e,s:Math.exp(Math.log(a.s)+(Math.log(b.s)-Math.log(a.s))*e),r:a.r}; apply(cam); if(t<1) anim=requestAnimationFrame(st); else anim=null; })(t0); }
+function toggleZoom(x,y){ if(cam.s>baseScale()*1.25){ lastKey=null; fly(overview?OVERVIEW:STEPS[idx].cam(),600); } else zoomTo(cam.s*2.4,x,y,450); }
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); if(moved) return; const i=STEPS.findIndex(s=>s.f===b.dataset.go); if(i>=0) go(i); }));
+document.querySelectorAll('.frame').forEach(f=>f.addEventListener('click',()=>{ if(!overview||moved) return; const i=STEPS.findIndex(s=>s.f===f.id); if(i>=0) go(i); }));
+document.addEventListener('gesturestart',e=>e.preventDefault());
+vp.addEventListener('dblclick',e=>{ if(e.target.closest('button')) return; toggleZoom(e.clientX,e.clientY); });
+vp.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse'&&e.button!==0) return;
+  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(ptrs.size===2){ const [p,q]=[...ptrs.values()], W=vp.clientWidth,H=vp.clientHeight, o=offs((p.x+q.x)/2-W/2,(p.y+q.y)/2-H/2,cam.s,cam.r);
+    pinch={d0:Math.hypot(p.x-q.x,p.y-q.y)||1, s0:cam.s, wx:cam.x+o[0], wy:cam.y+o[1]}; drag=null; moved=true; if(anim){cancelAnimationFrame(anim);anim=null;} return; }
+  drag={x:e.clientX,y:e.clientY,cx:cam.x,cy:cam.y,t:Date.now(),type:e.pointerType}; moved=false; });
+addEventListener('pointermove',e=>{ if(ptrs.has(e.pointerId)) ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pinch&&ptrs.size>=2){ const [p,q]=[...ptrs.values()], W=vp.clientWidth,H=vp.clientHeight;
+    const ns=Math.max(.03,Math.min(6,pinch.s0*Math.hypot(p.x-q.x,p.y-q.y)/pinch.d0)), o=offs((p.x+q.x)/2-W/2,(p.y+q.y)/2-H/2,ns,cam.r);
+    cam.s=ns; cam.x=pinch.wx-o[0]; cam.y=pinch.wy-o[1]; apply(cam); return; }
+  if(!drag) return; const dx=e.clientX-drag.x, dy=e.clientY-drag.y; if(Math.hypot(dx,dy)>8) moved=true; if(!moved) return;
+  if(anim){cancelAnimationFrame(anim);anim=null;} vp.style.cursor='grabbing';
+  const o=offs(dx,dy,cam.s,cam.r); cam.x=drag.cx-o[0]; cam.y=drag.cy-o[1]; apply(cam); });
+function endPtr(e){ ptrs.delete(e.pointerId); vp.style.cursor='';
+  if(pinch){ if(ptrs.size<2) pinch=null; if(ptrs.size===1){ const r=[...ptrs.values()][0]; drag={x:r.x,y:r.y,cx:cam.x,cy:cam.y,t:0,type:'touch'}; } setTimeout(()=>moved=false,0); return; }
+  if(drag){ const dx=e.clientX-drag.x, quick=Date.now()-drag.t<350;
+    if(!overview&&moved&&quick&&drag.type!=='mouse'&&Math.abs(dx)>60&&cam.s<=baseScale()*1.15) go(idx+(dx<0?1:-1));
+    else if(!moved&&drag.type!=='mouse'&&!e.target.closest('button')){ const now=Date.now();
+      if(now-lastTap.t<320&&Math.hypot(e.clientX-lastTap.x,e.clientY-lastTap.y)<40){ toggleZoom(e.clientX,e.clientY); lastTap.t=0; } else lastTap={t:now,x:e.clientX,y:e.clientY}; } }
+  drag=null; setTimeout(()=>moved=false,0); }
+addEventListener('pointerup',endPtr); addEventListener('pointercancel',endPtr);
+vp.addEventListener('wheel',e=>{ e.preventDefault(); if(anim){cancelAnimationFrame(anim);anim=null;}
+  const f=Math.exp(-e.deltaY*.0015), W=vp.clientWidth, H=vp.clientHeight, a=cam.r*Math.PI/180, mx=e.clientX-W/2, my=e.clientY-H/2;
+  const wx=(mx*Math.cos(a)+my*Math.sin(a))/cam.s, wy=(-mx*Math.sin(a)+my*Math.cos(a))/cam.s, ns=Math.max(.03,Math.min(4,cam.s*f));
+  cam.x+=wx*(1-cam.s/ns); cam.y+=wy*(1-cam.s/ns); cam.s=ns; apply(cam); },{passive:false});
+addEventListener('resize',()=>{ const sp=isPortraitPhone(); if(sp!==splitMode){ const f=STEPS[idx].f, c=STEPS[idx].cls; splitMode=sp; STEPS=buildSteps(); let k=STEPS.findIndex(x=>x.f===f&&x.cls===c&&(!sp||x.c!=='read first')); if(k<0) k=0; idx=k; if(!overview){ go(idx,0); return; } }
+  lastKey=null; cam=fit(overview?OVERVIEW:STEPS[idx].cam()); apply(cam); });
+setTimeout(()=>document.body.classList.add('tipgone'),7000);
+cam=fit(OVERVIEW); apply(cam);
+const h=location.hash.replace('#step-',''); const startI=/^\d+$/.test(h)?(+h-1):0;
+setTimeout(()=>go(startI,reduce?0:2200),reduce?0:700);
+addEventListener('hashchange',()=>{const h=location.hash.replace('#step-',''); if(/^\d+$/.test(h)&&(+h-1)!==idx) go(+h-1);});
+})();
+</script>
+</body>
+</html>
