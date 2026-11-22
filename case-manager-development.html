@@ -219,9 +219,60 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 .risks .flip{min-height:170px}
 .close-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
+/* stagger on enter */
+.chap.on > *{animation:enter .6s var(--ease) both}
+.chap.on > *:nth-child(2){animation-delay:.06s}.chap.on > *:nth-child(3){animation-delay:.12s}.chap.on > *:nth-child(4){animation-delay:.18s}.chap.on > *:nth-child(5){animation-delay:.24s}.chap.on > *:nth-child(6){animation-delay:.3s}
+.facts.row{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(22px,3.5vh,40px)}
+.facts.row dd{font-size:13.5px;font-weight:600}
+.start{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+/* wins */
+.wins{border-left:1px solid var(--faint);padding-left:clamp(20px,3vw,40px)}
+.wins-h{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:12px}
+.wins-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 28px}
+.wins-row div{opacity:0;transform:translateY(10px);animation:enter .6s var(--ease) forwards;animation-delay:calc(.35s + var(--i)*.12s)}
+.wins-row b{display:block;font-size:clamp(34px,4vw,56px);font-weight:800;letter-spacing:-.03em;color:var(--navy);line-height:1;font-variant-numeric:tabular-nums}
+.wins-row b i{font-style:normal}
+.wins-row b em{font-style:normal;color:var(--teal);font-weight:700}
+.wins-row span{display:block;margin-top:6px;font-size:13.5px;color:var(--body);line-height:1.45}
+/* short version */
+.short-btn{background:var(--soft);border-color:var(--soft);cursor:pointer}
+.sv-scrim{position:fixed;inset:0;z-index:40;background:rgba(20,30,50,.35)}
+.sv-panel{position:fixed;z-index:41;top:50%;left:50%;transform:translate(-50%,-50%);width:min(720px,calc(100vw - 28px));max-height:calc(100dvh - 40px);overflow:auto;background:#fff;border-radius:24px;padding:30px 30px 26px;box-shadow:0 30px 80px -30px rgba(20,30,60,.5);animation:enter .35s var(--ease)}
+.sv-panel[hidden],.sv-scrim[hidden]{display:none}
+.sv-x{position:absolute;right:16px;top:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:22px;color:var(--navy);cursor:pointer}
+.sv-list{margin:16px 0 0;display:grid;gap:12px}
+.sv-list div{border-top:1px solid var(--faint);padding-top:10px}
+.sv-list dt{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.sv-list dd{margin:3px 0 0;font-size:15px;color:var(--ink);line-height:1.5}
+/* your company */
+.yours{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:36px;align-items:start}
+.qs{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:q}
+.qs li{counter-increment:q;border:1px solid var(--faint);border-radius:16px;padding:12px 14px 12px 16px}
+.qs li.done{border-color:var(--line)}
+.qs .qt{display:flex;gap:10px;font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.4}
+.qs .qt::before{content:counter(q);flex:none;width:24px;height:24px;border-radius:50%;background:var(--soft);color:var(--navy);font-size:12px;font-weight:800;display:grid;place-items:center}
+.qs li.done .qt::before{background:var(--teal);color:#fff}
+.seg{display:flex;gap:6px;margin:10px 0 0 34px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer;min-height:38px}
+.seg button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.yres{border-top:3px solid var(--navy);padding-top:16px}
+.yres .k{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.yres h3{font-size:22px;margin:6px 0 4px}
+.yres p{margin:0;color:var(--body);font-size:15px}
+.bars{display:grid;gap:9px;margin:16px 0}
+.bar{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;align-items:center;font-size:13.5px;font-weight:600;color:var(--navy)}
+.bar i{display:block;height:10px;border-radius:10px;background:var(--faint);position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0;width:var(--w,0%);background:var(--c,var(--teal));border-radius:10px;transition:width .7s var(--ease)}
+.plan{display:grid;gap:10px;margin-top:14px}
+.plan div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;font-size:14.5px;line-height:1.45}
+.plan b{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:.04em;padding-top:2px}
+.plan div.focus{background:var(--soft);border-radius:12px;padding:10px 12px;margin:0 -12px}
+.yres .close-cta{margin-top:18px}
 @media(max-width:1000px){
  .chaps{display:none}
- .hero,.paths,.model{grid-template-columns:1fr;gap:26px}
+ .hero,.paths,.model,.yours{grid-template-columns:1fr;gap:26px}
+ .facts.row{grid-template-columns:1fr 1fr}
+ .wins{border-left:0;padding-left:0;border-top:1px solid var(--faint);padding-top:18px}
  .flips{grid-template-columns:1fr 1fr}
  .weeks{grid-template-columns:repeat(4,minmax(0,1fr))}
  .stepper{grid-template-columns:1fr;gap:10px}
@@ -234,6 +285,12 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 @media(max-width:620px){
  .chap{justify-content:flex-start}
  .flips,.risks,.facts,.supports{grid-template-columns:1fr}
+ .wins-row{grid-template-columns:1fr 1fr;gap:18px}
+ .facts.row{grid-template-columns:1fr}
+ .wins{border-left:0;padding-left:0;border-top:1px solid var(--faint);padding-top:18px}
+ .yours{grid-template-columns:1fr}
+ .bar{grid-template-columns:110px minmax(0,1fr)}
+ .short-btn{display:none}
  .flip{min-height:190px}
  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
  .rung{grid-template-columns:1fr auto;gap:6px 12px}
@@ -251,6 +308,7 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 <header class="top">
  <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
  <nav class="chaps" id="chaps" aria-label="Chapters"></nav>
+ <button class="exit short-btn" type="button" data-short>Short version</button>
  <a class="exit" href="index.html#work">&larr; Work</a>
 </header>
 
@@ -259,19 +317,28 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 <section class="chap" data-id="overview" data-title="Overview" aria-labelledby="h-ov">
  <div class="hero">
   <div>
-   <div class="eyebrow">Case study · Sample model</div>
+   <div class="eyebrow">Case study · Leadership development</div>
    <h1 id="h-ov">Leadership development that's <span class="grad">connected to how people grow</span></h1>
-   <p class="lede">A sample model for building leaders at every stage: two tracks for individual contributors, one toward leadership and one deeper into their craft, then short programs for managers. It's all tied to job architecture, performance, internal mobility and succession planning.</p>
-   <p class="note">This is a sample model that shows how I'd approach the work. The levels, timelines and measures are examples, and they aren't results from a past program.</p>
-   <div class="start"><button class="btn pri" type="button" data-goto="1"><span><small>About 8 minutes</small>Start with the problem</span> &rarr;</button></div>
+   <p class="lede">This is how I build leaders at every stage: two tracks for individual contributors, one toward leadership and one deeper into their craft, then short programs for managers. It's all tied to job architecture, performance, internal mobility and succession planning.</p>
+   <p class="note">The levels, timelines and measures in this model are examples. The results shown here come from programs I've led.</p>
+   <div class="start"><button class="btn pri" type="button" data-goto="1"><span><small>About 8 minutes</small>Start the case study</span> &rarr;</button><button class="btn" type="button" data-short>Read the 1-minute version</button></div>
   </div>
-  <dl class="facts">
+ <div class="wins">
+   <div class="wins-h">Results from programs I've led</div>
+   <div class="wins-row">
+    <div style="--i:0"><b>9 <em>&rarr;</em> 4</b><span>months for new hires to reach full performance, after I redesigned onboarding for 500+ people at Shopify</span></div>
+    <div style="--i:1"><b><i data-to="20">0</i>%</b><span>performance lift after that onboarding redesign</span></div>
+    <div style="--i:2"><b><i data-to="12">0</i>+</b><span>talent and leadership programs I've designed and built</span></div>
+    <div style="--i:3"><b><i data-to="3500" data-comma>0</i>+</b><span>employees reached by programs I've led</span></div>
+   </div>
+  </div>
+ </div>
+  <dl class="facts row">
    <div><dt>Who it's for</dt><dd>Individual contributors, new managers, experienced managers and senior leaders</dd></div>
    <div><dt>Format</dt><dd>6 weeks plus mentorship for individual contributors, 8 weeks for each manager level</dd></div>
    <div><dt>Connected to</dt><dd>Job architecture, performance reviews, internal moves and succession</dd></div>
    <div><dt>My role</dt><dd>Needs analysis, program architecture, design, stakeholder alignment and measurement</dd></div>
   </dl>
- </div>
 </section>
 
 <section class="chap" data-id="problem" data-title="The problem" aria-labelledby="h-pr">
@@ -315,10 +382,10 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
  </div>
 </section>
 
-<section class="chap" data-id="build" data-title="How I'd build it" aria-labelledby="h-bd">
- <div class="eyebrow">How I'd build it</div>
- <h2 id="h-bd">How I would build the programs</h2>
- <p class="lede">I'd use SAM, the Successive Approximation Model, so leaders and HR partners react to something real early. Select each step.</p>
+<section class="chap" data-id="build" data-title="How I build it" aria-labelledby="h-bd">
+ <div class="eyebrow">How I build it</div>
+ <h2 id="h-bd">How I build the programs</h2>
+ <p class="lede">I use SAM, the Successive Approximation Model, so leaders and HR partners react to something real early. Select each step.</p>
  <div class="body">
   <div class="stepper" id="stepper"><div class="bar" id="sbar"></div></div>
   <div class="sdetail" id="sdetail" aria-live="polite"></div>
@@ -327,8 +394,8 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 
 <section class="chap" data-id="measure" data-title="Measuring it" aria-labelledby="h-me">
  <div class="eyebrow">Measuring it</div>
- <h2 id="h-me">What I would measure, and when</h2>
- <p class="lede">Leaders usually care most about levels three and four, because they show whether people lead differently at work and whether the business sees results. Open each level to see what I would look at.</p>
+ <h2 id="h-me">What I measure, and when</h2>
+ <p class="lede">Leaders usually care most about levels three and four, because they show whether people lead differently at work and whether the business sees results. Open each level to see what I look at.</p>
  <div class="body ladder" id="ladder"></div>
 </section>
 
@@ -343,16 +410,42 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 </section>
 
 <section class="chap" data-id="risks" data-title="Risks" aria-labelledby="h-ri">
- <div class="eyebrow">What I'd watch for</div>
- <h2 id="h-ri">The risks I would plan around from the start</h2>
- <p class="lede">Select each one to see how I'd handle it.</p>
+ <div class="eyebrow">What I watch for</div>
+ <h2 id="h-ri">The risks I plan around from the start</h2>
+ <p class="lede">Select each one to see how I handle it.</p>
  <div class="body risks" id="risks"></div>
- <div class="close-cta">
-  <a class="btn pri" href="index.html#contact">Talk to me about a project &rarr;</a>
-  <a class="btn" href="index.html#work">&larr; Back to work</a>
+ <p class="hint" style="margin-top:20px">Next: check how your own company compares.</p>
+</section>
+
+<section class="chap" data-id="yours" data-title="Your company" aria-labelledby="h-yo">
+ <div class="eyebrow">Your company</div>
+ <h2 id="h-yo">See where your company is today, and where I start</h2>
+ <p class="lede">Answer five quick questions about your organization. Your answers stay in this page and aren't saved or sent anywhere.</p>
+ <div class="body yours">
+  <ol class="qs" id="qs"></ol>
+  <div class="yres" id="yres" aria-live="polite"></div>
  </div>
 </section>
 </main>
+
+<div class="sv-scrim" id="svScrim" hidden></div>
+<div class="sv-panel" id="svPanel" role="dialog" aria-modal="true" aria-labelledby="svTitle" hidden>
+ <button class="sv-x" type="button" id="svClose" aria-label="Close">&times;</button>
+ <div class="eyebrow">The 1-minute version</div>
+ <h2 id="svTitle">What this case study shows</h2>
+ <dl class="sv-list">
+  <div><dt>The idea</dt><dd>Leadership programs work better when they're tied to job architecture, performance reviews, internal mobility and succession, so people learn and get reviewed against the same expectations.</dd></div>
+  <div><dt>The programs</dt><dd>Individual contributors choose a six-week leadership track or a six-week craft track, each with three months of mentorship. Managers at each level take an eight-week program.</dd></div>
+  <div><dt>How I build it</dt><dd>I use SAM, so leaders and HR partners react to a working pilot within the first few months instead of a finished program at the end.</dd></div>
+  <div><dt>How I measure it</dt><dd>Session feedback and skills checks, 360 feedback six months later, and business measures like internal fill rate and ready-now successors.</dd></div>
+  <div><dt>My track record</dt><dd>9 to 4 months onboarding ramp and a 20% performance lift at Shopify, 12+ programs built and 3,500+ employees reached.</dd></div>
+ </dl>
+ <div class="close-cta">
+  <button class="btn pri" type="button" data-goto-id="yours">Check your company &rarr;</button>
+  <button class="btn" type="button" id="svFull">Explore the full case study</button>
+  <a class="btn" href="Juliana-Dos-Santos-Resume-July-2026.pdf">View my resume</a>
+ </div>
+</div>
 
 <div class="dock">
  <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
@@ -378,6 +471,7 @@ function go(i,push){
   const nx=chaps[cur+1]; $('#nextBtn').hidden=!nx; if(nx) $('#nextLbl').textContent=nx.dataset.title;
   $('#progBar').style.width=(cur/(chaps.length-1)*100)+'%';
   window.scrollTo(0,0);
+  if(chaps[cur].dataset.id==='overview') countUp();
   if(push!==false){ try{ history.replaceState(null,'','#'+chaps[cur].dataset.id); }catch(e){} }
   const h=chaps[cur].querySelector('h1,h2'); h&&h.setAttribute('tabindex','-1'); if(push!==false&&h) h.focus({preventScroll:true});
 }
@@ -407,7 +501,7 @@ flips($('#risks'),[
  ['A job architecture that is too complicated','If people cannot explain their own level, it will not guide anything.','Keep it to a few levels per ladder, each described in two or three plain sentences.'],
  ['Succession lists that feel secret','When people do not know they are being developed, the best ones still leave.','Tell people they are in a development pool and why, even if the list itself stays private.'],
  ['Measuring only attendance','Completion is easy to count and says very little.','Agree on the business measures with leaders before the first cohort starts, and report on them twice a year.']
-],'How I would handle it');
+],'How I handle it');
 
 /* ---------- career paths fork ---------- */
 const TRACKS={
@@ -513,7 +607,7 @@ function renderModel(anim){
   $$('#figSvg .spoke').forEach(l=>l.classList.toggle('hot',part==='dev'||l.dataset.a===part));
   $$('#figSvg .link').forEach(l=>l.classList.toggle('hot',l.dataset.a===part||l.dataset.b===part));
   const pan=$('#panel');
-  pan.innerHTML=`<div class="k">${p.sub}</div><h3>${p.name}</h3><p class="what">${p.what}</p><dl><div class="lvl"><dt>For ${L.name.toLowerCase()}s</dt><dd>${p.lv[level]}</dd></div><div><dt>How it connects</dt><dd>${p.link}</dd></div><div><dt>What I'd track</dt><dd>${p.track}</dd></div></dl>`;
+  pan.innerHTML=`<div class="k">${p.sub}</div><h3>${p.name}</h3><p class="what">${p.what}</p><dl><div class="lvl"><dt>For ${L.name.toLowerCase()}s</dt><dd>${p.lv[level]}</dd></div><div><dt>How it connects</dt><dd>${p.link}</dd></div><div><dt>What I track</dt><dd>${p.track}</dd></div></dl>`;
   if(anim){pan.classList.remove('fade'); void pan.offsetWidth; pan.classList.add('fade');}
 }
 renderModel(false);
@@ -622,6 +716,49 @@ function showModel(i){ const m=MODELS[i];
   d.classList.remove('fade'); void d.offsetWidth; d.classList.add('fade'); }
 showModel(0);
 showStop('lead');
+
+/* ---------- results count-up ---------- */
+function countUp(){ document.querySelectorAll('.wins [data-to]').forEach(el=>{ const to=+el.dataset.to, fmt=v=>el.hasAttribute('data-comma')?v.toLocaleString('en-CA'):String(v);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=fmt(to);return;}
+  const t0=performance.now(), d=1300; (function f(t){const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); el.textContent=fmt(Math.round(to*e)); if(k<1) requestAnimationFrame(f);})(t0); }); }
+
+/* ---------- short version ---------- */
+const svP=$('#svPanel'), svS=$('#svScrim'); let svLast=null;
+function openSV(){ svLast=document.activeElement; svP.hidden=false; svS.hidden=false; $('#svClose').focus(); }
+function closeSV(){ svP.hidden=true; svS.hidden=true; svLast&&svLast.focus(); }
+$$('[data-short]').forEach(b=>b.onclick=openSV); $('#svClose').onclick=closeSV; svS.onclick=closeSV; $('#svFull').onclick=()=>{closeSV(); go(1);};
+$$('[data-goto-id]').forEach(b=>b.onclick=()=>{ closeSV(); go(chaps.findIndex(c=>c.dataset.id===b.dataset.gotoId)); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!svP.hidden) closeSV(); },true);
+
+/* ---------- your company ---------- */
+const QS=[
+ {k:'arch',area:'Job architecture',q:'Are the expectations for each manager level written down, and easy to explain?',start:'Write clear expectations for each manager level with your HR partners, in plain language, so training and reviews can both use them.'},
+ {k:'ladder',area:'Career paths',q:'Can individual contributors move up without having to manage people?',start:'Map an individual contributor ladder next to the manager ladder, and pilot the six-week leadership and craft tracks.'},
+ {k:'perf',area:'Performance',q:'Do performance reviews use the same expectations your leadership training teaches?',start:'Line up review criteria with the level expectations, and walk managers through calibration before the next review cycle.'},
+ {k:'mob',area:'Internal mobility',q:'Are open manager roles shared inside the company before they\'re posted outside?',start:'Set up internal-first posting for manager roles, and make program graduates\' readiness visible to hiring managers.'},
+ {k:'succ',area:'Succession',q:'Do your most critical roles have at least one successor who is ready now?',start:'Name critical roles and their successors with your leaders, then use the gaps to choose who joins the first cohort.'}
+];
+const OPTS=[['Not yet',0],['Partly',1],['Yes',2]], ans={};
+$('#qs').innerHTML=QS.map((q,i)=>`<li data-k="${q.k}"><div class="qt" id="q${i}">${q.q}</div><div class="seg" role="group" aria-labelledby="q${i}">${OPTS.map(o=>`<button type="button" data-v="${o[1]}" aria-pressed="false">${o[0]}</button>`).join('')}</div></li>`).join('');
+$$('#qs li').forEach(li=>li.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{ ans[li.dataset.k]=+b.dataset.v; li.classList.add('done');
+  li.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderYours(); }));
+function renderYours(){
+  const n=Object.keys(ans).length, r=$('#yres');
+  const bars=QS.map(q=>{const v=ans[q.k]; const w=v===undefined?0:[12,58,100][v]; const c=v===2?'#0F9F9A':v===1?'#2A5A7E':'#5C7A99'; return `<div class="bar"><span>${q.area}</span><i style="--w:${w}%;--c:${c}"></i></div>`;}).join('');
+  if(n<QS.length){ r.innerHTML=`<div class="k">Your picture</div><h3>${n} of ${QS.length} answered</h3><p>Your results and a 90-day starting plan appear here once you've answered all five.</p><div class="bars">${bars}</div>`; return; }
+  const total=QS.reduce((a,q)=>a+ans[q.k],0);
+  const label=total<=3?['Getting started','There\'s a lot of room to connect these pieces, which usually means there are quick wins early on.']:total<=7?['Partly connected','Some of the pieces are in place. Connecting them to each other is where you\'ll see the biggest gains.']:['Well connected','The foundations are in place, so the focus is on sharper programs and showing their impact.'];
+  const low=QS.slice().sort((a,b)=>ans[a.k]-ans[b.k])[0];
+  r.innerHTML=`<div class="k">Your picture</div><h3>${label[0]}</h3><p>${label[1]}</p><div class="bars">${bars}</div>
+   <div class="k" style="margin-top:6px">Where I start, in my first 90 days</div>
+   <div class="plan"><div><b>Days 1 to 30</b><span>Listen and map: conversations with leaders, managers and HR partners, and a review of your levels, reviews and people data.</span></div>
+   <div class="focus"><b>Days 31 to 60</b><span><strong>Start with ${low.area.toLowerCase()}.</strong> ${low.start}</span></div>
+   <div><b>Days 61 to 90</b><span>Pilot the first program with a small group, and agree with leaders on the measures we'll report on.</span></div></div>
+   <div class="close-cta"><a class="btn pri" href="index.html#contact">Talk to me about your team &rarr;</a><a class="btn" href="Juliana-Dos-Santos-Resume-July-2026.pdf">View my resume</a></div>`;
+  r.classList.remove('fade'); void r.offsetWidth; r.classList.add('fade');
+}
+renderYours();
+
 fromHash();
 }
 </script>
