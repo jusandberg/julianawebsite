@@ -35,14 +35,43 @@ a{color:var(--navy)}
  background:rgba(255,255,255,.97);border-bottom:1px solid var(--faint);display:flex;align-items:center;gap:16px}
 .top .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px;flex:none}
 .top .brand .mark{width:30px;height:30px}
-.chaps{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;justify-content:center}
-.chaps::-webkit-scrollbar{display:none}
-.chaps button{flex:none;border:0;background:none;font-size:13px;font-weight:600;color:var(--muted);padding:8px 11px;border-radius:99px;cursor:pointer;display:flex;align-items:center;gap:7px}
-.chaps button i{font-style:normal;font-size:11px;font-weight:800;color:var(--line)}
-.chaps button:hover{color:var(--navy)}
-.chaps button[aria-current="true"]{background:var(--navy);color:#fff}
-.chaps button[aria-current="true"] i{color:rgba(255,255,255,.6)}
-.chaps button.seen:not([aria-current="true"]) i{color:var(--teal)}
+/* chapter menu */
+.cmenu{flex:1;display:flex;justify-content:center;position:relative}
+.cbtn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px 7px 8px;cursor:pointer;font-size:14px;color:var(--navy);max-width:100%;min-height:42px}
+.cbtn:hover{border-color:var(--teal)}
+.cbtn .cnum{flex:none;background:var(--navy);color:#fff;border-radius:99px;font-size:11.5px;font-weight:800;padding:4px 8px}
+.cbtn .ctit{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbtn .cof{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.cbtn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.cbtn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.clist{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(460px,calc(100vw - 24px));max-height:calc(100dvh - 110px);overflow:auto;background:#fff;border:1px solid var(--faint);border-radius:20px;padding:8px;box-shadow:0 24px 60px -24px rgba(20,30,60,.35);animation:enter .25s var(--ease)}
+.clist[hidden]{display:none}
+.clist button{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) 20px;gap:10px;align-items:center;text-align:left;border:0;background:none;border-radius:14px;padding:10px 10px;cursor:pointer}
+.clist button:hover{background:var(--soft)}
+.clist .n{font-size:12px;font-weight:800;color:var(--slate)}
+.clist .t b{display:block;font-size:14.5px;color:var(--navy)}
+.clist .t small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:1px}
+.clist button[aria-current="true"]{background:var(--navy)}
+.clist button[aria-current="true"] .n,.clist button[aria-current="true"] .t b,.clist button[aria-current="true"] .t small{color:#fff}
+.clist button.seen .ck{width:18px;height:18px;border-radius:50%;background:var(--teal);position:relative}
+.clist button.seen .ck::after{content:"";position:absolute;left:6px;top:3px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+/* dots */
+.dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.dots button{width:10px;height:10px;border-radius:99px;border:0;padding:0;background:var(--line);cursor:pointer;transition:all .3s var(--ease)}
+.dots button.seen{background:var(--teal)}
+.dots button[aria-current="true"]{width:28px;background:var(--navy)}
+.dots button:hover{transform:scale(1.25)}
+/* cover tiles */
+.tiles-wrap{border-left:1px solid var(--faint);padding-left:clamp(20px,3vw,40px)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--faint);background:#fff;border-radius:16px;padding:12px 12px 13px;cursor:pointer;transition:all .25s var(--ease);min-height:104px;opacity:0;animation:enter .5s var(--ease) forwards}
+.tile:nth-child(1){animation-delay:.15s}.tile:nth-child(2){animation-delay:.2s}.tile:nth-child(3){animation-delay:.25s}.tile:nth-child(4){animation-delay:.3s}.tile:nth-child(5){animation-delay:.35s}.tile:nth-child(6){animation-delay:.4s}.tile:nth-child(7){animation-delay:.45s}.tile:nth-child(8){animation-delay:.5s}.tile:nth-child(9){animation-delay:.55s}
+.tile:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(20,30,60,.35)}
+.tile .n{font-size:11.5px;font-weight:800;color:var(--teal)}
+.tile b{font-size:14.5px;color:var(--navy);line-height:1.25}
+.tile small{font-size:12.5px;color:var(--muted);line-height:1.35}
+.tile.seen{border-color:var(--line)}
+.tile:last-child{border-color:var(--teal);background:linear-gradient(#fff,#fff)}
 .exit{flex:none;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:8px 14px}
 
 /* stage */
@@ -269,7 +298,8 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 .plan div.focus{background:var(--soft);border-radius:12px;padding:10px 12px;margin:0 -12px}
 .yres .close-cta{margin-top:18px}
 @media(max-width:1000px){
- .chaps{display:none}
+ .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .tiles-wrap{border-left:0;padding-left:0;border-top:1px solid var(--faint);padding-top:18px}
  .hero,.paths,.model,.yours{grid-template-columns:1fr;gap:26px}
  .facts.row{grid-template-columns:1fr 1fr}
  .wins{border-left:0;padding-left:0;border-top:1px solid var(--faint);padding-top:18px}
@@ -298,7 +328,10 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
  .rung .ans{grid-column:1 / 3}
  .fork{aspect-ratio:4/6}
  .stop{font-size:12px;padding:6px 10px}
- .prog{display:none}
+ .dots{display:none}
+ .clist{position:fixed;left:12px;right:12px;width:auto;transform:none;top:calc(var(--top) + env(safe-area-inset-top,0px) + 6px)}
+ .cmenu{justify-content:flex-start}
+ .cbtn .cof{display:none}
  .top .brand span{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.flow{display:none}}
@@ -307,62 +340,54 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 <body>
 <header class="top">
  <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
- <nav class="chaps" id="chaps" aria-label="Chapters"></nav>
+ <div class="cmenu">
+  <button type="button" class="cbtn" id="cbtn" aria-haspopup="true" aria-expanded="false" aria-controls="clist"><span class="cnum" id="cnum">01</span><span class="ctit" id="ctit">Overview</span><span class="cof" id="cof">of 10</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="clist" id="clist" hidden></div>
+ </div>
  <button class="exit short-btn" type="button" data-short>Short version</button>
  <a class="exit" href="index.html#work">&larr; Work</a>
 </header>
 
 <main id="main">
 
-<section class="chap" data-id="overview" data-title="Overview" aria-labelledby="h-ov">
+<section class="chap" data-id="overview" data-desc="Start here" data-title="Overview" aria-labelledby="h-ov">
  <div class="hero">
   <div>
    <div class="eyebrow">Case study · Leadership development</div>
    <h1 id="h-ov">Leadership development that's <span class="grad">connected to how people grow</span></h1>
-   <p class="lede">This is how I build leaders at every stage: two tracks for individual contributors, one toward leadership and one deeper into their craft, then short programs for managers. It's all tied to job architecture, performance, internal mobility and succession planning.</p>
-   <p class="note">The levels, timelines and measures in this model are examples. The results shown here come from programs I've led.</p>
+   <p class="lede">A leadership model for the whole company, from individual contributors to senior leaders. Career tracks and short programs, all tied to job levels, reviews, internal moves and succession.</p>
+   <p class="note">The levels and timelines are examples. I adapt them to each company.</p>
    <div class="start"><button class="btn pri" type="button" data-goto="1"><span><small>About 8 minutes</small>Start the case study</span> &rarr;</button><button class="btn" type="button" data-short>Read the 1-minute version</button></div>
   </div>
- <div class="wins">
-   <div class="wins-h">Results from programs I've led</div>
-   <div class="wins-row">
-    <div style="--i:0"><b>9 <em>&rarr;</em> 4</b><span>months for new hires to reach full performance, after I redesigned onboarding for 500+ people at Shopify</span></div>
-    <div style="--i:1"><b><i data-to="20">0</i>%</b><span>performance lift after that onboarding redesign</span></div>
-    <div style="--i:2"><b><i data-to="12">0</i>+</b><span>talent and leadership programs I've designed and built</span></div>
-    <div style="--i:3"><b><i data-to="3500" data-comma>0</i>+</b><span>employees reached by programs I've led</span></div>
-   </div>
+  <div class="tiles-wrap">
+   <div class="wins-h">What's inside</div>
+   <div class="tiles" id="tiles"></div>
   </div>
  </div>
-  <dl class="facts row">
-   <div><dt>Who it's for</dt><dd>Individual contributors, new managers, experienced managers and senior leaders</dd></div>
-   <div><dt>Format</dt><dd>6 weeks plus mentorship for individual contributors, 8 weeks for each manager level</dd></div>
-   <div><dt>Connected to</dt><dd>Job architecture, performance reviews, internal moves and succession</dd></div>
-   <div><dt>My role</dt><dd>Needs analysis, program architecture, design, stakeholder alignment and measurement</dd></div>
-  </dl>
 </section>
 
-<section class="chap" data-id="problem" data-title="The problem" aria-labelledby="h-pr">
+<section class="chap" data-id="problem" data-desc="What goes wrong when leadership training runs on its own" data-title="The problem" aria-labelledby="h-pr">
  <div class="eyebrow">The problem</div>
- <h2 id="h-pr">What tends to go wrong when leadership training runs on its own</h2>
- <p class="lede">These patterns show up in a lot of companies. Select each one to see how the model answers it.</p>
+ <h2 id="h-pr">What goes wrong when leadership training runs on its own</h2>
+ <p class="lede">Select each card to see how the model fixes it.</p>
  <div class="hint" id="hintPr">0 of 4 opened</div>
  <div class="body flips" id="flips"></div>
 </section>
 
-<section class="chap" data-id="paths" data-title="Career paths" aria-labelledby="h-pa">
+<section class="chap" data-id="paths" data-desc="Two tracks for individual contributors" data-title="Career paths" aria-labelledby="h-pa">
  <div class="eyebrow">Career paths</div>
- <h2 id="h-pa">Individual contributors can grow into leadership or deeper into their craft</h2>
- <p class="lede">Not every strong individual contributor wants to manage people, and they shouldn't have to in order to move up. Both tracks are treated as equal in level and pay. Select a track or a stop along it.</p>
+ <h2 id="h-pa">Individual contributors choose how they grow</h2>
+ <p class="lede">Select any stop on either track.</p>
  <div class="body paths">
   <div class="fork" id="fork"><svg viewBox="0 0 640 440" aria-hidden="true" id="forkSvg"></svg></div>
   <div class="pinfo" id="pinfo" aria-live="polite"></div>
  </div>
 </section>
 
-<section class="chap" data-id="model" data-title="The model" aria-labelledby="h-mo">
+<section class="chap" data-id="model" data-desc="How the five parts connect at each level" data-title="The model" aria-labelledby="h-mo">
  <div class="eyebrow">The model</div>
- <h2 id="h-mo">How the five parts of the model connect at each level</h2>
- <p class="lede">Development sits in the middle. Job architecture sets what good looks like, and performance, internal mobility and succession all use the same definitions. Choose a level, then select a part.</p>
+ <h2 id="h-mo">How the five parts connect</h2>
+ <p class="lede">Pick a level, then select a part.</p>
  <div class="body">
   <div class="levels" role="group" aria-label="Choose a level" id="levels"></div>
   <div class="model">
@@ -372,55 +397,55 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
  </div>
 </section>
 
-<section class="chap" data-id="programs" data-title="The programs" aria-labelledby="h-pg">
+<section class="chap" data-id="programs" data-desc="What each program covers each week" data-title="The programs" aria-labelledby="h-pg">
  <div class="eyebrow">The programs</div>
- <h2 id="h-pg">What each program covers each week</h2>
- <p class="lede">Every program is short on purpose, so people can apply each week's idea at work before the next one. Choose a program, then select a week.</p>
+ <h2 id="h-pg">What each program covers</h2>
+ <p class="lede">Pick a program, then select a week.</p>
  <div class="body">
   <div class="ptabs" role="group" aria-label="Choose a program" id="ptabs"></div>
   <div id="pbody"></div>
  </div>
 </section>
 
-<section class="chap" data-id="build" data-title="How I build it" aria-labelledby="h-bd">
+<section class="chap" data-id="build" data-desc="The five steps from discovery to launch" data-title="How I build it" aria-labelledby="h-bd">
  <div class="eyebrow">How I build it</div>
  <h2 id="h-bd">How I build the programs</h2>
- <p class="lede">I use SAM, the Successive Approximation Model, so leaders and HR partners react to something real early. Select each step.</p>
+ <p class="lede">Select each step.</p>
  <div class="body">
   <div class="stepper" id="stepper"><div class="bar" id="sbar"></div></div>
   <div class="sdetail" id="sdetail" aria-live="polite"></div>
  </div>
 </section>
 
-<section class="chap" data-id="measure" data-title="Measuring it" aria-labelledby="h-me">
+<section class="chap" data-id="measure" data-desc="What I measure at each level, and when" data-title="Measuring it" aria-labelledby="h-me">
  <div class="eyebrow">Measuring it</div>
  <h2 id="h-me">What I measure, and when</h2>
- <p class="lede">Leaders usually care most about levels three and four, because they show whether people lead differently at work and whether the business sees results. Open each level to see what I look at.</p>
+ <p class="lede">Open each level.</p>
  <div class="body ladder" id="ladder"></div>
 </section>
 
-<section class="chap" data-id="foundations" data-title="Foundations" aria-labelledby="h-fo">
+<section class="chap" data-id="foundations" data-desc="The leadership models behind the programs" data-title="Foundations" aria-labelledby="h-fo">
  <div class="eyebrow">Foundations</div>
  <h2 id="h-fo">The leadership models the programs draw on</h2>
- <p class="lede">These are the models most strong leadership programs build on. Select one to see where it shows up here. A few link to short samples I've built.</p>
+ <p class="lede">Select a model to see where it shows up.</p>
  <div class="body">
   <div class="chips" id="chipsF" role="group" aria-label="Leadership models"></div>
   <div class="fdetail" id="fdetail" aria-live="polite"></div>
  </div>
 </section>
 
-<section class="chap" data-id="risks" data-title="Risks" aria-labelledby="h-ri">
+<section class="chap" data-id="risks" data-desc="What I plan around from the start" data-title="Risks" aria-labelledby="h-ri">
  <div class="eyebrow">What I watch for</div>
  <h2 id="h-ri">The risks I plan around from the start</h2>
  <p class="lede">Select each one to see how I handle it.</p>
  <div class="body risks" id="risks"></div>
- <p class="hint" style="margin-top:20px">Next: check how your own company compares.</p>
+ 
 </section>
 
-<section class="chap" data-id="yours" data-title="Your company" aria-labelledby="h-yo">
+<section class="chap" data-id="yours" data-desc="Five quick questions, and where I start with your team" data-title="Your company" aria-labelledby="h-yo">
  <div class="eyebrow">Your company</div>
  <h2 id="h-yo">See where your company is today, and where I start</h2>
- <p class="lede">Answer five quick questions about your organization. Your answers stay in this page and aren't saved or sent anywhere.</p>
+ <p class="lede">Five quick questions. Your answers aren't saved or sent anywhere.</p>
  <div class="body yours">
   <ol class="qs" id="qs"></ol>
   <div class="yres" id="yres" aria-live="polite"></div>
@@ -434,11 +459,11 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
  <div class="eyebrow">The 1-minute version</div>
  <h2 id="svTitle">What this case study shows</h2>
  <dl class="sv-list">
+  <div><dt>Who it's for</dt><dd>The whole company, from individual contributors to senior leaders.</dd></div>
   <div><dt>The idea</dt><dd>Leadership programs work better when they're tied to job architecture, performance reviews, internal mobility and succession, so people learn and get reviewed against the same expectations.</dd></div>
   <div><dt>The programs</dt><dd>Individual contributors choose a six-week leadership track or a six-week craft track, each with three months of mentorship. Managers at each level take an eight-week program.</dd></div>
   <div><dt>How I build it</dt><dd>I use SAM, so leaders and HR partners react to a working pilot within the first few months instead of a finished program at the end.</dd></div>
   <div><dt>How I measure it</dt><dd>Session feedback and skills checks, 360 feedback six months later, and business measures like internal fill rate and ready-now successors.</dd></div>
-  <div><dt>My track record</dt><dd>9 to 4 months onboarding ramp and a 20% performance lift at Shopify, 12+ programs built and 3,500+ employees reached.</dd></div>
  </dl>
  <div class="close-cta">
   <button class="btn pri" type="button" data-goto-id="yours">Check your company &rarr;</button>
@@ -448,7 +473,7 @@ h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em;line-he
 </div>
 
 <div class="dock">
- <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+ <div class="dots" id="dots" role="group" aria-label="Chapters"></div>
  <div class="nav">
   <button class="btn" type="button" id="prevBtn">&larr; Back</button>
   <button class="btn pri" type="button" id="nextBtn"><span><small>Up next</small><span id="nextLbl"></span></span> &rarr;</button>
@@ -462,23 +487,32 @@ const NAVY='#1B3A5C', TEAL='#0F9F9A', MID='#2A5A7E', SLATE='#5C7A99';
 
 /* ---------- chapters ---------- */
 const chaps=$$('.chap'); let cur=0; const seen=new Set([0]);
-$('#chaps').innerHTML=chaps.map((c,i)=>`<button type="button" data-i="${i}"><i>${String(i+1).padStart(2,'0')}</i>${c.dataset.title}</button>`).join('');
+const pad=i=>String(i+1).padStart(2,'0');
+$('#clist').innerHTML=chaps.map((c,i)=>`<button type="button" data-i="${i}"><span class="n">${pad(i)}</span><span class="t"><b>${c.dataset.title}</b><small>${c.dataset.desc||''}</small></span><span class="ck" aria-hidden="true"></span></button>`).join('');
+$('#dots').innerHTML=chaps.map((c,i)=>`<button type="button" data-i="${i}" aria-label="${c.dataset.title}"></button>`).join('');
+$('#cof').textContent='of '+chaps.length;
+$('#tiles').innerHTML=chaps.slice(1).map((c,k)=>`<button type="button" class="tile" data-i="${k+1}"><span class="n">${pad(k+1)}</span><b>${c.dataset.title}</b><small>${c.dataset.desc}</small></button>`).join('');
+const cbtn=$('#cbtn'), clist=$('#clist');
+function menu(open){ clist.hidden=!open; cbtn.setAttribute('aria-expanded',open); if(open){ const f=clist.querySelector('[aria-current="true"]')||clist.querySelector('button'); f&&f.focus(); } }
+cbtn.onclick=e=>{ e.stopPropagation(); menu(clist.hidden); };
+document.addEventListener('click',e=>{ if(!clist.hidden&&!e.target.closest('.cmenu')) menu(false); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!clist.hidden){ menu(false); cbtn.focus(); } });
+$$('#clist button').forEach(b=>b.onclick=()=>{ menu(false); go(+b.dataset.i); });
+$$('#dots button,#tiles .tile').forEach(b=>b.onclick=()=>go(+b.dataset.i));
 function go(i,push){
   i=Math.max(0,Math.min(chaps.length-1,i)); chaps[cur].classList.remove('on'); cur=i; chaps[cur].classList.add('on'); seen.add(i);
-  $$('#chaps button').forEach((b,k)=>{ b.setAttribute('aria-current',k===cur); b.classList.toggle('seen',seen.has(k)); });
-  const cb=$(`#chaps button[data-i="${cur}"]`); cb&&cb.scrollIntoView({block:'nearest',inline:'center'});
+  $$('#clist button,#dots button').forEach(b=>{ const k=+b.dataset.i; b.setAttribute('aria-current',k===cur); b.classList.toggle('seen',seen.has(k)&&k!==cur); });
+  $$('#tiles .tile').forEach(b=>b.classList.toggle('seen',seen.has(+b.dataset.i)));
+  $('#cnum').textContent=pad(cur); $('#ctit').textContent=chaps[cur].dataset.title;
   $('#prevBtn').hidden=cur===0;
   const nx=chaps[cur+1]; $('#nextBtn').hidden=!nx; if(nx) $('#nextLbl').textContent=nx.dataset.title;
-  $('#progBar').style.width=(cur/(chaps.length-1)*100)+'%';
   window.scrollTo(0,0);
-  if(chaps[cur].dataset.id==='overview') countUp();
   if(push!==false){ try{ history.replaceState(null,'','#'+chaps[cur].dataset.id); }catch(e){} }
   const h=chaps[cur].querySelector('h1,h2'); h&&h.setAttribute('tabindex','-1'); if(push!==false&&h) h.focus({preventScroll:true});
 }
-$$('#chaps button').forEach(b=>b.onclick=()=>go(+b.dataset.i));
 $$('[data-goto]').forEach(b=>b.onclick=()=>go(+b.dataset.goto));
 $('#nextBtn').onclick=()=>go(cur+1); $('#prevBtn').onclick=()=>go(cur-1);
-document.addEventListener('keydown',e=>{ if(e.target.closest('input,textarea')) return; if(e.key==='ArrowRight'&&!e.target.closest('.levels,.ptabs,.chips')) go(cur+1); if(e.key==='ArrowLeft'&&!e.target.closest('.levels,.ptabs,.chips')) go(cur-1); });
+document.addEventListener('keydown',e=>{ if(e.target.closest('input,textarea')) return; if(!$('#svPanel').hidden||!clist.hidden) return; if(e.key==='ArrowRight'&&!e.target.closest('.levels,.ptabs,.chips,.seg')) go(cur+1); if(e.key==='ArrowLeft'&&!e.target.closest('.levels,.ptabs,.chips,.seg')) go(cur-1); });
 function fromHash(){ const id=location.hash.slice(1); const i=chaps.findIndex(c=>c.dataset.id===id); go(i>=0?i:0,false); }
 addEventListener('hashchange',fromHash);
 
@@ -491,26 +525,26 @@ function flips(box, items, label, hint){
     if(o&&!f.dataset.seen){ f.dataset.seen=1; opened++; if(hint) hint.textContent=opened+' of '+items.length+' opened'; } });
 }
 flips($('#flips'),[
- ['People get promoted for the wrong reasons','Strong individual contributors become managers because that is the only way up.','A dual career ladder gives experts a real path up, and a six-week track lets people try leadership before they commit.'],
- ["The training and the reviews don't match",'Managers learn one set of skills in a workshop, then get reviewed on something else.','Job architecture defines each level once. The programs teach to it and performance reviews measure against it.'],
- ['Internal moves depend on who you know',"Good people leave because they can't see a path, and open roles get filled from outside.",'Clear tracks, internal postings first, and program graduates whose readiness is visible to hiring managers.'],
- ['Succession plans live in a spreadsheet','Names go on a list once a year, but nobody is working on getting those people ready.','Gaps in the succession plan decide who joins each cohort, so the programs build the bench the business needs.']
-],'How the model answers it',$('#hintPr'));
+ ['Managing is the only way up','Strong experts become managers because nothing else pays off.','A craft track gives experts a real path up, and a six-week track lets people try leading first.'],
+ ["Training and reviews don't match",'Managers learn one thing and get reviewed on another.','Each level is defined once. The programs teach it and the reviews measure it.'],
+ ['Internal moves depend on who you know',"Good people leave when they can't see a path.",'Clear tracks, internal postings first, and visible readiness.'],
+ ['Succession lives in a spreadsheet','Names go on a list, and nobody gets them ready.','Gaps in the succession plan decide who joins each cohort.']
+],'How the model fixes it',$('#hintPr'));
 flips($('#risks'),[
- ["Leaders who aren't involved",'Without their own manager involved, people drop new habits within weeks.',"Each participant's manager joins at the start, the midpoint and the end, with a short guide for each conversation."],
- ['A job architecture that is too complicated','If people cannot explain their own level, it will not guide anything.','Keep it to a few levels per ladder, each described in two or three plain sentences.'],
- ['Succession lists that feel secret','When people do not know they are being developed, the best ones still leave.','Tell people they are in a development pool and why, even if the list itself stays private.'],
- ['Measuring only attendance','Completion is easy to count and says very little.','Agree on the business measures with leaders before the first cohort starts, and report on them twice a year.']
+ ["Managers who aren't involved",'New habits fade within weeks.',"Each participant's manager joins at the start, middle and end, with a short guide."],
+ ['Levels that are too complicated',"If people can't explain their level, it won't guide anything.",'A few levels per track, each described in two or three plain sentences.'],
+ ['Succession lists that feel secret',"People who don't know they're being developed still leave.","People are told they're in a development pool, even if the list stays private."],
+ ['Counting attendance only','Completion says very little.','Business measures are agreed with leaders before the first cohort.']
 ],'How I handle it');
 
 /* ---------- career paths fork ---------- */
 const TRACKS={
  lead:{c:NAVY,k:'Leadership track',name:'Explore leadership',len:'6 weeks, plus 3 months of mentorship',
-  what:'For individual contributors who are curious about managing people. They try it out before anyone changes their title.',
-  pts:['A manager from another team as a mentor','A real stretch: leading a small project or onboarding a new hire','Ends with a clear decision, and choosing to stay an individual contributor carries no penalty'],prog:'ic-lead'},
+  what:'Try leading people before taking on the title.',
+  pts:['A manager from another team as a mentor','Lead a small project or onboard a new hire','Staying an individual contributor carries no penalty'],prog:'ic-lead'},
  craft:{c:TEAL,k:'Craft track',name:'Grow in your craft',len:'6 weeks, plus 3 months of mentorship',
-  what:'For individual contributors who want to go deeper as experts and have more influence without managing people.',
-  pts:['A senior expert as a mentor','Learning to influence without authority and to teach others','Ends with next-level goals agreed with their manager'],prog:'ic-craft'}
+  what:'Grow deeper expertise and more influence, without managing people.',
+  pts:['A senior expert as a mentor','Learn to influence and teach others','Agree next-level goals with your manager'],prog:'ic-craft'}
 };
 const STOPS=[
  {k:'ic',name:'Individual contributor',sub:'Choose a direction',x:11,y:50,mx:50,my:5,root:true},
@@ -607,7 +641,7 @@ function renderModel(anim){
   $$('#figSvg .spoke').forEach(l=>l.classList.toggle('hot',part==='dev'||l.dataset.a===part));
   $$('#figSvg .link').forEach(l=>l.classList.toggle('hot',l.dataset.a===part||l.dataset.b===part));
   const pan=$('#panel');
-  pan.innerHTML=`<div class="k">${p.sub}</div><h3>${p.name}</h3><p class="what">${p.what}</p><dl><div class="lvl"><dt>For ${L.name.toLowerCase()}s</dt><dd>${p.lv[level]}</dd></div><div><dt>How it connects</dt><dd>${p.link}</dd></div><div><dt>What I track</dt><dd>${p.track}</dd></div></dl>`;
+  pan.innerHTML=`<div class="k">${p.sub}</div><h3>${p.name}</h3><dl><div class="lvl"><dt>For ${L.name.toLowerCase()}s</dt><dd>${p.lv[level]}</dd></div><div><dt>How it connects</dt><dd>${p.link}</dd></div><div><dt>What I track</dt><dd>${p.track}</dd></div></dl>`;
   if(anim){pan.classList.remove('fade'); void pan.offsetWidth; pan.classList.add('fade');}
 }
 renderModel(false);
@@ -680,7 +714,7 @@ $$('.sbtn').forEach(b=>b.onclick=()=>showStep(+b.dataset.i));
 function showStep(i){ step=i; visited.add(i); const s=STEPS[i];
   $$('.sbtn').forEach(b=>{const k=+b.dataset.i; b.setAttribute('aria-pressed',k===i); b.classList.toggle('done',visited.has(k)&&k!==i);});
   $('#sbar').style.width=`calc(${i/(STEPS.length-1)} * (100% - 48px))`;
-  const d=$('#sdetail'); d.innerHTML=`<div><h3>${s.nm}</h3><p>${s.p}</p><ul>${s.li.map(x=>`<li>${x}</li>`).join('')}</ul></div><aside><b>${s.aside[0]}</b>${s.aside[1]}</aside>`;
+  const d=$('#sdetail'); d.innerHTML=`<div><h3>${s.nm}</h3><p>${s.p}</p><ul>${s.li.slice(0,2).map(x=>`<li>${x}</li>`).join('')}</ul></div><aside><b>${s.aside[0]}</b>${s.aside[1]}</aside>`;
   d.classList.remove('fade'); void d.offsetWidth; d.classList.add('fade'); }
 showStep(0);
 
@@ -717,10 +751,6 @@ function showModel(i){ const m=MODELS[i];
 showModel(0);
 showStop('lead');
 
-/* ---------- results count-up ---------- */
-function countUp(){ document.querySelectorAll('.wins [data-to]').forEach(el=>{ const to=+el.dataset.to, fmt=v=>el.hasAttribute('data-comma')?v.toLocaleString('en-CA'):String(v);
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=fmt(to);return;}
-  const t0=performance.now(), d=1300; (function f(t){const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); el.textContent=fmt(Math.round(to*e)); if(k<1) requestAnimationFrame(f);})(t0); }); }
 
 /* ---------- short version ---------- */
 const svP=$('#svPanel'), svS=$('#svScrim'); let svLast=null;
