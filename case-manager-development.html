@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" sizes="any" href="./favicon.svg?v=3">
+<title>Manager Development Model, Case Study · Juliana Dos Santos</title>
+<meta name="description" content="A sample case study by Juliana Dos Santos: a manager development model connected to job architecture, performance, internal mobility and succession planning, and how she would build and measure it.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Juliana Dos Santos">
+<meta property="og:url" content="https://julianadossantos.ca/case-manager-development.html">
+<meta property="og:title" content="Manager Development Model · Juliana Dos Santos">
+<meta property="og:description" content="How a leadership program can connect to job levels, performance, internal moves and succession, so what managers learn shows up in how the business runs.">
+<meta property="og:image" content="https://julianadossantos.ca/og-image.png?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A5C;--teal:#0F9F9A;--mid:#2A5A7E;--slate:#5C7A99;--line:#C9D5E1;--faint:#E7ECF2;--soft:#F3F6F9;--ink:#1A1A1C;--body:#4A4F5A;--muted:#6E6E73;
+ --grad:linear-gradient(90deg,#1B3A5C,#0F9F9A);--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:#fff;color:var(--ink);font:16.5px/1.6 Inter,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:var(--navy)}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--faint);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,18px);padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.top .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
+.top .brand .mark{width:30px;height:30px}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:none;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:7px 11px;border-radius:99px}
+.toc a:hover,.toc a.on{color:var(--navy);background:var(--soft)}
+.exit{flex:none;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:8px 14px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(5vw,18px)}
+section{padding:clamp(56px,7vw,96px) 0;border-bottom:1px solid var(--faint)}
+section:last-of-type{border-bottom:0}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:-.035em;margin:0 0 20px;color:var(--navy);text-wrap:balance;max-width:20ch}
+h2{font-size:clamp(26px,3.4vw,38px);line-height:1.12;letter-spacing:-.03em;margin:0 0 14px;color:var(--navy);text-wrap:balance;max-width:26ch}
+h3{font-size:18px;margin:0 0 6px;color:var(--navy);letter-spacing:-.01em}
+.lede{font-size:clamp(17px,1.6vw,19px);color:var(--body);max-width:62ch;margin:0}
+p{max-width:68ch}
+.note{display:inline-flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:14px;color:var(--body);border-left:4px solid var(--teal);padding:4px 0 4px 14px;max-width:62ch}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px;margin:0}
+.facts div{border-top:2px solid var(--faint);padding-top:12px}
+.facts dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.facts dd{margin:4px 0 0;font-size:15.5px;color:var(--ink);font-weight:600;line-height:1.45}
+/* problem */
+.probs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px;margin-top:30px}
+.probs div{padding-left:18px;border-left:3px solid var(--line)}
+.probs p{margin:0;color:var(--body);font-size:15.5px}
+/* model */
+.levels{display:inline-flex;gap:6px;background:var(--soft);padding:5px;border-radius:99px;margin:26px 0 8px;flex-wrap:wrap}
+.levels button{font:600 14px Inter,Arial,sans-serif;border:0;background:none;color:var(--body);padding:10px 16px;border-radius:99px;cursor:pointer;min-height:44px}
+.levels button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.levels button:focus-visible,.node:focus-visible,.toc a:focus-visible,.exit:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.lvl-desc{font-size:14.5px;color:var(--muted);margin:4px 0 0;min-height:1.6em}
+.model{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:start;margin-top:24px}
+.fig{position:relative;aspect-ratio:1/1;max-width:560px;width:100%;margin:0 auto}
+.fig svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.link{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.spoke{stroke:var(--faint);stroke-width:3}
+.link.hot,.spoke.hot{stroke:var(--teal)}
+.flow{fill:var(--teal);offset-rotate:0deg;animation:flow 3.2s linear infinite}
+@keyframes flow{from{offset-distance:0%}to{offset-distance:100%}}
+.node{position:absolute;transform:translate(-50%,-50%);width:25%;aspect-ratio:1/1;border-radius:50%;border:2px solid var(--line);background:#fff;color:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px;cursor:pointer;font:700 clamp(12.5px,1.55vw,16px)/1.2 Inter,Arial,sans-serif;transition:border-color .3s,background .3s,color .3s,transform .3s var(--ease)}
+.node small{display:block;font-size:.72em;font-weight:600;color:var(--slate);margin-top:4px;letter-spacing:.02em}
+.node:hover{border-color:var(--teal)}
+.node[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.node[aria-pressed="true"] small{color:rgba(255,255,255,.75)}
+.node.core{width:30%;border-color:var(--teal)}
+.panel{border-top:3px solid var(--navy);padding-top:18px}
+.panel .k{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.panel h3{font-size:26px;letter-spacing:-.02em;margin:6px 0 8px}
+.panel .what{font-size:16.5px;color:var(--body);margin:0 0 18px}
+.panel dl{margin:0;display:grid;gap:14px}
+.panel dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.panel dd{margin:3px 0 0;font-size:15.5px;line-height:1.55}
+.panel .lvl{background:var(--soft);border-radius:14px;padding:14px 16px}
+.panel .lvl dt{color:var(--navy)}
+.fade{animation:fadein .4s var(--ease)}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* process */
+.steps{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:22px;height:3px;background:var(--faint)}
+.steps li{position:relative;padding:0 18px 0 0;counter-increment:s}
+.steps li::before{content:counter(s);position:relative;z-index:1;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid var(--navy);color:var(--navy);font-weight:800;margin-bottom:14px}
+.steps .when{font-size:12.5px;font-weight:700;color:var(--teal);letter-spacing:.04em;margin-bottom:4px}
+.steps p{margin:0;font-size:14.5px;color:var(--body)}
+.steps .tool{margin-top:10px;font-size:13px;color:var(--slate)}
+.steps .tool a{font-weight:600}
+/* curriculum */
+.tracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:30px}
+.track{border-top:4px solid var(--c);padding-top:16px}
+.track .lv{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.track h3{font-size:21px;margin:4px 0 6px}
+.track > p{font-size:14.5px;color:var(--body);margin:0 0 14px}
+.track ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.track li{font-size:14.5px;line-height:1.5;padding-left:16px;position:relative}
+.track li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--c)}
+.track li b{color:var(--ink)}
+.blend{margin-top:34px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.blend div{font-size:14.5px;color:var(--body)}
+.blend b{display:block;color:var(--navy);font-size:15px;margin-bottom:2px}
+/* measure */
+.table{width:100%;border-collapse:collapse;margin-top:28px;font-size:15px}
+.table th{text-align:left;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);padding:10px 14px 10px 0;border-bottom:2px solid var(--navy)}
+.table td{padding:14px 14px 14px 0;border-bottom:1px solid var(--faint);vertical-align:top;line-height:1.5}
+.table td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+/* models */
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 34px;margin-top:30px}
+.mgrid div{border-top:1px solid var(--faint);padding-top:14px}
+.mgrid h3{font-size:16.5px}
+.mgrid p{margin:0;font-size:14.5px;color:var(--body)}
+.mgrid .use{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--teal);margin-top:8px}
+.mgrid a{font-size:13.5px;font-weight:600;display:inline-block;margin-top:6px}
+.watch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 40px;margin-top:26px}
+.watch p{margin:0;font-size:15.5px;color:var(--body)}
+.watch b{color:var(--navy)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px Inter,Arial,sans-serif;border-radius:99px;padding:13px 22px;text-decoration:none;min-height:44px}
+.btn.pri{background:var(--navy);color:#fff}
+.btn.sec{border:1px solid var(--line);color:var(--navy)}
+@media(max-width:960px){
+ .hero,.model{grid-template-columns:1fr;gap:30px}
+ .steps{grid-template-columns:1fr;gap:22px}
+ .steps::before{left:22px;right:auto;top:0;bottom:0;width:3px;height:auto}
+ .steps li{padding:0 0 0 64px}
+ .steps li::before{position:absolute;left:0;top:0;margin:0}
+ .tracks,.mgrid{grid-template-columns:1fr 1fr}
+ .blend{grid-template-columns:1fr 1fr}
+ .top .toc{display:none}
+}
+@media(max-width:620px){
+ .probs,.facts,.tracks,.mgrid,.watch,.blend{grid-template-columns:1fr}
+ .table thead{display:none}
+ .table tr{display:grid;padding:10px 0;border-bottom:1px solid var(--faint)}
+ .table td{border:0;padding:2px 0}
+ .node{font-size:12px}
+ .levels button{font-size:13px;padding:8px 11px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.flow{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+ <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
+ <nav class="toc" aria-label="Sections">
+  <a href="#problem">The problem</a><a href="#model">The model</a><a href="#process">How I'd build it</a><a href="#levels">By level</a><a href="#measure">Measuring it</a><a href="#foundations">Foundations</a>
+ </nav>
+ <a class="exit" href="index.html#work">&larr; Work</a>
+</header>
+
+<main>
+<section class="wrap" aria-labelledby="t-hero">
+ <div class="hero">
+  <div>
+   <span class="eyebrow">Case study · Sample model</span>
+   <h1 id="t-hero">A manager development program that's <span class="grad">connected to how people grow</span></h1>
+   <p class="lede">Most leadership programs run on their own, separate from levels, reviews and promotions. This sample shows how I would design one that's tied into job architecture, performance, internal mobility and succession planning, so what managers learn shows up in how the company actually runs.</p>
+   <p class="note">This is a sample model that shows how I'd approach the work. The levels, timelines and measures are examples, not results from a past program.</p>
+  </div>
+  <dl class="facts">
+   <div><dt>Who it's for</dt><dd>First-time managers, experienced managers and senior leaders</dd></div>
+   <div><dt>Format</dt><dd>Cohorts by level, about six months each, blended live and self-paced</dd></div>
+   <div><dt>Connected to</dt><dd>Job architecture, performance reviews, internal moves and succession</dd></div>
+   <div><dt>My role</dt><dd>Needs analysis, program architecture, design, stakeholder alignment and measurement</dd></div>
+  </dl>
+ </div>
+</section>
+
+<section class="wrap" id="problem" aria-labelledby="t-problem">
+ <span class="eyebrow">The problem</span>
+ <h2 id="t-problem">What usually goes wrong when leadership training stands alone</h2>
+ <p class="lede">These are patterns I see across a lot of companies. A good model has to answer each one.</p>
+ <div class="probs">
+  <div><h3>People get promoted for the wrong reasons</h3><p>Strong individual contributors become managers without anyone defining what good management looks like at their level.</p></div>
+  <div><h3>The training and the reviews don't match</h3><p>Managers learn one set of skills in a workshop, then get reviewed on something else entirely.</p></div>
+  <div><h3>Internal moves depend on who you know</h3><p>Good people leave because they can't see a path, and open roles get filled from outside by default.</p></div>
+  <div><h3>Succession plans live in a spreadsheet</h3><p>Names go on a list once a year, but nobody is actually getting those people ready.</p></div>
+ </div>
+</section>
+
+<section class="wrap" id="model" aria-labelledby="t-model">
+ <span class="eyebrow">The model</span>
+ <h2 id="t-model">How the five parts connect</h2>
+ <p class="lede">The program sits in the middle. Job architecture defines what good looks like at each level, and performance, internal mobility and succession all use the same definitions. Choose a level, then select any part to see how it works.</p>
+ <div class="levels" role="group" aria-label="Choose a level" id="levels"></div>
+ <p class="lvl-desc" id="lvlDesc" aria-live="polite"></p>
+ <div class="model">
+  <div class="fig" id="fig">
+   <svg viewBox="0 0 560 560" aria-hidden="true" id="figSvg"></svg>
+  </div>
+  <div class="panel" id="panel" aria-live="polite"></div>
+ </div>
+</section>
+
+<section class="wrap" id="process" aria-labelledby="t-process">
+ <span class="eyebrow">How I'd build it</span>
+ <h2 id="t-process">From the first conversations to the first cohort</h2>
+ <p class="lede">I'd use SAM, the Successive Approximation Model, so leaders and HR partners react to something real early, and plan the measures before building anything.</p>
+ <ol class="steps">
+  <li><div class="when">Weeks 1 to 6</div><h3>Discover</h3><p>Talk with managers, their leaders and HR partners. Review the job architecture, performance data, engagement results and exit themes. Agree on three to five business outcomes.</p></li>
+  <li><div class="when">Weeks 7 to 8</div><h3>Design together</h3><p>Run a working session with stakeholders to turn each level's expectations into program outcomes, then sketch the first module and the model.</p><div class="tool">Based on a SAM Savvy Start. <a href="course-sam.html">Try my SAM sample</a></div></li>
+  <li><div class="when">Weeks 9 to 20</div><h3>Prototype and pilot</h3><p>Build one module, test it with a small pilot cohort, and revise in quick rounds before building the rest.</p></li>
+  <li><div class="when">Month 6 onward</div><h3>Launch by level</h3><p>Open cohorts for each level. Each participant's own manager joins at the kickoff, the midpoint and the end.</p></li>
+  <li><div class="when">Every cohort</div><h3>Measure and improve</h3><p>Practice and feedback during the program, a skills check at the end, and talent measures reviewed twice a year.</p><div class="tool">Formative and summative checks. <a href="course-assessments.html">Try my assessment sample</a></div></li>
+ </ol>
+</section>
+
+<section class="wrap" id="levels" aria-labelledby="t-levels">
+ <span class="eyebrow">By level</span>
+ <h2 id="t-levels">What managers learn at each level</h2>
+ <p class="lede">Each track is built from that level's expectations in the job architecture, and draws on proven leadership models.</p>
+ <div class="tracks" id="tracks"></div>
+ <div class="blend">
+  <div><b>Short self-paced lessons</b>Five-minute microlearning before each live session, so time together goes to practice.</div>
+  <div><b>Live practice labs</b>Small groups practise real conversations, like feedback, conflict and career talks.</div>
+  <div><b>Peer coaching circles</b>Groups of four to six meet monthly to work through real problems using GROW.</div>
+  <div><b>A stretch project</b>A real piece of work tied to the business, reviewed with the participant's leader.</div>
+ </div>
+</section>
+
+<section class="wrap" id="measure" aria-labelledby="t-measure">
+ <span class="eyebrow">Measuring it</span>
+ <h2 id="t-measure">What I would track, and when</h2>
+ <p class="lede">The first two levels tell you whether the program works. The last two tell you whether it matters to the business, and those are the ones leaders care about.</p>
+ <table class="table">
+  <thead><tr><th>Level</th><th>What I'd look at</th><th>When</th></tr></thead>
+  <tbody>
+   <tr><td>Reaction</td><td>A short pulse after each session: how useful was this for something you're dealing with now?</td><td>Every session</td></tr>
+   <tr><td>Learning</td><td>Practice scores during the program, then a final skills check against the level's expectations.</td><td>During and at the end</td></tr>
+   <tr><td>Behaviour</td><td>360 feedback before and six months after, plus check-ins with each participant's leader.</td><td>Start and six months</td></tr>
+   <tr><td>Results</td><td>Share of manager roles filled internally, share of critical roles with a ready-now successor, regretted turnover on participants' teams, and engagement scores for those teams.</td><td>Twice a year</td></tr>
+  </tbody>
+ </table>
+</section>
+
+<section class="wrap" id="foundations" aria-labelledby="t-found">
+ <span class="eyebrow">Foundations</span>
+ <h2 id="t-found">The leadership models the program draws on</h2>
+ <p class="lede">These are the models most strong leadership programs build on. Here's where each one shows up in this design. A few link to short samples I've built.</p>
+ <div class="mgrid" id="mgrid"></div>
+</section>
+
+<section class="wrap" aria-labelledby="t-watch">
+ <span class="eyebrow">What I'd watch for</span>
+ <h2 id="t-watch">The risks I would plan around from the start</h2>
+ <div class="watch">
+  <p><b>Leaders who aren't involved.</b> If participants' own managers don't take part, new habits fade within weeks. That's why they join at the kickoff, the midpoint and the end.</p>
+  <p><b>A job architecture that's too complicated.</b> If people can't explain their own level in a sentence, it won't guide anything. I'd keep it to a few levels with plain descriptions.</p>
+  <p><b>Succession lists that feel secret.</b> People should know they're being developed, even if the list itself stays private. Otherwise the best people still leave.</p>
+  <p><b>Measuring only attendance.</b> Completion is easy to count and says little. I'd agree on the business measures with leaders before the first cohort starts.</p>
+ </div>
+ <div class="cta">
+  <a class="btn pri" href="index.html#contact">Talk to me about a project &rarr;</a>
+  <a class="btn sec" href="index.html#work">&larr; Back to work</a>
+ </div>
+</section>
+</main>
+
+<script>
+{
+const LEVELS=[
+ {k:'m1',name:'First-time manager',desc:'Leads a team of individual contributors, often for the first time.'},
+ {k:'m2',name:'Experienced manager',desc:'Leads a larger team, sometimes including team leads.'},
+ {k:'m3',name:'Senior leader',desc:'Leads managers or a whole function.'}
+];
+const PARTS=[
+ {k:'arch',name:'Job architecture',sub:'What good looks like',x:50,y:13,
+  what:'Clear levels for manager roles, with what is expected at each one. It gives everything else a shared language.',
+  lv:{m1:'Expected to set clear goals, run regular one-on-ones and give useful feedback.',m2:'Expected to build a healthy team, handle conflict and grow people\'s skills.',m3:'Expected to set direction, lead change and build a bench of future leaders.'},
+  link:'The expectations at each level become the program\'s outcomes and the performance criteria, so people learn and get reviewed against the same thing.',
+  track:'Share of manager roles with written level expectations that people can explain.'},
+ {k:'perf',name:'Performance',sub:'How managers are reviewed',x:87,y:50,
+  what:'How managers are reviewed, and how they review the people on their team.',
+  lv:{m1:'Goals include regular one-on-ones and feedback. Their first review cycle comes with a calibration walkthrough.',m2:'Reviewed on team results and team health, not only output. They take part in calibration.',m3:'Reviewed on the strength of their bench and how well they lead change. They lead calibration for their area.'},
+  link:'Review results point each manager to the right development, and show who is ready for more.',
+  track:'Quality of reviews managers write, and how consistent ratings are after calibration.'},
+ {k:'mob',name:'Internal mobility',sub:'Paths to move up or across',x:50,y:87,
+  what:'Clear, visible paths for moving up or across, so good people grow inside the company instead of leaving.',
+  lv:{m1:'Shows what it takes to move from individual contributor to team lead, including a stretch project to try it first.',m2:'Lateral moves and stretch assignments across teams to broaden experience.',m3:'Rotations into cross-functional roles to prepare for a bigger scope.'},
+  link:'Open manager roles are posted inside first, and graduates\' readiness is visible to hiring managers.',
+  track:'Share of manager roles filled internally, and how those internal hires do in their first year.'},
+ {k:'succ',name:'Succession',sub:'Getting people ready',x:13,y:50,
+  what:'Knowing who could step into key roles, and getting them ready on purpose rather than hoping.',
+  lv:{m1:'Strong individual contributors are spotted early and invited into a pre-manager track.',m2:'Each manager names one or two possible successors and builds their development plans.',m3:'Critical roles have named successors marked ready now or ready in one to two years, reviewed twice a year.'},
+  link:'Gaps in the succession plan decide who joins the next cohort, so the program builds the bench the business needs.',
+  track:'Share of critical roles with at least one ready-now successor.'},
+ {k:'dev',name:'Development',sub:'The program',x:50,y:50,core:true,
+  what:'The program itself: a cohort for each level, built around the real expectations of that level.',
+  lv:{m1:'Emotional intelligence, feedback, adapting your style and coaching conversations, with plenty of practice.',m2:'Team health and trust, conflict, team stages and fair performance conversations.',m3:'Leading change, explaining the why, and running talent and succession reviews.'},
+  link:'Each cohort ends with a skills check against the level\'s expectations, which feeds into performance reviews and readiness for the next role.',
+  track:'Skills check results, and 360 feedback before and six months after.'},
+ {k:'perf2',skip:true}
+].filter(p=>!p.skip);
+const LOOP=['arch','perf','mob','succ'];
+const TRACKS=[
+ {c:'#1B3A5C',lv:'Level 1',name:'First-time managers',intro:'Moving from doing the work to leading the people who do it.',
+  items:[['Emotional intelligence','noticing your own reactions before they run the conversation'],['Radical Candor','feedback that\'s caring and direct'],['Situational Leadership','matching direction and support to each person and task'],['GROW coaching','helping people solve problems instead of solving them yourself']]},
+ {c:'#0F9F9A',lv:'Level 2',name:'Experienced managers',intro:'Building a team that works well without you in every room.',
+  items:[['Lencioni\'s Five Dysfunctions','building trust and healthy conflict'],['Tuckman\'s stages','knowing what a team needs at each stage'],['Goleman\'s six styles','choosing a style for the moment instead of out of habit'],['Performance and calibration','fair, consistent reviews and real development plans']]},
+ {c:'#2A5A7E',lv:'Level 3',name:'Senior leaders',intro:'Leading through other leaders and shaping the bench.',
+  items:[['Kotter\'s steps for change','leading change that lasts'],['The Golden Circle','explaining why before what'],['Servant leadership','clearing the way for the managers below you'],['Talent and succession reviews','naming successors and getting them ready']]}
+];
+const MODELS=[
+ ['Emotional intelligence','The EQ-i 2.0 model: five areas, from self-perception to stress management.','Level 1, and coaching for all levels','course-emotional-intelligence.html','Try the EQ sample'],
+ ['Radical Candor','Kim Scott\'s idea of caring personally while challenging directly.','Level 1 feedback labs','course-radical-candor.html','Try the feedback sample'],
+ ['Situational Leadership','Hersey and Blanchard: adjust direction and support to the person and the task.','Level 1',null,null],
+ ['GROW coaching','John Whitmore\'s four-step shape for a coaching conversation.','Level 1, and peer coaching circles',null,null],
+ ['Servant leadership','Robert Greenleaf\'s idea that leaders exist to help their people do their best work.','Level 3, and the program\'s tone overall',null,null],
+ ['Goleman\'s six styles','Daniel Goleman\'s research on switching styles to fit the moment.','Level 2',null,null],
+ ['Lencioni\'s Five Dysfunctions','Patrick Lencioni\'s pyramid, from trust up to results.','Level 2 team sessions',null,null],
+ ['Tuckman\'s team stages','Forming, storming, norming and performing.','Level 2',null,null],
+ ['Kotter and the Golden Circle','John Kotter\'s steps for leading change, and Simon Sinek\'s case for starting with why.','Level 3','course-leadership-models.html','See all of these in my leadership map']
+];
+const $=s=>document.querySelector(s);
+let level='m1', part='dev';
+
+// level tabs
+$('#levels').innerHTML=LEVELS.map(l=>`<button type="button" data-k="${l.k}" aria-pressed="${l.k===level}">${l.name}</button>`).join('');
+document.querySelectorAll('#levels button').forEach(b=>b.addEventListener('click',()=>{level=b.dataset.k; render(true);}));
+
+// figure
+const svg=$('#figSvg'), fig=$('#fig'), P=Object.fromEntries(PARTS.map(p=>[p.k,p]));
+const pt=k=>[P[k].x*5.6,P[k].y*5.6];
+let s='';
+LOOP.forEach(k=>{ const [x,y]=pt(k), [cx,cy]=pt('dev'); s+=`<line class="spoke" data-a="${k}" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`; });
+LOOP.forEach((k,i)=>{ const n=LOOP[(i+1)%LOOP.length], [x1,y1]=pt(k), [x2,y2]=pt(n), mx=(x1+x2)/2, my=(y1+y2)/2, cx0=280, cy0=280;
+  const qx=mx+(mx-cx0)*.55, qy=my+(my-cy0)*.55, d=`M${x1} ${y1} Q ${qx} ${qy} ${x2} ${y2}`;
+  s+=`<path class="link" data-a="${k}" data-b="${n}" id="lk${i}" d="${d}"/><circle class="flow" r="5" style="offset-path:path('${d}');animation-delay:-${(i*.8).toFixed(1)}s"/>`; });
+svg.innerHTML=s;
+fig.insertAdjacentHTML('beforeend',PARTS.map(p=>`<button type="button" class="node${p.core?' core':''}" data-k="${p.k}" style="left:${p.x}%;top:${p.y}%" aria-pressed="false">${p.name}<small>${p.sub}</small></button>`).join(''));
+fig.querySelectorAll('.node').forEach(b=>b.addEventListener('click',()=>{part=b.dataset.k; render(true);}));
+
+function render(anim){
+  const L=LEVELS.find(l=>l.k===level), p=P[part];
+  document.querySelectorAll('#levels button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===level));
+  $('#lvlDesc').textContent=L.name+': '+L.desc;
+  fig.querySelectorAll('.node').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===part));
+  svg.querySelectorAll('.spoke').forEach(l=>l.classList.toggle('hot', part==='dev' || l.dataset.a===part));
+  svg.querySelectorAll('.link').forEach(l=>l.classList.toggle('hot', l.dataset.a===part || l.dataset.b===part));
+  const pan=$('#panel');
+  pan.innerHTML=`<div class="k">${p.sub}</div><h3>${p.name}</h3><p class="what">${p.what}</p><dl>
+   <div class="lvl"><dt>For a ${L.name.toLowerCase()}</dt><dd>${p.lv[level]}</dd></div>
+   <div><dt>How it connects</dt><dd>${p.link}</dd></div>
+   <div><dt>What I'd track</dt><dd>${p.track}</dd></div></dl>`;
+  if(anim){ pan.classList.remove('fade'); void pan.offsetWidth; pan.classList.add('fade'); }
+}
+render(false);
+
+// tracks + models
+$('#tracks').innerHTML=TRACKS.map(t=>`<div class="track" style="--c:${t.c}"><div class="lv">${t.lv}</div><h3>${t.name}</h3><p>${t.intro}</p><ul>${t.items.map(i=>`<li><b>${i[0]}:</b> ${i[1]}</li>`).join('')}</ul></div>`).join('');
+$('#mgrid').innerHTML=MODELS.map(m=>`<div><h3>${m[0]}</h3><p>${m[1]}</p><div class="use">Used in: ${m[2]}</div>${m[3]?`<a href="${m[3]}">${m[4]} &rarr;</a>`:''}</div>`).join('');
+
+// toc highlight
+const links=[...document.querySelectorAll('.toc a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); } }),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+}
+</script>
+</body>
+</html>

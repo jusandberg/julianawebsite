@@ -540,6 +540,7 @@ img{display:block;max-width:100%;}
 
 /* WORK SAMPLE TILES */
 .sample-unit{margin-top:3rem}
+.ws-grid:has(> :only-child){grid-template-columns:minmax(0,560px);justify-content:center}
 .sample-row{display:flex;align-items:flex-start;gap:4rem;justify-content:center;flex-wrap:wrap;padding:.75rem .5rem .5rem}
 .sample-tile{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:220px;border:0;background:none;cursor:pointer;padding:.5rem;font-family:inherit;color:var(--ink)}
 .sample-tile:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:10px}
@@ -1107,8 +1108,8 @@ footer{background:transparent}
   <div class="section work-samples-section">
     <div class="section-center">
       <div class="eyebrow c">Work Samples</div>
-      <h2>Learning you can <span class="grad">explore.</span></h2>
-      <p class="section-intro">Explore two interactive samples that show how I turn learning strategy into practical, engaging experiences.</p>
+      <h2>A closer look at <span class="grad">how I work</span></h2>
+      <p class="section-intro">One case study that walks through how I would design a manager development program that's connected to job architecture, performance, internal mobility and succession.</p>
     </div>
     <div class="sample-unit" id="workSampleUnit"></div>
     <div class="cards legacy-work-grid" hidden style="margin-top:3.5rem;">
@@ -1325,11 +1326,7 @@ function buildFrameworks(){
  unit.innerHTML=html;
 }
 const WORK_SAMPLE_ITEMS=[
- {name:'Feedback Using Radical Candor',cat:'Microlearning · Feedback',color:'blue',icon:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M2.5 19v-1.2A4.8 4.8 0 0 1 7.3 13h.4"/><path d="M21.5 19v-1.2a4.8 4.8 0 0 0-4.8-4.8h-.4"/><path d="M9.5 11h5v4l-1.5-1.5H9.5z"/>',desc:'Practice choosing feedback that combines genuine care with direct challenge through realistic workplace decisions.',tags:['5 minutes','Practice-based','Manager skills'],href:'course-radical-candor.html',hook:'Feedback that actually <span class="grad">helps.</span>',time:'5 min',action:'Try the module'},
- {name:'Leadership Models',cat:'Zoom map · Leadership',color:'teal',icon:'<circle cx="12" cy="12" r="2.6"/><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="3.5" r="1.4"/><circle cx="20.1" cy="9.4" r="1.4"/><circle cx="17" cy="19" r="1.4"/><circle cx="7" cy="19" r="1.4"/><circle cx="3.9" cy="9.4" r="1.4"/>',desc:'A zooming map of the leadership models most programs are built on, from servant leadership to Lencioni and Situational Leadership, grouped into leading yourself, the business and the team.',tags:['5 minutes','Zoom map','Leadership'],href:'course-leadership-models.html',hook:'The models most leadership programs <span class="grad">are built on.</span>',time:'5 min',action:'Explore the map'},
- {name:"What's Emotional Intelligence?",cat:'Microlearning · Emotional Intelligence',color:'green',icon:'<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/><path d="M12 8.4v3.2l-2 2h4l-2 2.2"/><circle cx="12" cy="8.4" r=".6"/><circle cx="12" cy="15.8" r=".6"/>',desc:'Clear up what emotional intelligence is, explore the five areas of the EQ wheel, and practise them in real manager moments.',tags:['5 minutes','Practice-based','Manager skills'],href:'course-emotional-intelligence.html',hook:'What\'s <span class="grad">emotional intelligence?</span>',time:'5 min',action:'Start the course'},
- {name:'Design in Small Loops: SAM',cat:'Microlearning · Instructional design',color:'yellow',icon:'<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/><circle cx="12" cy="12" r="2.5"/>',desc:'See how the Successive Approximation Model works, then pick the right move in four real course project moments.',tags:['5 minutes','Interactive','Agile design'],href:'course-sam.html',hook:'How SAM helps you <span class="grad">design learning faster.</span>',time:'5 min',action:'Try the module'},
- {name:'Formative or Summative?',cat:'Microlearning · Assessment design',color:'blue',icon:'<path d="M4 18c4 0 5-8 9-8s4-4 7-6"/><path d="M20 4v5"/><circle cx="7" cy="16" r="1.6"/><circle cx="12" cy="10.5" r="1.6"/>',desc:'Learn when to check learning and when to prove it, then sort six real workplace moments into the right type.',tags:['5 minutes','Interactive','Assessment'],href:'course-assessments.html',hook:'When to use formative and <span class="grad">summative assessment.</span>',time:'5 min',action:'Try the module'}
+ {name:'Manager Development Model',cat:'Case study · Leadership development',color:'teal',icon:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.8"/><circle cx="20" cy="12" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4" cy="12" r="1.8"/><path d="M12 6v3M18 12h-3M12 18v-3M6 12h3"/>',desc:'A sample model for a manager development program connected to job architecture, performance, internal mobility and succession planning, with how I would build it and measure it.',tags:['Case study','Interactive model','Talent strategy'],href:'case-manager-development.html',hook:'A manager program connected to <span class="grad">how people grow.</span>',time:'8 min read',action:'Read the case study'}
 ];
 let openWorkSampleIndex=null;
 function workSampleIcon(item){
