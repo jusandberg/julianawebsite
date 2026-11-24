@@ -288,6 +288,24 @@ body.on-cover main{padding-bottom:0}
 .mt svg{width:22px;height:22px;fill:none;stroke:var(--c);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:4px}
 .mt b{font-size:15px;color:var(--navy)}
 .mt span{font-size:13.5px;color:var(--body);line-height:1.45}
+
+/* one-colour system: navy, with bold type for emphasis */
+.ptabs button i,.chip i{display:none}
+.chain li.core .cn{background:var(--navy);border-color:var(--navy)}
+.ac.open{border-color:var(--navy)}
+.ac-p .fix b{color:var(--navy)}
+.tile:last-child{border-color:var(--navy)}
+.tile .n,.sbtn .when,.mg-h,.panel .k,.pinfo .k,.yres .k,.plan b,.wk b,.prog-head span{color:var(--navy)!important}
+.sbtn.done .dot{border-color:var(--navy);color:var(--navy)}
+.sdetail li::before,.pinfo li::before,.track li::before{background:var(--navy)}
+.dots button.seen{background:var(--slate)}
+.hint::before{background:var(--navy)}
+h2{font-weight:800}
+.lede b,.ac-t,.chain b{font-weight:800}
+.mt{border-top-color:var(--navy)}
+.stop[aria-pressed="true"]{background:var(--navy);border-color:var(--navy)}
+.stop.hire{border-style:solid;border-width:2px;border-color:var(--navy)}
+.fork .lit{stroke:var(--navy)}
 /* stagger on enter */
 .chap.on > *{animation:enter .6s var(--ease) both}
 .chap.on > *:nth-child(2){animation-delay:.06s}.chap.on > *:nth-child(3){animation-delay:.12s}.chap.on > *:nth-child(4){animation-delay:.18s}.chap.on > *:nth-child(5){animation-delay:.24s}.chap.on > *:nth-child(6){animation-delay:.3s}
@@ -402,7 +420,7 @@ body.on-cover main{padding-bottom:0}
   <div>
    <div class="eyebrow">Case study · Leadership development</div>
    <h1 id="h-ov">Leadership development that's <span class="grad">connected to how people grow</span></h1>
-   <p class="lede">A leadership model for the whole company, from individual contributors to senior leaders. Career tracks and short programs, all tied to job levels, reviews, internal moves and succession.</p>
+   <p class="lede">A leadership model for the whole company, from individual contributors to senior leaders, <b>including managers hired from outside</b>. Career tracks and short programs, all tied to job levels, reviews, internal moves and succession.</p>
    <p class="note">The levels and timelines are examples. I adapt them to each company.</p>
    <div class="start"><button class="btn pri" type="button" data-goto="1">Start the case study &rarr;</button><button class="textlink" type="button" data-short>or read the 1-minute version</button></div>
   </div>
@@ -420,10 +438,10 @@ body.on-cover main{padding-bottom:0}
  <div class="body flips" id="flips"></div>
 </section>
 
-<section class="chap" data-id="paths" data-desc="Two tracks for individual contributors" data-title="Career paths" aria-labelledby="h-pa">
+<section class="chap" data-id="paths" data-desc="Two tracks, plus a start for managers hired from outside" data-title="Career paths" aria-labelledby="h-pa">
  <div class="eyebrow">Career paths</div>
- <h2 id="h-pa">Individual contributors choose how they grow</h2>
- <p class="lede">Select any stop on either track.</p>
+ <h2 id="h-pa">How people grow, and where new managers join</h2>
+ <p class="lede">Select any stop, including the start for <b>managers hired from outside</b>.</p>
  <div class="body paths">
   <div class="fork" id="fork"><svg viewBox="0 0 640 440" aria-hidden="true" id="forkSvg"></svg></div>
   <div class="pinfo" id="pinfo" aria-live="polite"></div>
@@ -485,10 +503,10 @@ body.on-cover main{padding-bottom:0}
  
 </section>
 
-<section class="chap" data-id="yours" data-desc="Five quick questions, and where I start with your team" data-title="Your company" aria-labelledby="h-yo">
+<section class="chap" data-id="yours" data-desc="Six quick questions, and where I start with your team" data-title="Your company" aria-labelledby="h-yo">
  <div class="eyebrow">Your company</div>
  <h2 id="h-yo">See where your company is today, and where I start</h2>
- <p class="lede">Five quick questions. Your answers aren't saved or sent anywhere.</p>
+ <p class="lede">Six quick questions. Your answers aren't saved or sent anywhere.</p>
  <div class="body yours">
   <ol class="qs" id="qs"></ol>
   <div class="yres" id="yres" aria-live="polite"></div>
@@ -502,9 +520,9 @@ body.on-cover main{padding-bottom:0}
  <div class="eyebrow">The 1-minute version</div>
  <h2 id="svTitle">What this case study shows</h2>
  <dl class="sv-list">
-  <div><dt>Who it's for</dt><dd>The whole company, from individual contributors to senior leaders.</dd></div>
+  <div><dt>Who it's for</dt><dd>The whole company, from individual contributors to senior leaders, including managers hired from outside.</dd></div>
   <div><dt>The idea</dt><dd>Leadership programs work better when they're tied to job architecture, performance reviews, internal mobility and succession, so people learn and get reviewed against the same expectations.</dd></div>
-  <div><dt>The programs</dt><dd>Individual contributors choose a six-week leadership track or a six-week craft track, each with three months of mentorship. Managers at each level take an eight-week program.</dd></div>
+  <div><dt>The programs</dt><dd>Individual contributors choose a six-week leadership track or a six-week craft track, each with three months of mentorship. Managers at each level take an eight-week program, and managers hired from outside get a 90-day start with a buddy.</dd></div>
   <div><dt>How I build it</dt><dd>The whole build takes under three months. I use SAM, so leaders see a working pilot within the first two months.</dd></div>
   <div><dt>How I measure it</dt><dd>After every cohort I review feedback, skills checks and manager check-ins, alongside engagement, internal mobility, attrition and succession.</dd></div>
  </dl>
@@ -526,7 +544,7 @@ body.on-cover main{padding-bottom:0}
 <script>
 {
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const NAVY='#1B3A5C', TEAL='#0F9F9A', MID='#2A5A7E', SLATE='#5C7A99';
+const NAVY='#1B3A5C', TEAL=NAVY, MID=NAVY, SLATE=NAVY;
 
 /* ---------- chapters ---------- */
 const chaps=$$('.chap'); let cur=0; const seen=new Set([0]);
@@ -559,6 +577,10 @@ $('#nextBtn').onclick=()=>go(cur+1); $('#prevBtn').onclick=()=>go(cur-1);
 document.addEventListener('keydown',e=>{ if(e.target.closest('input,textarea')) return; if(!$('#svPanel').hidden||!clist.hidden) return; if(e.key==='ArrowRight'&&!e.target.closest('.levels,.ptabs,.chips,.seg')) go(cur+1); if(e.key==='ArrowLeft'&&!e.target.closest('.levels,.ptabs,.chips,.seg')) go(cur-1); });
 function fromHash(){ const id=location.hash.slice(1); const i=chaps.findIndex(c=>c.dataset.id===id); go(i>=0?i:0,false); }
 addEventListener('hashchange',fromHash);
+let tx=null, ty=null;
+$('#main').addEventListener('touchstart',e=>{ if(e.target.closest('.levels,.weeks,.ptabs,.chips,.fork,.seg,input')){tx=null;return;} tx=e.touches[0].clientX; ty=e.touches[0].clientY; },{passive:true});
+$('#main').addEventListener('touchend',e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; tx=null;
+  if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6) go(cur+(dx<0?1:-1)); },{passive:true});
 
 /* ---------- reveal cards (problem + risks) ---------- */
 function flips(box, items, label){
@@ -572,7 +594,8 @@ flips($('#flips'),[
  ['Managing is the only way up','Strong experts become managers because nothing else pays off.','A craft track gives experts a real path up, and a six-week track lets people try leading first.'],
  ["Training and reviews don't match",'Managers learn one thing and get reviewed on another.','Each level is defined once. The programs teach it and the reviews measure it.'],
  ['Internal moves depend on who you know',"Good people leave when they can't see a path.",'Clear tracks, internal postings first, and visible readiness.'],
- ['Succession lives in a spreadsheet','Names go on a list, and nobody gets them ready.','Gaps in the succession plan decide who joins each cohort.']
+ ['Succession lives in a spreadsheet','Names go on a list, and nobody gets them ready.','Gaps in the succession plan decide who joins each cohort.'],
+ ['New managers from outside are left to figure it out','They know how to manage, but not how things work here.','A 90-day start with a buddy, key introductions and a new-leader session with their team.']
 ],'How the model fixes it');
 flips($('#risks'),[
  ["Managers who aren't involved",'New habits fade within weeks.',"Each participant's manager joins at the start, middle and end, with a short guide."],
@@ -586,6 +609,9 @@ const TRACKS={
  lead:{c:NAVY,k:'Leadership track',name:'Explore leadership',len:'6 weeks, plus 3 months of mentorship',
   what:'Try leading people before taking on the title.',
   pts:['A manager from another team as a mentor','Lead a small project or onboard a new hire','Staying an individual contributor carries no penalty'],prog:'ic-lead'},
+ hire:{c:NAVY,k:'Hired from outside',name:'Managers joining from outside',len:'First 90 days',
+  what:'Experienced managers who are new to the company and how it works.',
+  pts:['A buddy: an experienced manager from another team','Meet key people in the first month','A new-leader session with their team, then check-ins at 30, 60 and 90 days'],prog:'hire'},
  craft:{c:TEAL,k:'Craft track',name:'Grow in your craft',len:'6 weeks, plus 3 months of mentorship',
   what:'Grow deeper expertise and more influence, without managing people.',
   pts:['A senior expert as a mentor','Learn to influence and teach others','Agree next-level goals with your manager'],prog:'ic-craft'}
@@ -596,6 +622,7 @@ const STOPS=[
  {k:'m1',name:'New manager',sub:'8 weeks',x:51,y:14,mx:26,my:48,t:'lead',prog:'m1'},
  {k:'m2',name:'Experienced manager',sub:'8 weeks',x:70,y:30,mx:26,my:69,t:'lead',prog:'m2'},
  {k:'m3',name:'Senior leader',sub:'8 weeks',x:89,y:14,mx:26,my:90,t:'lead',prog:'m3'},
+ {k:'hire',name:'Hired from outside',sub:'90-day start',x:22,y:5,mx:26,my:37.5,t:'hire'},
  {k:'craft',name:'Grow in your craft',sub:'6 weeks + mentor',x:32,y:70,mx:74,my:27,t:'craft'},
  {k:'sr',name:'Senior expert',sub:'Deeper craft',x:58,y:86,mx:74,my:55,t:'craft'},
  {k:'pr',name:'Principal expert',sub:'Wide influence',x:85,y:70,mx:74,my:83,t:'craft'}
@@ -608,7 +635,7 @@ const STOPINFO={
  pr:{c:TEAL,k:'Craft track',name:'Principal expert',len:'Ongoing growth',what:'Shapes how the whole company does this kind of work, without managing a team.',pts:['Sets standards and direction for the craft','Named as a successor for critical expert roles','Teaches in the craft track program'],prog:'ic-craft'}
 };
 const narrow=matchMedia('(max-width:620px)');
-$('#fork').insertAdjacentHTML('beforeend',STOPS.map(s=>`<button type="button" class="stop${s.root?' root':''}" data-k="${s.k}" style="--c:${s.t==='craft'?TEAL:NAVY}" ${s.root?'tabindex="-1"':'aria-pressed="false"'}>${s.name}<small>${s.sub}</small></button>`).join(''));
+$('#fork').insertAdjacentHTML('beforeend',STOPS.map(s=>`<button type="button" class="stop${s.root?' root':''}${s.k==='hire'?' hire':''}" data-k="${s.k}" style="--c:${s.t==='craft'?TEAL:NAVY}" ${s.root?'tabindex="-1"':'aria-pressed="false"'}>${s.name}<small>${s.sub}</small></button>`).join(''));
 $$('#fork .stop:not(.root)').forEach(b=>b.onclick=()=>showStop(b.dataset.k));
 function layoutFork(){
   const m=narrow.matches, W=m?400:640, H=m?600:440, svg=$('#forkSvg');
@@ -617,8 +644,9 @@ function layoutFork(){
   const seg=(a,b)=>{const [x1,y1]=P(a),[x2,y2]=P(b); if(m){const my=(y1+y2)/2; return `M${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`;} const mx=(x1+x2)/2; return `M${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;};
   const leadD=[seg('ic','lead'),seg('lead','m1'),seg('m1','m2'),seg('m2','m3')].join(' ');
   const craftD=[seg('ic','craft'),seg('craft','sr'),seg('sr','pr')].join(' ');
-  const onL=$('#litLead')&&$('#litLead').classList.contains('on'), onC=$('#litCraft')&&$('#litCraft').classList.contains('on');
-  svg.innerHTML=`<path class="rail" d="${leadD}"/><path class="rail" d="${craftD}"/>
+  const hireD=seg('hire','m1');
+  const onL=$('#litLead')&&$('#litLead').classList.contains('on'), onC=$('#litCraft')&&$('#litCraft').classList.contains('on'), onH=$('#litHire')&&$('#litHire').classList.contains('on');
+  svg.innerHTML=`<path class="rail" d="${leadD}"/><path class="rail" d="${craftD}"/><path class="rail" d="${hireD}"/><path class="lit${onH?' on':''}" id="litHire" pathLength="1" stroke="${NAVY}" d="${hireD}"/>
    <path class="lit${onL?' on':''}" id="litLead" pathLength="1" stroke="${NAVY}" d="${leadD}"/><path class="lit${onC?' on':''}" id="litCraft" pathLength="1" stroke="${TEAL}" d="${craftD}"/>`;
   STOPS.forEach(s=>{const b=$(`#fork .stop[data-k="${s.k}"]`); b.style.left=(m?s.mx:s.x)+'%'; b.style.top=(m?s.my:s.y)+'%';});
 }
@@ -626,7 +654,7 @@ layoutFork(); narrow.addEventListener('change',layoutFork);
 function showStop(k){
   const info=TRACKS[k]||STOPINFO[k], t=(STOPS.find(s=>s.k===k)||{}).t;
   $$('#fork .stop:not(.root)').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
-  $('#litLead').classList.toggle('on',t==='lead'); $('#litCraft').classList.toggle('on',t==='craft');
+  $('#litLead').classList.toggle('on',t==='lead'); $('#litCraft').classList.toggle('on',t==='craft'); $('#litHire').classList.toggle('on',t==='hire');
   const p=$('#pinfo'); p.style.setProperty('--c',info.c);
   p.innerHTML=`<div class="k">${info.k} · ${info.len}</div><h3>${info.name}</h3><p>${info.what}</p><ul>${info.pts.map(x=>`<li>${x}</li>`).join('')}</ul><button type="button" class="link-btn" data-prog="${info.prog}">See what the program covers each week &rarr;</button>`;
   p.classList.remove('fade'); void p.offsetWidth; p.classList.add('fade');
@@ -635,32 +663,32 @@ function showStop(k){
 
 /* ---------- model ---------- */
 const LEVELS=[
- {k:'ic',name:'Individual contributor'},{k:'m1',name:'New manager'},{k:'m2',name:'Experienced manager'},{k:'m3',name:'Senior leader'}
+ {k:'ic',name:'Individual contributor'},{k:'m1',name:'New manager'},{k:'hire',name:'Hired from outside'},{k:'m2',name:'Experienced manager'},{k:'m3',name:'Senior leader'}
 ];
 const PARTS=[
  {k:'arch',name:'Job architecture',sub:'What good looks like',x:50,y:13,
   what:'Clear levels on two ladders, individual contributor and manager, with what is expected at each one. It gives everything else a shared language.',
-  lv:{ic:'Individual contributor and manager levels carry equal weight and pay, so leading people is not the only way up.',m1:'Expected to set clear goals, run regular one-on-ones and give useful feedback.',m2:'Expected to build a healthy team, handle conflict and grow people\'s skills.',m3:'Expected to set direction, lead change and build a bench of future leaders.'},
+  lv:{hire:'They get the expectations for their level before day one, so they know what good looks like here.',ic:'Individual contributor and manager levels carry equal weight and pay, so leading people is not the only way up.',m1:'Expected to set clear goals, run regular one-on-ones and give useful feedback.',m2:'Expected to build a healthy team, handle conflict and grow people\'s skills.',m3:'Expected to set direction, lead change and build a bench of future leaders.'},
   link:'The expectations at each level become the programs\' outcomes and the performance criteria, so people learn and get reviewed against the same thing.',
   track:'Share of roles with written level expectations that people can explain.'},
  {k:'perf',name:'Performance',sub:'How people are reviewed',x:87,y:50,
   what:'How people are reviewed, and for managers, how they review the people on their team.',
-  lv:{ic:'Reviewed on the quality of their work and their influence on others. A yearly career conversation helps them choose a track.',m1:'Goals include regular one-on-ones and feedback. Their first review cycle comes with a calibration walkthrough.',m2:'Reviewed on team results and team health as well as their own output. They take part in calibration.',m3:'Reviewed on the strength of their bench and how well they lead change. They lead calibration for their area.'},
+  lv:{hire:'Their first review comes after 90 days and focuses on how they have settled in with their team.',ic:'Reviewed on the quality of their work and their influence on others. A yearly career conversation helps them choose a track.',m1:'Goals include regular one-on-ones and feedback. Their first review cycle comes with a calibration walkthrough.',m2:'Reviewed on team results and team health as well as their own output. They take part in calibration.',m3:'Reviewed on the strength of their bench and how well they lead change. They lead calibration for their area.'},
   link:'Review results point people to the right program, and show who is ready for more.',
   track:'Quality of reviews managers write, and how consistent ratings are after calibration.'},
  {k:'mob',name:'Internal mobility',sub:'Paths up or across',x:50,y:87,
   what:'Clear, visible paths for moving up or across, so good people grow inside the company instead of leaving.',
-  lv:{ic:'Two paths: up the craft ladder, or a six-week track to try leadership first. Moving back from leadership is fine, with no penalty.',m1:'Clear criteria for growing into a larger team or a role leading other managers.',m2:'Lateral moves and stretch assignments across teams to broaden experience.',m3:'Rotations into cross-functional roles to prepare for a bigger scope.'},
+  lv:{hire:'They see the same career paths as everyone else, including moves across teams later on.',ic:'Two paths: up the craft ladder, or a six-week track to try leadership first. Moving back from leadership is fine, with no penalty.',m1:'Clear criteria for growing into a larger team or a role leading other managers.',m2:'Lateral moves and stretch assignments across teams to broaden experience.',m3:'Rotations into cross-functional roles to prepare for a bigger scope.'},
   link:'Open roles are posted inside first, and program graduates\' readiness is visible to hiring managers.',
   track:'Share of manager roles filled internally, and how internal hires do in their first year.'},
  {k:'succ',name:'Succession',sub:'Getting people ready',x:13,y:50,
   what:'Knowing who could step into key roles, and deliberately getting them ready.',
-  lv:{ic:'People on the leadership track join a pre-manager pool. Strong experts are named as successors for key expert roles.',m1:'Each new manager learns to spot people on their team who might want the leadership track.',m2:'Each manager names one or two possible successors and builds their development plans.',m3:'Critical roles have named successors marked ready now or ready in one to two years, reviewed twice a year.'},
+  lv:{hire:'Their 90-day check-in looks at who on their team could grow, and who could step in for them.',ic:'People on the leadership track join a pre-manager pool. Strong experts are named as successors for key expert roles.',m1:'Each new manager learns to spot people on their team who might want the leadership track.',m2:'Each manager names one or two possible successors and builds their development plans.',m3:'Critical roles have named successors marked ready now or ready in one to two years, reviewed twice a year.'},
   link:'Gaps in the succession plan decide who joins each cohort, so the programs build the bench the business needs.',
   track:'Share of critical roles with at least one ready-now successor.'},
  {k:'dev',name:'Development',sub:'The programs',x:50,y:50,core:true,
   what:'The programs themselves: a track for each stage, built around the real expectations of that level.',
-  lv:{ic:'Two six-week tracks with three months of mentorship: one to explore leadership, one to grow in your craft.',m1:'Eight weeks on emotional intelligence, feedback, adapting your style, coaching and fair performance conversations.',m2:'Eight weeks on team trust, conflict, team stages, calibration and growing people.',m3:'Eight weeks on leading change, explaining the why, and running talent and succession reviews.'},
+  lv:{hire:'A 90-day start with a buddy, key introductions and a new-leader session, alongside the program for their level.',ic:'Two six-week tracks with three months of mentorship: one to explore leadership, one to grow in your craft.',m1:'Eight weeks on emotional intelligence, feedback, adapting your style, coaching and fair performance conversations.',m2:'Eight weeks on team trust, conflict, team stages, calibration and growing people.',m3:'Eight weeks on leading change, explaining the why, and running talent and succession reviews.'},
   link:'Each program ends with a skills check against the level\'s expectations, which feeds into reviews and readiness for the next role.',
   track:'Skills check results, and 360 feedback before and six months after.'}
 ];
@@ -692,6 +720,16 @@ const PROGS=[
    ['Lead a piece of craft work','Your stretch week: lead an improvement in how your team does its work.'],
    ['Share what you did','Present what you did to peers, then agree next-level goals with your manager.']],
   sup:[['Mentorship','Every two weeks with a senior expert, for three months'],['Peer group','People from similar roles meet weekly'],['Your manager','A conversation at the start and the end of the track']]},
+ {k:'hire',c:NAVY,name:'Joining from outside',len:'Managers hired from outside · first 90 days',intro:'Runs alongside the program for their level, so they learn how the company works as well as their role.',
+  weeks:[['Before day one','Their buddy and manager reach out, and they get the expectations for their level.','Before day 1'],
+   ['How things work here','Who makes which decisions, how meetings run, and what people expect from managers here.','Weeks 1 to 2'],
+   ['Meet key people','One-on-ones with peers, partners and their manager\'s leader, using a short question list.','Weeks 2 to 4'],
+   ['New-leader session','A facilitator gathers the team\'s questions and expectations first, so they can be raised openly.','Week 3'],
+   ['30-day check-in','With their manager and HR partner: what they have learned and what surprised them.','Day 30'],
+   ['Early wins','Agree on two or three early wins that matter to their team.','Days 30 to 60'],
+   ['60-day check-in','Review how the team is responding, and adjust.','Day 60'],
+   ['90-day check-in','Agree on goals for the year, and join their level\'s next cohort if they have not already.','Day 90']],
+  sup:[['Buddy','An experienced manager from another team, for 90 days'],['Manager and HR partner','Check-ins at 30, 60 and 90 days'],['Their level\'s program','Joined in parallel from the next cohort']]},
  {k:'m1',c:NAVY,name:'New managers',len:'First year as a manager · 8 weeks',intro:'The first eight weeks in the role, focused on moving from doing the work yourself to leading the people who do it.',
   weeks:[['Your new role','What changes when you become a manager, and the expectations at your level.'],
    ['Emotional intelligence','Noticing your own reactions before they run the conversation.'],
@@ -717,7 +755,7 @@ function showProg(k){
   $$('#ptabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
   const pb=$('#pbody'); pb.style.setProperty('--c',p.c);
   pb.innerHTML=`<div class="prog-head"><h3>${p.name}</h3><span>${p.len}</span><p>${p.intro}</p></div>
-   <div class="weeks" style="--n:${p.weeks.length}">${p.weeks.map((w,i)=>`<button type="button" class="wk" data-i="${i}" aria-pressed="${i===0}"><b>Week ${i+1}</b><span>${w[0]}</span></button>`).join('')}</div>
+   <div class="weeks" style="--n:${p.weeks.length}">${p.weeks.map((w,i)=>`<button type="button" class="wk" data-i="${i}" aria-pressed="${i===0}"><b>${w[2]||'Week '+(i+1)}</b><span>${w[0]}</span></button>`).join('')}</div>
    <div class="wdetail" id="wdetail" aria-live="polite"></div>
    <div class="supports">${p.sup.map(s=>`<div><b>${s[0]}</b>${s[1]}</div>`).join('')}</div>`;
   pb.querySelectorAll('.wk').forEach(b=>b.onclick=()=>showWeek(+b.dataset.i));
@@ -725,7 +763,7 @@ function showProg(k){
 }
 function showWeek(i){ const p=PROGS.find(x=>x.k===prog), w=p.weeks[i];
   $$('#pbody .wk').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===i));
-  $('#wdetail').innerHTML=`<div class="k">Week ${i+1} · ${w[0]}</div>${w[1]}`; }
+  $('#wdetail').innerHTML=`<div class="k">${w[2]||'Week '+(i+1)} · ${w[0]}</div>${w[1]}`; }
 showProg('ic-lead');
 
 /* ---------- build stepper ---------- */
@@ -751,12 +789,14 @@ const MG=[
  {h:'How the cohort went',c:NAVY,items:[
   ['Cohort feedback','A short survey after each session and at the end of the program','M4 6h16v10H8l-4 4z'],
   ['Skills checks','Results against the expectations for that level','M9 12l2 2 4-4M12 3a9 9 0 100 18 9 9 0 000-18z'],
-  ['Manager check-ins','Whether people are using the skills at work, from their own manager','M16 11a4 4 0 10-8 0M4 21a8 8 0 0116 0']]},
+  ['Manager check-ins','Whether people are using the skills at work, from their own manager','M16 11a4 4 0 10-8 0M4 21a8 8 0 0116 0'],
+  ['90-day pulse','How managers hired from outside feel at 30, 60 and 90 days','M12 7v5l3 2M12 3a9 9 0 100 18 9 9 0 000-18z']]},
  {h:'What changed for the business',c:TEAL,items:[
   ['Engagement survey','Scores for participants\' teams, compared with the last survey','M4 20V10M10 20V4M16 20v-7M22 20H2'],
   ['Internal mobility','Roles filled internally, and moves between the two career tracks','M7 17L17 7M17 7H9M17 7v8'],
   ['Attrition','Regretted turnover on participants\' teams','M3 7l6 6 4-4 8 8M21 17v-5M21 17h-5'],
-  ['Succession','Critical roles with at least one ready-now successor','M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z']]}
+  ['Succession','Critical roles with at least one ready-now successor','M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z'],
+  ['New manager retention','How many managers hired from outside stay past their first year','M16 21v-2a4 4 0 00-8 0v2M12 11a4 4 0 100-8 4 4 0 000 8']]}
 ];
 $('#mgroups').innerHTML=MG.map(g=>`<div class="mg" style="--c:${g.c}"><div class="mg-h">${g.h}</div><div class="mg-grid">${g.items.map(it=>`<div class="mt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${it[2]}"/></svg><b>${it[0]}</b><span>${it[1]}</span></div>`).join('')}</div></div>`).join('');
 
@@ -798,6 +838,7 @@ const QS=[
  {k:'ladder',area:'Career paths',q:'Can individual contributors move up without having to manage people?',start:'Map an individual contributor ladder next to the manager ladder, and pilot the six-week leadership and craft tracks.'},
  {k:'perf',area:'Performance',q:'Do performance reviews use the same expectations your leadership training teaches?',start:'Line up review criteria with the level expectations, and walk managers through calibration before the next review cycle.'},
  {k:'mob',area:'Internal mobility',q:'Are open manager roles shared inside the company before they\'re posted outside?',start:'Set up internal-first posting for manager roles, and make program graduates\' readiness visible to hiring managers.'},
+ {k:'hire',area:'New manager start',q:'Do managers hired from outside get a planned first 90 days?',start:'Set up a 90-day start for managers hired from outside, with a buddy, key introductions and a new-leader session with their team.'},
  {k:'succ',area:'Succession',q:'Do your most critical roles have at least one successor who is ready now?',start:'Name critical roles and their successors with your leaders, then use the gaps to choose who joins the first cohort.'}
 ];
 const OPTS=[['Not yet',0],['Partly',1],['Yes',2]], ans={};
@@ -806,10 +847,10 @@ $$('#qs li').forEach(li=>li.querySelectorAll('.seg button').forEach(b=>b.onclick
   li.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderYours(); }));
 function renderYours(){
   const n=Object.keys(ans).length, r=$('#yres');
-  const bars=QS.map(q=>{const v=ans[q.k]; const w=v===undefined?0:[12,58,100][v]; const c=v===2?'#0F9F9A':v===1?'#2A5A7E':'#5C7A99'; return `<div class="bar"><span>${q.area}</span><i style="--w:${w}%;--c:${c}"></i></div>`;}).join('');
-  if(n<QS.length){ r.innerHTML=`<div class="k">Your picture</div><h3>${n} of ${QS.length} answered</h3><p>Your results and a 90-day starting plan appear here once you've answered all five.</p><div class="bars">${bars}</div>`; return; }
+  const bars=QS.map(q=>{const v=ans[q.k]; const w=v===undefined?0:[12,58,100][v]; const c='#1B3A5C'; return `<div class="bar"><span>${q.area}</span><i style="--w:${w}%;--c:${c}"></i></div>`;}).join('');
+  if(n<QS.length){ r.innerHTML=`<div class="k">Your picture</div><h3>${n} of ${QS.length} answered</h3><p>Your results and a 90-day starting plan appear here once you've answered all six.</p><div class="bars">${bars}</div>`; return; }
   const total=QS.reduce((a,q)=>a+ans[q.k],0);
-  const label=total<=3?['Getting started','There\'s a lot of room to connect these pieces, which usually means there are quick wins early on.']:total<=7?['Partly connected','Some of the pieces are in place. Connecting them to each other is where you\'ll see the biggest gains.']:['Well connected','The foundations are in place, so the focus is on sharper programs and showing their impact.'];
+  const label=total<=4?['Getting started','There\'s a lot of room to connect these pieces, which usually means there are quick wins early on.']:total<=9?['Partly connected','Some of the pieces are in place. Connecting them to each other is where you\'ll see the biggest gains.']:['Well connected','The foundations are in place, so the focus is on sharper programs and showing their impact.'];
   const low=QS.slice().sort((a,b)=>ans[a.k]-ans[b.k])[0];
   r.innerHTML=`<div class="k">Your picture</div><h3>${label[0]}</h3><p>${label[1]}</p><div class="bars">${bars}</div>
    <div class="k" style="margin-top:6px">Where I start, in my first 90 days</div>
