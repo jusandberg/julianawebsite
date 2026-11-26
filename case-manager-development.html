@@ -114,13 +114,18 @@ p{margin:0}
 .cardstart .what{max-width:60ch}
 
 /* ---------- Sections on a rail ---------- */
-.railwrap{position:relative;padding-left:56px}
-.railwrap::before{content:"";position:absolute;left:15px;top:110px;bottom:40px;width:4px;border-radius:2px;background:linear-gradient(180deg,var(--navy),var(--teal))}
-section.s{padding:clamp(64px,8vw,100px) 0 0;position:relative}
-.s h2{font-size:clamp(28px,3.4vw,42px);line-height:1.08;font-weight:800;max-width:22ch;position:relative}
-.s h2::before{content:"";position:absolute;left:-56px;top:.2em;width:18px;height:18px;border-radius:50%;background:#fff;border:4.5px solid var(--navy);box-sizing:content-box;transform:translateX(4px)}
-.s:nth-of-type(n+3) h2::before{border-color:var(--teal)}
-.hint{margin-top:8px;color:var(--muted);font-size:15px}
+.railwrap{position:relative;padding-left:64px}
+.railwrap::before{content:"";position:absolute;left:17px;top:96px;bottom:40px;width:4px;border-radius:2px;background:var(--rule)}
+.railfill{position:absolute;left:17px;top:96px;width:4px;height:0;border-radius:2px;background:linear-gradient(180deg,var(--navy),var(--teal));transition:height .25s linear}
+section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
+.stop{position:absolute;left:-64px;top:calc(clamp(64px,8vw,96px) - 2px);width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid var(--rule);display:grid;place-items:center;font-size:14px;font-weight:800;color:#A7AFB8;transition:background .4s,border-color .4s,color .4s,transform .4s;z-index:1}
+.s.in .stop{background:var(--navy);border-color:var(--navy);color:#fff;transform:scale(1.06)}
+.s.in:nth-of-type(n+4) .stop{background:var(--teal);border-color:var(--teal)}
+.s h2{font-size:clamp(30px,3.6vw,46px);line-height:1.05;font-weight:800;letter-spacing:-.035em}
+.s .sub{margin-top:8px;color:var(--muted);font-size:16px}
+.reveal .s > :not(.stop){opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal .s > .body{transition-delay:.12s}
+.reveal .s.in > :not(.stop){opacity:1;transform:none}
 .body{margin-top:24px}
 
 /* Cards that turn over */
@@ -143,6 +148,7 @@ section.s{padding:clamp(64px,8vw,100px) 0 0;position:relative}
 .tl-weeks{display:grid;grid-template-columns:repeat(12,1fr);font-size:12.5px;color:var(--muted);padding:0 0 8px 2px}
 .tl-bars{display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
 .bar{border:0;border-radius:14px;height:64px;padding:0 12px;text-align:left;color:#fff;font-weight:750;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.4;transition:opacity .2s,transform .2s;position:relative}
+.bar[data-i="1"]{padding:0 6px;text-align:center;font-size:14px}
 .bar[aria-pressed="true"]{opacity:1;transform:translateY(-3px)}
 .bar:hover{opacity:.85}
 .loopbar{margin-top:8px;width:100%;border:0;background:var(--tint);border-radius:14px;height:48px;font-weight:700;font-size:15px;text-align:left;padding:0 16px;display:flex;align-items:center;gap:10px}
@@ -215,14 +221,14 @@ section.s{padding:clamp(64px,8vw,100px) 0 0;position:relative}
   .card{grid-template-columns:1fr}
   .legend{display:none}
   .jmap{margin-top:14px}
-  .railwrap{padding-left:34px}
-  .railwrap::before{left:7px}
-  .s h2::before{left:-34px;width:14px;height:14px;border-width:4px;transform:translateX(0)}
+  .railwrap{padding-left:46px}
+  .railwrap::before,.railfill{left:13px}
+  .stop{left:-46px;width:30px;height:30px;font-size:12.5px}
   .tiles{grid-template-columns:1fr}
   .tile{min-height:0}
   .tl-weeks{display:none}
   .tl-bars{grid-template-columns:1fr 1fr}
-  .bar{grid-column:auto!important;height:54px}
+  .bar{grid-column:auto!important;height:54px;white-space:normal;line-height:1.2;font-size:14px}
   .tlout{grid-template-columns:1fr;gap:6px}
   .q{flex-direction:column;align-items:flex-start;gap:8px}
 }
@@ -252,16 +258,15 @@ section.s{padding:clamp(64px,8vw,100px) 0 0;position:relative}
     <div class="card" id="card" aria-live="polite"></div>
   </div>
 
-  <div class="railwrap">
-  <section class="s">
-    <h2>What usually goes wrong</h2>
-    <p class="hint">Tap a card to see what I do about it.</p>
+  <div class="railwrap" id="rail"><div class="railfill" id="railfill" aria-hidden="true"></div>
+  <section class="s"><span class="stop" aria-hidden="true">1</span>
+    <h2>Risks</h2>
     <div class="body tiles" id="probs"></div>
   </section>
 
-  <section class="s">
-    <h2>Built in under three months</h2>
-    <p class="hint">Tap a phase.</p>
+  <section class="s"><span class="stop" aria-hidden="true">2</span>
+    <h2>Timeline</h2>
+    <p class="sub">Under three months from kickoff to the first cohorts.</p>
     <div class="body tl">
       <div class="tl-weeks" aria-hidden="true"><span>Week 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
       <div class="tl-bars" id="bars"></div>
@@ -270,27 +275,24 @@ section.s{padding:clamp(64px,8vw,100px) 0 0;position:relative}
     </div>
   </section>
 
-  <section class="s">
-    <h2>What I review after every cohort</h2>
-    <p class="hint">Tap any measure.</p>
+  <section class="s"><span class="stop" aria-hidden="true">3</span>
+    <h2>Feedback and surveys</h2>
+    <p class="sub">What I review with leaders after every cohort.</p>
     <div class="body two" id="measures"></div>
   </section>
 
-  <section class="s">
-    <h2>The leadership models behind it</h2>
-    <p class="hint">Tap a model to see where it's used.</p>
+  <section class="s"><span class="stop" aria-hidden="true">4</span>
+    <h2>Mental models</h2>
     <div class="body box" id="models"></div>
   </section>
 
-  <section class="s">
-    <h2>What I plan around</h2>
-    <p class="hint">Tap a card to see how I handle it.</p>
+  <section class="s"><span class="stop" aria-hidden="true">5</span>
+    <h2>Mitigation</h2>
     <div class="body tiles" id="risks"></div>
   </section>
 
-  <section class="s">
-    <h2>Where I start at your company</h2>
-    <p class="hint">Six quick questions. Nothing is saved.</p>
+  <section class="s"><span class="stop" aria-hidden="true">6</span>
+    <h2>Does this resonate?</h2>
     <div class="body check">
       <div class="qs" id="qs"></div>
       <aside class="start" aria-live="polite"><h3>Where I start</h3><div class="meter" id="meter"></div><div id="startOut"></div></aside>
@@ -562,6 +564,18 @@ function renderStart(){
 }
 document.getElementById('qs').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;ans[b.dataset.q]=b.dataset.a;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderStart()});
 renderStart();
+
+/* Checkpoints appear as you scroll */
+(function(){
+  const secs=[...document.querySelectorAll('section.s')], fill=document.getElementById('railfill'), rail=document.getElementById('rail');
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){secs.forEach(x=>x.classList.add('in'));fill.style.height='calc(100% - 136px)';return}
+  document.body.classList.add('reveal');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -18% 0px'});
+  secs.forEach(x=>io.observe(x));
+  const upd=()=>{const r=rail.getBoundingClientRect();const max=r.height-136;const h=Math.max(0,Math.min(max,innerHeight*0.7-r.top-96));fill.style.height=h+'px'};
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+})();
 </script>
 </body>
 </html>
