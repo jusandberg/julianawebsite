@@ -14,9 +14,8 @@ Tick items off as they're done.
 - [x] **Decide on the orphan pages.** `course-eq-leaders.html`, `course-sam.html` and `course-assessments.html`
       aren't linked from `index.html`. Either add them to the work samples or remove them (ask Juliana first).
       Decided: EQ for New Managers is removed from the site. SAM and Assessments get rebuilt first (below).
-- [x] **Rebuild `course-sam.html`.** Rebuild it in the shared course frame (like the EI course) with a real title
-      and meta description, then add it to the work samples.
-- [x] **Rebuild `course-assessments.html`.** Same as SAM: shared course frame, real title and meta description,
+- [x] **Remove `course-sam.html`.** Decided: the SAM course is removed from the site.
+- [x] **Rebuild `course-assessments.html`.** Shared course frame (like the EI course), real title and meta description,
       then add it to the work samples.
 - [x] **Check the tools links.** `page-nav.js` sends tool pages back to `index.html#resources`, but there is no
       `#resources` section; `index.html` quietly remaps it to `#coaching`. Point it at the real section, and
