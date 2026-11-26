@@ -4,55 +4,45 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How I build leadership development for a whole company | Juliana Dos Santos</title>
-<meta name="description" content="A leadership development case study by Juliana Dos Santos: career tracks for individual contributors, programs for every level of manager, and a 90-day start for managers hired from outside, tied to job levels, reviews, internal moves and succession.">
+<meta name="description" content="A leadership development case study by Juliana Dos Santos: two career tracks, a program for every manager level and a 90-day start for new managers from outside, tied to job levels, reviews, internal moves and succession.">
 <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml">
-<link rel="preload" href="fonts/bricolage-grotesque-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:"Bricolage";src:url(fonts/bricolage-grotesque-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Bricolage";src:url(fonts/bricolage-grotesque-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Bricolage";src:url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2");font-weight:800;font-display:swap}
-@font-face{font-family:"InterV";src:url(fonts/inter-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
-
 :root{
-  --ink:#111111; --muted:#5E5E5E; --faint:#8A8A8A; --rule:#E3E3E3;
-  --lead:#1B3A5C; --craft:#0F9F9A; --craft-text:#0B7A76;
+  --ink:#111111; --muted:#5E5E5E; --rule:#E3E3E3; --tint:#F4F5F6;
+  --lead:#1B3A5C; --craft:#0F9F9A;
   --wrap:1160px; --gut:clamp(20px,4vw,48px);
-  --display:"Bricolage",Georgia,serif; --body:"InterV",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:#fff;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--craft);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--craft);outline-offset:3px;border-radius:6px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
-h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;margin:0;color:var(--ink)}
+h1,h2,h3{margin:0;color:var(--ink);letter-spacing:-.025em}
 p{margin:0}
-strong{font-weight:650}
 
-/* Top bar */
 .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:650;font-size:16px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:16px}
 .brand .mark{width:30px;height:30px}
-.back{font-size:15px;font-weight:550;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:1px}
-.back:hover{color:var(--craft-text);border-color:var(--craft-text)}
+.back{font-size:15px;font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--ink)}
 
 /* Opening */
-.intro{padding:clamp(28px,5vw,64px) 0 0;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,64px);align-items:end}
-.intro h1{font-size:clamp(40px,5.6vw,76px);line-height:.98;font-weight:800;letter-spacing:-.035em}
-.intro .lede{font-size:clamp(17px,1.35vw,19px);line-height:1.55;max-width:58ch;color:var(--ink)}
-.intro .lede strong{font-weight:700}
+.intro{padding:clamp(28px,5vw,64px) 0 0;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,5vw,64px);align-items:end}
+.intro h1{font-size:clamp(38px,5.2vw,70px);line-height:1.02;font-weight:800;letter-spacing:-.04em}
+.intro p{font-size:clamp(17px,1.4vw,19px);max-width:40ch}
 
 /* Map */
-.mapblock{margin-top:clamp(36px,4.5vw,56px);border-top:1.5px solid var(--ink);padding-top:22px}
-.maphead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-.maphead h2{font-size:24px}
-.maphead p{color:var(--muted);font-size:15px}
-.legend{display:flex;gap:22px;margin-top:10px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.mapblock{margin-top:clamp(36px,4.5vw,56px);border-top:1.5px solid var(--ink);padding-top:20px}
+.maphead{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.maphead h2{font-size:22px;font-weight:700}
+.legend{display:flex;gap:20px;font-size:14px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:8px}
-.legend i{display:inline-block;width:26px;height:6px;border-radius:3px}
-.map{margin-top:10px;width:100%}
+.legend i{display:inline-block;width:24px;height:6px;border-radius:3px}
+.map{margin-top:6px}
 .map svg{width:100%;height:auto;display:block;overflow:visible}
 .map .m-mobile{display:none}
 .line{fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
@@ -62,17 +52,15 @@ strong{font-weight:650}
 .st{cursor:pointer;outline:none}
 .st circle.dot{fill:#fff;stroke-width:5;transition:r .2s ease,fill .2s ease}
 .st.lead circle.dot{stroke:var(--lead)} .st.craft circle.dot{stroke:var(--craft)} .st.ink circle.dot{stroke:var(--ink)}
-.st circle.hit{fill:transparent;stroke:none}
-.st text{font-family:var(--body);fill:var(--ink)}
+.st circle.hit{fill:transparent}
+.st text{font-family:Inter,system-ui,sans-serif;fill:var(--ink)}
 .st .nm{font-size:16px;font-weight:650}
 .st .ln{font-size:13.5px;fill:var(--muted)}
 .st:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .st.on circle.dot{r:15}
 .st.lead.on circle.dot{fill:var(--lead)} .st.craft.on circle.dot{fill:var(--craft)} .st.ink.on circle.dot{fill:var(--ink)}
 .st:focus-visible circle.dot{stroke:var(--craft);stroke-width:7}
-.swl{font-size:13px;fill:var(--muted);font-family:var(--body)}
-
-/* draw-in, once */
+.swl{font-size:13px;fill:var(--muted);font-family:Inter,system-ui,sans-serif}
 .map .line,.map .thin,.map .switch{stroke-dasharray:1;stroke-dashoffset:0}
 .drawing .map .line,.drawing .map .thin,.drawing .map .switch{stroke-dashoffset:1}
 .drawn .map .line{transition:stroke-dashoffset 1.4s cubic-bezier(.6,0,.2,1)}
@@ -82,139 +70,113 @@ strong{font-weight:650}
 .drawn .map .st{transition:opacity .5s ease;transition-delay:calc(.35s + var(--i,0) * .12s)}
 
 /* Stop panel */
-.panel{margin-top:22px;border-top:1px solid var(--rule);padding-top:28px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px)}
+.panel{margin-top:16px;border-top:1px solid var(--rule);padding-top:26px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,56px)}
 .ptrack{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted)}
-.ptrack i{width:11px;height:11px;border-radius:50%;display:inline-block}
-.panel h3{font-size:clamp(30px,3.4vw,42px);line-height:1.05;margin-top:8px}
-.plen{margin-top:8px;font-weight:650}
-.pwhat{margin-top:14px;max-width:46ch}
-.pjump{margin-top:22px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
-.pjump button{background:none;border:1.5px solid var(--ink);border-radius:999px;padding:9px 18px;font-size:15px;font-weight:600;cursor:pointer}
-.pjump button:hover{background:var(--ink);color:#fff}
-.psup{margin-top:26px}
-.psup h4,.pcol h4{font-family:var(--body);font-size:15px;font-weight:700;margin:0 0 10px}
-.psup ul{list-style:none;margin:0;padding:0;font-size:15px}
-.psup li{padding:7px 0;border-top:1px solid var(--rule)}
-.psup li b{font-weight:650}
-.pcols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px)}
-.weeks{list-style:none;margin:0;padding:0}
-.weeks li{border-top:1px solid var(--rule)}
-.weeks button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:62px 1fr 16px;gap:8px;width:100%;padding:10px 0;cursor:pointer;font-size:15px;line-height:1.35}
-.weeks button:focus-visible{outline:3px solid var(--craft);outline-offset:2px}
-.weeks .wk{color:var(--muted);font-size:13.5px;padding-top:1px}
-.weeks .wt{font-weight:650}
-.weeks .pm{font-weight:600;color:var(--muted);transition:transform .2s}
-.weeks li.open .pm{transform:rotate(45deg)}
-.weeks .wd{display:none;padding:0 0 12px 70px;font-size:14.5px;color:#333;line-height:1.5}
-.weeks li.open .wd{display:block}
-.conn{margin:0}
-.pcols.solo{grid-template-columns:1fr}
-.pcols.solo .conn{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3vw,40px)}
-.conn div{padding:10px 0;border-top:1px solid var(--rule)}
-.conn dt{font-weight:700;font-size:15px}
-.conn dd{margin:2px 0 0;font-size:15px;color:#2b2b2b;line-height:1.5}
+.ptrack i{width:11px;height:11px;border-radius:50%}
+.panel h3{font-size:clamp(28px,3vw,38px);line-height:1.08;font-weight:800;margin-top:6px}
+.plen{margin-top:6px;font-weight:600}
+.pwhat{margin-top:12px;color:var(--muted);max-width:36ch}
+.tabs[hidden]{display:none}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:7px 15px;font-size:14.5px;font-weight:600}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+
+/* Reveal group: buttons, then one detail box */
+.rg-btns{display:grid;gap:8px}
+.rg-btns.cols4{grid-template-columns:repeat(4,1fr)}
+.rg-btns.cols3{grid-template-columns:repeat(3,1fr)}
+.rg-btns.cols2{grid-template-columns:repeat(2,1fr)}
+.rg-btns.chips{display:flex;flex-wrap:wrap}
+.rg-btns button{text-align:left;background:var(--tint);border:1.5px solid transparent;border-radius:12px;padding:11px 13px;font-size:15px;font-weight:650;line-height:1.3;transition:background .15s,border-color .15s}
+.rg-btns button small{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin-bottom:3px}
+.rg-btns.chips button{border-radius:999px;padding:8px 15px;font-size:14.5px}
+.rg-btns button:hover{border-color:#CFCFCF}
+.rg-btns button[aria-pressed="true"]{background:#fff;border-color:var(--ink)}
+.rg-out{margin-top:12px;padding:16px 18px;border-left:4px solid var(--ink);background:#fff;font-size:16px;min-height:56px}
+.rg-out b{display:block;font-size:15px;margin-bottom:2px}
+.rg-out .meta{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.jump button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:8px 16px;font-size:14.5px;font-weight:600}
+.jump button:hover{background:var(--ink);color:#fff}
 
 /* Sections */
-section.s{padding:clamp(64px,9vw,120px) 0 0}
-.shead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);align-items:end}
-.shead h2{font-size:clamp(30px,3.6vw,46px);line-height:1.05;max-width:16ch}
-.shead p{color:var(--muted);max-width:52ch}
+section.s{padding:clamp(64px,8vw,104px) 0 0}
+.s h2{font-size:clamp(28px,3.4vw,42px);line-height:1.08;font-weight:800;max-width:20ch}
+.hint{margin-top:8px;color:var(--muted);font-size:15px}
+.body{margin-top:26px}
 
-.rows{margin-top:36px;border-bottom:1px solid var(--rule)}
-.row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);padding:20px 0;border-top:1px solid var(--rule)}
-.row h3{font-family:var(--body);font-size:18px;font-weight:700;letter-spacing:0;line-height:1.35}
-.row .why{color:var(--muted);font-size:15.5px;margin-top:4px}
-.row .fix{font-size:17px}
-.colhead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);font-size:14px;color:var(--muted);padding-bottom:10px;margin-top:36px}
-.colhead + .rows{margin-top:0}
+/* Flip tiles (no 3D, just a swap) */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tile{position:relative;text-align:left;min-height:150px;display:flex!important;flex-direction:column;justify-content:flex-start;border:1.5px solid var(--ink);border-radius:16px;background:#fff;padding:18px 18px 44px;display:block;width:100%}
+.tile .f,.tile .b{display:block}
+.tile .b{display:none}
+.tile .f{font-size:19px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.tile .b{font-size:16px;line-height:1.45}
+.tile .b em{display:block;font-style:normal;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:6px}
+.tile .tg{position:absolute;left:18px;bottom:14px;font-size:13px;font-weight:600;color:var(--muted)}
+.tile[aria-pressed="true"]{background:var(--ink);color:#fff}
+.tile[aria-pressed="true"] .f{display:none}
+.tile[aria-pressed="true"] .b{display:block}
+.tile[aria-pressed="true"] .tg{color:rgba(255,255,255,.7)}
 
-/* Build timeline */
-.tl{margin-top:40px}
-.tl-weeks{display:grid;grid-template-columns:repeat(12,1fr);font-size:13px;color:var(--muted);border-bottom:1px solid var(--rule);padding-bottom:6px}
-.tl-bars{display:grid;grid-template-columns:repeat(12,1fr);gap:0;margin-top:10px;height:46px}
-.bar{display:flex;align-items:center;padding:0 12px;font-weight:700;font-size:14.5px;color:#fff;border-right:3px solid #fff;white-space:nowrap;overflow:hidden}
-.bar:nth-child(1){grid-column:1/4;background:var(--ink)}
-.bar:nth-child(2){grid-column:4/5;background:#3A3A3A;justify-content:center;padding:0}
-.bar:nth-child(3){grid-column:5/10;background:var(--lead)}
-.bar:nth-child(4){grid-column:10/13;background:var(--craft);border-right:0}
-.tl-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.5vw,32px);margin-top:26px}
-.tl-steps h3{font-family:var(--body);font-size:18px;font-weight:700;letter-spacing:0}
-.tl-steps .when{font-size:14px;color:var(--muted);margin-top:2px}
-.tl-steps p{font-size:15.5px;margin-top:10px}
-.tl-steps ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;color:#333}
-.tl-steps li{margin-bottom:4px}
-.tl-steps .out{margin-top:12px;font-size:14.5px}
-.loop{margin-top:34px;padding:18px 0;border-top:1.5px solid var(--ink);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
-.loop b{font-weight:700}
+/* Timeline */
+.tl-weeks{display:grid;grid-template-columns:repeat(12,1fr);font-size:13px;color:var(--muted);padding-bottom:6px}
+.tl-bars{display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
+.bar{border:0;border-radius:10px;height:54px;padding:0 14px;text-align:left;color:#fff;font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.45;transition:opacity .15s}
+.bar[aria-pressed="true"],.bar:hover{opacity:1}
+.loopbar{margin-top:8px;width:100%;border:1.5px solid var(--ink);background:#fff;border-radius:10px;height:46px;font-weight:700;font-size:15px;text-align:left;padding:0 14px}
+.loopbar[aria-pressed="true"]{background:var(--ink);color:#fff}
 
 /* Measures */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:36px}
-.two h3{font-family:var(--body);font-size:15px;font-weight:700;letter-spacing:0;padding-bottom:10px;border-bottom:1.5px solid var(--ink)}
-.two ul{list-style:none;margin:0;padding:0}
-.two li{padding:13px 0;border-bottom:1px solid var(--rule)}
-.two li b{display:block;font-weight:700}
-.two li span{color:var(--muted);font-size:15.5px}
-
-/* Models */
-.models{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,5vw,64px);margin-top:36px}
-.model{padding:15px 0;border-top:1px solid var(--rule)}
-.model b{font-weight:700}
-.model p{font-size:15.5px;margin-top:2px}
-.model small{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
+.mg h3{font-size:16px;font-weight:700;letter-spacing:0;margin-bottom:12px}
 
 /* Check */
-.check{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,64px);margin-top:36px;align-items:start}
-.q{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:14px 0;border-top:1px solid var(--rule)}
+.check{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:start}
+.q{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:12px 0;border-top:1px solid var(--rule)}
 .q:last-child{border-bottom:1px solid var(--rule)}
-.q small{display:block;font-size:13.5px;color:var(--muted);font-weight:600}
-.q p{font-size:16px;line-height:1.45}
-.yn{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
-.yn button{background:none;border:0;padding:7px 14px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.q p{font-size:16px;font-weight:600;line-height:1.35}
+.yn{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;flex:none}
+.yn button{background:none;border:0;padding:7px 14px;font-size:14px;font-weight:600;white-space:nowrap}
 .yn button+button{border-left:1.5px solid var(--ink)}
 .yn button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.start{position:sticky;top:24px;border:1.5px solid var(--ink);border-radius:18px;padding:24px}
-.start h3{font-size:24px}
-.start ol{margin:14px 0 0;padding-left:20px}
-.start li{margin-bottom:12px;font-size:15.5px;line-height:1.5}
-.start li b{display:block;font-size:14px}
-.start .empty{color:var(--muted);margin-top:10px;font-size:15.5px}
+.start{position:sticky;top:24px;border:1.5px solid var(--ink);border-radius:16px;padding:22px}
+.start h3{font-size:20px;font-weight:800}
+.start ol{margin:12px 0 0;padding-left:20px}
+.start li{margin-bottom:10px;font-size:15px;line-height:1.45}
+.start .empty{color:var(--muted);margin-top:8px;font-size:15px}
 
-/* Close */
-.close{padding:clamp(80px,10vw,140px) 0 56px}
-.close h2{font-size:clamp(34px,4.6vw,60px);line-height:1.02;max-width:18ch;letter-spacing:-.03em}
-.btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.btn{display:inline-block;text-decoration:none;font-weight:650;font-size:16px;padding:13px 24px;border-radius:999px;border:1.5px solid var(--ink)}
+.close{padding:clamp(72px,9vw,120px) 0 48px}
+.close h2{font-size:clamp(30px,4vw,52px);line-height:1.05;font-weight:800;max-width:18ch;letter-spacing:-.035em}
+.btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{text-decoration:none;font-weight:650;font-size:16px;padding:13px 24px;border-radius:999px;border:1.5px solid var(--ink)}
 .btn.solid{background:var(--ink);color:#fff}
-.btn.solid:hover{background:var(--lead);border-color:var(--lead)}
-.btn:not(.solid):hover{background:#F2F2F2}
-.note{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.note{margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}
 
 @media (max-width:900px){
-  .panel,.shead,.row,.colhead,.check,.intro{grid-template-columns:1fr}
-  .intro{gap:24px}
-  .colhead{display:none}
-  .row{gap:8px}
-  .row .fix{font-size:16px}
-  .pcols,.pcols.solo .conn{grid-template-columns:1fr}
-  .tl-steps{grid-template-columns:1fr 1fr}
+  .intro,.panel,.check{grid-template-columns:1fr}
+  .intro{gap:18px}
+  .tiles{grid-template-columns:1fr 1fr}
+  .two{grid-template-columns:1fr}
+  .rg-btns.cols4{grid-template-columns:repeat(2,1fr)}
   .start{position:static}
 }
 @media (max-width:640px){
   body{font-size:16px}
   .map .m-desk{display:none} .map .m-mobile{display:block}
-  .tl-weeks,.tl-bars{display:none}
-  .tl-steps{grid-template-columns:1fr;gap:0;margin-top:20px}
-  .tl-steps > div{padding:16px 0 16px 18px;border-left:4px solid var(--c);margin-bottom:10px}
-  .two,.models{grid-template-columns:1fr}
-  .two{gap:36px}
-  .q{grid-template-columns:1fr;gap:10px}
-  .maphead h2{font-size:21px}
+  .legend{display:none}
+  .tiles{grid-template-columns:1fr}
+  .tile{min-height:0;padding:16px 16px 40px}
+  .rg-btns.cols3{grid-template-columns:repeat(2,1fr)}
+  .tl-weeks{display:none}
+  .tl-bars{grid-template-columns:1fr 1fr}
+  .bar{grid-column:auto!important;height:48px}
+  .q{flex-direction:column;align-items:flex-start;gap:8px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body class="drawing">
-
 <div class="wrap">
   <header class="top">
     <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
@@ -224,75 +186,57 @@ section.s{padding:clamp(64px,9vw,120px) 0 0}
   <main>
   <div class="intro">
     <h1>How I build leadership development for a whole company</h1>
-    <p class="lede">Individual contributors get <strong>two six-week tracks</strong>, one to try leading people and one to grow in their craft, each with three months of mentorship. Managers at every level get an <strong>eight-week program</strong>, and managers hired from outside get a <strong>90-day start</strong>. All of it ties to job levels, reviews, internal moves and succession, and the build takes <strong>under three months</strong>.</p>
+    <p>Two career tracks, a program for every manager level, and a 90-day start for managers hired from outside. All tied to job levels, reviews, internal moves and succession.</p>
   </div>
 
-  <div class="mapblock" id="map">
+  <div class="mapblock">
     <div class="maphead">
-      <h2>The career map</h2>
-      <p>Select any stop to see the program and how it connects.</p>
-    </div>
-    <div class="legend" aria-hidden="true">
-      <span><i style="background:var(--lead)"></i>Leadership track</span>
-      <span><i style="background:var(--craft)"></i>Craft track</span>
+      <h2>Tap a stop to explore</h2>
+      <div class="legend" aria-hidden="true"><span><i style="background:var(--lead)"></i>Leadership track</span><span><i style="background:var(--craft)"></i>Craft track</span></div>
     </div>
     <div class="map" id="mapsvg"></div>
     <div class="panel" id="panel" aria-live="polite"></div>
   </div>
 
-  <section class="s" id="problems">
-    <div class="shead">
-      <h2>What usually goes wrong</h2>
-      <p>Leadership training often runs on its own, apart from how people are levelled, reviewed and promoted. These are the problems I see most, and what the model does about each one.</p>
-    </div>
-    <div class="colhead"><span>The problem</span><span>What I do instead</span></div>
-    <div class="rows" id="probRows"></div>
+  <section class="s">
+    <h2>What usually goes wrong</h2>
+    <p class="hint">Tap a card to see what I do about it.</p>
+    <div class="body tiles" id="probs"></div>
   </section>
 
-  <section class="s" id="build">
-    <div class="shead">
-      <h2>The build takes under three months</h2>
-      <p>Leaders see a working pilot within the first two months, and the first cohorts start by week 12.</p>
+  <section class="s">
+    <h2>Built in under three months</h2>
+    <p class="hint">Tap a phase.</p>
+    <div class="body">
+      <div class="tl-weeks" aria-hidden="true"><span>Wk 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+      <div class="tl-bars" id="bars"></div>
+      <button class="loopbar" id="loopbar" type="button" aria-pressed="false">After every cohort: review and improve</button>
+      <div class="rg-out" id="barOut"></div>
     </div>
-    <div class="tl" aria-hidden="true">
-      <div class="tl-weeks"><span>Wk 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
-      <div class="tl-bars"><div class="bar">Discover</div><div class="bar" title="Design together">Design</div><div class="bar">Prototype and pilot</div><div class="bar">Launch</div></div>
-    </div>
-    <div class="tl-steps" id="steps"></div>
-    <div class="loop"><b>Then, after every cohort:</b><span>I review the data with leaders and adjust the next cohort.</span></div>
   </section>
 
-  <section class="s" id="measure">
-    <div class="shead">
-      <h2>What I review after every cohort</h2>
-      <p>I go through these with leaders after each cohort, so the next one gets better and the link to business results stays visible.</p>
-    </div>
-    <div class="two" id="measures"></div>
+  <section class="s">
+    <h2>What I review after every cohort</h2>
+    <p class="hint">Tap any measure.</p>
+    <div class="body two" id="measures"></div>
   </section>
 
-  <section class="s" id="models">
-    <div class="shead">
-      <h2>The leadership models behind the programs</h2>
-      <p>Each program draws on well-known leadership models, taught in plain language and practised on real situations. Here is where each one shows up.</p>
-    </div>
-    <div class="models" id="modelList"></div>
+  <section class="s">
+    <h2>The leadership models behind it</h2>
+    <p class="hint">Tap a model to see where it's used.</p>
+    <div class="body" id="models"></div>
   </section>
 
-  <section class="s" id="risks">
-    <div class="shead">
-      <h2>What I plan around from the start</h2>
-      <p>Programs like this tend to fail in the same few ways. I build these in before the first cohort.</p>
-    </div>
-    <div class="colhead"><span>The risk</span><span>How I handle it</span></div>
-    <div class="rows" id="riskRows"></div>
+  <section class="s">
+    <h2>What I plan around</h2>
+    <p class="hint">Tap a card to see how I handle it.</p>
+    <div class="body tiles" id="risks"></div>
   </section>
 
-  <section class="s" id="company">
-    <div class="shead">
-      <h2>Where I start at your company</h2>
-      <p>Six quick questions. Answer "Not yet" to any of them and you'll see where I start. Your answers aren't saved or sent anywhere.</p>
-    </div>
-    <div class="check">
+  <section class="s">
+    <h2>Where I start at your company</h2>
+    <p class="hint">Six quick questions. Nothing is saved.</p>
+    <div class="body check">
       <div id="qs"></div>
       <aside class="start" aria-live="polite"><h3>Where I start</h3><div id="startOut"></div></aside>
     </div>
@@ -304,7 +248,7 @@ section.s{padding:clamp(64px,9vw,120px) 0 0}
       <a class="btn solid" href="index.html#contact">Get in touch</a>
       <a class="btn" href="Juliana-Dos-Santos-Resume-July-2026.pdf">View my resume</a>
     </div>
-    <div class="note"><span>The levels and timelines are examples. I adapt them to each company.</span><a href="index.html#work">Back to my work</a></div>
+    <p class="note">The levels and timelines are examples. I adapt them to each company.</p>
   </section>
   </main>
 </div>
@@ -320,7 +264,7 @@ const LV = {
 const PART_NAMES = [['arch','Job architecture'],['perf','Performance'],['mob','Internal mobility'],['succ','Succession']];
 
 const STOPS = {
- ic:{t:'ink',track:'Where everyone starts',name:'Individual contributor',len:'Two tracks to choose from',what:'Individual contributors can grow on either track. Both lead to roles with the same pay and standing, and people can switch later.',lv:'ic',jump:[['lead','Explore leadership'],['craft','Grow in your craft']]},
+ ic:{t:'ink',track:'Where everyone starts',name:'Individual contributor',len:'Two tracks to choose from',what:'Both tracks lead to the same pay and standing.',lv:'ic',jump:[['lead','Explore leadership'],['craft','Grow in your craft']]},
  lead:{t:'lead',track:'Leadership track',name:'Explore leadership',len:'6 weeks, plus 3 months of mentorship',what:'Try leading people before taking on the title, with a manager from another team as a mentor.',lv:'ic',
   weeks:[['Is managing people for me?','What managers spend their time on, a short self-assessment, and a first meeting with your mentor.'],['Leading yourself','Emotional intelligence basics: how you react under pressure, and what that means for leading others.'],['Feedback and one-on-ones','Practise giving feedback that is caring and direct, using Radical Candor, in a live practice lab.'],['Coaching conversations','Use the GROW model to help a colleague work through a real problem without solving it for them.'],['A stretch project','Lead a small project or onboard a new hire, with your mentor as a sounding board.'],['Decide your next step','Share what you learned with your manager and choose: join the pre-manager pool, or stay on the craft path, which is equally rewarded.']],
   sup:[['Mentorship','Every two weeks with a manager from another team, for three months'],['Peer group','Four to six people from the same cohort meet weekly'],['Your manager','A conversation at the start and the end of the track']]},
@@ -345,6 +289,7 @@ const STOPS = {
   sup:[['Peer group','Senior leaders across functions'],['Executive sponsor','Joins in weeks 1 and 8'],['A business project','Owned by the group, tied to a company goal'],['In-person offsites','Optional sessions to work across functions on shared company goals']]}
 };
 
+
 /* Map geometry: one layout for wide screens, one for phones */
 const GEO = {
  desk:{vb:'0 0 1200 390',
@@ -360,9 +305,10 @@ const GEO = {
   hire:'M112,242 C112,290 40,270 40,310', sw:'M40,384 L236,384', swl:[60,404,'People can switch tracks'],
   st:{ic:[130,82,'above'],lead:[40,180,'right'],m1:[40,310,'right'],m2:[40,450,'right'],m3:[40,556,'right'],craft:[236,180,'right'],sr:[236,310,'right'],pr:[236,450,'right'],hire:[112,242,'right']},
   lab:{ic:['Individual contributor'],lead:['Explore','leadership'],m1:['New','manager'],m2:['Experienced','manager'],m3:['Senior','leader'],craft:['Grow in','your craft'],sr:['Senior','expert'],pr:['Principal','expert'],hire:['Hired from','outside']},
-  sub:{ic:'Everyone starts here',lead:'6 weeks + mentor',m1:'8 weeks',m2:'8 weeks',m3:'8 weeks',craft:'6 weeks + mentor',sr:'Ongoing',pr:'Ongoing',hire:'90-day start'}}
+  sub:{ic:'Everyone starts here',lead:'6 weeks',m1:'8 weeks',m2:'8 weeks',m3:'8 weeks',craft:'6 weeks',sr:'Ongoing',pr:'Ongoing',hire:'90-day start'}}
 };
 const ORDER=['ic','lead','craft','hire','m1','sr','m2','pr','m3'];
+
 
 function svgFor(kind){
   const g=GEO[kind];
@@ -388,101 +334,137 @@ function svgFor(kind){
 }
 document.getElementById('mapsvg').innerHTML=svgFor('desk')+svgFor('mob');
 
-const esc=s=>s;
+
+document.getElementById('mapsvg').innerHTML=svgFor('desk')+svgFor('mob');
+
+/* A row of buttons with one detail box underneath */
+function reveal(el,items,cls,first){
+  // items: [label, small, detail, meta]
+  el.innerHTML=`<div class="rg-btns ${cls}">${items.map((it,i)=>`<button type="button" data-i="${i}" aria-pressed="false">${it[1]?`<small>${it[1]}</small>`:''}${it[0]}</button>`).join('')}</div><div class="rg-out"></div>`;
+  const out=el.querySelector('.rg-out');
+  const pick=i=>{el.querySelectorAll('.rg-btns button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.i==i));const it=items[i];out.innerHTML=`<b>${it[0]}</b>${it[2]}${it[3]?`<span class="meta">${it[3]}</span>`:''}`};
+  el.querySelector('.rg-btns').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(b.dataset.i)});
+  pick(first||0);
+}
+
+const PARTS=[['arch','Job architecture'],['perf','Performance'],['mob','Internal mobility'],['succ','Succession']];
+let curTab=0;
 function renderPanel(k){
   const s=STOPS[k], lv=LV[s.lv];
-  const col = s.t==='lead'?'var(--lead)':s.t==='craft'?'var(--craft)':'var(--ink)';
-  let left=`<div><span class="ptrack"><i style="background:${col}"></i>${s.track}</span><h3>${s.name}</h3><p class="plen">${s.len}</p><p class="pwhat">${s.what}</p>`;
-  if(s.jump) left+=`<div class="pjump">${s.jump.map(([j,n])=>`<button type="button" data-go="${j}">See ${n}</button>`).join('')}</div>`;
-  if(s.sup) left+=`<div class="psup"><h4>Alongside the program</h4><ul>${s.sup.map(([a,b])=>`<li><b>${a}.</b> ${b}</li>`).join('')}</ul></div>`;
-  left+='</div>';
-  let first='';
-  if(s.weeks){
-    first=`<div class="pcol"><h4>${s.when?'The first 90 days':'Week by week'}</h4><ol class="weeks">${s.weeks.map((w,i)=>`<li${i===0?' class="open"':''}><button type="button" aria-expanded="${i===0}"><span class="wk">${s.when?w[2]:'Week '+(i+1)}</span><span class="wt">${w[0]}</span><span class="pm" aria-hidden="true">+</span></button><div class="wd">${w[1]}</div></li>`).join('')}</ol></div>`;
-  } else if(s.list){
-    first=`<div class="pcol"><h4>What this role looks like</h4><ul class="weeks">${s.list.map(x=>`<li><div style="padding:10px 0;font-size:15px;font-weight:600">${x}</div></li>`).join('')}</ul></div>`;
-  }
-  const conn=`<div class="pcol"><h4>How it connects at this level</h4><dl class="conn">${PART_NAMES.map(([p,n])=>`<div><dt>${n}</dt><dd>${lv[p]}</dd></div>`).join('')}</dl></div>`;
-  document.getElementById('panel').innerHTML = left + `<div class="pcols${first?'':' solo'}">${first||''}${conn}</div>`;
+  const col=s.t==='lead'?'var(--lead)':s.t==='craft'?'var(--craft)':'var(--ink)';
+  const tabs=[];
+  if(s.weeks) tabs.push([s.when?'First 90 days':'Week by week','weeks']);
+  if(s.list) tabs.push(['What it looks like','list']);
+  tabs.push(['How it connects','conn']);
+  if(s.sup) tabs.push(['Alongside it','sup']);
+  if(curTab>=tabs.length) curTab=0;
+  let h=`<div><span class="ptrack"><i style="background:${col}"></i>${s.track}</span><h3>${s.name}</h3><p class="plen">${s.len}</p><p class="pwhat">${s.what}</p>`;
+  if(s.jump) h+=`<div class="jump">${s.jump.map(([j,n])=>`<button type="button" data-go="${j}">${n}</button>`).join('')}</div>`;
+  h+=`</div><div><div class="tabs" role="tablist"${tabs.length<2?' hidden':''}>${tabs.map((t,i)=>`<button type="button" role="tab" data-tab="${i}" aria-selected="${i===curTab}">${t[0]}</button>`).join('')}</div><div id="tabBody"></div></div>`;
+  const P=document.getElementById('panel'); P.innerHTML=h;
+  const body=document.getElementById('tabBody');
+  const show=i=>{curTab=i;P.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab==i));const t=tabs[i][1];
+    if(t==='weeks') reveal(body,s.weeks.map((w,j)=>[w[0],s.when?w[2]:'Week '+(j+1),w[1]]),'cols4');
+    if(t==='list') reveal(body,s.list.map(x=>[x,'',''] ),'cols3');
+    if(t==='conn') reveal(body,PARTS.map(([p,n])=>[n,'',lv[p]]),'cols4');
+    if(t==='sup') reveal(body,s.sup.map(([a,b])=>[a,'',b]),'cols4');
+    if(t==='list'){body.querySelector('.rg-out').remove();body.querySelectorAll('button').forEach(b=>{b.disabled=true;b.style.cursor='default'})}
+  };
+  P.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.tab)));
+  P.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.go)));
+  show(curTab);
 }
 function select(k,scroll){
   document.querySelectorAll('.st').forEach(g=>{const on=g.dataset.k===k;g.classList.toggle('on',on);g.setAttribute('aria-pressed',on)});
-  renderPanel(k);
-  if(scroll){const p=document.getElementById('panel');const r=p.getBoundingClientRect();if(r.top>innerHeight*.7||r.top<0)p.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}
+  curTab=0; renderPanel(k);
+  if(scroll){const p=document.getElementById('panel');const r=p.getBoundingClientRect();if(r.top>innerHeight*.6)p.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}
 }
-document.getElementById('mapsvg').addEventListener('click',e=>{const g=e.target.closest('.st');if(g)select(g.dataset.k,innerWidth<=640)});
-document.getElementById('mapsvg').addEventListener('keydown',e=>{const g=e.target.closest('.st');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();select(g.dataset.k,false)}});
-document.getElementById('panel').addEventListener('click',e=>{
-  const go=e.target.closest('[data-go]'); if(go){select(go.dataset.go,false);return}
-  const b=e.target.closest('.weeks button'); if(b){const li=b.parentElement;const o=li.classList.toggle('open');b.setAttribute('aria-expanded',o)}
-});
-select('ic',false);
+const M=document.getElementById('mapsvg');
+M.addEventListener('click',e=>{const g=e.target.closest('.st');if(g)select(g.dataset.k,innerWidth<=640)});
+M.addEventListener('keydown',e=>{const g=e.target.closest('.st');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();select(g.dataset.k)}});
+select('ic');
 
-/* Problems and risks */
-const PROBS=[
- ['Managing is the only way up','Strong experts become managers because nothing else pays off.','A craft track gives experts a real path up, and a six-week track lets people try leading first.'],
- ["Training and reviews don't match",'Managers learn one thing and get reviewed on another.','Each level is defined once. The programs teach it and the reviews measure it.'],
- ['Internal moves depend on who you know',"Good people leave when they can't see a path.",'Clear tracks, internal postings first, and readiness that hiring managers can see.'],
- ['Succession lives in a spreadsheet','Names go on a list, and nobody gets them ready.','Gaps in the succession plan decide who joins each cohort.'],
- ['New managers from outside are left to figure it out','They know how to manage, but not how things work here.','A 90-day start with a buddy, key introductions and a new-leader session with their team.']];
-const RISKS=[
- ["Managers who aren't involved",'New habits fade within weeks.',"Each participant's manager joins at the start, middle and end, with a short guide."],
- ['Levels that are too complicated',"If people can't explain their level, it won't guide anything.",'A few levels per track, each described in two or three plain sentences.'],
- ['Succession lists that feel secret',"People who don't know they're being developed still leave.","People are told they're in a development pool, even if the list stays private."],
- ['Counting attendance only','Completion says very little.','Business measures are agreed with leaders before the first cohort.']];
-const rowHTML=a=>a.map(([h,w,f])=>`<div class="row"><div><h3>${h}</h3><p class="why">${w}</p></div><p class="fix">${f}</p></div>`).join('');
-document.getElementById('probRows').innerHTML=rowHTML(PROBS);
-document.getElementById('riskRows').innerHTML=rowHTML(RISKS);
+/* Cards that swap to the answer */
+function tiles(el,items,label){
+  el.innerHTML=items.map(([f,b],i)=>`<button type="button" class="tile" aria-pressed="false"><span class="f">${f}</span><span class="b"><em>${label}</em>${b}</span><span class="tg">${i<0?'':'Tap to see'}</span></button>`).join('');
+  el.addEventListener('click',e=>{const t=e.target.closest('.tile');if(!t)return;const on=t.getAttribute('aria-pressed')!=='true';t.setAttribute('aria-pressed',on);t.querySelector('.tg').textContent=on?'Tap to go back':'Tap to see'});
+}
+tiles(document.getElementById('probs'),[
+ ['Managing is the only way up','A craft track gives experts a real path up, and a six-week track lets people try leading first.'],
+ ["Training and reviews don't match",'Each level is defined once. The programs teach it and the reviews measure it.'],
+ ['Internal moves depend on who you know','Clear tracks, internal postings first, and readiness hiring managers can see.'],
+ ['Succession lives in a spreadsheet','Gaps in the succession plan decide who joins each cohort.'],
+ ['New managers from outside figure it out alone','A 90-day start with a buddy, key introductions and a session with their new team.'],
+ ['Training happens without their manager',"Each participant's manager joins at the start, middle and end."]],'What I do');
+tiles(document.getElementById('risks'),[
+ ['Levels that are too complicated','A few levels per track, each described in two or three plain sentences.'],
+ ['Succession lists that feel secret',"People are told they're in a development pool, even if the list stays private."],
+ ['Counting attendance only','Business measures are agreed with leaders before the first cohort.']],'How I handle it');
 
-/* Build steps */
-const STEPS=[
- {c:'var(--ink)',nm:'1. Discover',when:'Weeks 1 to 3',p:'Understand what is really going on before designing anything.',li:['Interviews with managers, their leaders and HR partners','Review job levels, performance data, engagement results and exit themes'],out:'Agreed business outcomes and a short findings summary'},
- {c:'#3A3A3A',nm:'2. Design together',when:'Week 4',p:"One working session with stakeholders to turn each level's expectations into program outcomes.",li:['Map the two career tracks and the manager levels','Sketch the first program together']},
- {c:'var(--lead)',nm:'3. Prototype and pilot',when:'Weeks 5 to 9',p:'Build the six-week leadership track first and run it with a small pilot group.',li:['Revise in quick rounds based on what participants and mentors say','Build the other programs from the same pattern'],out:'A tested first program and a reusable design'},
- {c:'var(--craft)',nm:'4. Launch',when:'Weeks 10 to 12',p:'Open the first cohorts for each track and level.',li:['Match mentors before each cohort starts',"Brief participants' managers with a short guide"]}];
-document.getElementById('steps').innerHTML=STEPS.map(s=>`<div style="--c:${s.c}"><h3>${s.nm}</h3><p class="when">${s.when}</p><p>${s.p}</p><ul>${s.li.map(x=>`<li>${x}</li>`).join('')}</ul>${s.out?`<p class="out"><strong>What comes out:</strong> ${s.out}</p>`:''}</div>`).join('');
+/* Timeline */
+const PH=[
+ ['Discover','Weeks 1 to 3','1/4','var(--ink)','Interviews with managers, leaders and HR, plus a look at job levels, performance, engagement and exit data.','Out of it: agreed business outcomes'],
+ ['Design','Week 4','4/5','#3A3A3A',"One working session with stakeholders to turn each level's expectations into program outcomes.",'Out of it: the career tracks and a first program sketch'],
+ ['Prototype and pilot','Weeks 5 to 9','5/10','var(--lead)','Build the six-week leadership track first, run it with a small pilot group and revise quickly.','Out of it: a tested program and a pattern for the rest'],
+ ['Launch','Weeks 10 to 12','10/13','var(--craft)',"Open the first cohorts, match mentors and brief participants' managers.",'Out of it: first cohorts running on every track']];
+const bars=document.getElementById('bars'), bout=document.getElementById('barOut'), loop=document.getElementById('loopbar');
+bars.innerHTML=PH.map((p,i)=>`<button type="button" class="bar" data-i="${i}" aria-pressed="false" style="grid-column:${p[2]};background:${p[3]}">${p[0]}</button>`).join('');
+function phase(i){
+  bars.querySelectorAll('.bar').forEach(b=>b.setAttribute('aria-pressed',b.dataset.i==i));loop.setAttribute('aria-pressed',i==='loop');
+  if(i==='loop'){bout.innerHTML='<b>After every cohort</b>I go through the data with leaders and adjust the next cohort.<span class="meta">See what I review below.</span>';return}
+  const p=PH[i]; bout.innerHTML=`<b>${p[0]}, ${p[1].toLowerCase()}</b>${p[4]}<span class="meta">${p[5]}</span>`;
+}
+bars.addEventListener('click',e=>{const b=e.target.closest('.bar');if(b)phase(b.dataset.i)});
+loop.addEventListener('click',()=>phase('loop'));
+phase(0);
 
 /* Measures */
-const MG=[
- {h:'How the cohort went',items:[['Cohort feedback','A short survey after each session and at the end of the program'],['Skills checks','Results against the expectations for that level'],['Manager check-ins','Whether people are using the skills at work, from their own manager'],['90-day pulse','How managers hired from outside feel at 30, 60 and 90 days']]},
- {h:'What changed for the business',items:[['Engagement survey',"Scores for participants' teams, compared with the last survey"],['Internal mobility','Roles filled internally, and moves between the two career tracks'],['Attrition',"Regretted turnover on participants' teams"],['Succession','Critical roles with at least one ready-now successor'],['New manager retention','How many managers hired from outside stay past their first year']]}];
-document.getElementById('measures').innerHTML=MG.map(g=>`<div><h3>${g.h}</h3><ul>${g.items.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul></div>`).join('');
+const MS=document.getElementById('measures');
+MS.innerHTML='<div class="mg"><h3>How the cohort went</h3><div id="mg1"></div></div><div class="mg"><h3>What changed for the business</h3><div id="mg2"></div></div>';
+reveal(document.getElementById('mg1'),[
+ ['Cohort feedback','','A short survey after each session and at the end.'],
+ ['Skills checks','','Results against the expectations for that level.'],
+ ['Manager check-ins','','Whether people use the skills at work, from their own manager.'],
+ ['90-day pulse','','How managers hired from outside feel at 30, 60 and 90 days.']],'chips');
+reveal(document.getElementById('mg2'),[
+ ['Engagement survey','',"Scores for participants' teams, compared with the last survey."],
+ ['Internal mobility','','Roles filled internally, and moves between the two tracks.'],
+ ['Attrition','',"Regretted turnover on participants' teams."],
+ ['Succession','','Critical roles with at least one ready-now successor.'],
+ ['New manager retention','','How many managers hired from outside stay past their first year.']],'chips');
 
 /* Models */
-const MODELS=[
- ['Emotional intelligence','The EQ-i 2.0 model: five areas, from self-perception to stress management.','Explore leadership week 2, and New manager week 2'],
- ['Radical Candor',"Kim Scott's approach to feedback: caring personally while challenging directly.",'Explore leadership week 3, and New manager week 3'],
- ['Situational Leadership','Hersey and Blanchard: adjust direction and support to the person and the task.','New manager week 4'],
- ['GROW coaching',"John Whitmore's four-step shape for a coaching conversation.",'Explore leadership week 4, New manager week 5, and peer coaching circles'],
- ["Lencioni's Five Dysfunctions","Patrick Lencioni's pyramid, from trust up to results.",'Experienced manager weeks 1 to 3'],
- ["Tuckman's team stages",'Forming, storming, norming and performing.','Experienced manager week 4'],
- ["Goleman's six styles","Daniel Goleman's research on switching leadership styles to fit the moment.",'Experienced manager week 5'],
- ['Servant leadership',"Robert Greenleaf's idea that leaders exist to help their people do their best work.",'Senior leader week 3, and the tone of every program'],
- ['The Golden Circle',"Simon Sinek's case for explaining why before what.",'Senior leader week 1'],
- ["Kotter's steps for change","John Kotter's steps for leading change that lasts.",'Senior leader week 2']];
-document.getElementById('modelList').innerHTML=MODELS.map(([a,b,c])=>`<div class="model"><b>${a}</b><p>${b}</p><small>Used in: ${c}</small></div>`).join('');
+reveal(document.getElementById('models'),[
+ ['Emotional intelligence','','The EQ-i 2.0 model, from self-perception to stress management.','Used in: Explore leadership and New manager, week 2'],
+ ['Radical Candor','',"Kim Scott's approach: care personally, challenge directly.",'Used in: Explore leadership and New manager, week 3'],
+ ['Situational Leadership','','Adjust direction and support to the person and the task.','Used in: New manager, week 4'],
+ ['GROW coaching','',"John Whitmore's four-step coaching conversation.",'Used in: Explore leadership, New manager and peer coaching circles'],
+ ['Five Dysfunctions','',"Patrick Lencioni's pyramid, from trust up to results.",'Used in: Experienced manager, weeks 1 to 3'],
+ ["Tuckman's team stages",'','Forming, storming, norming and performing.','Used in: Experienced manager, week 4'],
+ ["Goleman's six styles",'','Switching leadership styles to fit the moment.','Used in: Experienced manager, week 5'],
+ ['Servant leadership','',"Robert Greenleaf's idea that leaders exist to help their people do their best work.",'Used in: Senior leader, and the tone of every program'],
+ ['The Golden Circle','',"Simon Sinek's case for explaining why before what.",'Used in: Senior leader, week 1'],
+ ["Kotter's steps for change",'',"John Kotter's steps for change that lasts.",'Used in: Senior leader, week 2']],'chips');
 
 /* Company check */
 const QS=[
- {area:'Job architecture',q:'Are the expectations for each manager level written down, and easy to explain?',start:'Write clear expectations for each manager level with your HR partners, in plain language, so training and reviews can both use them.'},
- {area:'Career paths',q:'Can individual contributors move up without having to manage people?',start:'Map an individual contributor ladder next to the manager ladder, and pilot the six-week leadership and craft tracks.'},
- {area:'Performance',q:'Do performance reviews use the same expectations your leadership training teaches?',start:'Line up review criteria with the level expectations, and walk managers through calibration before the next review cycle.'},
- {area:'Internal mobility',q:"Are open manager roles shared inside the company before they're posted outside?",start:"Set up internal-first posting for manager roles, and make program graduates' readiness visible to hiring managers."},
- {area:'New manager start',q:'Do managers hired from outside get a planned first 90 days?',start:'Set up a 90-day start for managers hired from outside, with a buddy, key introductions and a new-leader session with their team.'},
- {area:'Succession',q:'Do your most critical roles have at least one successor who is ready now?',start:'Name critical roles and their successors with your leaders, then use the gaps to choose who joins the first cohort.'}];
+ ['Are expectations for each manager level written down?','Job levels','Write clear, plain expectations for each manager level with your HR partners.'],
+ ['Can people move up without managing?','Career paths','Map a craft ladder next to the manager ladder, then pilot both six-week tracks.'],
+ ['Do reviews match what training teaches?','Performance','Line up review criteria with the level expectations before the next review cycle.'],
+ ['Are manager roles posted inside first?','Internal mobility','Post manager roles internally first, and make readiness visible to hiring managers.'],
+ ['Do new managers from outside get a 90-day plan?','New manager start','Set up a 90-day start with a buddy, key introductions and a session with their team.'],
+ ['Do critical roles have a ready-now successor?','Succession','Name successors for critical roles, and use the gaps to pick the first cohort.']];
 const ans={};
-document.getElementById('qs').innerHTML=QS.map((q,i)=>`<div class="q"><div><small>${q.area}</small><p>${q.q}</p></div><div class="yn" role="group" aria-label="${q.area}"><button type="button" data-q="${i}" data-a="y" aria-pressed="false">Yes</button><button type="button" data-q="${i}" data-a="n" aria-pressed="false">Not yet</button></div></div>`).join('');
+document.getElementById('qs').innerHTML=QS.map((q,i)=>`<div class="q"><p>${q[0]}</p><div class="yn" role="group" aria-label="${q[1]}"><button type="button" data-q="${i}" data-a="y" aria-pressed="false">Yes</button><button type="button" data-q="${i}" data-a="n" aria-pressed="false">Not yet</button></div></div>`).join('');
 function renderStart(){
-  const n=Object.keys(ans).length, gaps=QS.filter((q,i)=>ans[i]==='n');
-  const out=document.getElementById('startOut');
-  if(!n){out.innerHTML='<p class="empty">Answer the questions and your starting points show up here.</p>';return}
-  if(!gaps.length){out.innerHTML=`<p class="empty">${n<6?'No gaps so far.':'The foundations are in place.'} ${n<6?'Keep going.':'I start with the review after each cohort, to see what is working and what to change.'}</p>`;return}
-  out.innerHTML=`<ol>${gaps.map(q=>`<li><b>${q.area}</b>${q.start}</li>`).join('')}</ol>`;
+  const n=Object.keys(ans).length, gaps=QS.filter((q,i)=>ans[i]==='n'), out=document.getElementById('startOut');
+  if(!n){out.innerHTML='<p class="empty">Your starting points show up here.</p>';return}
+  if(!gaps.length){out.innerHTML=`<p class="empty">${n<6?'No gaps so far.':'The foundations are in place. I start with the review after each cohort.'}</p>`;return}
+  out.innerHTML=`<ol>${gaps.map(q=>`<li>${q[2]}</li>`).join('')}</ol>`;
 }
-document.getElementById('qs').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;const i=b.dataset.q;ans[i]=b.dataset.a;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderStart()});
+document.getElementById('qs').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;ans[b.dataset.q]=b.dataset.a;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderStart()});
 renderStart();
 
-/* One draw-in moment for the map */
 requestAnimationFrame(()=>requestAnimationFrame(()=>{document.body.classList.add('drawn');document.body.classList.remove('drawing')}));
 </script>
 </body>
