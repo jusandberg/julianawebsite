@@ -12,8 +12,8 @@
 <style>
 :root{
   --ink:#111111; --muted:#5E5E5E; --rule:#E4E7EB; --tint:#F3F5F7;
-  --navy:#1B3A5C; --navy-d:#102A44; --teal:#0F9F9A; --teal-l:#3FD0C8; --sky:#CFE3F7;
-  --grad:linear-gradient(90deg,#1B3A5C,#0F9F9A);
+  --navy:#102544; --navy-d:#0B1B33; --teal:#14A39B; --teal-l:#3FD0C8; --sky:#CFE3F7;
+  --grad:linear-gradient(90deg,#102544,#2C6E9E,#14A39B);
   --wrap:1160px; --gut:clamp(18px,4vw,48px);
 }
 *{box-sizing:border-box}
@@ -40,7 +40,7 @@ p{margin:0}
 
 /* ---------- The journey stage ---------- */
 .stage{position:relative;border-radius:28px;background:var(--navy-d);color:#fff;overflow:hidden;padding:clamp(20px,3vw,36px)}
-.stage::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 92% 0%,rgba(15,159,154,.35),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(63,120,190,.28),transparent 70%);pointer-events:none}
+.stage::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 92% 0%,rgba(20,163,155,.35),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(44,110,158,.28),transparent 70%);pointer-events:none}
 .stage > *{position:relative}
 .shead-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .stage h2{font-size:clamp(22px,2.2vw,28px);font-weight:750}
@@ -183,7 +183,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .yn button{background:none;border:0;padding:6px 14px;font-size:14px;font-weight:650;border-radius:999px;white-space:nowrap}
 .yn button[aria-pressed="true"]{background:var(--ink);color:#fff}
 .start{position:sticky;top:20px;border-radius:24px;background:var(--navy-d);color:#fff;padding:24px;overflow:hidden}
-.start::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 100% 0%,rgba(15,159,154,.4),transparent 70%);pointer-events:none}
+.start::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 100% 0%,rgba(20,163,155,.4),transparent 70%);pointer-events:none}
 .start > *{position:relative}
 .start h3{font-size:22px;font-weight:800}
 .meter{display:flex;gap:4px;margin-top:12px}
@@ -238,7 +238,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
+    <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102544"/><stop offset=".5" stop-color="#2C6E9E"/><stop offset="1" stop-color="#14A39B"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#14A39B"/></svg><span>Juliana Dos Santos</span></a>
     <a class="back" href="index.html#work">Back to my work</a>
   </header>
 
@@ -497,10 +497,10 @@ tiles(document.getElementById('risks'),[
 
 /* ---------- Timeline ---------- */
 const PH=[
- ['Discover','Weeks 1 to 3','1/4','#102A44','Interviews with managers, leaders and HR, plus a look at job levels, performance, engagement and exit data.','Agreed business outcomes'],
- ['Design','Week 4','4/5','#1B3A5C',"One working session with stakeholders to turn each level's expectations into program outcomes.",'Career tracks and a first program sketch'],
- ['Prototype and pilot','Weeks 5 to 9','5/10','#17607A','Build the six-week leadership track first, run it with a small pilot group and revise quickly.','A tested program and a pattern for the rest'],
- ['Launch','Weeks 10 to 12','10/13','#0F9F9A',"Open the first cohorts, match mentors and brief participants' managers.",'First cohorts running on every track']];
+ ['Discover','Weeks 1 to 3','1/4','#0B1B33','Interviews with managers, leaders and HR, plus a look at job levels, performance, engagement and exit data.','Agreed business outcomes'],
+ ['Design','Week 4','4/5','#102544',"One working session with stakeholders to turn each level's expectations into program outcomes.",'Career tracks and a first program sketch'],
+ ['Prototype and pilot','Weeks 5 to 9','5/10','#2C6E9E','Build the six-week leadership track first, run it with a small pilot group and revise quickly.','A tested program and a pattern for the rest'],
+ ['Launch','Weeks 10 to 12','10/13','#14A39B',"Open the first cohorts, match mentors and brief participants' managers.",'First cohorts running on every track']];
 const bars=document.getElementById('bars'), bout=document.getElementById('barOut'), loop=document.getElementById('loopbar');
 bars.innerHTML=PH.map((p,i)=>`<button type="button" class="bar" data-i="${i}" aria-pressed="false" style="grid-column:${p[2]};background:${p[3]}">${p[0]}</button>`).join('');
 function phase(i){

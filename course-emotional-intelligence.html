@@ -23,9 +23,9 @@
 <style>
 :root{
  --ink:#1A1A1C;--body:#4A4F5A;--muted:#6E6E73;
- --navy:#1B3A5C;--teal:#0F9F9A;--slate:#5C7A99;--line:#C9D5E1;--soft:#E6E8EE;
+ --navy:#102544;--teal:#14A39B;--slate:#2C6E9E;--line:#C9D5E1;--soft:#E6E8EE;
  --rose:#D93025;
- --grad:linear-gradient(90deg,#1B3A5C 15%,#0F9F9A);
+ --grad:linear-gradient(90deg,#102544 15%,#2C6E9E,#14A39B);
  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -67,8 +67,8 @@ main{position:relative;z-index:2}
 .stage{position:relative;border-radius:30px;padding:clamp(22px,3vw,34px);min-height:540px;display:flex;flex-direction:column;justify-content:center;background:#fff;border:1px solid #ECEEF2;box-shadow:0 24px 60px -32px rgba(20,30,60,.22)}
 .card{border:1px solid var(--soft);border-radius:20px;background:#fff}
 .cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:99px;background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;white-space:nowrap;transition:opacity .5s,transform .5s var(--ease);z-index:4}
-.cue i{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(15,159,154,.6);animation:ping 1.6s ease-out infinite}
-@keyframes ping{to{box-shadow:0 0 0 12px rgba(15,159,154,0)}}
+.cue i{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(20,163,155,.6);animation:ping 1.6s ease-out infinite}
+@keyframes ping{to{box-shadow:0 0 0 12px rgba(20,163,155,0)}}
 .cue.gone{opacity:0;transform:translate(-50%,8px);pointer-events:none}
 
 /* ---------- bottom nav ---------- */
@@ -189,7 +189,7 @@ main{position:relative;z-index:2}
 .build .piece-in{display:block;margin-bottom:6px;animation:dropIn .6s var(--ease) both}
 .build .piece-in em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-right:6px}
 @keyframes dropIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-.build.whole{border-color:var(--teal);box-shadow:0 16px 40px -18px rgba(15,159,154,.45)}
+.build.whole{border-color:var(--teal);box-shadow:0 16px 40px -18px rgba(20,163,155,.45)}
 .picker{margin-top:16px}
 .steprow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .stepnum{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -292,7 +292,7 @@ main{position:relative;z-index:2}
 <body>
 
 <header class="top">
- <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#0F9F9A"/></svg><span>Juliana Dos Santos</span></a>
+ <a class="brand" href="index.html#home" aria-label="Juliana Dos Santos portfolio home"><svg class="mark" viewBox="0 0 78 78" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102544"/><stop offset=".5" stop-color="#2C6E9E"/><stop offset="1" stop-color="#14A39B"/></linearGradient></defs><circle cx="39" cy="39" r="29" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="150 34" transform="rotate(-42 39 39)"/><text x="39" y="50" fill="#1A1A1C" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="800" text-anchor="middle">J</text><circle cx="66" cy="13" r="4.5" fill="#14A39B"/></svg><span>Juliana Dos Santos</span></a>
  <nav class="prog" id="prog" aria-label="Course progress"></nav>
  <div class="top-r"><button class="dn-btn" id="dnBtn" type="button" aria-label="Design notes" aria-expanded="false" aria-controls="dn"><i></i><span>Design notes</span></button><a class="exit" href="index.html#work">Exit course</a></div>
 </header>
@@ -387,7 +387,7 @@ main{position:relative;z-index:2}
  <div class="copy">
   <span class="eyebrow" style="display:flex;justify-content:center">Nice work.</span>
   <div class="score" aria-live="polite">
-   <svg viewBox="0 0 170 170" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#1B3A5C"/><stop offset="1" stop-color="#0F9F9A"/></linearGradient></defs><circle cx="85" cy="85" r="74" fill="none" stroke="#E6E8EE" stroke-width="10"/><circle id="scoreArc" cx="85" cy="85" r="74" fill="none" stroke="url(#sg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465"/></svg>
+   <svg viewBox="0 0 170 170" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#102544"/><stop offset=".5" stop-color="#2C6E9E"/><stop offset="1" stop-color="#14A39B"/></linearGradient></defs><circle cx="85" cy="85" r="74" fill="none" stroke="#E6E8EE" stroke-width="10"/><circle id="scoreArc" cx="85" cy="85" r="74" fill="none" stroke="url(#sg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465"/></svg>
    <div class="num" id="scoreNum">0/5</div>
   </div>
   <p class="result-t" id="resultTitle"></p>
@@ -464,13 +464,13 @@ const CLAIMS = [
    why:'Fact. Unlike a fixed trait, each area of the EQ wheel can be developed, at any stage of your career.'}
 ];
 const AREAS = [
-  {k:'sp', name:'Self-perception', c:'#1B3A5C', line:'How clearly you see yourself.',
+  {k:'sp', name:'Self-perception', c:'#102544', line:'How clearly you see yourself.',
    facets:[['Self-regard','respecting yourself, strengths and limits alike'],['Self-actualization','pursuing meaning and growth'],['Emotional self-awareness','knowing what you feel and why']],
    says:'"I can feel I\'m getting defensive about this. Let me hear the rest first."'},
-  {k:'se', name:'Self-expression', c:'#0F9F9A', line:'How openly you say what you feel and need.',
+  {k:'se', name:'Self-expression', c:'#14A39B', line:'How openly you say what you feel and need.',
    facets:[['Emotional expression','putting feelings into words'],['Assertiveness','standing your ground without running people over'],['Independence','deciding without needing everyone\'s approval']],
    says:'"I can take on the vendor review, but not both. Which one matters more this sprint?"'},
-  {k:'ip', name:'Interpersonal', c:'#5C7A99', line:'How you build trust and connection.',
+  {k:'ip', name:'Interpersonal', c:'#2C6E9E', line:'How you build trust and connection.',
    facets:[['Relationships','connections built on mutual trust'],['Empathy','understanding how others feel, even when you disagree'],['Social responsibility','contributing to your team and community']],
    says:'"You\'ve been quiet since the reorg. How is it landing for you?"'},
   {k:'dm', name:'Decision making', c:'#2F5A80', line:'How you use emotion without being run by it.',
@@ -587,7 +587,7 @@ function labelAt(i, r){
   return [200 + r*Math.cos(a), 200 + r*Math.sin(a)];
 }
 $('#coverWheel').innerHTML = AREAS.map((a,i)=>`<path d="${arcPath(i,92,182)}" fill="${a.c}" opacity="${.95 - i*.08}"/>`).join('') +
-  '<circle cx="200" cy="200" r="70" fill="#fff" stroke="#E6E8EE" stroke-width="1.5"/><text x="200" y="210" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="800" fill="#1B3A5C">EQ</text>';
+  '<circle cx="200" cy="200" r="70" fill="#fff" stroke="#E6E8EE" stroke-width="1.5"/><text x="200" y="210" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="800" fill="#102544">EQ</text>';
 
 // ─── Scene 1: myth or fact ────────────────────────────────
 (function(){

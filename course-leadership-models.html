@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1B3A5C; --teal:#0F9F9A; --mid:#2A5A7E; --slate:#5C7A99; --line:#C9D5E1; --faint:#E7ECF2; --soft:#EEF3F8;
+  --navy:#102544; --teal:#14A39B; --mid:#2C6E9E; --slate:#2C6E9E; --line:#C9D5E1; --faint:#E7ECF2; --soft:#EEF3F8;
   --ink:#1A2B3F; --body:#3A4F66;
-  --grad:linear-gradient(90deg,#1B3A5C,#0F9F9A);
+  --grad:linear-gradient(90deg,#102544,#2C6E9E,#14A39B);
   --font:Inter,-apple-system,"Segoe UI",Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -79,7 +79,7 @@ body.s-hub-b #f-hub .hubhead p, body.overview #f-hub .hubhead p{opacity:1}
 body.s-hub-b #hubLinks line, body.overview #hubLinks line{stroke-dashoffset:0}
 .hub{position:absolute;left:1150px;top:820px;width:400px;height:400px;margin:-200px 0 0 -200px;border-radius:50%;
   background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;font-size:44px;font-weight:800;line-height:1.15;letter-spacing:-.02em;
-  box-shadow:0 0 0 18px rgba(15,159,154,.12)}
+  box-shadow:0 0 0 18px rgba(20,163,155,.12)}
 .chip{position:absolute;transform:translate(-50%,-50%) scale(.6);opacity:0;background:var(--gc);color:#fff;border-radius:999px;
   padding:16px 34px 20px;text-align:center;white-space:nowrap;cursor:pointer;border:none;font-family:var(--font);
   transition:opacity .5s calc(1.1s + var(--k)*.14s), transform .6s cubic-bezier(.34,1.8,.64,1) calc(1.1s + var(--k)*.14s)}
@@ -286,7 +286,7 @@ body.s-close .row, body.overview .row{opacity:1;transform:none}
 .btn svg{width:16px;height:16px}
 button:focus-visible,a:focus-visible,.frame:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
 #bottombar{left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:14px;
-  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:7px 9px;box-shadow:0 10px 30px -14px rgba(27,58,92,.35)}
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:7px 9px;box-shadow:0 10px 30px -14px rgba(16,37,68,.35)}
 .round{width:44px;height:44px;border-radius:50%;border:none;background:var(--navy);color:#fff;display:grid;place-items:center;cursor:pointer}
 .round.ghost{background:var(--soft);color:var(--navy)}
 .round svg{width:20px;height:20px}
@@ -299,10 +299,10 @@ button:focus-visible,a:focus-visible,.frame:focus-visible{outline:3px solid var(
   background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px 8px 10px;font-size:14px;font-weight:600;color:var(--navy);transition:opacity .6s;white-space:nowrap}
 #cue .hand{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;animation:pulse 1.6s ease-in-out infinite}
 #cue .hand svg{width:15px;height:15px}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(15,159,154,.6)}50%{box-shadow:0 0 0 9px rgba(15,159,154,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(20,163,155,.6)}50%{box-shadow:0 0 0 9px rgba(20,163,155,0)}}
 #notes{right:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 36px));max-height:40vh;overflow:auto;
   background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;font-size:15px;line-height:1.5;color:var(--body);
-  box-shadow:0 16px 40px -20px rgba(27,58,92,.4);display:none}
+  box-shadow:0 16px 40px -20px rgba(16,37,68,.4);display:none}
 #notes.open{display:block}
 #notes .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
 #rotate{display:none;left:50%;top:calc(70px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--navy);color:#fff;font-size:13px;font-weight:600;border-radius:16px;padding:8px 16px;width:max-content;max-width:calc(100vw - 32px);text-align:center;line-height:1.35}
@@ -357,9 +357,9 @@ button:focus-visible,a:focus-visible,.frame:focus-visible{outline:3px solid var(
         </div>
         <div class="vis"><div class="stage">
           <svg viewBox="0 0 760 760" aria-hidden="true"><g class="sv-tri">
-            <polygon points="380,120 473.4,287 286.6,287" fill="#1B3A5C"/>
-            <polygon points="286.6,287 473.4,287 566.2,453 193.8,453" fill="#2A5A7E"/>
-            <polygon points="193.8,453 566.2,453 660,620 100,620" fill="#0F9F9A"/>
+            <polygon points="380,120 473.4,287 286.6,287" fill="#102544"/>
+            <polygon points="286.6,287 473.4,287 566.2,453 193.8,453" fill="#2C6E9E"/>
+            <polygon points="193.8,453 566.2,453 660,620 100,620" fill="#14A39B"/>
           </g></svg>
           <div class="sv-lab sv-you">You</div><div class="sv-lab sv-team">Your team</div><div class="sv-lab sv-cust">Customers</div>
           <div class="sv-cap c1">The usual picture: the team works for you</div>
@@ -517,7 +517,7 @@ button:focus-visible,a:focus-visible,.frame:focus-visible{outline:3px solid var(
           <div class="ask"><div class="lab">Ask yourself</div><p>Where does our team crack first?</p></div>
         </div>
         <div class="vis"><div class="stage">
-          <svg viewBox="0 0 760 760" aria-hidden="true"><polygon class="lc-layer base" style="--i:0" fill="#1B3A5C" points="30,650 730,650 684,550 76,550"/><polygon class="lc-layer up" style="--i:1" fill="#2A5A7E" points="80,542 680,542 634,442 126,442"/><polygon class="lc-layer up" style="--i:2" fill="#3B6E93" points="130,434 630,434 584,334 176,334"/><polygon class="lc-layer up" style="--i:3" fill="#2A8F94" points="180,326 580,326 534,226 226,226"/><polygon class="lc-layer up" style="--i:4" fill="#0F9F9A" points="230,218 530,218 484,118 276,118"/>
+          <svg viewBox="0 0 760 760" aria-hidden="true"><polygon class="lc-layer base" style="--i:0" fill="#102544" points="30,650 730,650 684,550 76,550"/><polygon class="lc-layer up" style="--i:1" fill="#2C6E9E" points="80,542 680,542 634,442 126,442"/><polygon class="lc-layer up" style="--i:2" fill="#3B6E93" points="130,434 630,434 584,334 176,334"/><polygon class="lc-layer up" style="--i:3" fill="#2A8F94" points="180,326 580,326 534,226 226,226"/><polygon class="lc-layer up" style="--i:4" fill="#14A39B" points="230,218 530,218 484,118 276,118"/>
             <polyline class="lc-crack draw" pathLength="1" points="125,646 150,622 172,636 198,612 222,630"/></svg>
           <div class="lc-name base" style="top:584px;--i:0"><span class="pos">Trust</span><span class="dys">Absence of trust</span></div><div class="lc-name up" style="top:476px;--i:1"><span class="pos">Healthy conflict</span><span class="dys">Fear of conflict</span></div><div class="lc-name up" style="top:368px;--i:2"><span class="pos">Commitment</span><span class="dys">Lack of commitment</span></div><div class="lc-name up" style="top:260px;--i:3"><span class="pos">Accountability</span><span class="dys">Avoiding accountability</span></div><div class="lc-name up" style="top:152px;--i:4"><span class="pos" style="font-size:24px">Results</span><span class="dys">Results slip</span></div>
           <div class="lc-cap c1">Each layer rests on the one below it</div>
@@ -627,7 +627,7 @@ const MODELS=[
   h+='<polyline id="routeLive" class="route-live" points=""/>'; g('rings').innerHTML=h; })();
 
 // title orbit
-(function(){ const C=['#1B3A5C','#1B3A5C','#1B3A5C','#0F9F9A','#0F9F9A','#2A5A7E','#2A5A7E','#2A5A7E','#2A5A7E']; let h='<circle class="o-ring" cx="280" cy="280" r="220"/><circle class="o-ring" cx="280" cy="280" r="130"/><g class="o-spin">';
+(function(){ const C=['#102544','#102544','#102544','#14A39B','#14A39B','#2C6E9E','#2C6E9E','#2C6E9E','#2C6E9E']; let h='<circle class="o-ring" cx="280" cy="280" r="220"/><circle class="o-ring" cx="280" cy="280" r="130"/><g class="o-spin">';
   C.forEach((c,k)=>{ const a=(-90+k*360/9)*Math.PI/180; h+=`<circle cx="${280+Math.cos(a)*220}" cy="${280+Math.sin(a)*220}" r="${k%2?22:28}" fill="${c}"/>`; });
   h+='</g><circle class="o-core" cx="280" cy="280" r="62"/>'; g('orbit').innerHTML=h; })();
 
