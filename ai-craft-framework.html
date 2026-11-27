@@ -321,6 +321,14 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .start .big small{display:block;font-size:13.5px;font-weight:600;color:var(--teal-l);letter-spacing:0;margin-bottom:4px}
 .start p.why{margin-top:10px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
 
+/* Four roles */
+.tiles.four{grid-template-columns:repeat(4,1fr)}
+.tiles.four .tile{padding-right:20px}
+.tiles.four .tile .b em{margin-right:40px}
+.tiles.four .tile .f{margin-right:40px}
+@media (max-width:1100px){.tiles.four{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.tiles.four{grid-template-columns:1fr}}
+
 /* Pillars */
 .strand{fill:rgba(255,255,255,.1);transition:fill .3s}
 .strand.on{fill:var(--teal-l)}
@@ -574,23 +582,16 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   <section class="s"><span class="stop" aria-hidden="true">5</span>
     <h2>L&amp;D's role</h2>
     <p class="sub">AI tools change faster than courses can be built, so the job changes too.</p>
-    <div class="body tiles" id="roles"></div>
+    <div class="body tiles four" id="roles"></div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">6</span>
-    <h2>Does this resonate?</h2>
-    <div class="body check">
-      <div class="qs" id="qs"></div>
-      <aside class="start" aria-live="polite"><h3>Where I start</h3><div class="layerpick" id="meter"></div><div id="startOut"></div></aside>
-    </div>
-  </section>
   </div>
 
   <section class="close">
     <div class="stage">
-      <h2>Want to talk about AI enablement at your company?</h2>
+      <h2>Would you like to talk more about my AI strategy or framework?</h2>
       <div class="btns">
-        <a class="btn solid" href="index.html#contact">Get in touch</a>
+        <a class="btn solid" href="index.html#contact">Message me</a>
         <a class="btn line" href="Juliana-Dos-Santos-Resume-July-2026.pdf">View my resume</a>
       </div>
     </div>
@@ -742,7 +743,8 @@ tiles(document.getElementById('traps'),[
 tiles(document.getElementById('roles'),[
  ['search','Curator',"Find what's already working inside the company, like an analyst's automation or a team's strong review habit, and share it widely."],
  ['flow','Workflow architect','Sit with teams to redesign how a piece of work gets done with AI, then write it down so others can use it.'],
- ['star','Quality benchmark setter','Define with leaders what good work looks like in each role, then teach people to reach it and check their own work against it.']],'What it means');
+ ['star','Quality benchmark setter','Define with leaders what good work looks like in each role, then teach people to reach it and check their own work against it.'],
+ ['bars','Business accelerator','Tie every program to a business goal, so new skills show up where they speed up the results the company cares about most.']],'What it means');
 
 /* ---------- Tear-down ---------- */
 const RAW=[["Hi team, I wanted to share a quick update on the onboarding project. ",["Overall, things are going really well and we've made great progress across all workstreams.",1]," ",["Feedback has been overwhelmingly positive and engagement is strong.",3]," We're on track to deliver a best-in-class experience. ",["Let me know if you have any questions!",4]]];
@@ -779,30 +781,6 @@ BE.innerHTML=BENCH.map(b=>`<button type="button" class="bcard" aria-pressed="fal
 BE.addEventListener('click',e=>{const c=e.target.closest('.bcard');if(c)c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true')});
 
 /* ---------- Self-check ---------- */
-const QS=[
- ['Do people have approved AI tools and clear guidelines on what is allowed?',0],
- ['Do people understand what AI does well, where it fails and how to use it responsibly?',1],
- ['Can people use AI well in their role, and judge the quality of the result?',2],
- ['Have teams redesigned workflows and started sharing playbooks?',3],
- ['Can leaders point to business results that improved because of AI?',4]];
-const START=[
- 'I start with approved tools, clear guidelines and a baseline of where people are today.',
- 'I start with responsible AI basics, live demos from each function and leaders going first.',
- 'I start with role pathways, tear-down workshops and simple checks for quality.',
- 'I start with AI champions and one workflow redesign, then turn what works into shared playbooks.',
- 'I start by agreeing with leaders which business results to move, then review progress after every cohort.'];
-const ans={};
-document.getElementById('qs').innerHTML=QS.map((q,i)=>`<div class="q"><p>${q[0]}</p><div class="yn" role="group"><button type="button" data-q="${i}" data-a="y" aria-pressed="false">Yes</button><button type="button" data-q="${i}" data-a="n" aria-pressed="false">Not yet</button></div></div>`).join('');
-function renderStart(){
-  document.getElementById('meter').innerHTML=QS.map((q,i)=>`<i class="${ans[i]||''}"></i>`).join('');
-  const out=document.getElementById('startOut'), n=Object.keys(ans).length;
-  if(!n){out.innerHTML='<p class="empty">Answer the questions and your starting stage shows up here.</p>';return}
-  const gap=QS.findIndex((q,i)=>ans[i]==='n');
-  if(gap<0){out.innerHTML=n<5?'<p class="empty">No gaps so far.</p>':'<div class="big"><small>All five stages</small>Keep improving</div><p class="why">I look at results after each cohort and help teams raise the standard further.</p>';return}
-  out.innerHTML=`<div class="big"><small>Stage ${gap+1} · ${L[gap].n}</small>${L[gap].t}</div><p class="why">${START[gap]}</p>`;
-}
-document.getElementById('qs').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;ans[b.dataset.q]=b.dataset.a;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderStart()});
-renderStart();
 
 /* ---------- Checkpoints appear as you scroll ---------- */
 (function(){
