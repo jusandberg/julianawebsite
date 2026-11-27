@@ -855,6 +855,12 @@ footer{background:transparent}
 .pn-a,.btn-fill::after,.nav-cta::after{background:linear-gradient(135deg,#102544 20%,#2C6E9E,#14A39B)!important}
 .ws-orb,.cine-sky i{display:none!important}
 .ws-cover{background:#fff!important;border:1px solid var(--line)}
+.ws-art{padding:0!important;justify-content:center;align-items:center;background:#F7F9FB!important}
+.ws-art svg{width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.ws-card:hover .ws-art svg{transform:scale(1.04)}
+.ws-arc{position:absolute;right:-9%;top:-16%;width:24%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 200deg,#102544,#2C6E9E,#14A39B,#102544);-webkit-mask:radial-gradient(closest-side,transparent 80%,#000 81%,#000 98%,transparent 100%);mask:radial-gradient(closest-side,transparent 80%,#000 81%,#000 98%,transparent 100%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ws-card:hover .ws-arc{transform:rotate(40deg)}
+@media (prefers-reduced-motion:reduce){.ws-art svg,.ws-arc{transition:none}}
 </style>
 </head>
 <body>
@@ -1326,8 +1332,8 @@ function buildFrameworks(){
  unit.innerHTML=html;
 }
 const WORK_SAMPLE_ITEMS=[
- {name:'Manager Development Model',cat:'Case study · Leadership development',color:'teal',icon:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.8"/><circle cx="20" cy="12" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4" cy="12" r="1.8"/><path d="M12 6v3M18 12h-3M12 18v-3M6 12h3"/>',desc:'A leadership development model for the whole company, from individual contributors to senior leaders, connected to job levels, reviews, internal moves and succession.',tags:['Case study','Interactive model','Talent strategy'],href:'case-manager-development.html',hook:'A manager program connected to <span class="grad">how people grow.</span>',time:'8 min read',action:'Read the case study'},
- {name:'The AI Craft Framework',cat:'Framework · AI enablement',color:'blue',icon:'<path d="M3 20h5v-5h5v-5h5V5h3"/>',desc:'Five stages of AI enablement, from access and literacy to fluency, integration and organizational impact, with a live tear-down example.',tags:['Framework','Interactive','AI enablement'],href:'ai-craft-framework.html',hook:'Helping companies get <span class="grad">better work out of AI.</span>',time:'6 min read',action:'Explore the framework'}
+ {name:'Manager Development Model',cat:'Case study · Leadership development',color:'teal',icon:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.8"/><circle cx="20" cy="12" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4" cy="12" r="1.8"/><path d="M12 6v3M18 12h-3M12 18v-3M6 12h3"/>',desc:'A leadership development model for the whole company, from individual contributors to senior leaders, connected to job levels, reviews, internal moves and succession.',tags:['Case study','Interactive model','Talent strategy'],href:'case-manager-development.html',cover:'<svg viewBox="0 0 460 259" aria-hidden="true"><g transform="translate(0,20)"><path d="M40,120 C90,120 90,70 140,70 L380,70" stroke="#102544" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M40,120 C90,120 90,165 140,165 L360,165" stroke="#14A39B" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M250,20 L250,70" stroke="#2C6E9E" stroke-width="3" fill="none"/><g fill="#fff" stroke-width="4"><circle cx="40" cy="120" r="10" stroke="#111"/><circle cx="160" cy="70" r="8" stroke="#102544"/><circle cx="250" cy="70" r="11" fill="#102544" stroke="#102544"/><circle cx="340" cy="70" r="8" stroke="#102544"/><circle cx="160" cy="165" r="8" stroke="#14A39B"/><circle cx="280" cy="165" r="8" stroke="#14A39B"/><circle cx="250" cy="22" r="7" stroke="#2C6E9E"/></g></g></svg>',hook:'A manager program connected to <span class="grad">how people grow.</span>',time:'8 min read',action:'Read the case study'},
+ {name:'The AI Craft Framework',cat:'Framework · AI enablement',color:'blue',icon:'<path d="M3 20h5v-5h5v-5h5V5h3"/>',desc:'Five stages of AI enablement, from access and literacy to fluency, integration and organizational impact, with a live tear-down example.',tags:['Framework','Interactive','AI enablement'],href:'ai-craft-framework.html',cover:'<svg viewBox="0 0 460 259" aria-hidden="true"><g transform="translate(0,22)"><rect x="160" y="26" width="140" height="28" rx="7" fill="#0E7A72"/><rect x="135" y="60" width="190" height="28" rx="7" fill="#14A39B"/><rect x="110" y="94" width="240" height="28" rx="7" fill="#2C6E9E"/><rect x="85" y="128" width="290" height="28" rx="7" fill="#4E6684"/><rect x="60" y="162" width="340" height="28" rx="7" fill="#8193A8"/></g></svg>',hook:'Helping companies get <span class="grad">better work out of AI.</span>',time:'6 min read',action:'Explore the framework'}
 ];
 let openWorkSampleIndex=null;
 function workSampleIcon(item){
@@ -1357,7 +1363,7 @@ function openWorkSample(index){
 function buildWorkSamples(){
  const unit=document.getElementById('workSampleUnit');
  if(!unit) return;
- unit.innerHTML='<div class="ws-grid">'+WORK_SAMPLE_ITEMS.map(item=>`<a class="ws-card c-${item.color}" href="${item.href}"><span class="ws-cover" aria-hidden="true"><span class="ws-orb"></span><span class="ws-ring"></span><span class="ws-time">${item.time}</span><span class="ws-hook">${item.hook}</span></span><span class="ws-body"><span class="ws-meta">${item.cat}</span><span class="ws-name">${item.name}</span><span class="ws-desc">${item.desc}</span><span class="ws-go">${item.action} <span class="arr" aria-hidden="true">&rarr;</span></span></span></a>`).join('')+'</div>';
+ unit.innerHTML='<div class="ws-grid">'+WORK_SAMPLE_ITEMS.map(item=>`<a class="ws-card c-${item.color}" href="${item.href}">${item.cover?`<span class="ws-cover ws-art" aria-hidden="true">${item.cover}<span class="ws-arc"></span></span>`:`<span class="ws-cover" aria-hidden="true"><span class="ws-orb"></span><span class="ws-ring"></span><span class="ws-time">${item.time}</span><span class="ws-hook">${item.hook}</span></span>`}<span class="ws-body"><span class="ws-meta">${item.cat}</span><span class="ws-name">${item.name}</span><span class="ws-desc">${item.desc}</span><span class="ws-go">${item.action} <span class="arr" aria-hidden="true">&rarr;</span></span></span></a>`).join('')+'</div>';
 }
 const BOOKSHELF_BOOKS=[
  {author:'Cammy Bean',title:'The Accidental Instructional Designer',color:'blue',desc:'Full of tools and advice for people who came into instructional design from somewhere else. It\'s practical and fun to read.'},
