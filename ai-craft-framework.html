@@ -387,7 +387,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .stx{flex:1;min-width:0}
 .stg{display:block;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .stt{display:block;font-size:19px;font-weight:750;letter-spacing:-.015em;margin-top:2px}
-.std{display:block;margin-top:6px;font-size:15.5px;color:#333;line-height:1.5}
+.std{display:block;margin-top:4px;font-size:15.5px;color:#333;line-height:1.5}
 .std b{font-weight:700;color:var(--ink)}
 .sbar{display:block;height:5px;border-radius:3px;background:#EDF0F3;margin-top:12px;overflow:hidden}
 .sbar i{display:block;height:100%;width:var(--w);border-radius:3px;background:var(--c)}
@@ -405,6 +405,14 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .ptabs button:hover{color:var(--ink)}
 .ptabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
 .pbody{padding-top:14px}
+.slbl{font-size:13.5px;font-weight:600;color:var(--muted);margin:0 0 4px 4px}
+.cgrp{margin-top:16px}
+.cgrp h4{margin:0 0 8px;font-size:13px;font-weight:700;color:var(--muted)}
+.cchips{display:flex;flex-wrap:wrap;gap:6px}
+.cchips span{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:650;padding:7px 12px;border-radius:999px;background:var(--c);color:#fff;opacity:0;animation:rise .35s ease forwards;animation-delay:calc(var(--k) * 50ms)}
+.cchips.m span{background:var(--tint);color:var(--ink)}
+.cchips svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.sbody .pwhy{margin-top:12px}
 .pwhy{font-size:15.5px;line-height:1.55;color:#333;max-width:66ch;animation:fadein .3s ease}
 .pshift{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;margin-top:12px;max-width:720px;animation:fadein .3s ease}
 .pshift span{border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.4}
@@ -446,7 +454,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   .tier .tt{font-size:14px}
   .tier .tg{font-size:10.5px;white-space:normal}
 }
-@media (prefers-reduced-motion:reduce){.sbody,.pbl li,.pms li,.pwhy,.pshift{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.cchips span{animation:none;opacity:1}.sbody,.pbl li,.pms li,.pwhy,.pshift{animation:none;opacity:1}}
 
 /* ---------- White panels (no dark backgrounds) ---------- */
 .stage{background:#fff;color:var(--ink);border:1.5px solid var(--rule)}
@@ -495,6 +503,14 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .btn.solid{background:var(--navy);color:#fff}
 .btn.line{border:1.5px solid var(--rule);color:var(--ink)}
 
+.draft.gold{background:#fff;color:var(--ink);border:2px solid var(--teal)}
+.draft.gold::before{display:none}
+.draft.gold h3{color:#0B7A76}
+.draft.gold mark sup{color:#0B7A76}
+.draft mark.hl,.draft.gold mark.hl{background:#CDEFEC;color:var(--ink)}
+.draft.gold mark.hl sup{color:#0B7A76}
+.srow{background:#fff;color:var(--ink);border:1.5px solid var(--rule)}
+.srows.old .srow{background:var(--tint);color:#777;border-color:var(--tint)}
 @media (max-width:900px){
   .bench{grid-template-columns:1fr}
   .notes{grid-template-columns:1fr 1fr}
@@ -524,7 +540,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 
   <section class="pyrsec" id="climb" aria-label="The five stages">
     <div class="pyr" id="pyr"></div>
-    <div class="stagelist" id="slist"></div>
+    <div class="stagelist"><p class="slbl">What talent development does at each stage</p><div id="slist"></div></div>
     <div class="pillars"><span class="plbl">Five pillars run through every stage</span><div class="pchips" id="pchips"></div><p class="pout2" id="pout2"></p></div>
   </section>
 
@@ -532,12 +548,12 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   <section class="s"><span class="stop" aria-hidden="true">1</span>
     <h2>Pitfalls</h2>
     <p class="sub">Where most AI rollouts stall.</p>
-    <div class="body tiles" id="traps"></div>
+    <div class="body tiles four" id="traps"></div>
   </section>
 
   <section class="s"><span class="stop" aria-hidden="true">2</span>
     <h2>Shift</h2>
-    <p class="sub">What changes when AI training becomes AI enablement.</p>
+    <p class="sub">From AI training to AI enablement.</p>
     <div class="body shift">
       <div class="sw2" role="group" aria-label="Compare approaches"><button type="button" data-v="0" aria-pressed="false">Training-focused</button><button type="button" data-v="1" aria-pressed="true">Enablement-focused</button></div>
       <div class="srows" id="srows"></div>
@@ -546,7 +562,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 
   <section class="s"><span class="stop" aria-hidden="true">3</span>
     <h2>Tear-down</h2>
-    <p class="sub">How I teach judgment in the fluency stage, shown on a short project update.</p>
+    <p class="sub">How I teach judgment, on a short project update.</p>
     <div class="body td">
       <div class="td-grid">
         <div class="draft raw"><h3><i style="background:#9AA4AE"></i>Raw AI draft</h3><div id="rawText"></div></div>
@@ -558,13 +574,13 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 
   <section class="s"><span class="stop" aria-hidden="true">4</span>
     <h2>Benchmarks</h2>
-    <p class="sub">Common approaches I draw on, and where each one fits in the framework.</p>
+    <p class="sub">Approaches I draw on.</p>
     <div class="body bench" id="bench"></div>
   </section>
 
   <section class="s"><span class="stop" aria-hidden="true">5</span>
-    <h2>L&amp;D's role</h2>
-    <p class="sub">AI tools change faster than courses can be built, so the job changes too.</p>
+    <h2>Talent development's role</h2>
+    <p class="sub">AI changes faster than courses can keep up.</p>
     <div class="body tiles four" id="roles"></div>
   </section>
 
@@ -578,7 +594,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
         <a class="btn line" href="Juliana-Dos-Santos-Resume-July-2026.pdf">View my resume</a>
       </div>
     </div>
-    <p class="note">The tear-down and measures are examples. I adapt each stage to the company and its roles.</p>
+    <p class="note">Examples only. I adapt each stage to the company.</p>
   </section>
   </main>
 </div>
@@ -602,37 +618,37 @@ const ICON={
 /* ---------- The four layers ---------- */
 const L=[
  {n:'Access',tag:'Access',t:'Establish the foundation',sub:'Approved tools, governance, security and equitable access.',q:'Are people using AI?',c:'#8193A8',w:20,
-  why:'Everything else depends on people having safe, approved tools and knowing the rules before they start.',
+  why:'Nothing else works until people have safe, approved tools and know the rules.',
   from:'Am I allowed to use this?',to:'I have the right tools, and I know the rules.',
   build:[['Approved tools','Set up with IT and security, so every role that needs AI has it from day one.'],['Governance and policy','Clear guardrails on data, privacy and use, agreed with IT, security and legal.'],['Equitable access','Access planned for every team, including people who are slower to ask for it.'],['Baseline assessment','A starting picture of current use, skills and confidence across the company.']],
   measure:['Access across roles and teams','Weekly use among people with access','Policy awareness']},
  {n:'Literacy',tag:'Literacy · Crawl',t:'Build understanding',sub:'Foundational knowledge, responsible use, limitations and confidence.',q:'Do people understand AI?',c:'#4E6684',w:40,
-  why:"People rarely avoid AI because they don't know how to use it. They avoid it because they're afraid of looking replaceable, breaking a rule or looking foolish.",
+  why:'People usually avoid AI out of fear, not a lack of skill.',
   from:'Will this replace me?',to:"I understand what AI can and can't do, and I'm comfortable trying it.",
   build:[['Responsible AI basics','What AI does well, where it gets things wrong, and how to protect data.'],['Live demonstrations','Short demos of real tasks from each function.'],['Leaders go first',"Leaders show their own early attempts, including the ones that didn't work."],['A safe place to ask','Open office hours and a shared channel for questions, with no judgement.']],
   measure:['Knowledge checks','Confidence scores in a short pulse survey','Risk awareness']},
  {n:'Fluency',tag:'Fluency · Walk',t:'Develop individual capability',sub:'Role-specific applications, critical thinking, judgment and practical experimentation.',q:'Can people use AI well and responsibly?',c:'#2C6E9E',w:60,
-  why:'Fluency covers both using AI in real work and judging the result. People need to know when to use AI, when to leave it out, and what good work looks like in their field.',
+  why:'Using AI and judging what it produces are two different skills.',
   from:'I use AI when I remember to.',to:"I use AI well in my role, and I can tell when the result isn't good enough.",
   build:[['Role pathways','Learning paths built around real tasks in each role.'],['Simulations and coaching','Practice on realistic work, with coaching and room to experiment.'],['Tear-down workshops','A raw AI draft next to a gold-standard version, and a close look at what changed.'],['Verification checklists','Simple checks for facts, numbers and sources before anything is shared.'],['When not to use AI','Guidance for sensitive people decisions, confidential data, and work where the thinking is the point.']],
   measure:['Proficiency shown on real tasks','Output quality against a shared rubric','People applying AI on their own in their role']},
  {n:'Integration',tag:'Integration · Run',t:'Enable collective performance',sub:'Workflow redesign, AI champions, knowledge sharing and repeatable practices.',q:'Are teams working better because of AI?',c:'#14A39B',w:80,
-  why:'The first three stages make each person faster and better. This stage asks how a whole team works differently now.',
+  why:'The focus moves from each person to how the whole team works.',
   from:"I've found my own way of using AI.",to:'Our team shares what works, and we have changed how work moves between us.',
   build:[['Workflow redesign','Working sessions with teams to redesign a process with AI, step by step.'],['AI champions','People in each team who build reusable workflows for everyone else.'],['Communities of practice','Regular show-and-tell sessions where people demo what works.'],['Reusable playbooks','Skills, prompts and agents shared across a department and kept current.']],
   measure:['Workflow efficiency on redesigned processes','Quality holding steady or improving as speed goes up','Team-level adoption']},
  {n:'Transformation',tag:'Transformation · Fly',t:'Drive organizational impact',sub:'Business performance, innovation, continuous improvement and new ways of working.',q:'Is the organization performing better because of AI?',c:'#0E7A72',w:100,
-  why:'This is where AI shows up in business results, and where L&D keeps capability growing as the tools keep changing.',
+  why:'AI shows up in business results, and skills keep pace with the tools.',
   from:'Our teams use AI well.',to:'AI is part of how the company plans, works and improves.',
   build:[['Business goals first','Agree with leaders which business results the work should move.'],['Operating model changes','Help leaders adjust roles, processes and decision rights as AI changes the work.'],['Continuous capability','Regular reviews of skills and tools, so learning keeps pace with change.'],['Room to try new things','Time and structure for teams to test new ways of working.']],
   measure:['Productivity on key processes','Business results agreed with leaders','Innovation tested and adopted','Risk reduction over time']}
 ];
 const PILLARS=[
- ['Responsible AI','Security, privacy, ethics, governance and a person accountable for every output.'],
- ['Human capability','Critical thinking, judgment, adaptability and skill with AI.'],
- ['Performance enablement','Learning built into real work and business processes.'],
- ['Culture and change','Leadership sponsorship, psychological safety, experimentation and peer learning.'],
- ['Measurement and impact','Evidence of new skills, changed behaviour and business value.']];
+ ['Responsible AI','Security, privacy and a person accountable for every output.'],
+ ['Human capability','Critical thinking, judgment and adaptability.'],
+ ['Performance enablement','Learning built into real work.'],
+ ['Culture and change','Leaders go first, and it is safe to experiment.'],
+ ['Measurement and impact','Evidence of skills, behaviour and business value.']]
 
 const PIC={
  key:'<svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg>',
@@ -643,41 +659,35 @@ const PIC={
 };
 const PICS=['key','book','walk','run','fly'], PW=[100,88,76,64,52];
 const TD=[
- 'Works with IT, security and legal to get approved tools to every role, and measures where people start.',
- 'Teaches responsible AI basics, runs live demos from each function and makes it safe to ask questions.',
- 'Builds role pathways, coaching and tear-down workshops, so people use AI well and judge the result.',
- 'Develops AI champions, redesigns workflows with teams and keeps shared playbooks current.',
- 'Partners with leaders on business goals, new ways of working and the skills the company needs next.'];
+ 'Gets approved tools to every role, safely.',
+ 'Teaches the basics and makes it safe to ask.',
+ 'Builds role skills and teaches people to judge the output.',
+ 'Grows AI champions and redesigns team workflows.',
+ 'Ties AI skills to business results.']
 const PY=document.getElementById('pyr'), SL=document.getElementById('slist');
 PY.innerHTML=L.map((l,i)=>`<button type="button" class="tier" data-i="${i}" style="--c:${l.c};--w:${PW[i]}%" aria-controls="row-${i}"><span class="ic">${PIC[PICS[i]]}</span><span class="tx"><span class="tg">${l.tag}</span><span class="tt">${l.t}</span></span></button>`).join('');
 SL.innerHTML=L.map((l,i)=>`<div class="srow3" id="row-${i}" style="--c:${l.c};--w:${l.w}%">
   <button type="button" class="shd" aria-expanded="false" data-i="${i}">
     <span class="snum">0${i+1}</span>
-    <span class="stx"><span class="stg">${l.tag}</span><span class="stt">${l.t}</span><span class="std"><b>Talent development</b> ${TD[i].charAt(0).toLowerCase()+TD[i].slice(1)}</span><span class="sbar"><i></i></span></span>
+    <span class="stx"><span class="stg">${l.tag}</span><span class="stt">${l.t}</span><span class="std">${TD[i]}</span><span class="sbar"><i></i></span></span>
     <span class="schev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
   </button>
   <div class="sbody" hidden></div>
 </div>`).join('');
 let sel=null, curTab=1;
 function bodyHTML(i){
-  return `<div class="pq"><span>The question it answers</span><strong>${L[i].q}</strong></div>
-   <div class="ptabs" role="tablist"><button type="button" role="tab" data-t="0">Why it matters</button><button type="button" role="tab" data-t="1">What talent development builds</button><button type="button" role="tab" data-t="2">Measures</button></div>
-   <div class="pbody" role="tabpanel"></div>`;
+  const l=L[i];
+  return `<div class="pq"><span>The question it answers</span><strong>${l.q}</strong></div>
+   <p class="pwhy">${l.why}</p>
+   <div class="cgrp"><h4>What talent development builds</h4><div class="cchips">${l.build.map((b,j)=>`<span style="--k:${j}">${b[0]}</span>`).join('')}</div></div>
+   <div class="cgrp"><h4>Measures</h4><div class="cchips m">${l.measure.map((m,j)=>`<span style="--k:${j}">${ICON.check}${m}</span>`).join('')}</div></div>`;
 }
-function popTab(i,t){
-  curTab=t; const l=L[i], R=document.getElementById('row-'+i), B=R.querySelector('.pbody');
-  R.querySelectorAll('[data-t]').forEach(b=>{b.setAttribute('aria-selected',+b.dataset.t===t);b.tabIndex=+b.dataset.t===t?0:-1});
-  if(t===0) B.innerHTML=`<p class="pwhy">${l.why}</p><div class="pshift"><span class="f">${l.from}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg><span class="t">${l.to}</span></div>`;
-  if(t===1) B.innerHTML=`<ol class="pbl">${l.build.map((b,j)=>`<li style="--k:${j}"><span class="n">${j+1}</span><div><b>${b[0]}</b><span>${b[1]}</span></div></li>`).join('')}</ol>`;
-  if(t===2) B.innerHTML=`<ul class="pms">${l.measure.map((m,j)=>`<li style="--k:${j}">${ICON.check}${m}</li>`).join('')}</ul>`;
-}
+function popTab(){}
 function openStage(i,scroll){
   if(sel!==null&&sel!==i) closeRow(sel);
   if(sel===i){closeRow(i);sel=null;PY.classList.remove('has');PY.querySelectorAll('.tier').forEach(t=>t.classList.remove('on'));return}
   sel=i; const R=document.getElementById('row-'+i), H=R.querySelector('.shd'), B=R.querySelector('.sbody');
   B.innerHTML=bodyHTML(i); B.hidden=false; R.classList.add('open'); H.setAttribute('aria-expanded','true');
-  B.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>popTab(i,+b.dataset.t));
-  popTab(i,curTab);
   PY.classList.add('has'); PY.querySelectorAll('.tier').forEach(t=>t.classList.toggle('on',+t.dataset.i===i));
   if(scroll){const r=R.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)R.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'})}
 }
@@ -698,17 +708,15 @@ function tiles(el,items,label){
   el.addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')!=='true')});
 }
 tiles(document.getElementById('traps'),[
- ['key','Progress is counted in licences and logins','Track whether the work got better, using a shared standard for each role.'],
- ['people','Training is the same for everyone','Starter sessions and playbooks built around real tasks in each role.'],
- ['clock','Courses go out of date fast','Peer demos and shared libraries that teams keep current themselves.'],
- ['eye','Fear stays hidden',"Clear guidelines, leaders who go first, and a safe place to ask."],
- ['star','Nobody defines good work','Gold-standard examples and tear-downs, so people can see the difference.'],
- ['flow','Tools change, but the work stays the same','Workflow mapping with each team, and new review steps where they are needed.']],'What I do');
+ ['key','Success is counted in logins','Track whether the work got better.'],
+ ['people','Training is the same for everyone','Build around real tasks in each role.'],
+ ['eye','Fear stays hidden','Set clear rules, and let leaders go first.'],
+ ['star','Nobody defines good work','Show gold-standard examples for each role.']],'What I do');
 tiles(document.getElementById('roles'),[
- ['search','Curator',"Find what's already working inside the company, like an analyst's automation or a team's strong review habit, and share it widely."],
- ['flow','Workflow architect','Sit with teams to redesign how a piece of work gets done with AI, then write it down so others can use it.'],
- ['star','Quality benchmark setter','Define with leaders what good work looks like in each role, then teach people to reach it and check their own work against it.'],
- ['bars','Business accelerator','Tie every program to a business goal, so new skills show up where they speed up the results the company cares about most.']],'What it means');
+ ['search','Curator','Find what already works, and share it.'],
+ ['flow','Workflow architect','Redesign work with teams, step by step.'],
+ ['star','Quality benchmark setter','Define good work in each role, and teach it.'],
+ ['bars','Business accelerator','Tie every program to a business goal.']],'What it means');
 
 /* ---------- Tear-down ---------- */
 const RAW=[["Hi team, I wanted to share a quick update on the onboarding project. ",["Overall, things are going really well and we've made great progress across all workstreams.",1]," ",["Feedback has been overwhelmingly positive and engagement is strong.",3]," We're on track to deliver a best-in-class experience. ",["Let me know if you have any questions!",4]]];
@@ -737,9 +745,9 @@ view(1);
 
 /* ---------- Benchmarks ---------- */
 const BENCH=[
- ['stack','Crawl, walk, run, fly','A maturity model that moves a company from access and literacy to fluency, team integration and business transformation.','It gives this framework its five stages. I build judgment and quality into the fluency stage, because using AI well and producing excellent work are different skills.'],
- ['split','Good versus great playbooks','Teams take a real deliverable, like a product spec, a sales pitch or a quarterly review deck, and compare an unedited AI draft with a gold-standard version to see exactly where a person raised the bar.','This is how I teach judgment in the fluency stage, and the tear-down on this page is a small example.'],
- ['people','Peer show-and-tell guilds','Short, regular demos where people show the exact prompt, skill or agent they used for great work. L&D curates and hosts the sessions instead of writing every course.','It keeps fluency and integration current as the tools change, and spreads what works across teams.']];
+ ['stack','Crawl, walk, run, fly','A common maturity model for AI adoption.','It gives this framework its five stages.'],
+ ['split','Good versus great playbooks','A raw AI draft compared with a gold-standard version of real work.','How I teach judgment in the fluency stage.'],
+ ['people','Peer show-and-tell guilds','Short demos where people show what works for them.','Keeps fluency and integration current.']]
 const BE=document.getElementById('bench');
 BE.innerHTML=BENCH.map(b=>`<button type="button" class="bcard" aria-pressed="false"><span class="ico">${ICON[b[0]]}</span><span class="f">${b[1]}</span><span class="d">${b[2]}</span><span class="fit"><b>Where it fits</b>${b[3]}</span><span class="more">See where it fits</span></button>`).join('');
 BE.addEventListener('click',e=>{const c=e.target.closest('.bcard');if(c)c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true')});
