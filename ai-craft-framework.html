@@ -359,11 +359,10 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 
 /* ---------- Pyramid with floating card ---------- */
 .pyrsec{margin-top:clamp(32px,4vw,48px)}
-.pyrlay{position:relative;display:grid;align-items:center;grid-template-columns:1fr 0fr;gap:0;transition:grid-template-columns .45s cubic-bezier(.4,0,.2,1),gap .45s}
-.pyrlay.open{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px}
+.pyrlay{position:relative;display:grid;align-items:start;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px}
 .pyr{display:flex;flex-direction:column-reverse;align-items:center;gap:6px;width:100%;max-width:760px;margin:0 auto}
-.tier{width:var(--w);display:flex;align-items:center;gap:14px;border:0;border-radius:14px;padding:14px 18px;background:var(--c);color:#fff;text-align:left;transition:width .45s cubic-bezier(.4,0,.2,1),transform .2s,opacity .3s,box-shadow .3s}
-.tier:hover{transform:translateY(-2px)}
+.tier{width:var(--w);display:flex;align-items:center;gap:14px;border:0;border-radius:14px;padding:14px 18px;background:var(--c);color:#fff;text-align:left;transition:opacity .25s,box-shadow .25s,filter .2s}
+.tier:hover{filter:brightness(1.08)}
 .tier .ic{flex:none;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center}
 .tier .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .tier .tx{min-width:0}
@@ -372,8 +371,10 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .pyr.has .tier{opacity:.72}
 .pyr.has .tier.on{opacity:1;box-shadow:0 0 0 3px #fff,0 0 0 5.5px var(--c)}
 .popcol{min-width:0;position:relative}
-.pop{position:relative;border-radius:20px;background:#fff;border:1px solid var(--rule);box-shadow:0 18px 50px rgba(16,37,68,.16),0 2px 8px rgba(16,37,68,.06);padding:22px 22px 20px;animation:popin .3s cubic-bezier(.2,.8,.3,1.15);transform-origin:left center}
-.pop::before{content:"";position:absolute;left:-9px;top:var(--ay,30px);width:16px;height:16px;background:#fff;border-left:1px solid var(--rule);border-bottom:1px solid var(--rule);transform:rotate(45deg)}
+.pop{position:relative;border-radius:20px;background:#fff;border:1px solid var(--rule);box-shadow:0 18px 50px rgba(16,37,68,.16),0 2px 8px rgba(16,37,68,.06);padding:22px 22px 20px;animation:fadein .25s ease}
+.pop.swap{animation:none}
+.pop.swap .pin2{animation:fadein .25s ease}
+.pop::before{content:"";position:absolute;left:-9px;top:var(--ay,30px);transition:top .3s cubic-bezier(.4,0,.2,1);width:16px;height:16px;background:#fff;border-left:1px solid var(--rule);border-bottom:1px solid var(--rule);transform:rotate(45deg)}
 .pop::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;border-radius:20px 20px 0 0;background:var(--c)}
 .px{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:50%;border:0;background:var(--tint);display:grid;place-items:center}
 .px:hover{background:#E7EBEF}
@@ -420,7 +421,8 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 @keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
 
 @media (max-width:860px){
-  .pyrlay,.pyrlay.open{grid-template-columns:1fr;gap:0}
+  .pyrlay{grid-template-columns:1fr;gap:0}
+  .ov{display:none}
   .popcol{position:static}
   .pop{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:80vh;overflow:auto;border-radius:22px 22px 0 0;padding:26px 18px 22px;animation:sheet .35s cubic-bezier(.2,.8,.2,1);-webkit-overflow-scrolling:touch}
   .pop::before{left:50%;top:8px;width:40px;height:5px;border:0;border-radius:3px;background:#D5DAE0;transform:translateX(-50%)}
@@ -434,7 +436,22 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   .tier .tt{font-size:14px}
   .tier .tg{font-size:10.5px;white-space:normal}
 }
-@media (prefers-reduced-motion:reduce){.pop,.pbl li,.pms li,.scrim,.pwhy,.pshift{animation:none;opacity:1}.pyrlay,.tier{transition:none}}
+.pnav2{display:flex;justify-content:space-between;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)}
+.pnav2 button{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--rule);background:#fff;border-radius:12px;padding:8px 12px;font-size:14px;font-weight:650;text-align:left}
+.pnav2 button:hover{border-color:var(--ink)}
+.pnav2 button small{display:block;font-size:11.5px;font-weight:600;color:var(--muted)}
+.pnav2 .nx{margin-left:auto;background:var(--c);border-color:var(--c);color:#fff;text-align:right}
+.pnav2 .nx small{color:rgba(255,255,255,.8)}
+.pnav2 svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ov{border:1.5px solid var(--rule);border-radius:20px;padding:20px 22px;animation:fadein .25s ease}
+.ov h3{font-size:15px;font-weight:700;color:var(--muted);letter-spacing:0;margin-bottom:6px}
+.ov button{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--rule);padding:11px 0}
+.ov button:first-of-type{border-top:0}
+.ov button:hover b{text-decoration:underline;text-underline-offset:3px}
+.ov .d{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:750;margin-top:1px}
+.ov small{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ov b{display:block;font-size:15.5px;font-weight:700;line-height:1.3;margin-top:1px}
+@media (prefers-reduced-motion:reduce){.ov,.pop,.pbl li,.pms li,.scrim,.pwhy,.pshift{animation:none;opacity:1}.pyrlay,.tier{transition:none}}
 
 
 /* ---------- White panels (no dark backgrounds) ---------- */
@@ -528,12 +545,6 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   </section>
 
   <section class="s"><span class="stop" aria-hidden="true">2</span>
-    <h2>Measures</h2>
-    <p class="sub">Each stage answers a bigger question than the one before.</p>
-    <div class="body ladder" id="ladder"></div>
-  </section>
-
-  <section class="s"><span class="stop" aria-hidden="true">3</span>
     <h2>Shift</h2>
     <p class="sub">What changes when AI training becomes AI enablement.</p>
     <div class="body shift">
@@ -542,7 +553,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
     </div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">4</span>
+  <section class="s"><span class="stop" aria-hidden="true">3</span>
     <h2>Tear-down</h2>
     <p class="sub">How I teach judgment in the fluency stage, shown on a short project update.</p>
     <div class="body td">
@@ -554,19 +565,19 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
     </div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">5</span>
+  <section class="s"><span class="stop" aria-hidden="true">4</span>
     <h2>Benchmarks</h2>
     <p class="sub">Common approaches I draw on, and where each one fits in the framework.</p>
     <div class="body bench" id="bench"></div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">6</span>
+  <section class="s"><span class="stop" aria-hidden="true">5</span>
     <h2>L&amp;D's role</h2>
     <p class="sub">AI tools change faster than courses can be built, so the job changes too.</p>
     <div class="body tiles" id="roles"></div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">7</span>
+  <section class="s"><span class="stop" aria-hidden="true">6</span>
     <h2>Does this resonate?</h2>
     <div class="body check">
       <div class="qs" id="qs"></div>
@@ -655,24 +666,27 @@ function openStage(i,tabIx){
   sel=i; const l=L[i];
   PY.classList.add('has');
   PY.querySelectorAll('.tier').forEach(t=>{const on=+t.dataset.i===i;t.classList.toggle('on',on);t.setAttribute('aria-expanded',on)});
-  PL.classList.add('open');
-  PCOL.innerHTML=`<div class="pop" role="dialog" aria-labelledby="popt" style="--c:${l.c}">
+  const wasOpen=!!PCOL.querySelector('.pop');
+  PCOL.innerHTML=`<div class="pop ${wasOpen?'swap':''}" role="dialog" aria-labelledby="popt" style="--c:${l.c}">
     <button type="button" class="px" aria-label="Close" data-close><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <span class="ptg"><span class="pic">${PIC[PICS[i]]}</span>${l.tag}</span>
+    <div class="pin2"><span class="ptg"><span class="pic">${PIC[PICS[i]]}</span>${l.tag}</span>
     <h3 id="popt">${l.t}</h3>
     <div class="pq"><span>The question it answers</span><strong>${l.q}</strong></div>
     <div class="ptabs" role="tablist"><button type="button" role="tab" data-t="0">Why it matters</button><button type="button" role="tab" data-t="1">What L&amp;D builds</button><button type="button" role="tab" data-t="2">Measures</button></div>
     <div class="pbody" id="pbody" role="tabpanel"></div>
+    <div class="pnav2">${i>0?`<button type="button" data-go="${i-1}"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span><small>Previous</small>${L[i-1].n}</span></button>`:''}${i<4?`<button type="button" class="nx" data-go="${i+1}"><span><small>Next stage</small>${L[i+1].n}</span><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>`:`<button type="button" class="nx" data-close><span><small>You've reached the top</small>Back to the framework</span><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>`}</div></div>
   </div>`;
+  PCOL.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>openStage(+b.dataset.go,curTab));
   PCOL.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>popTab(+b.dataset.t));
-  PCOL.querySelector('[data-close]').onclick=closeStage;
+  PCOL.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeStage);
   popTab(tabIx??1);
   SCRIM.hidden=!isSheet();
   placePop();
   if(isSheet()) PCOL.querySelector('.px').focus({preventScroll:true});
 }
+let curTab=1;
 function popTab(t){
-  const l=L[sel], B=document.getElementById('pbody');
+  curTab=t; const l=L[sel], B=document.getElementById('pbody');
   PCOL.querySelectorAll('[data-t]').forEach(b=>{b.setAttribute('aria-selected',+b.dataset.t===t);b.tabIndex=+b.dataset.t===t?0:-1});
   if(t===0) B.innerHTML=`<p class="pwhy">${l.why}</p><div class="pshift"><span class="f">${l.from}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg><span class="t">${l.to}</span></div>`;
   if(t===1) B.innerHTML=`<ol class="pbl">${l.build.map((b,j)=>`<li style="--k:${j}"><span class="n">${j+1}</span><div><b>${b[0]}</b><span>${b[1]}</span></div></li>`).join('')}</ol>`;
@@ -687,14 +701,18 @@ function placePop(){
 function closeStage(){
   if(sel===null) return;
   const back=PY.querySelector(`.tier[data-i="${sel}"]`);
-  sel=null; PY.classList.remove('has'); PL.classList.remove('open'); PCOL.innerHTML=''; SCRIM.hidden=true;
+  sel=null; PY.classList.remove('has'); overview(); SCRIM.hidden=true;
   PY.querySelectorAll('.tier').forEach(t=>{t.classList.remove('on');t.setAttribute('aria-expanded','false')});
   if(back) back.focus({preventScroll:true});
 }
+function overview(){
+  PCOL.innerHTML=`<div class="ov"><h3>What each stage answers</h3>${L.map((l,i)=>`<button type="button" data-open="${i}"><span class="d" style="background:${l.c}">${i+1}</span><span><small>${l.n}</small><b>${l.q}</b></span></button>`).join('')}</div>`;
+  PCOL.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openStage(+b.dataset.open));
+}
+overview();
 PY.addEventListener('click',e=>{const t=e.target.closest('.tier');if(!t)return;const i=+t.dataset.i;if(sel===i){closeStage();return}openStage(i)});
 SCRIM.addEventListener('click',closeStage);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStage()});
-document.addEventListener('click',e=>{if(sel!==null&&!isSheet()&&!e.target.closest('.pop')&&!e.target.closest('.tier'))closeStage()});
 addEventListener('resize',()=>{if(sel!==null){SCRIM.hidden=!isSheet();placePop()}});
 
 const PC=document.getElementById('pchips');
@@ -734,7 +752,7 @@ NB.addEventListener('click',e=>{const b=e.target.closest('button');if(b)note(b.d
 note(1);
 
 /* ---------- Measures ladder ---------- */
-document.getElementById('ladder').innerHTML=L.map((l,i)=>`<div class="rung" style="--i:${i}"><span class="rn">${i+1}</span><div><small>${l.n}</small><p>${l.q}</p></div></div>`).join('');
+if(document.getElementById('ladder'))document.getElementById('ladder').innerHTML=L.map((l,i)=>`<div class="rung" style="--i:${i}"><span class="rn">${i+1}</span><div><small>${l.n}</small><p>${l.q}</p></div></div>`).join('');
 
 /* ---------- Shift ---------- */
 const SHIFT=[['Teaching tools','Building capability'],['Increasing usage','Improving performance'],['Generic courses','Role-specific enablement'],['Individual productivity','Team effectiveness'],['Course completion','Proficiency shown on real work'],['A one-time launch','Continuous improvement']];
