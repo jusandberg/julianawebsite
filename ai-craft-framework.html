@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The AI Craft Framework | Juliana Dos Santos</title>
-<meta name="description" content="The AI Craft Framework by Juliana Dos Santos: four layers of AI enablement, from access and safety to fluency, high-quality work and team-wide change.">
+<meta name="description" content="The AI Craft Framework by Juliana Dos Santos: five layers of AI enablement, from safe access to fluency, craft, team integration and business impact.">
 <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -321,6 +321,42 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .start .big small{display:block;font-size:13.5px;font-weight:600;color:var(--teal-l);letter-spacing:0;margin-bottom:4px}
 .start p.why{margin-top:10px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
 
+/* Pillars */
+.strand{fill:rgba(255,255,255,.1);transition:fill .3s}
+.strand.on{fill:var(--teal-l)}
+.pillars{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.plbl{font-size:13.5px;font-weight:600;color:rgba(255,255,255,.65);margin-right:4px}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchips button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:6px 13px;font-size:13.5px;font-weight:650}
+.pchips button[aria-pressed="true"]{background:var(--teal-l);border-color:var(--teal-l);color:var(--navy-d)}
+.pout2{flex-basis:100%;font-size:14.5px;color:rgba(255,255,255,.85);min-height:22px}
+.lcard .lq{margin-top:12px;font-size:17px;font-weight:700;line-height:1.3;color:#fff}
+.lcard .lq b{display:block;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:3px}
+.blk .t{font-size:16px}
+
+/* Measures ladder */
+.ladder{display:flex;flex-direction:column;gap:10px}
+.rung{display:flex;gap:16px;align-items:center;margin-left:calc(var(--i) * 7%);padding:14px 20px;border-radius:18px;border:1.5px solid var(--rule);background:#fff}
+.rung:last-child{background:var(--navy-d);border-color:var(--navy-d);color:#fff}
+.rung .rn{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:#fff;background:var(--navy)}
+.rung:nth-child(2) .rn{background:#1D4A73} .rung:nth-child(3) .rn{background:var(--blue)} .rung:nth-child(4) .rn{background:#1F8A92} .rung:nth-child(5) .rn{background:var(--teal)}
+.rung small{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.rung:last-child small{color:var(--teal-l)}
+.rung p{font-size:calc(17px + var(--i) * 2.5px);font-weight:750;letter-spacing:-.015em;line-height:1.25}
+
+/* Shift */
+.shift{border:1.5px solid var(--rule);border-radius:24px;padding:clamp(16px,2.4vw,26px)}
+.sw2{display:inline-flex;background:var(--tint);border-radius:999px;padding:4px}
+.sw2 button{border:0;background:none;border-radius:999px;padding:9px 18px;font-size:14.5px;font-weight:700}
+.sw2 button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.srows{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.srow{position:relative;border-radius:14px;padding:14px 16px;min-height:56px;background:var(--navy-d);color:#fff;font-weight:700;font-size:16px;overflow:hidden;transition:background .35s,color .35s}
+.srow span{display:block;transition:opacity .3s,transform .3s}
+.srow .a{position:absolute;inset:14px 16px;opacity:0;transform:translateY(8px)}
+.srows.old .srow{background:var(--tint);color:#666}
+.srows.old .srow .a{opacity:1;transform:none}
+.srows.old .srow .b{opacity:0;transform:translateY(-8px)}
+
 @media (max-width:900px){
   .bench{grid-template-columns:1fr}
   .notes{grid-template-columns:1fr 1fr}
@@ -329,6 +365,9 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   .stairs .s-desk{display:none} .stairs .s-mob{display:block}
   .td-grid{grid-template-columns:1fr}
   .notes{grid-template-columns:1fr}
+  .rung{margin-left:calc(var(--i) * 4%);padding:12px 14px}
+  .rung p{font-size:calc(16px + var(--i) * 1.5px)}
+  .srows{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -342,15 +381,16 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   <main>
   <div class="intro">
     <div><h1>The AI Craft Framework</h1><span class="kicker">How I help companies get better work out of AI</span></div>
-    <div><span class="rule" aria-hidden="true"></span><p>Most AI rollouts stop once people have licences and a prompting session. Usage goes up, but the work often doesn't get better. This framework takes teams the rest of the way.</p></div>
+    <div><span class="rule" aria-hidden="true"></span><p>Most AI rollouts stop once people have licences and a prompting session. This framework goes from safe access to business impact in five layers, with the quality of the work as a layer of its own.</p></div>
   </div>
 
   <div class="stage" id="climb">
     <div class="shead-row">
-      <h2>Climb the four layers</h2>
+      <h2>Climb the five layers</h2>
       <div class="tools"><button type="button" class="ghostbtn" id="restart">Start over</button><button type="button" class="ghostbtn" id="showall">Show all layers</button></div>
     </div>
     <div class="stairs" id="stairs"></div>
+    <div class="pillars"><span class="plbl">Five pillars run through every layer</span><div class="pchips" id="pchips"></div><p class="pout2" id="pout2"></p></div>
     <div class="card lcard" id="card" aria-live="polite"></div>
   </div>
 
@@ -362,8 +402,23 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   </section>
 
   <section class="s"><span class="stop" aria-hidden="true">2</span>
+    <h2>Measures</h2>
+    <p class="sub">Each layer answers a bigger question than the one before.</p>
+    <div class="body ladder" id="ladder"></div>
+  </section>
+
+  <section class="s"><span class="stop" aria-hidden="true">3</span>
+    <h2>Shift</h2>
+    <p class="sub">What changes when AI training becomes AI enablement.</p>
+    <div class="body shift">
+      <div class="sw2" role="group" aria-label="Compare approaches"><button type="button" data-v="0" aria-pressed="false">Training-focused</button><button type="button" data-v="1" aria-pressed="true">Enablement-focused</button></div>
+      <div class="srows" id="srows"></div>
+    </div>
+  </section>
+
+  <section class="s"><span class="stop" aria-hidden="true">4</span>
     <h2>Tear-down</h2>
-    <p class="sub">The core format of layer 3, shown on a short project update.</p>
+    <p class="sub">The core format of the craft layer, shown on a short project update.</p>
     <div class="body td">
       <div class="td-grid">
         <div class="draft raw"><h3><i style="background:#9AA4AE"></i>Raw AI draft</h3><div id="rawText"></div></div>
@@ -373,19 +428,19 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
     </div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">3</span>
+  <section class="s"><span class="stop" aria-hidden="true">5</span>
     <h2>Benchmarks</h2>
     <p class="sub">Common approaches I draw on, and where each one fits in the framework.</p>
     <div class="body bench" id="bench"></div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">4</span>
+  <section class="s"><span class="stop" aria-hidden="true">6</span>
     <h2>L&amp;D's role</h2>
     <p class="sub">AI tools change faster than courses can be built, so the job changes too.</p>
     <div class="body tiles" id="roles"></div>
   </section>
 
-  <section class="s"><span class="stop" aria-hidden="true">5</span>
+  <section class="s"><span class="stop" aria-hidden="true">7</span>
     <h2>Does this resonate?</h2>
     <div class="body check">
       <div class="qs" id="qs"></div>
@@ -425,45 +480,57 @@ const ICON={
 
 /* ---------- The four layers ---------- */
 const L=[
- {n:'AI adoption',sub:'Access and psychological safety',
+ {n:'Access and safety',sub:'Tools, governance and responsible use',q:'Are people using AI safely?',
   why:"People rarely avoid AI because they don't know how to use it. They avoid it because they're afraid of looking replaceable, breaking a rule or looking foolish.",
   from:'Am I allowed to use this, and will it replace me?',to:"I know what I can use, and I'm comfortable trying it.",
-  build:[['Tool access','Set up with IT, so the right people have the right tools from day one.'],['Clear guidelines',"One page on what's allowed, especially with company and customer data."],['Leaders go first',"Leaders show their own early attempts, including the ones that didn't work."],['Starter sessions by role','Short sessions built around real tasks from each role.'],['A safe place to ask','Open office hours and a shared channel for questions, with no judgement.']],
-  measure:['Weekly use among people with access','Confidence scores in a short pulse survey',"Fewer questions and incidents about what's allowed"]},
- {n:'AI fluency',sub:'Workflow integration',
+  build:[['Tool access','Set up with IT and security, so the right people have approved tools from day one.'],['Clear guidelines',"One page on what's allowed, especially with company and customer data."],['Responsible AI basics','What AI does well, where it gets things wrong, and how to protect data.'],['Leaders go first',"Leaders show their own early attempts, including the ones that didn't work."],['A safe place to ask','Open office hours and a shared channel for questions, with no judgement.']],
+  measure:['Weekly use among people with access','Policy awareness and confidence scores',"Fewer questions and incidents about what's allowed"]},
+ {n:'Fluency',sub:'AI built into role-specific work',q:'Can people use AI well in their own work?',
   why:'Companies often confuse using a tool with changing how the work gets done. Fluency means knowing when to use AI, when to leave it out, and how to turn a long manual process into a shorter AI-assisted one.',
   from:'I use AI when I remember to.',to:"AI is part of how I do this work, and I know where it doesn't belong.",
-  build:[['Workflow mapping','Working sessions with each team to find the steps where AI helps.'],['Role playbooks','Tested prompts, examples and common mistakes for each role.'],['Skills and agents','Custom skills, agents and automations built for real tasks.'],['When not to use AI','Guidance for sensitive people decisions, confidential data, and work where the thinking is the point.']],
-  measure:['Workflows with AI built in','Time saved on named workflows, checked with the people who own them','Fewer manual steps in redesigned processes']},
- {n:'High-quality outputs',sub:'Judgment, taste and verification',
+  build:[['Role pathways','Learning paths built around real tasks in each role.'],['Workflow mapping','Working sessions with each team to find the steps where AI helps.'],['Skills and agents','Custom skills, agents and automations built for real tasks.'],['Practice and coaching','Simulations and coaching on real work, with room to experiment.'],['When not to use AI','Guidance for sensitive people decisions, confidential data, and work where the thinking is the point.']],
+  measure:['People applying AI on their own in their role','Time saved on named workflows, checked with the people who own them','Proficiency shown on real tasks']},
+ {n:'Craft',sub:'Judgment, verification and gold-standard work',q:'Is the work actually better?',
   why:'AI makes average-looking work cheap, so companies fill up with it. You can only check AI output if you know what good looks like in your own field.',
   from:'Is it done?',to:'Is this good enough to put my name on?',
   build:[['Tear-down workshops','A raw AI draft next to a gold-standard version, and a close look at what changed.'],['Gold-standard library','Examples of excellent work for each role, chosen with the people who know it best.'],['Verification checklists','Simple checks for facts, numbers and sources before anything is shared.'],['Editing practice','Taking a weak draft and bringing it up to standard, with feedback.'],['Peer review circles',"Colleagues give feedback on each other's AI-assisted work."]],
   measure:['Quality ratings against a shared rubric','Fewer revision rounds before approval','Fewer errors found after delivery','Feedback from the people who receive the work']},
- {n:'Team and org change',sub:'How the whole team works',
+ {n:'Team integration',sub:'Champions, shared playbooks and redesigned handoffs',q:'Are teams working better because of AI?',
   why:'The first three layers make each person faster and better. This layer asks how a whole team works differently now.',
   from:"I've found my own way of using AI.",to:'Our team shares what works, and we have changed how work moves between us.',
-  build:[['Shared libraries','Custom skills, prompts and agents shared across a department.'],['New review steps','Reviews and approvals redesigned for AI-assisted work, like code reviews or marketing sign-off.'],['Automated handoffs','Handoffs between roles automated where it is safe to do so.'],['Champions','People in each team who build reusable workflows for everyone else.']],
-  measure:['Shared skills and agents used across teams','Shorter cycle times on redesigned processes','Teams that have changed a process end to end']}
+  build:[['AI champions','People in each team who build reusable workflows for everyone else.'],['Shared playbooks','Skills, prompts and agents shared across a department and kept current.'],['Communities of practice','Regular show-and-tell sessions where people demo what works.'],['Redesigned handoffs','Reviews, approvals and handoffs between roles redesigned for AI-assisted work.']],
+  measure:['Team-level use of shared playbooks','Shorter cycle times on redesigned processes','Quality holding steady or improving as speed goes up']},
+ {n:'Business impact',sub:'Operating model, performance and innovation',q:'Is the company performing better because of AI?',
+  why:'This is where AI shows up in business results, and where L&D keeps capability growing as the tools keep changing.',
+  from:'Our teams use AI well.',to:'AI is part of how the company plans, works and improves.',
+  build:[['Business goals first','Agree with leaders which business results the work should move.'],['Operating model changes','Help leaders adjust roles, processes and decision rights as AI changes the work.'],['Continuous capability','Regular reviews of skills and tools, so learning keeps pace with change.'],['Room to try new things','Time and structure for teams to test new ways of working.']],
+  measure:['Productivity on key processes','Business results agreed with leaders','New ideas tested and adopted','Fewer AI-related risk incidents over time']}
 ];
+const PILLARS=[
+ ['Responsible AI','Security, privacy, ethics, governance and a person accountable for every output.'],
+ ['Human capability','Critical thinking, judgment, adaptability and skill with AI.'],
+ ['Performance enablement','Learning built into real work and business processes.'],
+ ['Culture and change','Leadership sponsorship, psychological safety, experimentation and peer learning.'],
+ ['Measurement and impact','Evidence of new skills, changed behaviour and business value.']];
 
-const G={desk:{vb:'0 0 1100 300',x:i=>30+i*262,w:244,top:i=>196-i*52,base:290,tx:22},mob:{vb:'0 0 360 250',x:i=>6+i*88,w:82,top:i=>150-i*40,base:244,tx:12}};
+const G={desk:{vb:'0 0 1100 340',x:i=>30+i*210,w:194,top:i=>216-i*44,base:330,tx:20,band:280,bh:8},mob:{vb:'0 0 360 282',x:i=>6+i*70,w:66,top:i=>170-i*32,base:272,tx:10,band:236,bh:6}};
 function buildStairs(kind){
   const g=G[kind], mob=kind==='mob';
-  let pts=[]; for(let i=0;i<4;i++){pts.push([g.x(i)+(i?0:g.w/2),g.top(i)]);pts.push([g.x(i)+g.w/2,g.top(i)])}
-  let s=`<svg class="s-${mob?'mob':'desk'}" viewBox="${g.vb}" role="group" aria-label="Four layers of the AI Craft Framework">`;
-  for(let i=0;i<4;i++){
+  let pts=[]; for(let i=0;i<5;i++){pts.push([g.x(i)+(i?0:g.w/2),g.top(i)]);pts.push([g.x(i)+g.w/2,g.top(i)])}
+  let s=`<svg class="s-${mob?'mob':'desk'}" viewBox="${g.vb}" role="group" aria-label="Five layers of the AI Craft Framework">`;
+  for(let i=0;i<5;i++){
     const x=g.x(i), t=g.top(i), h=g.base-t;
     s+=`<g class="blk" data-i="${i}" tabindex="-1" role="button" aria-label="Layer ${i+1}: ${L[i].n}"><rect x="${x}" y="${t}" width="${g.w}" height="${h}" rx="${mob?10:16}"/>`;
     if(mob) s+=`<text class="n" x="${x+g.w/2}" y="${t+30}" text-anchor="middle">Layer</text><text class="t" x="${x+g.w/2}" y="${t+54}" text-anchor="middle" style="font-size:22px">${i+1}</text>`;
     else s+=`<text class="n" x="${x+g.tx}" y="${t+34}">Layer ${i+1}</text><text class="t" x="${x+g.tx}" y="${t+58}">${L[i].n}</text>`;
     s+='</g>';
   }
-  for(let i=1;i<4;i++){
+  for(let i=1;i<5;i++){
     const a=g.x(i-1)+g.w/2, b=g.x(i)+g.w/2;
     const e=g.x(i)-(mob?3:9), yA=g.top(i-1)-14, yB=g.top(i)-14, r=mob?3:10;
     s+=`<path class="path" data-p="${i}" pathLength="1" d="M${a},${yA} L${e-r},${yA} Q${e},${yA} ${e},${yA-r} L${e},${yB+r} Q${e},${yB} ${e+r},${yB} L${b},${yB}"/>`;
   }
+  for(let k=0;k<5;k++){const y=g.band+k*g.bh;s+=`<rect class="strand" data-pl="${k}" x="${g.x(0)+(mob?4:12)}" y="${y}" width="${g.x(4)+g.w-g.x(0)-(mob?8:24)}" height="${g.bh-2}" rx="${(g.bh-2)/2}"/>`}
   s+=`<g class="marker" id="mk-${kind}"><circle class="halo" cx="0" cy="0" r="12"/><circle cx="0" cy="0" r="${mob?8:10}" fill="#fff"/></g>`;
   return s+'</svg>';
 }
@@ -483,20 +550,25 @@ function goTo(i,fromCard){
 ST.addEventListener('click',e=>{const b=e.target.closest('.blk');if(b&&(b.classList.contains('seen')||b.classList.contains('next')))goTo(+b.dataset.i)});
 ST.addEventListener('keydown',e=>{const b=e.target.closest('.blk');if(b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();goTo(+b.dataset.i)}});
 document.getElementById('restart').onclick=()=>{seen=new Set([0]);goTo(0)};
-document.getElementById('showall').onclick=()=>{goTo(3);};
+document.getElementById('showall').onclick=()=>{goTo(4);};
 
 function renderCard(i){
   const l=L[i], C=document.getElementById('card');
-  const nx=i<3?`<span class="lbl">Ready for the next layer?</span><button type="button" class="go" data-go="${i+1}"><span class="pip craft" style="background:var(--teal)"></span>Layer ${i+2}: ${L[i+1].n}</button>`
+  const nx=i<4?`<span class="lbl">Ready for the next layer?</span><button type="button" class="go" data-go="${i+1}"><span class="pip craft" style="background:var(--teal)"></span>Layer ${i+2}: ${L[i+1].n}</button>`
     :`<span class="lbl">That's the top layer.</span><button type="button" class="go alt" data-go="0"><span class="pip"></span>Back to layer 1</button>`;
-  C.innerHTML=`<div><span class="tag"><i style="background:var(--teal-l)"></i>Layer ${i+1} of 4</span><h3>${l.n}</h3><span class="len">${l.sub}</span><p class="what">${l.why}</p><div class="mind"><b>The mindset shift</b>"${l.from}" becomes <span>"${l.to}"</span></div></div>
+  C.innerHTML=`<div><span class="tag"><i style="background:var(--teal-l)"></i>Layer ${i+1} of 5</span><h3>${l.n}</h3><span class="len">${l.sub}</span><p class="lq"><b>The question it answers</b>${l.q}</p><p class="what">${l.why}</p><div class="mind"><b>The mindset shift</b>"${l.from}" becomes <span>"${l.to}"</span></div></div>
   <div><p class="ch">What L&amp;D builds</p><div class="wchips">${l.build.map((b,j)=>`<button type="button" data-w="${j}" aria-pressed="${j===0}">${b[0]}</button>`).join('')}</div><p class="wout">${l.build[0][1]}</p></div>
   <div><p class="ch">How success is measured</p><ul class="mlist">${l.measure.map(m=>`<li>${ICON.check}${m}</li>`).join('')}</ul></div>
   <div class="next">${nx}</div>`;
   C.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{C.querySelectorAll('[data-w]').forEach(x=>x.setAttribute('aria-pressed',x===b));C.querySelector('.wout').textContent=l.build[b.dataset.w][1]});
-  C.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const t=+b.dataset.go; if(t===0) seen=new Set([0,1,2,3]); goTo(t,true)});
+  C.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const t=+b.dataset.go; if(t===0) seen=new Set([0,1,2,3,4]); goTo(t,true)});
 }
 goTo(0);
+const PC=document.getElementById('pchips');
+PC.innerHTML=PILLARS.map((p,i)=>`<button type="button" data-pl="${i}" aria-pressed="false">${p[0]}</button>`).join('');
+function pillar(i){PC.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pl==i));ST.querySelectorAll('.strand').forEach(r=>r.classList.toggle('on',r.dataset.pl==i));document.getElementById('pout2').textContent=PILLARS[i][1]}
+PC.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pillar(b.dataset.pl)});
+pillar(0);
 
 /* ---------- Flip tiles ---------- */
 function tiles(el,items,label){
@@ -528,26 +600,40 @@ function note(n){NB.querySelectorAll('button').forEach(b=>b.setAttribute('aria-p
 NB.addEventListener('click',e=>{const b=e.target.closest('button');if(b)note(b.dataset.n)});
 note(1);
 
+/* ---------- Measures ladder ---------- */
+document.getElementById('ladder').innerHTML=L.map((l,i)=>`<div class="rung" style="--i:${i}"><span class="rn">${i+1}</span><div><small>${l.n}</small><p>${l.q}</p></div></div>`).join('');
+
+/* ---------- Shift ---------- */
+const SHIFT=[['Teaching tools','Building capability'],['Increasing usage','Improving performance'],['Generic courses','Role-specific enablement'],['Individual productivity','Team effectiveness'],['Course completion','Proficiency shown on real work'],['A one-time launch','Continuous improvement']];
+const SR=document.getElementById('srows');
+SR.innerHTML=SHIFT.map(r=>`<div class="srow"><span class="a">${r[0]}</span><span class="b">${r[1]}</span></div>`).join('');
+const SW=document.querySelector('.sw2');
+function view(v){SW.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v==v));SR.classList.toggle('old',v==0)}
+SW.addEventListener('click',e=>{const b=e.target.closest('button');if(b)view(b.dataset.v)});
+view(1);
+
 /* ---------- Benchmarks ---------- */
 const BENCH=[
- ['stack','Literacy, fluency, mastery','A common way to stage AI learning: literacy for everyone, fluency for people using AI in their daily work, and mastery for champions who build workflows others use.','It lines up with layers 1, 2 and 4. I add layer 3 because using AI well and producing excellent work are different skills.'],
- ['split','Good versus great playbooks','Teams take a real deliverable, like a product spec, a sales pitch or a quarterly review deck, and compare an unedited AI draft with a gold-standard version to see exactly where a person raised the bar.','This is the core format of layer 3, and the tear-down on this page is a small example.'],
- ['people','Peer show-and-tell guilds','Short, regular demos where people show the exact prompt, skill or agent they used for great work. L&D curates and hosts the sessions instead of writing every course.','It keeps layers 2 and 4 current as the tools change, and spreads what works across teams.']];
+ ['stack','Crawl, walk, run, fly','A maturity model that moves a company from access and literacy to fluency, team integration and business transformation.','It gives this framework its ladder and its measurement questions. The craft layer is my addition, because using AI well and producing excellent work are different skills.'],
+ ['split','Good versus great playbooks','Teams take a real deliverable, like a product spec, a sales pitch or a quarterly review deck, and compare an unedited AI draft with a gold-standard version to see exactly where a person raised the bar.','This is the core format of the craft layer, and the tear-down on this page is a small example.'],
+ ['people','Peer show-and-tell guilds','Short, regular demos where people show the exact prompt, skill or agent they used for great work. L&D curates and hosts the sessions instead of writing every course.','It keeps fluency and team integration current as the tools change, and spreads what works across teams.']];
 const BE=document.getElementById('bench');
 BE.innerHTML=BENCH.map(b=>`<button type="button" class="bcard" aria-pressed="false"><span class="ico">${ICON[b[0]]}</span><span class="f">${b[1]}</span><span class="d">${b[2]}</span><span class="fit"><b>Where it fits</b>${b[3]}</span><span class="more">See where it fits</span></button>`).join('');
 BE.addEventListener('click',e=>{const c=e.target.closest('.bcard');if(c)c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true')});
 
 /* ---------- Self-check ---------- */
 const QS=[
- ['Do people have approved AI tools and clear guidelines on what is allowed?',0],
+ ['Do people have approved AI tools, clear guidelines and the basics of responsible use?',0],
  ['Have teams changed specific workflows with AI, beyond trying prompts?',1],
  ['Do teams have a shared picture of good work, and check AI output against it?',2],
- ['Do teams share skills and automations, and have they changed how work moves between roles?',3]];
+ ['Do teams share playbooks, and have they changed how work moves between roles?',3],
+ ['Can leaders point to business results that improved because of AI?',4]];
 const START=[
- 'I start with access, clear guidelines and leaders going first, so people feel safe to try.',
- 'I start with workflow mapping in one or two teams, then turn what works into role playbooks.',
+ 'I start with approved tools, clear guidelines and leaders going first, so people feel safe to try.',
+ 'I start with workflow mapping in one or two teams, then turn what works into role pathways.',
  'I start with tear-down workshops and a gold-standard library for the roles where quality matters most.',
- 'I start with shared libraries and champions, then redesign one cross-team process end to end.'];
+ 'I start with AI champions and shared playbooks, then redesign one cross-team process end to end.',
+ 'I start by agreeing with leaders which business results to move, then review progress after every cohort.'];
 const ans={};
 document.getElementById('qs').innerHTML=QS.map((q,i)=>`<div class="q"><p>${q[0]}</p><div class="yn" role="group"><button type="button" data-q="${i}" data-a="y" aria-pressed="false">Yes</button><button type="button" data-q="${i}" data-a="n" aria-pressed="false">Not yet</button></div></div>`).join('');
 function renderStart(){
@@ -555,7 +641,7 @@ function renderStart(){
   const out=document.getElementById('startOut'), n=Object.keys(ans).length;
   if(!n){out.innerHTML='<p class="empty">Answer the questions and your starting layer shows up here.</p>';return}
   const gap=QS.findIndex((q,i)=>ans[i]==='n');
-  if(gap<0){out.innerHTML=n<4?'<p class="empty">No gaps so far.</p>':'<div class="big"><small>All four layers</small>Keep improving</div><p class="why">I look at results after each cohort and help teams raise the standard further.</p>';return}
+  if(gap<0){out.innerHTML=n<5?'<p class="empty">No gaps so far.</p>':'<div class="big"><small>All five layers</small>Keep improving</div><p class="why">I look at results after each cohort and help teams raise the standard further.</p>';return}
   out.innerHTML=`<div class="big"><small>Layer ${gap+1}</small>${L[gap].n}</div><p class="why">${START[gap]}</p>`;
 }
 document.getElementById('qs').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;ans[b.dataset.q]=b.dataset.a;b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderStart()});
