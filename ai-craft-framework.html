@@ -321,23 +321,97 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .start .big small{display:block;font-size:13.5px;font-weight:600;color:var(--teal-l);letter-spacing:0;margin-bottom:4px}
 .start p.why{margin-top:10px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
 
-/* Stage list */
-.stages{margin-top:18px;display:flex;flex-direction:column;gap:6px}
-.srow2{display:flex;gap:16px;align-items:flex-start;text-align:left;background:transparent;border:1px solid transparent;border-radius:16px;padding:12px 14px;color:#fff;transition:background .25s,border-color .25s}
-.srow2:hover{background:rgba(255,255,255,.05)}
-.srow2.on{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
-.srow2 .num{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:16px;color:#fff;background:var(--c);opacity:.55;transition:opacity .3s,transform .3s}
-.srow2.done .num{opacity:1}
-.srow2.on .num{transform:scale(1.08);box-shadow:0 0 0 3px rgba(255,255,255,.18)}
-.srow2 .txt{flex:1;min-width:0}
-.srow2 .tg{display:block;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.6);text-transform:uppercase}
-.srow2 .tt{display:block;font-size:18px;font-weight:750;margin-top:2px;letter-spacing:-.01em}
-.srow2 .ds{display:block;font-size:14.5px;color:rgba(255,255,255,.78);margin-top:6px;line-height:1.4}
-.srow2 .track{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.1);margin-top:10px;overflow:hidden}
-.srow2 .fill{display:block;height:100%;width:0;border-radius:3px;background:var(--c);transition:width .9s cubic-bezier(.6,0,.2,1)}
-.srow2.done .fill{width:var(--w)}
-.srow2:not(.done) .tt,.srow2:not(.done) .ds{opacity:.55}
-@media (prefers-reduced-motion:reduce){.srow2 .fill{transition:none}}
+/* ---------- Stage explorer ---------- */
+.prog{font-size:14px;font-weight:600;color:rgba(255,255,255,.65)}
+.j2{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(16px,2.4vw,28px);margin-top:20px;align-items:start}
+.railcol{position:sticky;top:24px}
+.rail2{position:relative;display:flex;flex-direction:column;gap:6px}
+.mat{margin-top:18px;padding:16px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.mt{display:block;font-size:12.5px;font-weight:650;color:rgba(255,255,255,.6);margin-bottom:10px}
+.mbar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.mbar i{height:8px;border-radius:4px;transition:background .4s}
+.mlbl{display:grid;grid-template-columns:repeat(5,1fr);margin-top:8px;font-size:12px;font-weight:600;color:rgba(255,255,255,.55)}
+.mlbl span:first-child{grid-column:2}
+.rline{position:absolute;left:31px;top:34px;bottom:34px;width:3px;border-radius:2px;background:rgba(255,255,255,.1);z-index:0}
+.rfill{position:absolute;left:0;top:0;width:100%;height:var(--len,0);border-radius:2px;transition:height .6s cubic-bezier(.6,0,.2,1)}
+.rstep{position:relative;z-index:1;display:flex;align-items:center;gap:14px;text-align:left;background:transparent;border:1px solid transparent;border-radius:16px;padding:10px 12px;color:#fff;transition:background .25s,border-color .25s}
+.rstep:hover{background:rgba(255,255,255,.05)}
+.rstep.on{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.16)}
+.rb{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:750;font-size:14.5px;background:var(--navy-d);border:2px solid var(--c);color:rgba(255,255,255,.8);transition:background .3s,transform .3s,box-shadow .3s}
+.rstep.done .rb,.rstep.on .rb{background:var(--c);color:#fff}
+.rstep.on .rb{transform:scale(1.08);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
+.rt{min-width:0}
+.rtag{display:block;font-size:11.5px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.rtt{display:block;font-size:15.5px;font-weight:700;line-height:1.25;margin-top:2px;color:rgba(255,255,255,.7);transition:color .25s}
+.rstep.on .rtt,.rstep.done .rtt{color:#fff}
+
+.panel2{position:relative;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);overflow:hidden;min-height:100%}
+.panel2::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 100% 0%,color-mix(in srgb,var(--c) 45%,transparent),transparent 70%);opacity:.6;pointer-events:none;transition:background .4s}
+.pin{position:relative;padding:clamp(20px,2.6vw,32px);animation:pin .45s cubic-bezier(.2,.7,.2,1)}
+.pin.back{animation-name:pinb}
+@keyframes pin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes pinb{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+.pwm{position:absolute;right:clamp(16px,2.4vw,30px);top:6px;font-size:clamp(84px,9vw,128px);font-weight:800;letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.14);pointer-events:none}
+.phead{position:relative;max-width:34ch}
+.ptag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.ptag i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.phead h3{font-size:clamp(26px,2.8vw,36px);line-height:1.05;font-weight:800;letter-spacing:-.03em;margin-top:8px;color:#fff}
+.psub{margin-top:10px;font-size:15.5px;color:rgba(255,255,255,.78);line-height:1.45}
+.pq{position:relative;margin-top:20px;padding:16px 18px;border-radius:16px;background:rgba(0,0,0,.18);border-left:4px solid var(--c)}
+.pq span{display:block;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.6)}
+.pq strong{display:block;margin-top:4px;font-size:clamp(18px,1.8vw,22px);font-weight:750;line-height:1.25;color:#fff;letter-spacing:-.01em}
+.pwhy{margin-top:18px}
+.pwhy p{font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.85);max-width:62ch}
+.pshift{margin-top:14px;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.pshift .from,.pshift .to{border-radius:14px;padding:12px 14px;font-size:14.5px;line-height:1.4}
+.pshift .from{background:rgba(255,255,255,.05);color:rgba(255,255,255,.65);font-style:italic}
+.pshift .to{background:#fff;color:var(--navy-d);font-weight:650}
+.pshift .arr{display:grid;place-items:center}
+.pshift svg,.pbtn svg{width:20px;height:20px;stroke:var(--teal-l);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pcols2{margin-top:22px;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(16px,2.4vw,28px)}
+.pcols2 h4{margin:0 0 10px;font-size:13px;font-weight:700;color:rgba(255,255,255,.6)}
+.acc2 .ai{border-top:1px solid rgba(255,255,255,.1)}
+.acc2 .ai:first-child{border-top:0}
+.acc2 button{width:100%;display:flex;align-items:center;gap:10px;background:none;border:0;color:#fff;padding:10px 0;font-size:15px;font-weight:650;text-align:left}
+.ain{flex:none;width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:12px;font-weight:750;transition:background .2s,color .2s}
+.ai.open .ain{background:var(--c);color:#fff}
+.aip{margin-left:auto;width:12px;height:12px;position:relative;flex:none}
+.aip::before,.aip::after{content:"";position:absolute;left:0;top:5px;width:12px;height:2px;border-radius:1px;background:rgba(255,255,255,.6);transition:transform .25s}
+.aip::after{transform:rotate(90deg)}
+.ai.open .aip::after{transform:rotate(0)}
+.acc2 p{display:none;margin:0 0 12px 34px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.82)}
+.ai.open p{display:block;animation:pin .3s ease}
+.pnav{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pbtn{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:14px;padding:9px 14px;text-align:left;font-size:15px;font-weight:700}
+.pbtn small{display:block;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.6)}
+.pbtn.nx{background:#fff;color:var(--navy-d);border-color:#fff;text-align:right}
+.pbtn.nx small{color:var(--muted)}
+.pbtn.nx svg{stroke:var(--navy)}
+.pbtn:hover{transform:translateY(-1px)}
+.pdots{display:flex;gap:6px}
+.pdots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s}
+.pdots i.on{width:22px;border-radius:4px;background:var(--teal-l)}
+.pillars{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+
+@media (max-width:760px){
+  .j2{grid-template-columns:1fr;gap:14px}
+  .railcol{position:static}
+  .mat{display:none}
+  .rail2{flex-direction:row;overflow-x:auto;gap:8px;padding:4px 2px 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .rail2::-webkit-scrollbar{display:none}
+  .rline{display:none}
+  .rstep{flex:none;scroll-snap-align:center;flex-direction:column;align-items:flex-start;gap:8px;width:132px;padding:12px;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+  .rtt{font-size:13.5px}
+  .rtag{font-size:10.5px}
+  .pwm{font-size:84px;top:2px}
+  .pshift{grid-template-columns:1fr}
+  .pshift .arr{transform:rotate(90deg);height:20px}
+  .pcols2{grid-template-columns:1fr}
+  .pnav{gap:6px}
+  .pbtn{padding:8px 10px;font-size:14px}
+  .pdots{display:none}
+}
+@media (prefers-reduced-motion:reduce){.pin,.ai.open p{animation:none}}
 
 /* Pillars */
 .strand{fill:rgba(255,255,255,.1);transition:fill .3s}
@@ -405,11 +479,13 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
   <div class="stage" id="climb">
     <div class="shead-row">
       <h2>Climb the five stages</h2>
-      <div class="tools"><button type="button" class="ghostbtn" id="restart">Start over</button><button type="button" class="ghostbtn" id="showall">Show all stages</button></div>
+      <p class="prog" id="prog" aria-live="polite"></p>
     </div>
-    <div class="stages" id="stages"></div>
+    <div class="j2">
+      <div class="railcol"><div class="rail2" id="stages" role="tablist" aria-label="The five stages" aria-orientation="vertical"></div><div class="mat" aria-hidden="true"><span class="mt">Maturity</span><div class="mbar" id="mbar"></div><div class="mlbl"><span>Crawl</span><span>Walk</span><span>Run</span><span>Fly</span></div></div></div>
+      <div class="panel2" id="card" role="tabpanel"></div>
+    </div>
     <div class="pillars"><span class="plbl">Five pillars run through every stage</span><div class="pchips" id="pchips"></div><p class="pout2" id="pout2"></p></div>
-    <div class="card lcard" id="card" aria-live="polite"></div>
   </div>
 
   <div class="railwrap" id="rail"><div class="railfill" id="railfill" aria-hidden="true"></div>
@@ -531,30 +607,49 @@ const PILLARS=[
  ['Culture and change','Leadership sponsorship, psychological safety, experimentation and peer learning.'],
  ['Measurement and impact','Evidence of new skills, changed behaviour and business value.']];
 
-const ST=document.getElementById('stages');
-ST.innerHTML=L.map((l,i)=>`<button type="button" class="srow2" data-i="${i}" style="--c:${l.c};--w:${l.w}%"><span class="num">0${i+1}</span><span class="txt"><span class="tg">${l.tag}</span><span class="tt">${l.t}</span><span class="ds">${l.sub}</span><span class="track"><span class="fill"></span></span></span></button>`).join('');
-let cur=0;
-function goTo(i,fromCard){
-  cur=i;
-  ST.querySelectorAll('.srow2').forEach(r=>{const j=+r.dataset.i;r.classList.toggle('done',j<=i);r.classList.toggle('on',j===i);r.setAttribute('aria-pressed',j===i)});
-  renderCard(i);
-  if(fromCard){const c=document.getElementById('card');const r=c.getBoundingClientRect();if(r.top<0||r.top>innerHeight*.7)c.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}
+const ST=document.getElementById('stages'), PN=document.getElementById('card');
+const CHEV={l:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',r:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',arrow:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'};
+ST.innerHTML=L.map((l,i)=>`<button type="button" class="rstep" role="tab" id="tab-${i}" data-i="${i}" style="--c:${l.c}" aria-controls="card"><span class="rb"><span>0${i+1}</span></span><span class="rt"><span class="rtag">${l.tag}</span><span class="rtt">${l.t}</span></span></button>`).join('')+'<span class="rline" aria-hidden="true"><span class="rfill" id="rfill"></span></span>';
+let cur=-1;
+function goTo(i,focus){
+  if(i<0||i>4) return;
+  const dir=i>cur?1:-1; cur=i;
+  ST.querySelectorAll('.rstep').forEach(r=>{const j=+r.dataset.i;r.classList.toggle('done',j<i);r.classList.toggle('on',j===i);r.setAttribute('aria-selected',j===i);r.tabIndex=j===i?0:-1});
+  const steps=ST.querySelectorAll('.rstep'); updFill();
+  document.getElementById('prog').textContent=`Stage ${i+1} of 5`;
+  document.getElementById('mbar').innerHTML=L.map((x,j)=>`<i style="background:${j<=i?x.c:'rgba(255,255,255,.1)'}"></i>`).join('');
+  renderCard(i,dir);
+  if(focus) steps[i].focus();
+  if(innerWidth<=760) steps[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
 }
-ST.addEventListener('click',e=>{const b=e.target.closest('.srow2');if(b)goTo(+b.dataset.i,innerWidth<=640)});
-document.getElementById('restart').onclick=()=>goTo(0);
-document.getElementById('showall').onclick=()=>goTo(4);
+ST.addEventListener('click',e=>{const b=e.target.closest('.rstep');if(b)goTo(+b.dataset.i)});
+ST.addEventListener('keydown',e=>{const k=e.key;if(['ArrowDown','ArrowRight'].includes(k)){e.preventDefault();goTo(Math.min(4,cur+1),true)}if(['ArrowUp','ArrowLeft'].includes(k)){e.preventDefault();goTo(Math.max(0,cur-1),true)}if(k==='Home'){e.preventDefault();goTo(0,true)}if(k==='End'){e.preventDefault();goTo(4,true)}});
+let tx=null;
+PN.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+PN.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)goTo(cur+(d<0?1:-1));tx=null});
+function updFill(){const steps=ST.querySelectorAll('.rstep'),a=steps[0],b=steps[Math.max(cur,0)],f=document.getElementById('rfill');f.style.setProperty('--len',(b.offsetTop-a.offsetTop)+'px');f.style.background=`linear-gradient(180deg,${L.slice(0,cur+1).map(x=>x.c).join(',')}${cur===0?','+L[0].c:''})`}
+addEventListener('resize',updFill);
 
-function renderCard(i){
-  const l=L[i], C=document.getElementById('card');
-  const nx=i<4?`<span class="lbl">Ready for the next stage?</span><button type="button" class="go" data-go="${i+1}"><span class="pip" style="background:${L[i+1].c}"></span>${L[i+1].n}: ${L[i+1].t.toLowerCase()}</button>`
-    :`<span class="lbl">That's the last stage.</span><button type="button" class="go alt" data-go="0"><span class="pip"></span>Back to access</button>`;
-  C.innerHTML=`<div><span class="tag"><i style="background:${l.c}"></i>Stage ${i+1} of 5 · ${l.tag}</span><h3>${l.t}</h3><p class="lq"><b>The question it answers</b>${l.q}</p><p class="what">${l.why}</p><div class="mind"><b>The mindset shift</b>"${l.from}" becomes <span>"${l.to}"</span></div></div>
-  <div><p class="ch">What L&amp;D builds</p><div class="wchips">${l.build.map((b,j)=>`<button type="button" data-w="${j}" aria-pressed="${j===0}">${b[0]}</button>`).join('')}</div><p class="wout">${l.build[0][1]}</p></div>
-  <div><p class="ch">How success is measured</p><ul class="mlist">${l.measure.map(m=>`<li>${ICON.check}${m}</li>`).join('')}</ul></div>
-  <div class="next">${nx}</div>`;
-  C.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{C.querySelectorAll('[data-w]').forEach(x=>x.setAttribute('aria-pressed',x===b));C.querySelector('.wout').textContent=l.build[b.dataset.w][1]});
-  C.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>goTo(+b.dataset.go,true));
+function renderCard(i,dir){
+  const l=L[i];
+  PN.style.setProperty('--c',l.c);
+  const prev=i>0?`<button type="button" class="pbtn" data-go="${i-1}">${CHEV.l}<span><small>Previous</small>${L[i-1].n}</span></button>`:'<span></span>';
+  const next=i<4?`<button type="button" class="pbtn nx" data-go="${i+1}"><span><small>Next stage</small>${L[i+1].n}</span>${CHEV.r}</button>`:`<button type="button" class="pbtn nx" data-go="0"><span><small>Back to the start</small>${L[0].n}</span>${CHEV.r}</button>`;
+  PN.innerHTML=`<div class="pin ${dir<0?'back':''}">
+   <span class="pwm" aria-hidden="true">0${i+1}</span>
+   <div class="phead"><span class="ptag"><i></i>${l.tag}</span><h3>${l.t}</h3><p class="psub">${l.sub}</p></div>
+   <div class="pq"><span>The question this stage answers</span><strong>${l.q}</strong></div>
+   <div class="pwhy"><p>${l.why}</p><div class="pshift"><span class="from">${l.from}</span><span class="arr">${CHEV.arrow}</span><span class="to">${l.to}</span></div></div>
+   <div class="pcols2">
+    <div><h4>What L&amp;D builds</h4><div class="acc2">${l.build.map((b,j)=>`<div class="ai ${j===0?'open':''}"><button type="button" aria-expanded="${j===0}"><span class="ain">${j+1}</span>${b[0]}<span class="aip" aria-hidden="true"></span></button><p>${b[1]}</p></div>`).join('')}</div></div>
+    <div><h4>How success is measured</h4><ul class="mlist">${l.measure.map(m=>`<li>${ICON.check}${m}</li>`).join('')}</ul></div>
+   </div>
+   <div class="pnav">${prev}<span class="pdots" aria-hidden="true">${L.map((x,j)=>`<i class="${j===i?'on':''}"></i>`).join('')}</span>${next}</div>
+  </div>`;
+  PN.querySelectorAll('.acc2 button').forEach(b=>b.onclick=()=>{const it=b.parentElement,o=!it.classList.contains('open');PN.querySelectorAll('.acc2 .ai').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false')});if(o){it.classList.add('open');b.setAttribute('aria-expanded','true')}});
+  PN.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{goTo(+b.dataset.go);const r=document.getElementById('climb').getBoundingClientRect();if(innerWidth<=760&&r.top<-40)document.getElementById('climb').scrollIntoView({behavior:'smooth',block:'start'})});
 }
+
 goTo(0);
 const PC=document.getElementById('pchips');
 PC.innerHTML=PILLARS.map((p,i)=>`<button type="button" data-pl="${i}" aria-pressed="false">${p[0]}</button>`).join('');
