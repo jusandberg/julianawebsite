@@ -381,7 +381,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .stagelist{max-width:920px;margin:clamp(36px,5vw,56px) auto 0}
 .srow3{border-top:1px solid var(--rule)}
 .srow3:last-child{border-bottom:1px solid var(--rule)}
-.shd{width:100%;display:flex;gap:18px;align-items:flex-start;background:none;border:0;text-align:left;padding:20px 4px;border-radius:12px}
+.shd{width:100%;display:flex;gap:18px;align-items:center;background:none;border:0;text-align:left;padding:16px 4px;border-radius:12px}
 .shd:hover .stt{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
 .snum{flex:none;width:46px;height:46px;border-radius:13px;background:var(--c);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:750}
 .stx{flex:1;min-width:0}
@@ -391,7 +391,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .std b{font-weight:700;color:var(--ink)}
 .sbar{display:block;height:5px;border-radius:3px;background:#EDF0F3;margin-top:12px;overflow:hidden}
 .sbar i{display:block;height:100%;width:var(--w);border-radius:3px;background:var(--c)}
-.schev{flex:none;width:34px;height:34px;border-radius:50%;background:var(--tint);display:grid;place-items:center;margin-top:6px;transition:transform .25s,background .2s}
+.schev{flex:none;width:34px;height:34px;border-radius:50%;background:var(--tint);display:grid;place-items:center;transition:transform .25s,background .2s}
 .schev svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .srow3.open .schev{transform:rotate(180deg);background:var(--c)}
 .srow3.open .schev svg{stroke:#fff}
@@ -405,6 +405,8 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 .ptabs button:hover{color:var(--ink)}
 .ptabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
 .pbody{padding-top:14px}
+.tdl{font-size:16.5px;line-height:1.45;margin:0 0 14px}
+.tdl b{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:2px}
 .slbl{font-size:13.5px;font-weight:600;color:var(--muted);margin:0 0 4px 4px}
 .cgrp{margin-top:16px}
 .cgrp h4{margin:0 0 8px;font-size:13px;font-weight:700;color:var(--muted)}
@@ -540,7 +542,7 @@ section.s{padding:clamp(64px,8vw,96px) 0 0;position:relative}
 
   <section class="pyrsec" id="climb" aria-label="The five stages">
     <div class="pyr" id="pyr"></div>
-    <div class="stagelist"><p class="slbl">What talent development does at each stage</p><div id="slist"></div></div>
+    <div class="stagelist"><div id="slist"></div></div>
     <div class="pillars"><span class="plbl">Five pillars run through every stage</span><div class="pchips" id="pchips"></div><p class="pout2" id="pout2"></p></div>
   </section>
 
@@ -623,7 +625,7 @@ const L=[
   build:[['Approved tools','Set up with IT and security, so every role that needs AI has it from day one.'],['Governance and policy','Clear guardrails on data, privacy and use, agreed with IT, security and legal.'],['Equitable access','Access planned for every team, including people who are slower to ask for it.'],['Baseline assessment','A starting picture of current use, skills and confidence across the company.']],
   measure:['Access across roles and teams','Weekly use among people with access','Policy awareness']},
  {n:'Literacy',tag:'Literacy · Crawl',t:'Build understanding',sub:'Foundational knowledge, responsible use, limitations and confidence.',q:'Do people understand AI?',c:'#4E6684',w:40,
-  why:'People usually avoid AI out of fear, not a lack of skill.',
+  why:'Most people who avoid AI are worried about getting it wrong.',
   from:'Will this replace me?',to:"I understand what AI can and can't do, and I'm comfortable trying it.",
   build:[['Responsible AI basics','What AI does well, where it gets things wrong, and how to protect data.'],['Live demonstrations','Short demos of real tasks from each function.'],['Leaders go first',"Leaders show their own early attempts, including the ones that didn't work."],['A safe place to ask','Open office hours and a shared channel for questions, with no judgement.']],
   measure:['Knowledge checks','Confidence scores in a short pulse survey','Risk awareness']},
@@ -669,7 +671,7 @@ PY.innerHTML=L.map((l,i)=>`<button type="button" class="tier" data-i="${i}" styl
 SL.innerHTML=L.map((l,i)=>`<div class="srow3" id="row-${i}" style="--c:${l.c};--w:${l.w}%">
   <button type="button" class="shd" aria-expanded="false" data-i="${i}">
     <span class="snum">0${i+1}</span>
-    <span class="stx"><span class="stg">${l.tag}</span><span class="stt">${l.t}</span><span class="std">${TD[i]}</span><span class="sbar"><i></i></span></span>
+    <span class="stx"><span class="stg">${l.tag}</span><span class="stt">${l.t}</span></span>
     <span class="schev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
   </button>
   <div class="sbody" hidden></div>
@@ -677,7 +679,8 @@ SL.innerHTML=L.map((l,i)=>`<div class="srow3" id="row-${i}" style="--c:${l.c};--
 let sel=null, curTab=1;
 function bodyHTML(i){
   const l=L[i];
-  return `<div class="pq"><span>The question it answers</span><strong>${l.q}</strong></div>
+  return `<p class="tdl"><b>What talent development does</b>${TD[i]}</p>
+   <div class="pq"><span>The question it answers</span><strong>${l.q}</strong></div>
    <p class="pwhy">${l.why}</p>
    <div class="cgrp"><h4>What talent development builds</h4><div class="cchips">${l.build.map((b,j)=>`<span style="--k:${j}">${b[0]}</span>`).join('')}</div></div>
    <div class="cgrp"><h4>Measures</h4><div class="cchips m">${l.measure.map((m,j)=>`<span style="--k:${j}">${ICON.check}${m}</span>`).join('')}</div></div>`;
